@@ -1,0 +1,21 @@
+#timetable {
+  width: 200px;
+  border-width: 1px; 
+  border-style: outset; 
+  border-collapse: collapse; 
+  border-color: gray;
+}
+#timetable td, #timetable th {
+  border-width: 1px; 
+  border-spacing: 1px; 
+  padding: 2px; 
+  border-style: inset; 
+  border-color: #CCCCCC;
+  text-align: center;
+}
+#timetable th {
+  color: black; 
+  text-align: center; 
+  font-weight: bold; 
+  background-color: #F8F7F4;
+}

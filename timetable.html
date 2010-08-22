@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prayer Timetable</title>
+  <script type='text/javascript' src='/js/MonthlyPrayerTimetable.js'></script>
+  <link rel="stylesheet" type="text/css" href="/css/timetable.css" />
+</head>
+<body onload="postInit()"> 
+  <div id="header">
+    <h1>Reload All Tabs <em id="version"></em></h1>
+  </div>
+  <div class="extension-template">
+    <div class="extension-header">Timetable</div>
+    <div class="extension-options">
+      <div id="controls">
+        <button onclick="getPrevious()">&laquo; prev </button>
+        <span id="table-title"></span>
+        <button onclick="getNext()">next &raquo;</button>
+      </div>
+      <table id="timetable" align="center"> 
+        <tbody></tbody> 
+      </table> 
+    </div>
+  </div>
+  <div id="credits">
+    Extension developed by <a href="http://www.mohamedmansour.com">Mohamed Mansour</a>
+  </div>
+  <script>
+  var bkg =chrome.extension.getBackgroundPage();
+  var entity = bkg.getPrayerEntity();
+  var monthlyTimetable = new MonthlyPrayerTimetable(entity, 'timetable');
+  monthlyTimetable.viewMonth(0);
+  
+  /**
+   * View next month.
+   */
+  function getNext() {
+    monthlyTimetable.viewMonth(+1);
+  }
+  
+  /**
+   * View previous month.
+   */
+  function getPrevious() {
+    monthlyTimetable.viewMonth(-1);
+  }
+  
+  /**
+   * When dom is loading set some options.
+   */
+  function postInit() {
+     document.getElementById('version').innerHTML =
+         ' (v' + bkg.settings.version + ')';
+  }
+  </script>
+</body>
+</html>

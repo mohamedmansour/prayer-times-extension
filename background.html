@@ -1,16 +1,70 @@
 <!doctype html> 
-<script type='text/javascript' src='Shared.js'></script>
-<script type='text/javascript' src='PrayTime.js'></script>
-<script type='text/javascript' src='GeoPrayerTime.js'></script>
+<html>
+<head>
+<script type='text/javascript' src='/js/Shared.js'></script>
+<script type='text/javascript' src='/js/PrayTime.js'></script>
+<script type='text/javascript' src='/js/GeoPrayerTime.js'></script>
 <script>
-var entity = new GeoPrayerTimes();
-function init() {
-  entity.getGeolocation();
-}
+// Global entity variable that has direct access to Prayer Times.
+var entity = new GeoPrayerTimes();;
 
+// Settings.
+settings = {
+  get version() {
+    return localStorage['version'];
+  },
+  set version(val) {
+    localStorage['version'] = val;
+  },
+  get firstRun() {
+    return localStorage['first_run'];
+  },
+  set firstRun(val) {
+    localStorage['first_run'] = val;
+  }
+};
+
+/**
+* Get the main prayer time entity.
+*/
 function getPrayerEntity() {
   return entity;
 }
 
+/**
+* Get the version number from the manifest.
+*/
+function getVersion() {
+  var version = 'NaN';
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', chrome.extension.getURL('manifest.json'), false);
+  xhr.send(null);
+  var manifest = JSON.parse(xhr.responseText);
+  return manifest.version;
+}
+
+/**
+* Initialization routine.
+*/ 
+function init() {
+  // Get the current geo location coordinates.
+  entity.getGeolocation();
+  
+  // Check if the version has changed. In case we want to do something in the
+  // future.
+  var currVersion = getVersion();
+  var prevVersion = settings.version
+  if (currVersion != prevVersion) {
+    // Check if we just installed this extension.
+    if (typeof prevVersion == 'undefined') {
+      // Do nothing now.
+    }
+    // Update the version incase we want to do something in future.
+    settings.version = currVersion;
+  }
+}
+
 init();
 </script>
+</head>
+</html>

@@ -2,8 +2,14 @@
  "name": "Prayer Times",
  "version": "0.1",
  "description": "Prayer Time Calculation based on Geolocation.",
+ "icons": {
+    "16": "img/icon16.png",
+    "32": "img/icon32.png",
+    "48": "img/icon48.png",
+    "128": "img/icon128.png"
+ },
  "browser_action": {
-   "default_icon": "icon24.png",
+   "default_icon": "img/icon24.png",
    "default_popup": "popup.html" 
  },
  "background_page": "background.html",

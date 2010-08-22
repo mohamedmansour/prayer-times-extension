@@ -9,8 +9,8 @@ GeoPrayerTimes = function()
   this.latitude = NaN;
   this.longitude = NaN;
   this.times = null;
-  this.date = new Date();
-  this.timeZone = -this.date.getTimezoneOffset() / 60;
+  this.date = null;
+  this.timezone = -5;
   this.loaded = false;
 };
 
@@ -44,20 +44,22 @@ GeoPrayerTimes.prototype.successHandler = function(position)
 {
   this.latitude = position.coords.latitude;
   this.longitude = position.coords.longitude;
-  this.times = prayTime.getPrayerTimes(this.date,
-                                       this.latitude,
-                                       this.longitude,
-                                       this.timeZone);
   this.loaded = true;
 };
 
 /**
- * The current prayer times.
+ * The current prayer times based on a date.
+ * @param {date} The date to get the prayer times for.
  * @return {array<string>}  An array of times.
  */
-GeoPrayerTimes.prototype.getTimes = function()
+GeoPrayerTimes.prototype.getTimes = function(opt_date)
 {
-  return this.times;
+  this.date = opt_date || new Date();
+  this.timezone = -this.date.getTimezoneOffset() / 60;
+  return prayTime.getPrayerTimes(this.date,
+                                  this.latitude,
+                                  this.longitude,
+                                  this.timezone);
 };
 
 /**
@@ -76,4 +78,19 @@ GeoPrayerTimes.prototype.getDate = function()
 GeoPrayerTimes.prototype.getPrayTime = function()
 {
   return prayTime;
+};
+
+GeoPrayerTimes.prototype.getLatitude = function()
+{
+  return this.latitude;
+};
+
+GeoPrayerTimes.prototype.getLongitude = function()
+{
+  return this.longitude;
+};
+
+GeoPrayerTimes.prototype.getTimezone = function()
+{
+  return this.timezone;
 };
