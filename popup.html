@@ -1,0 +1,46 @@
+<!doctype html> 
+<style>
+	body, td, th {
+    font-family: verdana;
+    font-size: 12px; 
+    color: #404040;
+  }
+	#timetable {
+    width: 200px;
+    border-width: 1px; 
+    border-style: outset; 
+    border-collapse: collapse; 
+    border-color: gray;
+  }
+	#timetable td, #timetable th {
+	  border-width: 1px; 
+	  border-spacing: 1px; 
+	  padding: 2px; 
+	  border-style: inset; 
+	  border-color: #CCCCCC;
+	  text-align: center;
+	}
+	#timetable th {
+	  color: black; 
+	  text-align: center; 
+	  font-weight: bold; 
+	  background-color: #F8F7F4;
+	}
+</style>
+<body>
+  <div align="center" id="table"></div>
+</body>
+<script type="text/javascript"> 
+	var bkg = chrome.extension.getBackgroundPage();
+  var entity = bkg.getPrayerEntity();
+  var times = entity.getTimes();
+  var prayTime = entity.getPrayTime();
+	var str = '<table id="timetable">';
+	str += '<tr><th colspan="2">'+ entity.getDate().toLocaleDateString()+ '</th></tr>';
+	for(var i = 0; i < times.length; i++) {
+		str += '<tr><td>'+ prayTime.timeNames[i]+ '</td>';
+		str += '<td>'+ times[i]+ '</td></tr>';
+	}
+	str += '</table>';
+	document.getElementById('table').innerHTML = str;
+</script> 

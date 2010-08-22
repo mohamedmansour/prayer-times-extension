@@ -1,0 +1,16 @@
+<!doctype html> 
+<script type='text/javascript' src='Shared.js'></script>
+<script type='text/javascript' src='PrayTime.js'></script>
+<script type='text/javascript' src='GeoPrayerTime.js'></script>
+<script>
+var entity = new GeoPrayerTimes();
+function init() {
+  entity.getGeolocation();
+}
+
+function getPrayerEntity() {
+  return entity;
+}
+
+init();
+</script>
