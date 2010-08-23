@@ -13,9 +13,19 @@
   <div id="content">
     <p id="dateA"></p>
     <p id="dateB"></p>
+    <p id="time"></p>
     <table id="timetable" align="center"></table>
     <p id="footer"><a href="#" onclick="viewTimetable()">view timetable</a></p>
   </div>
+  <script type="text/javascript">
+    var timeElt = document.getElementById("time");
+    function showCurrentTime() {
+      var date = new Date();
+      timeElt.innerHTML = date.toLocaleTimeString();
+      window.setTimeout("showCurrentTime()", 1000);
+    }
+    showCurrentTime();
+  </script>
   <script type="text/javascript">
     var bkg = chrome.extension.getBackgroundPage();
     var entity = bkg.getPrayerEntity();

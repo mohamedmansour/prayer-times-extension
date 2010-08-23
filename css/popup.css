@@ -12,10 +12,14 @@ body {
   font-size: 1.2em;
 }
 
-#dateA, #dateB {
+#dateA, #dateB, #time  {
   text-align: center;
   font-weight: bold;
   text-shadow: 2px 2px 2px #eee;
+}
+
+#time {
+  font-size: 0.8em;
 }
 
 #content {
@@ -26,7 +30,6 @@ body {
   width: 140px;
   border-style: none;
 	border-collapse: collapse;
-	margin-top: 10px;
 }
 
 #timetable td {
