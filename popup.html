@@ -2,6 +2,7 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="/css/popup.css" />
+  <script type='text/javascript' src='/js/Shared.js'></script>
   <script>
   function viewTimetable() {
     chrome.tabs.create({url: chrome.extension.getURL('timetable.html')});
@@ -9,23 +10,28 @@
   </script>
 </head>
 <body>
-  <div id="table" class="center"></div>
-  <div id="footer" class="right">
-    <a href="#" onclick="viewTimetable()">view timetable</a>
+  <div id="content">
+    <p id="dateA"></p>
+    <p id="dateB"></p>
+    <table id="timetable" align="center"></table>
+    <p id="footer"><a href="#" onclick="viewTimetable()">view timetable</a></p>
   </div>
-  <script type="text/javascript"> 
+  <script type="text/javascript">
     var bkg = chrome.extension.getBackgroundPage();
     var entity = bkg.getPrayerEntity();
     var times = entity.getTimes();
     var prayTime = entity.getPrayTime();
-    var str = '<table id="timetable">';
-    str += '<tr><th colspan="2">'+ entity.getDate().toLocaleDateString()+ '</th></tr>';
+    var tableContentDOM = '';
     for(var i = 0; i < times.length; i++) {
-      str += '<tr><td>'+ prayTime.timeNames[i]+ '</td>';
-      str += '<td>'+ times[i]+ '</td></tr>';
+      tableContentDOM += '<tr><td>'+ prayTime.timeNames[i]+ '</td>';
+      tableContentDOM += '<td>'+ times[i]+ '</td></tr>';
     }
-    str += '</table>';
-    document.getElementById('table').innerHTML = str;
+    var date = entity.getDate().toLocaleDateString();
+    var index = date.indexOf(',');
+    document.getElementById('dateA').innerHTML = date.substring(0, index);
+    document.getElementById('dateB').innerHTML = date.substring(index + 2,
+        date.length);
+    document.getElementById('timetable').innerHTML = tableContentDOM;
   </script> 
 </body>
 </html>

@@ -174,7 +174,7 @@ PrayTime.prototype.getDatePrayerTimes = function(year, month, day, latitude, lon
 // return prayer times for a given date
 PrayTime.prototype.getPrayerTimes = function(date, latitude, longitude, timeZone)
 {
-	return this.getDatePrayerTimes(date.getFullYear(), date.getMonth()+ 1, date.getDate(), 
+	return this.getDatePrayerTimes(date.getFullYear(), date.getMonth() + 1, date.getDate(), 
 				latitude, longitude, timeZone);
 }
 
