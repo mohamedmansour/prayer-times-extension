@@ -1,7 +1,7 @@
 {
  "name": "Prayer Times",
  "version": "0.1",
- "description": "Prayer Time Calculation based on Geolocation.",
+ "description": "Prayer Timetable based on geolocation including options to change calculation methods.",
  "icons": {
     "16": "img/icon16.png",
     "32": "img/icon32.png",

@@ -8,10 +8,12 @@
   text-align: center;
   padding: 10px;
 }
+
 #controls button {
   padding: 5px;
   margin: 0px;
 }
+
 #controls span {
   margin: 0px;
   background: #ebeff9;
@@ -19,6 +21,7 @@
   padding: 5px;
   border-radius: 10px;
 }
+
 #timetable {
   width: 600px;
 	border-collapse: collapse;
@@ -43,9 +46,22 @@
 .odd-row {
   background-color: #fff;
 }
+
 td {
   text-align: center;
 }
+
 tr.odd-row:hover, tr.even-row:hover {
   background-color: #b5c7de;
+}
+
+#precaution {
+  text-align: center;
+  background: #FDFFBD;
+  width: 500px;
+  margin: 10px auto;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  color: #333;
 }
