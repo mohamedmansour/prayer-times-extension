@@ -1,14 +1,11 @@
+@import url("core.css");
+
 body {
   background-image: url('/img/background.jpg');
   background-repeat:no-repeat;
   background-position: center center;
   width: 198px;
   height: 268px;
-}
-
-p {
-  margin: 0;
-  padding: 0;
 }
 
 #dateA {
@@ -22,7 +19,7 @@ p {
 }
 
 #content {
-  padding: 20px 20px 0px 20px;
+  padding: 25px 20px 0px 20px;
 }
 
 #timetable {
@@ -33,8 +30,8 @@ p {
 }
 
 #timetable td {
-  border-spacing: 0px; 
-  padding: 1px; 
+  border-spacing: 2px; 
+  padding: 3px; 
 }
 
 #timetable td:first-child {
@@ -47,9 +44,11 @@ p {
 }
 
 #footer {
+  margin-top: 3px; 
   margin-right: 10px;
   text-align: right;
 }
+
 #footer a {
   color: #000;
 }
