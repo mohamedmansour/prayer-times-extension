@@ -1,7 +1,6 @@
 /**
  * A Geolocated based prayer times that uses HTML5 geolocation features
  * to find out the prayers.
- *
  * @constructor
  */
 GeoPrayerTimes = function()
@@ -12,13 +11,18 @@ GeoPrayerTimes = function()
   this.date = null;
   this.timezone = -5;
   this.loaded = false;
+  this.callback = null;
 };
 
 /**
  * Retrieves the geolocated data and calculates the new prayer times.
+ * @param {function} callback The callback that gets fired when positional data
+ *                            has been retrieved.
  */
-GeoPrayerTimes.prototype.getGeolocation = function()
+GeoPrayerTimes.prototype.getGeolocation = function(callback)
 {
+  this.loaded = false;
+  this.callback = callback;
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(this.successHandler.bind(this),
                                              this.errorHandler.bind(this));
@@ -44,6 +48,7 @@ GeoPrayerTimes.prototype.successHandler = function(position)
 {
   this.latitude = position.coords.latitude;
   this.longitude = position.coords.longitude;
+  this.callback.call(this, this.latitude, this.longitude);
   this.loaded = true;
 };
 
@@ -80,17 +85,64 @@ GeoPrayerTimes.prototype.getPrayTime = function()
   return prayTime;
 };
 
+/**
+ * Returns the current latitude present.
+ * @return {float} A latitude
+ */
 GeoPrayerTimes.prototype.getLatitude = function()
 {
   return this.latitude;
 };
 
+/**
+ * Returns the current longitude present.
+ * @return {float} A longitude
+ */
 GeoPrayerTimes.prototype.getLongitude = function()
 {
   return this.longitude;
 };
 
+/**
+ * Returns the current timezone present.
+ * @return {number} A timezone
+ */
 GeoPrayerTimes.prototype.getTimezone = function()
 {
   return this.timezone;
+};
+
+/**
+ * Checks is the geolocation functionality has been completed and loaded
+ * @return {boolean} true if geodata retrieved.
+ */
+GeoPrayerTimes.prototype.isLoaded = function()
+{
+  return this.loaded;
+};
+
+/**
+ * Calculation method name.
+ * @return {string} The textual representation of the calculation method.
+ */
+GeoPrayerTimes.prototype.getCalculationName = function(val)
+{
+  switch (val) {
+    case 0:
+      return 'Iran - Leva Research Institute, Qom';
+    case 1:
+      return 'Karachi - University of Islamic Sciences';
+    case 2:
+      return 'ISNA - Islamic Society of North America';
+    case 3:
+      return 'MWL - Muslim World League, Saudi Arabia';
+    case 4:
+      return 'Makkah - Umm al-Qura, Saudi Arabia';
+    case 5:
+      return 'Egyptian - General Authority of Survey';
+    case 7:
+      return 'Iran - Institute of Geophysics Tehran Uni';
+    default:
+      return 'Error: Does not exist';
+  }
 };

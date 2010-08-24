@@ -6,7 +6,7 @@
 <script type='text/javascript' src='/js/GeoPrayerTime.js'></script>
 <script>
 // Global entity variable that has direct access to Prayer Times.
-var entity = new GeoPrayerTimes();;
+var entity = new GeoPrayerTimes();
 
 // Settings.
 settings = {
@@ -15,9 +15,50 @@ settings = {
   },
   set version(val) {
     localStorage['version'] = val;
-  }
+  },
+  get currentPosition() {
+    var key = localStorage['currentPosition'];
+    return (typeof key == 'undefined') ? null : key;
+  },
+  set currentPosition(val) {
+    localStorage['currentPosition'] = val;
+  },
+  get timeformat() {
+    var key = localStorage['timeformat'];
+    return (typeof key == 'undefined') ? 0 : key;
+  },
+  set timeformat(val) {
+    localStorage['timeformat'] = val;
+  },
+  get calculation() {
+    var key = localStorage['calculation'];
+    return (typeof key == 'undefined') ? 0 : parseInt(key);
+  },
+  set calculation(val) {
+    localStorage['calculation'] = val;
+  },
 };
 
+/**
+* Open a singleton page, which means, if a page already exists, it just selects it.
+* @param url The page which it will navigate to.
+*/
+function openSingletonPage(url) {
+  chrome.windows.getCurrent(function(win) {
+    chrome.tabs.getAllInWindow(win.id, function(tabs) {
+      // Check if the page is already open.
+      for (var i = 0; i < tabs.length; i++) {
+        // If the page exists, just select it.
+        if (tabs[i].url.indexOf(url) == 0) {
+          chrome.tabs.update(tabs[i].id, {selected: true});
+          return;
+        }
+      }
+      chrome.tabs.create({url: url});
+    });
+  });
+}
+  
 /**
 * Get the main prayer time entity.
 */
@@ -41,8 +82,14 @@ function getVersion() {
 * Initialization routine.
 */ 
 function init() {
-  // Get the current geo location coordinates.
-  entity.getGeolocation();
+  // Get the current geo location coordinates if none exist.
+  entity.getGeolocation(function(latitude, longitude) {
+    settings.currentPosition = latitude + ',' + longitude;
+  });
+  
+  // Load defaults.
+  entity.getPrayTime().setCalcMethod(settings.calculation);
+  entity.getPrayTime().setTimeFormat(settings.timeformat);
   
   // Check if the version has changed. In case we want to do something in the
   // future.

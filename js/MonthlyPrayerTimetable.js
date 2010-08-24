@@ -8,10 +8,6 @@ MonthlyPrayerTimetable = function(entity, id)
 
 MonthlyPrayerTimetable.prototype.viewMonth = function(offset)
 {
-  var lat = entity.getLatitude();
-  var lng = entity.getLongitude();
-  var timezone = entity.getTimezone();
-
   this.currentDate.setMonth(this.currentDate.getMonth() + 1 * offset);
   var month = this.currentDate.getMonth();
   var year = this.currentDate.getFullYear();

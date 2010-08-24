@@ -26,6 +26,11 @@ body {
   padding: 25px 20px 0px 20px;
 }
 
+#error {
+ text-align: center;
+ margin-top: 50px;
+}
+
 #timetable {
   width: 140px;
   border-style: none;

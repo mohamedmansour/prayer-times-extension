@@ -4,44 +4,78 @@
   <link rel="stylesheet" type="text/css" href="/css/popup.css" />
   <script type='text/javascript' src='/js/Shared.js'></script>
   <script>
+  var bkg = chrome.extension.getBackgroundPage();
+  
+  /**
+   * Show prayer time table.
+   */
   function viewTimetable() {
-    chrome.tabs.create({url: chrome.extension.getURL('timetable.html')});
+    bkg.openSingletonPage(chrome.extension.getURL('timetable.html'));
   }
-  </script>
-</head>
-<body>
-  <div id="content">
-    <p id="dateA"></p>
-    <p id="dateB"></p>
-    <p id="time"></p>
-    <table id="timetable" align="center"></table>
-    <p id="footer"><a href="#" onclick="viewTimetable()">view timetable</a></p>
-  </div>
-  <script type="text/javascript">
+  
+  /**
+   * Show live time.
+   **/
+  function showCurrentTime() {
+    var date = new Date();
     var timeElt = document.getElementById("time");
-    function showCurrentTime() {
-      var date = new Date();
-      timeElt.innerHTML = date.toLocaleTimeString();
-      window.setTimeout("showCurrentTime()", 1000);
-    }
-    showCurrentTime();
-  </script>
-  <script type="text/javascript">
-    var bkg = chrome.extension.getBackgroundPage();
-    var entity = bkg.getPrayerEntity();
-    var times = entity.getTimes();
-    var prayTime = entity.getPrayTime();
-    var tableContentDOM = '';
-    for(var i = 0; i < times.length; i++) {
-      tableContentDOM += '<tr><td>'+ prayTime.timeNames[i]+ '</td>';
-      tableContentDOM += '<td>'+ times[i]+ '</td></tr>';
-    }
-    var date = entity.getDate().toLocaleDateString();
+    timeElt.innerHTML = date.toLocaleTimeString();
+    window.setTimeout("showCurrentTime()", 1000);
+  }
+  
+  /**
+   * Show current date.
+   */
+  function showCurrentDate() {
+    var date = (new Date()).toLocaleDateString();
     var index = date.indexOf(',');
     document.getElementById('dateA').innerHTML = date.substring(0, index);
     document.getElementById('dateB').innerHTML = date.substring(index + 2,
         date.length);
-    document.getElementById('timetable').innerHTML = tableContentDOM;
-  </script> 
+  }
+  
+  /**
+   * Show prayer time.
+   */
+  function showPrayerTime() { 
+    var entity = bkg.getPrayerEntity();
+    if (!entity.isLoaded()) {
+      var html = ""
+      document.getElementById('error').style.display = 'block';
+      document.getElementById('footer').style.display = 'none';
+      window.setTimeout("showPrayerTime()", 1000);
+    } else {
+      document.getElementById('error').style.display = 'none';
+      document.getElementById('footer').style.display = 'block';
+      var times = entity.getTimes();
+      var prayTime = entity.getPrayTime();
+      var tableContentDOM = '';
+      for(var i = 0; i < times.length; i++) {
+        tableContentDOM += '<tr><td>'+ prayTime.timeNames[i]+ '</td>';
+        tableContentDOM += '<td>'+ times[i]+ '</td></tr>';
+      }
+      document.getElementById('timetable').innerHTML = tableContentDOM;
+    }
+  }
+  
+  /**
+   * Initialize View.
+   */
+  function init() {
+    showCurrentTime();
+    showCurrentDate();
+    showPrayerTime();
+  }
+  </script>
+</head>
+<body onload="init();">
+  <div id="content">
+    <p id="dateA"></p>
+    <p id="dateB"></p>
+    <p id="time"></p>
+    <p id="error">Fetching Geolocation ...<br/>Please wait!</p>
+    <table id="timetable" align="center"></table>
+    <p id="footer"><a href="javascript:viewTimetable()">view timetable</a></p>
+  </div>
 </body>
 </html>

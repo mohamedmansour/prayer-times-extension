@@ -55,11 +55,14 @@ tr.odd-row:hover, tr.even-row:hover {
   background-color: #b5c7de;
 }
 
-#precaution {
-  text-align: center;
-  background: #FDFFBD;
-  width: 500px;
+#footerTimetable {
   margin: 10px auto;
+  text-align: center;
+  width: 500px;
+}
+
+#precaution {
+  background: #FDFFBD;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 10px;

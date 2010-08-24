@@ -2,10 +2,10 @@
 <html>
 <head>
   <title>Prayer Timetable</title>
-  <script type='text/javascript' src='/js/MonthlyPrayerTimetable.js'></script>
   <link rel="stylesheet" type="text/css" href="/css/timetable.css" />
+  <script type='text/javascript' src='/js/MonthlyPrayerTimetable.js'></script>
 </head>
-<body onload="postInit()"> 
+<body> 
   <div id="header">
     <h1>Prayer Timetable <em id="version"></em></h1>
   </div>
@@ -20,41 +20,51 @@
       <table id="timetable" align="center"> 
         <tbody></tbody> 
       </table>
-      <p id="precaution">The above times are based on 
-          calculations only. Please allow +/- 3  minutes for Fajr, 1 minute for 
-          Dhuhr, and 2 minutes for Maghrib as a precaution.</p>
+      <div id="footerTimetable">
+        <p id="precaution">The above times are based on 
+            calculations only. Please allow +/- 3  minutes for Fajr, 1 minute 
+            for Dhuhr, and 2 minutes for Maghrib as a precaution.</p>
+        <p><strong>Calculation method:</strong> <span id="calculation"></span>
+           [<a href="javascript:visitOptions();">options</a>]</p>
+      </div>
     </div>
   </div>
   <div id="credits">
-    Extension developed by <a href="http://www.mohamedmansour.com">Mohamed Mansour</a>
+    Extension developed by <a href="http://www.mohamedmansour.com">Mohamed Mansour</a>, 
+    Source Code available in <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a>
   </div>
-  <script>
-  var bkg =chrome.extension.getBackgroundPage();
-  var entity = bkg.getPrayerEntity();
-  var monthlyTimetable = new MonthlyPrayerTimetable(entity, 'timetable');
-  monthlyTimetable.viewMonth(0);
-  
-  /**
-   * View next month.
-   */
-  function getNext() {
-    monthlyTimetable.viewMonth(+1);
-  }
-  
-  /**
-   * View previous month.
-   */
-  function getPrevious() {
-    monthlyTimetable.viewMonth(-1);
-  }
-  
-  /**
-   * When dom is loading set some options.
-   */
-  function postInit() {
-     document.getElementById('version').innerHTML =
-         ' (v' + bkg.settings.version + ')';
-  }
+  <script type='text/javascript'>
+    // Initialization code.
+    var bkg = chrome.extension.getBackgroundPage();
+    var entity = bkg.getPrayerEntity();
+    var monthlyTimetable = new MonthlyPrayerTimetable(entity, 'timetable');
+
+    monthlyTimetable.viewMonth(0);
+    document.getElementById('version').innerHTML = 
+        ' (v' + bkg.settings.version + ')';
+    document.getElementById('calculation').innerHTML = 
+        entity.getCalculationName(bkg.settings.calculation);
+    
+    /**
+     * Visit Options window.
+     */
+    function visitOptions() {
+      bkg.openSingletonPage(chrome.extension.getURL('options.html'));
+    }
+    
+    /**
+     * View next month.
+     */
+    function getNext() {
+      monthlyTimetable.viewMonth(+1);
+    }
+    
+    /**
+     * View previous month.
+     */
+    function getPrevious() {
+      monthlyTimetable.viewMonth(-1);
+    }
   </script>
 </body>
 </html>

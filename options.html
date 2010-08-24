@@ -1,0 +1,128 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<title>Prayer Times Options</title>
+<link rel="stylesheet" type="text/css" href="/css/options.css">
+<script type="text/javascript">
+var bkg = chrome.extension.getBackgroundPage();
+
+/**
+* Saves options to localStorage.
+*/
+function saveOptions() {
+  // Set the extension settings.
+  var position = parseFloat(document.getElementById('latitude').value) + ',' +
+      parseFloat(document.getElementById('longitude').value);
+  bkg.settings.currentPosition = position;
+  bkg.settings.timeformat = parseInt(document.getElementById('timeformat').value);
+  bkg.settings.calculation = parseInt(document.getElementById('calculation').value);
+
+  // Update prayer settings.
+  var prayTime = bkg.getPrayerEntity().getPrayTime();
+  prayTime.setCalcMethod(bkg.settings.calculation);
+  prayTime.setTimeFormat(bkg.settings.timeformat);
+  
+  // Refresh timetable to get new prayer time.
+  var views = chrome.extension.getViews();
+  for (var i in views) {
+    var location = views[i].location;
+    if (location.pathname == '/timetable.html') {
+      location.reload();
+    }
+  }
+  
+  // Update status to let user know options were saved.
+  var info = document.getElementById('info-message');
+  info.style.display = 'inline';
+  info.style.opacity = 1;
+  setTimeout(function() {
+    info.style.opacity = 0.0;
+  }, 1000);
+}
+
+/**
+* Restore all options.
+*/
+function restoreOptions() {
+  // Add calculations settings.
+  var calculationElement = document.getElementById('calculation');
+  var entity = bkg.getPrayerEntity();
+  calculationElement.add(createCalculationOption(entity, 0));
+  calculationElement.add(createCalculationOption(entity, 7));
+  calculationElement.add(createCalculationOption(entity, 1));
+  calculationElement.add(createCalculationOption(entity, 2));
+  calculationElement.add(createCalculationOption(entity, 3));
+  calculationElement.add(createCalculationOption(entity, 4));
+  calculationElement.add(createCalculationOption(entity, 5));
+  
+  // Restore settings.
+  var position = bkg.settings.currentPosition;
+  var index = position.indexOf(',');
+  document.getElementById('version').innerHTML = ' (v' + bkg.settings.version + ')';
+  document.getElementById('latitude').value = position.substring(0, index);
+  document.getElementById('longitude').value = position.substring(index + 1, position.length);
+  document.getElementById('timeformat').value = bkg.settings.timeformat;
+  document.getElementById('calculation').value = bkg.settings.calculation;
+}
+
+function createCalculationOption(entity, value) {
+  var option = document.createElement('option');
+  option.text = entity.getCalculationName(value);
+  option.value = value;
+  return option;
+}
+</script>
+</head>
+
+<body onload="restoreOptions()"> 
+  <form onsubmit="return false;">
+  <div id="body-container">
+    <div id="header">
+      <h1>Prayer Time Options<em id="version"></em></h1>
+    </div>
+    <p>Make sure you save the settings after your done editing!</p>
+    <div class="extension-template">
+      <div class="extension-header">Location Settings</div>
+      <div class="extension-options">
+        <dl>
+          <dt>Geolocation:</dt>
+          <dd>
+            Latitude <input readonly="readonly" type="text" id="latitude" disabled="disabled" /> 
+            Longitude <input readonly="readonly" type="text" id="longitude" disabled="disabled" /> 
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="extension-template">
+      <div class="extension-header">Prayer Time Settings</div>
+      <div class="extension-options">
+        <dl>
+          <dt>Time Format:</dt>
+          <dd>
+            <select id="timeformat">
+              <option value="0">24-hour</option>
+              <option value="1">12-hour</option>
+              <option value="2">12-hour with no suffix</option>
+            </select>
+          </dd>
+          <dt>Calculation Method:</dt>
+          <dd>
+            <select id="calculation">
+            </select>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div id="extension-footer">
+      <span id="info-message">Options saved!</span>
+      <button onclick="saveOptions();">Save</button>
+      <button onclick="window.close();">Close</button>
+    </div>
+    <div id="credits">
+      Extension developed by <a href="http://www.mohamedmansour.com">Mohamed Mansour</a>, 
+      Source Code available in <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a>
+    </div>
+  </div>
+  </form>
+</body>
+</html>
