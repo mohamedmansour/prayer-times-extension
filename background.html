@@ -95,6 +95,8 @@ function init() {
     entity.getGeolocation(function(latitude, longitude) {
       settings.currentPosition = latitude + ',' + longitude;
     });
+  } else {
+    entity.setLoaded(true);
   }
   
   // Load defaults.

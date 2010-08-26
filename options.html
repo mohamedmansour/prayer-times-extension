@@ -73,15 +73,18 @@ function restoreOptions() {
   calculationElement.add(createCalculationOption(entity, 'Karachi'));
   
   // Restore settings.
-  var position = bkg.settings.currentPosition;
-  var index = position.indexOf(',');
-  var lat = parseFloat(position.substring(0, index));
-  var lng = parseFloat(position.substring(index + 1, position.length));
   document.getElementById('version').innerHTML = ' (v' + bkg.settings.version + ')';
-  document.getElementById('latitude').value = lat;
-  document.getElementById('longitude').value = lng;
   document.getElementById('timeformat').value = bkg.settings.timeformat;
   document.getElementById('calculation').value = bkg.settings.calculation;
+  
+  var position = bkg.settings.currentPosition;
+  if (position) {
+    var index = position.indexOf(',');
+    var lat = parseFloat(position.substring(0, index));
+    var lng = parseFloat(position.substring(index + 1, position.length));
+    document.getElementById('latitude').value = lat;
+    document.getElementById('longitude').value = lng;
+  }
   
   // Show position on map.
   map = new GMap2(document.getElementById("map_canvas"));

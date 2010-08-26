@@ -139,6 +139,15 @@ GeoPrayerTimes.prototype.isLoaded = function()
 };
 
 /**
+ * Sets the loaded parameter to distinguish that lat and long exists.
+ * @param {boolean} val true if geodata retrieved.
+ */
+GeoPrayerTimes.prototype.setLoaded = function(val)
+{
+  this.loaded = val;
+};
+
+/**
  * Calculation method name.
  * @return {string} The calculation method.
  */
