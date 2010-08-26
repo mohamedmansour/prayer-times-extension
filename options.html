@@ -14,12 +14,23 @@ function saveOptions() {
   var position = parseFloat(document.getElementById('latitude').value) + ',' +
       parseFloat(document.getElementById('longitude').value);
   bkg.settings.currentPosition = position;
-  bkg.settings.timeformat = parseInt(document.getElementById('timeformat').value);
-  bkg.settings.calculation = parseInt(document.getElementById('calculation').value);
-
+  bkg.settings.timeformat = document.getElementById('timeformat').value;
+  bkg.settings.calculation = document.getElementById('calculation').value;
+  
+  // Update visible time names.
+  var timeNames = [];
+  var timeNameNodes = document.getElementsByName('timenames');
+  for (var i in timeNameNodes) {
+    var timeNameNode = timeNameNodes[i];
+    if (timeNameNode.checked) {
+      timeNames.push(timeNameNode.id);
+    }
+  }
+  bkg.settings.timenames = timeNames;
+  
   // Update prayer settings.
   var prayTime = bkg.getPrayerEntity().getPrayTime();
-  prayTime.setCalcMethod(bkg.settings.calculation);
+  prayTime.setMethod(bkg.settings.calculation);
   prayTime.setTimeFormat(bkg.settings.timeformat);
   
   // Refresh timetable to get new prayer time.
@@ -47,13 +58,13 @@ function restoreOptions() {
   // Add calculations settings.
   var calculationElement = document.getElementById('calculation');
   var entity = bkg.getPrayerEntity();
-  calculationElement.add(createCalculationOption(entity, 0));
-  calculationElement.add(createCalculationOption(entity, 7));
-  calculationElement.add(createCalculationOption(entity, 1));
-  calculationElement.add(createCalculationOption(entity, 2));
-  calculationElement.add(createCalculationOption(entity, 3));
-  calculationElement.add(createCalculationOption(entity, 4));
-  calculationElement.add(createCalculationOption(entity, 5));
+  calculationElement.add(createCalculationOption(entity, 'Jafari'));
+  calculationElement.add(createCalculationOption(entity, 'Tehran'));
+  calculationElement.add(createCalculationOption(entity, 'MWL'));
+  calculationElement.add(createCalculationOption(entity, 'ISNA'));
+  calculationElement.add(createCalculationOption(entity, 'Egypt'));
+  calculationElement.add(createCalculationOption(entity, 'Makkah'));
+  calculationElement.add(createCalculationOption(entity, 'Karachi'));
   
   // Restore settings.
   var position = bkg.settings.currentPosition;
@@ -63,6 +74,14 @@ function restoreOptions() {
   document.getElementById('longitude').value = position.substring(index + 1, position.length);
   document.getElementById('timeformat').value = bkg.settings.timeformat;
   document.getElementById('calculation').value = bkg.settings.calculation;
+  
+  // Restore timenames.
+  if (bkg.settings.timenames) {
+    var timeNames = bkg.settings.timenames;
+    for (var i in timeNames) {
+      document.getElementById(timeNames[i]).checked = true;
+    }
+  }
 }
 
 function createCalculationOption(entity, value) {
@@ -94,21 +113,45 @@ function createCalculationOption(entity, value) {
       </div>
     </div>
     <div class="extension-template">
-      <div class="extension-header">Prayer Time Settings</div>
+      <div class="extension-header">Time Settings</div>
       <div class="extension-options">
         <dl>
           <dt>Time Format:</dt>
           <dd>
             <select id="timeformat">
-              <option value="0">24-hour</option>
-              <option value="1">12-hour</option>
-              <option value="2">12-hour with no suffix</option>
+              <option value="24h">24 hour</option>
+              <option value="12h">12 hour</option>
+              <option value="12hNS">12 hour with no suffix</option>
             </select>
           </dd>
+          <dt>Visible Time Names:</dt>
+          <dd>
+            <p class="visibleTimeNamesList">
+              <input type="checkbox" name="timenames" id="Imsak" /> <label for="Imsak">Imsak</label>
+              <input type="checkbox" name="timenames" id="Fajr" /> <label for="Fajr">Fajr</label>
+              <input type="checkbox" name="timenames" id="Sunrise" /> <label for="Sunrise">Sunrise</label>
+            </ul>
+            <p class="visibleTimeNamesList">
+              <input type="checkbox" name="timenames" id="Dhuhr" /> <label for="Dhuhr">Dhuhr</label>
+              <input type="checkbox" name="timenames" id="Asr" /> <label for="Asr">Asr</label>
+              <input type="checkbox" name="timenames" id="Sunset" /> <label for="Sunset">Sunset</label>
+            </ul>
+            <p class="visibleTimeNamesList">
+              <input type="checkbox" name="timenames" id="Maghrib" /> <label for="Maghrib">Maghrib</label>
+              <input type="checkbox" name="timenames" id="Isha" /> <label for="Isha">Isha</label>
+              <input type="checkbox" name="timenames" id="Midnight" /> <label for="Midnight">Midnight</label>
+            </p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="extension-template">
+      <div class="extension-header">Calculation Settings</div>
+      <div class="extension-options">
+        <dl>
           <dt>Calculation Method:</dt>
           <dd>
-            <select id="calculation">
-            </select>
+            <select id="calculation"></select>
           </dd>
         </dl>
       </div>

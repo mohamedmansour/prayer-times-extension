@@ -61,10 +61,9 @@ GeoPrayerTimes.prototype.getTimes = function(opt_date)
 {
   this.date = opt_date || new Date();
   this.timezone = -this.date.getTimezoneOffset() / 60;
-  return prayTime.getPrayerTimes(this.date,
-                                  this.latitude,
-                                  this.longitude,
-                                  this.timezone);
+  return prayTimes.getTimes(this.date,
+                            [this.latitude, this.longitude],
+                            this.timezone, 0);
 };
 
 /**
@@ -82,7 +81,7 @@ GeoPrayerTimes.prototype.getDate = function()
  */
 GeoPrayerTimes.prototype.getPrayTime = function()
 {
-  return prayTime;
+  return prayTimes;
 };
 
 /**
@@ -95,12 +94,30 @@ GeoPrayerTimes.prototype.getLatitude = function()
 };
 
 /**
+ * Sets the current latitude present.
+ * @param {float} val A latitude
+ */
+GeoPrayerTimes.prototype.setLatitude = function(val)
+{
+  this.latitude = val;
+};
+
+/**
  * Returns the current longitude present.
  * @return {float} A longitude
  */
 GeoPrayerTimes.prototype.getLongitude = function()
 {
   return this.longitude;
+};
+
+/**
+ * Sets the current longitude present.
+ * @param {float} val A longitude
+ */
+GeoPrayerTimes.prototype.setLongitude = function(val)
+{
+  this.longitude = val;
 };
 
 /**
@@ -123,26 +140,9 @@ GeoPrayerTimes.prototype.isLoaded = function()
 
 /**
  * Calculation method name.
- * @return {string} The textual representation of the calculation method.
+ * @return {string} The calculation method.
  */
-GeoPrayerTimes.prototype.getCalculationName = function(val)
+GeoPrayerTimes.prototype.getCalculationName = function(method)
 {
-  switch (val) {
-    case 0:
-      return 'Iran - Leva Research Institute, Qom';
-    case 1:
-      return 'Karachi - University of Islamic Sciences';
-    case 2:
-      return 'ISNA - Islamic Society of North America';
-    case 3:
-      return 'MWL - Muslim World League, Saudi Arabia';
-    case 4:
-      return 'Makkah - Umm al-Qura, Saudi Arabia';
-    case 5:
-      return 'Egyptian - General Authority of Survey';
-    case 7:
-      return 'Iran - Institute of Geophysics Tehran Uni';
-    default:
-      return 'Error: Does not exist';
-  }
+  return prayTimes.getMethodName(method);
 };

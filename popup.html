@@ -48,11 +48,12 @@
       document.getElementById('error').style.display = 'none';
       document.getElementById('footer').style.display = 'block';
       var times = entity.getTimes();
-      var prayTime = entity.getPrayTime();
+      var list = bkg.settings.timenames;
       var tableContentDOM = '';
-      for(var i = 0; i < times.length; i++) {
-        tableContentDOM += '<tr><td>'+ prayTime.timeNames[i]+ '</td>';
-        tableContentDOM += '<td>'+ times[i]+ '</td></tr>';
+      for(var i in list) {
+        var listItem = list[i];
+        tableContentDOM += '<tr><td>'+ listItem + '</td>';
+        tableContentDOM += '<td>'+ times[listItem.toLowerCase()] + '</td></tr>';
       }
       document.getElementById('timetable').innerHTML = tableContentDOM;
     }

@@ -37,7 +37,8 @@
     // Initialization code.
     var bkg = chrome.extension.getBackgroundPage();
     var entity = bkg.getPrayerEntity();
-    var monthlyTimetable = new MonthlyPrayerTimetable(entity, 'timetable');
+    var monthlyTimetable = new MonthlyPrayerTimetable(entity,
+        'timetable', bkg.settings.timenames);
 
     monthlyTimetable.viewMonth(0);
     document.getElementById('version').innerHTML = 

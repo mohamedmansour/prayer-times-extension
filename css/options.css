@@ -1,5 +1,9 @@
 @import url("core.css");
 
+body {
+  min-width: 650px;
+}
+
 dt {
   width: 15em;
   padding: .5em;
@@ -21,4 +25,14 @@ dd {
   border-radius: 5px;
   padding: 7px 10px;
   margin-right: 30px;
+}
+
+.visibleTimeNamesList {
+  margin: 0;
+  padding: 0;
+}
+
+.visibleTimeNamesList label {
+  width: 100px;
+  display: inline-block;
 }

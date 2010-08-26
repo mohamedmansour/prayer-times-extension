@@ -1,65 +1,107 @@
-
-MonthlyPrayerTimetable = function(entity, id)
+/**
+ * Create monthly prayers timetable.
+ *
+ * @param {GeoPrayerTime} entity The prayer time entity.
+ * @param {string} id The element id where the table exists.
+ */
+MonthlyPrayerTimetable = function(entity, id, timeNames)
 {
   this.id = id;
   this.entity = entity;
 	this.currentDate = new Date();
+	this.timeNames = timeNames;
 };
 
+/**
+ * Display monthly timetable from the given |offset|.
+ *
+ * @param {number} offset The month offset starting by 0 for January.
+ */
 MonthlyPrayerTimetable.prototype.viewMonth = function(offset)
 {
   this.currentDate.setMonth(this.currentDate.getMonth() + 1 * offset);
   var month = this.currentDate.getMonth();
   var year = this.currentDate.getFullYear();
-  var title = this._monthFullName(month)+ ' '+ year;
+  var title = this._monthFullName(month)+ ' ' + year;
   document.getElementById('table-title').innerHTML = title;
-  this._makeTable(year, month);
+  this._createTable(year, month);
 };
  
-// make monthly timetable
-MonthlyPrayerTimetable.prototype._makeTable = function(year, month)
+/**
+ * Create monthly timetable based on todays date.
+ *
+ * @param {number} year The year to base.
+ * @param {month} month The month to base.
+ */
+MonthlyPrayerTimetable.prototype._createTable = function(year, month)
 {
+  var items = ['Day'];
+  for (var i in this.timeNames) {
+    items.push(this.timeNames[i]);
+  }
+
   var table = document.getElementById(this.id); 
   var tbody = document.createElement('tbody');
-  
-  var timeTags = this.entity.getPrayTime().timeNames.slice(0);
-  timeTags.unshift('Day');
-  tbody.appendChild(this._makeTableRow(timeTags, 'head-row'));
+  tbody.appendChild(this._createTableHeader(items));
 
   var date = new Date(year, month, 1);
   var endDate = new Date(year, month + 1, 1);
   var index = 1;
+
   while (date < endDate) {
     var times = this.entity.getTimes(date);
-    times.unshift(date.getDate()); // add day number
+    times.day = date.getDate();
     var today = new Date(); 
     var isToday = (date.getMonth() == today.getMonth()) &&
         (date.getDate() == today.getDate());
-    tbody.appendChild(this._makeTableRow(times, isToday ? 'today-row' :
-       (index & 1) == 0 ? 'even-row' : 'odd-row'));
+    var klass = isToday ? 'today-row' : (index & 1) == 0 ?
+        'even-row' : 'odd-row';
+    tbody.appendChild(this._createTableRow(times, items, klass));
     date.setDate(date.getDate() + 1);  // next day
     index++;
   }
-  this._removeChildrenOfNode(table);
+  this._removeAllChild(table);
   table.appendChild(tbody);
 };
- 
-// make a table row
-MonthlyPrayerTimetable.prototype._makeTableRow = function(items, clazz)
-{
+
+/**
+ * Create the header row.
+ * @param {Array<string>} data The headers to print.
+ */
+MonthlyPrayerTimetable.prototype._createTableHeader = function(data) {
   var row = document.createElement('tr');
-  row.setAttribute('class', clazz);
-  for (var i=0; i< items.length; i++) {
+  for (var i in data) {
     var cell = document.createElement('td');
-    cell.innerHTML = items[i];
-    cell.width = i == 0 ? 25 : 40;
+    cell.innerHTML = data[i];
     row.appendChild(cell);
   }
+  row.className = 'head-row';
   return row;		
-}
- 
-// remove all children of a node
-MonthlyPrayerTimetable.prototype._removeChildrenOfNode = function(node)
+};
+
+/**
+ * Create a table row given the data.
+ * @param {dictionary} data The date to fetch the items.
+ * @param {Array<string>} items The items for the given row.
+ * @param {string} clazz The classname for the row.
+ */
+MonthlyPrayerTimetable.prototype._createTableRow = function(data, items, clazz)
+{
+  var row = document.createElement('tr');
+  for (var i in items) {
+    var cell = document.createElement('td');
+    cell.innerHTML = data[items[i].toLowerCase()];
+    row.appendChild(cell);
+  }
+  row.className = clazz;
+  return row;		
+};
+
+/**
+ * Remove all children from a node.
+ * @param {Node} node the document element node.
+ */
+MonthlyPrayerTimetable.prototype._removeAllChild = function(node)
 {
   if (node == undefined || node == null)
     return;
@@ -67,8 +109,11 @@ MonthlyPrayerTimetable.prototype._removeChildrenOfNode = function(node)
   while (node.firstChild)
     node.removeChild(node.firstChild);
 };
- 
-// return month full name
+
+/**
+ * Return the month name given its offset, where 0 is January.
+ * @param {number} month the offset of the month.
+ */
 MonthlyPrayerTimetable.prototype._monthFullName = function(month)
 {
   var monthName = new Array('January', 'February', 'March', 'April', 'May',

@@ -27,4 +27,4 @@ There are differing opinions on what angle to use to calculate Fajr and Isha. It
 **Leva Research Institute (L.R.I.) is a religious research center established in 1993 in Qom, Iran
 For example, according to L.R.I's convention, Fajr = Dhuhr - T(16), and Isha = Dhuhr + T(14).*
 
-For more information regarding the calculations, you can visit Dr.Hamid's [FAQ](http://praytime.info/document.html#Calculation)
+For more information regarding the calculations, you can visit Dr.Hamid's [FAQ](http://praytimes.org/calculation)
