@@ -1,6 +1,6 @@
 {
  "name": "Prayer Times",
- "version": "1.0.1",
+ "version": "1.0.2",
  "minimum_chrome_version": "6",
  "description": "Prayer Timetable based on geolocation including options to change calculation methods.",
  "icons": {

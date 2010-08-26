@@ -96,10 +96,19 @@ function init() {
       settings.currentPosition = latitude + ',' + longitude;
     });
   } else {
+    var position = settings.currentPosition;
+    var index = position.indexOf(',');
+    var lat = parseFloat(position.substring(0, index));
+    var lng = parseFloat(position.substring(index + 1, position.length));
+    entity.setLatitude(lat);
+    entity.setLongitude(lng);
     entity.setLoaded(true);
   }
   
+  
   // Load defaults.
+  
+  // Praytime defaults.
   entity.getPrayTime().setMethod(settings.calculation);
   entity.getPrayTime().setTimeFormat(settings.timeformat);
   
