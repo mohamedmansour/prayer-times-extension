@@ -91,9 +91,11 @@ function getVersion() {
 */ 
 function init() {
   // Get the current geo location coordinates if none exist.
-  entity.getGeolocation(function(latitude, longitude) {
-    settings.currentPosition = latitude + ',' + longitude;
-  });
+  if (settings.currentPosition == null) {
+    entity.getGeolocation(function(latitude, longitude) {
+      settings.currentPosition = latitude + ',' + longitude;
+    });
+  }
   
   // Load defaults.
   entity.getPrayTime().setMethod(settings.calculation);

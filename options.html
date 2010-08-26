@@ -3,16 +3,19 @@
 <head>
 <title>Prayer Times Options</title>
 <link rel="stylesheet" type="text/css" href="/css/options.css">
+<script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAA8k8pIg1z-vAdcpqhpeR04hR53HbYEF0mLynKP7EnoFQKwKlG5BQpatQVDqwE2c_QgRmrX6_VlYH74w" type="text/javascript"></script>
 <script type="text/javascript">
 var bkg = chrome.extension.getBackgroundPage();
+var map = null;
 
 /**
 * Saves options to localStorage.
 */
 function saveOptions() {
   // Set the extension settings.
-  var position = parseFloat(document.getElementById('latitude').value) + ',' +
-      parseFloat(document.getElementById('longitude').value);
+  var lat = parseFloat(document.getElementById('latitude').value);
+  var lng = parseFloat(document.getElementById('longitude').value);
+  var position =  lat + ',' + lng;
   bkg.settings.currentPosition = position;
   bkg.settings.timeformat = document.getElementById('timeformat').value;
   bkg.settings.calculation = document.getElementById('calculation').value;
@@ -29,9 +32,12 @@ function saveOptions() {
   bkg.settings.timenames = timeNames;
   
   // Update prayer settings.
-  var prayTime = bkg.getPrayerEntity().getPrayTime();
+  var entity = bkg.getPrayerEntity();
+  var prayTime = entity.getPrayTime()
   prayTime.setMethod(bkg.settings.calculation);
   prayTime.setTimeFormat(bkg.settings.timeformat);
+  entity.setLatitude(lat);
+  entity.setLongitude(lng)
   
   // Refresh timetable to get new prayer time.
   var views = chrome.extension.getViews();
@@ -69,12 +75,20 @@ function restoreOptions() {
   // Restore settings.
   var position = bkg.settings.currentPosition;
   var index = position.indexOf(',');
+  var lat = parseFloat(position.substring(0, index));
+  var lng = parseFloat(position.substring(index + 1, position.length));
   document.getElementById('version').innerHTML = ' (v' + bkg.settings.version + ')';
-  document.getElementById('latitude').value = position.substring(0, index);
-  document.getElementById('longitude').value = position.substring(index + 1, position.length);
+  document.getElementById('latitude').value = lat;
+  document.getElementById('longitude').value = lng;
   document.getElementById('timeformat').value = bkg.settings.timeformat;
   document.getElementById('calculation').value = bkg.settings.calculation;
   
+  // Show position on map.
+  map = new GMap2(document.getElementById("map_canvas"));
+  map.setCenter(new GLatLng(lat, lng), 13);
+  var marker = new GMarker(new GPoint(lng, lat));
+  map.addOverlay(marker);
+              
   // Restore timenames.
   if (bkg.settings.timenames) {
     var timeNames = bkg.settings.timenames;
@@ -90,6 +104,59 @@ function createCalculationOption(entity, value) {
   option.value = value;
   return option;
 }
+
+function chooseMyLocation() {
+  var entity = bkg.getPrayerEntity();
+  entity.getGeolocation(function(lat, lng) {
+    map.clearOverlays();
+    map.setCenter(new GLatLng(lat, lng), 13);
+    var marker = new GMarker(new GPoint(lng, lat));
+    document.getElementById('latitude').value = lat;
+    document.getElementById('longitude').value = lng;
+    map.addOverlay(marker);
+  });
+}
+
+function chooseLocation() {
+  var locationDOM = document.getElementById('locationSection');
+  var gmapsDOM = document.createElement('div');
+  gmapsDOM.setAttribute('id', 'gmaps');
+  var html = '<input type="text" size="60" id="address" placeholder="Search location ..." />';
+  html += ' <button onclick="getAddress();">Search</button>';
+  html += ' <button onclick="cancelAddress();">Cancel</button>';
+  gmapsDOM.innerHTML = html;
+  locationDOM.parentNode.appendChild(gmapsDOM);
+  locationDOM.style.display = 'none';
+}
+
+function cancelAddress() {
+  var locationDOM = document.getElementById('locationSection');
+  locationDOM.style.display = 'block';
+  var gmapsDOM = document.getElementById('gmaps');
+  locationDOM.parentNode.removeChild(gmapsDOM);
+}
+
+function getAddress() { 
+  var address = document.getElementById('address').value;
+  var geocoder = new GClientGeocoder();
+  geocoder.getLatLng(
+    address,
+    function(point) {
+      if (!point) {
+        alert(address + " not found");
+      } else {
+        map.clearOverlays();
+        map.setCenter(point, 13);
+        var marker = new GMarker(point);
+        map.addOverlay(marker);
+        document.getElementById('latitude').value = point.lat();
+        document.getElementById('longitude').value = point.lng();
+        cancelAddress();
+      }
+    }
+  );
+}
+
 </script>
 </head>
 
@@ -106,8 +173,16 @@ function createCalculationOption(entity, value) {
         <dl>
           <dt>Geolocation:</dt>
           <dd>
-            Latitude <input readonly="readonly" type="text" id="latitude" disabled="disabled" /> 
-            Longitude <input readonly="readonly" type="text" id="longitude" disabled="disabled" /> 
+            <div id="locationSection">
+              Latitude <input readonly="readonly" type="text" id="latitude" disabled="disabled" /> 
+              Longitude <input readonly="readonly" type="text" id="longitude" disabled="disabled" /> 
+              <button onclick="chooseLocation()">Choose Location</button>
+              <button onclick="chooseMyLocation()">My GeoLocation</button>
+            </div>
+          </dd>
+          <dt>Location on Map:</dt>
+          <dd>
+            <div id="map_canvas"></div>
           </dd>
         </dl>
       </div>
