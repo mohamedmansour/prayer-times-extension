@@ -5,7 +5,7 @@ This is a Google Chrome extension that shows the prayer times for Muslims.
 It uses HTML5 geolocation features that grabs the current latitude and longitute 
 and fetches the prayer times.
 
-![Screenshot of the Chrome Extension](http://github.com/mohamedmansour/prayer-times-extension/raw/master/screenshot.jpg)
+![Screenshot of the Chrome Extension](https://github.com/mohamedmansour/prayer-times-extension/raw/master/screenshot.jpg)
 
 This extension is developed by myself ([Mohamed Mansour](http://mohamedmansour.com)) but the prayer time calculations are based off the brother 
 [Dr. Hamid Zarrabi-Zadeh](http://cg.scs.carleton.ca/~zarrabi/home)
