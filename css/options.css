@@ -7,7 +7,7 @@ body {
 dt {
   width: 15em;
   padding: .5em;
-  float: left;
+  float: __MSG_@@bidi_start_edge__;
   margin: 0;
 }
 
