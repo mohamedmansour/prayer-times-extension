@@ -76,15 +76,15 @@ function PrayTimes(method) {
 	
 	// Time Names
 	timeNames = {
-		imsak    : 'Imsak',
-		fajr     : 'Fajr',
-		sunrise  : 'Sunrise',
-		dhuhr    : 'Dhuhr',
-		asr      : 'Asr',
-		sunset   : 'Sunset',
-		maghrib  : 'Maghrib',
-		isha     : 'Isha',
-		midnight : 'Midnight'
+		imsak    : chrome.i18n.getMessage('imsak'),
+		fajr     : chrome.i18n.getMessage('fajr'),
+		sunrise  : chrome.i18n.getMessage('sunrise'),
+		dhuhr    : chrome.i18n.getMessage('dhuhr'),
+		asr      : chrome.i18n.getMessage('asr'),
+		sunset   : chrome.i18n.getMessage('sunset'),
+		maghrib  : chrome.i18n.getMessage('maghrib'),
+		isha     : chrome.i18n.getMessage('isha'),
+		midnight : chrome.i18n.getMessage('midnight')
 	},
 
 
@@ -205,6 +205,11 @@ function PrayTimes(method) {
 	
 	//----------------------- Public Functions ------------------------
 	return {
+	
+	// returns the time names.
+	getTimeNames: function() {
+	  return timeNames;
+	},
 	
 	// returns the method name
   getMethodName: function(method) {

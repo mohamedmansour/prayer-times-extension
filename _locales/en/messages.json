@@ -18,5 +18,41 @@
   "viewTimetable": {
     "message": "view timetable",
     "description": "View prayer timetable."
+  },
+  "imsak": {
+    "message": "Imsak",
+    "description": "Imsak timename."
+  },
+  "fajr": {
+    "message": "Fajr",
+    "description": "Fajr timename."
+  },
+  "sunrise": {
+    "message": "Sunrise",
+    "description": "Sunrise timename."
+  },
+  "dhuhr": {
+    "message": "Dhuhr",
+    "description": "Dhuhr timename."
+  },
+  "asr": {
+    "message": "Asr",
+    "description": "Asr timename."
+  },
+  "sunset": {
+    "message": "Sunset",
+    "description": "Sunset timename."
+  },
+  "maghrib": {
+    "message": "Maghrib",
+    "description": "Maghrib timename."
+  },
+  "isha": {
+    "message": "Isha",
+    "description": "Isha timename."
+  },
+  "midnight": {
+    "message": "Midnight",
+    "description": "Midnight timename."
   }
 }

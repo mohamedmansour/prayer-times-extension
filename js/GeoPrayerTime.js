@@ -155,3 +155,11 @@ GeoPrayerTimes.prototype.getCalculationName = function(method)
 {
   return prayTimes.getMethodName(method);
 };
+
+/**
+ * @return {Array<string>} The timenames in order.
+ */
+GeoPrayerTimes.prototype.getTimeNames = function()
+{
+  return prayTimes.getTimeNames();
+};

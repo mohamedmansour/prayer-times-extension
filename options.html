@@ -72,6 +72,19 @@ function restoreOptions() {
   calculationElement.add(createCalculationOption(entity, 'Makkah'));
   calculationElement.add(createCalculationOption(entity, 'Karachi'));
   
+  // Add timenames group.
+  var timenames = entity.getTimeNames();
+  var timenamesgroup = document.getElementById('timenamesgroup');
+  timenamesgroup.appendChild(createTimenamesGroup([timenames.imsak,
+                                                   timenames.fajr, 
+                                                   timenames.sunrise]));
+  timenamesgroup.appendChild(createTimenamesGroup([timenames.dhuhr, 
+                                                   timenames.asr, 
+                                                   timenames.sunset]));
+  timenamesgroup.appendChild(createTimenamesGroup([timenames.maghrib, 
+                                                   timenames.isha, 
+                                                   timenames.midnight]));
+  
   // Restore settings.
   document.getElementById('version').innerHTML = ' (v' + bkg.settings.version + ')';
   document.getElementById('timeformat').value = bkg.settings.timeformat;
@@ -101,6 +114,35 @@ function restoreOptions() {
   }
 }
 
+/**
+ * Creates the DOM for the calculation option.
+ * @param {Array<string>} An array of times.
+ * @returns {HTMLElement} an paragraph element.
+ */
+function createTimenamesGroup(times) {
+  var p = document.createElement('p');
+  p.setAttribute('class', 'visibleTimeNamesList');
+  for (var i in times) {
+    var input = document.createElement('input');
+    var time = times[i];
+    input.setAttribute('type', 'checkbox');
+    input.setAttribute('name', 'timenames');
+    input.setAttribute('id', time);
+    p.appendChild(input);
+    var label = document.createElement('label');
+    label.setAttribute('for', time);
+    label.innerHTML = time;
+    p.appendChild(label);
+  }
+  return p;
+}
+
+/**
+ * Creates the DOM for the calculation option.
+ * @param {object<Entity>} entity The prayer entity.
+ * @param {string} value The value of the calculation.
+ * @returns {HTMLElement} an option element.
+ */
 function createCalculationOption(entity, value) {
   var option = document.createElement('option');
   option.text = entity.getCalculationName(value);
@@ -108,6 +150,9 @@ function createCalculationOption(entity, value) {
   return option;
 }
 
+/**
+ * Using Geolocation API, get the user address automatically and graph it.
+ */
 function chooseMyLocation() {
   var entity = bkg.getPrayerEntity();
   entity.getGeolocation(function(lat, lng) {
@@ -120,6 +165,9 @@ function chooseMyLocation() {
   });
 }
 
+/**
+ * Enable editing mode so the user can input an address manually.
+ */
 function chooseLocation() {
   var locationDOM = document.getElementById('locationSection');
   var gmapsDOM = document.createElement('div');
@@ -132,6 +180,9 @@ function chooseLocation() {
   locationDOM.style.display = 'none';
 }
 
+/**
+ * Cancel the editing mode for typing an address.
+ */
 function cancelAddress() {
   var locationDOM = document.getElementById('locationSection');
   locationDOM.style.display = 'block';
@@ -139,6 +190,9 @@ function cancelAddress() {
   locationDOM.parentNode.removeChild(gmapsDOM);
 }
 
+/**
+ * Using Google Maps API, get the current address typed in the text field.
+ */
 function getAddress() { 
   var address = document.getElementById('address').value;
   var geocoder = new GClientGeocoder();
@@ -203,23 +257,7 @@ function getAddress() {
             </select>
           </dd>
           <dt>Visible Time Names:</dt>
-          <dd>
-            <p class="visibleTimeNamesList">
-              <input type="checkbox" name="timenames" id="Imsak" /> <label for="Imsak">Imsak</label>
-              <input type="checkbox" name="timenames" id="Fajr" /> <label for="Fajr">Fajr</label>
-              <input type="checkbox" name="timenames" id="Sunrise" /> <label for="Sunrise">Sunrise</label>
-            </ul>
-            <p class="visibleTimeNamesList">
-              <input type="checkbox" name="timenames" id="Dhuhr" /> <label for="Dhuhr">Dhuhr</label>
-              <input type="checkbox" name="timenames" id="Asr" /> <label for="Asr">Asr</label>
-              <input type="checkbox" name="timenames" id="Sunset" /> <label for="Sunset">Sunset</label>
-            </ul>
-            <p class="visibleTimeNamesList">
-              <input type="checkbox" name="timenames" id="Maghrib" /> <label for="Maghrib">Maghrib</label>
-              <input type="checkbox" name="timenames" id="Isha" /> <label for="Isha">Isha</label>
-              <input type="checkbox" name="timenames" id="Midnight" /> <label for="Midnight">Midnight</label>
-            </p>
-          </dd>
+          <dd id="timenamesgroup"></dd>
         </dl>
       </div>
     </div>
