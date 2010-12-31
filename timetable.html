@@ -31,8 +31,8 @@
     </div>
   </div>
   <div id="credits">
-    Extension developed by <a href="http://www.mohamedmansour.com">Mohamed Mansour</a>, 
-    Source Code available in <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a>
+    <span id="extension-by-label"></span> <a href="http://www.mohamedmansour.com">Mohamed Mansour</a>, 
+    <span id="extension-source-label"></span> <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a>
   </div>
   <script type='text/javascript'>
     // Initialization code.
@@ -55,9 +55,13 @@
     document.getElementById('prev').innerHTML = 
         '&laquo;' + chrome.i18n.getMessage('previous');
     document.getElementById('calculation-method-label').innerHTML = 
-        chrome.i18n.getMessage('calculationMethod') + ':';
+        chrome.i18n.getMessage('calculationMethod');
     document.getElementById('options-label').innerHTML =
         chrome.i18n.getMessage('options');
+    document.getElementById('extension-by-label').innerHTML = 
+        chrome.i18n.getMessage('extBy');
+    document.getElementById('extension-source-label').innerHTML = 
+        chrome.i18n.getMessage('extSource');
         
     // View the month.
     monthlyTimetable.viewMonth(0);

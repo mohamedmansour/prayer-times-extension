@@ -7,9 +7,21 @@
     "message": "Prayer Times including all year timetable based on geolocation including options to change calculation methods.",
     "description": "Extension description."
   },
-  "fetchingGeolocation": {
-    "message": "Fetching Geolocation ...",
-    "description": "Fetching geolocation text in the popup."
+  "extBy": {
+    "message": "Extension developed by",
+    "description": "Phrases that says the extension is developed by."
+  },
+  "extSource": {
+    "message": "Source Code available in",
+    "description": "Phrases that says the location where source code is available in."
+  },
+  "am": {
+    "message": "am",
+    "description": "Time suffix for before midday."
+  },
+  "pm": {
+    "message": "pm",
+    "description": "Time suffix for after midday."
   },
   "next": {
     "message": "next",
@@ -20,8 +32,88 @@
     "description": "Previous button text that displays in the timetable."
   },
   "options": {
-    "message": "options",
+    "message": "Options",
     "description": "The options label to visit the settings page."
+  },
+  "save": {
+    "message": "Save",
+    "description": "The save label for an action of saving."
+  },
+  "search": {
+    "message": "Search",
+    "description": "The search label for an action of searching."
+  },
+  "cancel": {
+    "message": "Cancel",
+    "description": "The search label for an action of canceling."
+  },
+  "close": {
+    "message": "Close",
+    "description": "The close label for an action of closing."
+  },
+  "geolocation": {
+    "message": "Geolocation",
+    "description": ""
+  },
+  "latitude": {
+    "message": "Latitude",
+    "description": ""
+  },
+  "longitude": {
+    "message": "Longitude",
+    "description": ""
+  },
+  "chooseLocation": {
+    "message": "Choose Location",
+    "description": ""
+  },
+  "myGeoLocation": {
+    "message": "My Geolocation",
+    "description": ""
+  },
+  "optionsWarning": {
+    "message": "Make sure you save the settings after your done editing!",
+    "description": ""
+  },
+  "optionSaveResponse": {
+    "message": "Options saved!",
+    "description": ""
+  },
+  "locationOnMap": {
+    "message": "Location on Map",
+    "description": ""
+  },
+  "locationSettings": {
+    "message": "Location Settings",
+    "description": ""
+  },
+  "timeSettings": {
+    "message": "Time Settings",
+    "description": ""
+  },
+  "timeFormat": {
+    "message": "Time Format",
+    "description": ""
+  },
+  "notFound": {
+    "message": "Location Not Found",
+    "description": "Standard text for location not found."
+  },
+  "calculationsSettings": {
+    "message": "Calculation Settings",
+    "description": ""
+  },
+  "visibleTimenames": {
+    "message": "Visible Time Names",
+    "description": ""
+  },
+  "fetchingGeolocation": {
+    "message": "Fetching Geolocation ...",
+    "description": "Fetching geolocation text in the popup."
+  },
+  "searchPlaceholder": {
+    "message": "Search location ...",
+    "description": "Searching placeholder in the text box. Assited text."
   },
   "pleaseWait": {
     "message": "Please wait",

@@ -150,7 +150,10 @@ function PrayTimes(method) {
 		'Float'        // floating point number 
 	],
 
-	timeSuffixes = ['am', 'pm'],
+  timeSuffixes = [
+    chrome.i18n.getMessage('am'),
+    chrome.i18n.getMessage('pm')
+	],
 	InvalidTime =  '-----',
 
 

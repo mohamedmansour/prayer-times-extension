@@ -58,9 +58,56 @@ function saveOptions() {
 }
 
 /**
+ * Translations for labels.
+ */
+function translateLabels() {
+  document.getElementById('header-label').innerHTML =
+      chrome.i18n.getMessage('extName') + ' ' +
+      chrome.i18n.getMessage('options');
+  document.getElementById('options-warning-label').innerHTML =
+      chrome.i18n.getMessage('optionsWarning');
+  document.getElementById('location-settings-label').innerHTML = 
+      chrome.i18n.getMessage('locationSettings');
+  document.getElementById('geolocation-label').innerHTML = 
+      chrome.i18n.getMessage('geolocation');
+  document.getElementById('latitude-label').value = 
+      chrome.i18n.getMessage('latitude');
+  document.getElementById('longitude-label').value = 
+      chrome.i18n.getMessage('longitude');
+  document.getElementById('choose-location-label').innerHTML = 
+      chrome.i18n.getMessage('chooseLocation');
+  document.getElementById('mygeolocation-label').innerHTML = 
+      chrome.i18n.getMessage('myGeoLocation');
+  document.getElementById('location-map-label').innerHTML = 
+      chrome.i18n.getMessage('locationOnMap');
+  document.getElementById('time-settings-label').innerHTML = 
+      chrome.i18n.getMessage('locationSettings');
+  document.getElementById('time-format-label').innerHTML = 
+      chrome.i18n.getMessage('timeFormat');
+  document.getElementById('calculation-settings-label').innerHTML = 
+      chrome.i18n.getMessage('calculationsSettings');
+  document.getElementById('visible-timenames-label').innerHTML = 
+      chrome.i18n.getMessage('visibleTimenames');
+  document.getElementById('calculation-method-label').innerHTML =
+      chrome.i18n.getMessage('calculationMethod');
+  document.getElementById('save-label').innerHTML = 
+      chrome.i18n.getMessage('save');
+  document.getElementById('close-label').innerHTML = 
+      chrome.i18n.getMessage('close');
+  document.getElementById('info-message').innerHTML = 
+      chrome.i18n.getMessage('optionSaveResponse');
+  document.getElementById('extension-by-label').innerHTML = 
+      chrome.i18n.getMessage('extBy');
+  document.getElementById('extension-source-label').innerHTML = 
+      chrome.i18n.getMessage('extSource');
+}
+
+/**
 * Restore all options.
 */
 function restoreOptions() {
+  translateLabels();
+
   // Add calculations settings.
   var calculationElement = document.getElementById('calculation');
   var entity = bkg.getPrayerEntity();
@@ -172,10 +219,27 @@ function chooseLocation() {
   var locationDOM = document.getElementById('locationSection');
   var gmapsDOM = document.createElement('div');
   gmapsDOM.setAttribute('id', 'gmaps');
-  var html = '<input type="text" size="60" id="address" placeholder="Search location ..." />';
-  html += ' <button onclick="getAddress();">Search</button>';
-  html += ' <button onclick="cancelAddress();">Cancel</button>';
-  gmapsDOM.innerHTML = html;
+  
+  // Search input.
+  var input = document.createElement('input');
+  input.setAttribute('type', 'text');
+  input.setAttribute('size', '60');
+  input.setAttribute('id', 'address');
+  input.setAttribute('placeholder', chrome.i18n.getMessage('searchPlaceholder'));
+  gmapsDOM.appendChild(input);
+  
+  // Search button.
+  var searchButton = document.createElement('button');
+  searchButton.setAttribute('onclick', 'getAddress();');
+  searchButton.innerHTML = chrome.i18n.getMessage('search');
+  gmapsDOM.appendChild(searchButton);
+  
+  // Cancel button.
+  var cancelButton = document.createElement('button');
+  cancelButton.setAttribute('onclick', 'cancelAddress();');
+  cancelButton.innerHTML = chrome.i18n.getMessage('cancel');
+  gmapsDOM.appendChild(cancelButton);
+
   locationDOM.parentNode.appendChild(gmapsDOM);
   locationDOM.style.display = 'none';
 }
@@ -200,7 +264,7 @@ function getAddress() {
     address,
     function(point) {
       if (!point) {
-        alert(address + " not found");
+        alert(address + ' ' + chrome.i18n.getMessage('notFound'));
       } else {
         map.clearOverlays();
         map.setCenter(point, 13);
@@ -221,23 +285,25 @@ function getAddress() {
   <form onsubmit="return false;">
   <div id="body-container">
     <div id="header">
-      <h1>Prayer Time Options<em id="version"></em></h1>
+      <h1><span id="header-label"></span><em id="version"></em></h1>
     </div>
-    <p>Make sure you save the settings after your done editing!</p>
+    <p id="options-warning-label"></p>
     <div class="extension-template">
-      <div class="extension-header">Location Settings</div>
+      <div class="extension-header" id="location-settings-label"></div>
       <div class="extension-options">
         <dl>
-          <dt>Geolocation:</dt>
+          <dt id="geolocation-label"></dt>
           <dd>
             <div id="locationSection">
-              Latitude <input readonly="readonly" type="text" id="latitude" disabled="disabled" /> 
-              Longitude <input readonly="readonly" type="text" id="longitude" disabled="disabled" /> 
-              <button onclick="chooseLocation()">Choose Location</button>
-              <button onclick="chooseMyLocation()">My GeoLocation</button>
+              <span id="latitude-label"></label>
+              <input readonly="readonly" type="text" id="latitude" disabled="disabled" /> 
+              <span id="longitude-label"></label>
+              <input readonly="readonly" type="text" id="longitude" disabled="disabled" /> 
+              <button onclick="chooseLocation()" id="choose-location-label"></button>
+              <button onclick="chooseMyLocation()" id="mygeolocation-label"></button>
             </div>
           </dd>
-          <dt>Location on Map:</dt>
+          <dt id="location-map-label"></dt>
           <dd>
             <div id="map_canvas"></div>
           </dd>
@@ -245,10 +311,10 @@ function getAddress() {
       </div>
     </div>
     <div class="extension-template">
-      <div class="extension-header">Time Settings</div>
+      <div class="extension-header" id="time-settings-label"></div>
       <div class="extension-options">
         <dl>
-          <dt>Time Format:</dt>
+          <dt id="time-format-label"></dt>
           <dd>
             <select id="timeformat">
               <option value="24h">24 hour</option>
@@ -256,16 +322,16 @@ function getAddress() {
               <option value="12hNS">12 hour with no suffix</option>
             </select>
           </dd>
-          <dt>Visible Time Names:</dt>
+          <dt id="visible-timenames-label"></dt>
           <dd id="timenamesgroup"></dd>
         </dl>
       </div>
     </div>
     <div class="extension-template">
-      <div class="extension-header">Calculation Settings</div>
+      <div class="extension-header" id="calculation-settings-label"></div>
       <div class="extension-options">
         <dl>
-          <dt>Calculation Method:</dt>
+          <dt id="calculation-method-label"></dt>
           <dd>
             <select id="calculation"></select>
           </dd>
@@ -273,13 +339,13 @@ function getAddress() {
       </div>
     </div>
     <div id="extension-footer">
-      <span id="info-message">Options saved!</span>
-      <button onclick="saveOptions();">Save</button>
-      <button onclick="window.close();">Close</button>
+      <span id="info-message"></span>
+      <button onclick="saveOptions();" id="save-label"></button>
+      <button onclick="window.close();" id="close-label"></button>
     </div>
     <div id="credits">
-      Extension developed by <a href="http://www.mohamedmansour.com">Mohamed Mansour</a>, 
-      Source Code available in <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a>
+      <span id="extension-by-label"></span> <a href="http://www.mohamedmansour.com">Mohamed Mansour</a>, 
+      <span id="extension-source-label"></span> <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a>
     </div>
   </div>
   </form>
