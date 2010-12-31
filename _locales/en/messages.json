@@ -6,5 +6,17 @@
   "extDescription": {
     "message": "Prayer Times including all year timetable based on geolocation including options to change calculation methods.",
     "description": "Extension description."
+  },
+  "fetchingGeolocation": {
+    "message": "Fetching Geolocation ...",
+    "description": "Fetching geolocation text in the popup."
+  },
+  "pleaseWait": {
+    "message": "Please wait",
+    "description": "Asking user to please wait for extension loading."
+  },
+  "viewTimetable": {
+    "message": "view timetable",
+    "description": "View prayer timetable."
   }
 }

@@ -60,9 +60,21 @@
   }
   
   /**
+   * Internationalization support.
+   */
+  function showTranslations() {
+    document.getElementById('error').innerHTML =
+        chrome.i18n.getMessage('fetchingGeolocation') + '<br />' + 
+        chrome.i18n.getMessage('pleaseWait') + '!';
+    document.getElementById('view_timetable').innerHTML =
+        chrome.i18n.getMessage('viewTimetable');
+  }
+  
+  /**
    * Initialize View.
    */
   function init() {
+    showTranslations();
     showCurrentTime();
     showCurrentDate();
     showPrayerTime();
@@ -74,9 +86,9 @@
     <p id="dateA"></p>
     <p id="dateB"></p>
     <p id="time"></p>
-    <p id="error">Fetching Geolocation ...<br/>Please wait!</p>
+    <p id="error"></p>
     <table id="timetable" align="center"></table>
-    <p id="footer"><a href="javascript:viewTimetable()">view timetable</a></p>
+    <p id="footer"><a href="javascript:viewTimetable()" id="view_timetable"></a></p>
   </div>
 </body>
 </html>
