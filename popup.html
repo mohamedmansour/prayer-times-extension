@@ -48,12 +48,13 @@
       document.getElementById('error').style.display = 'none';
       document.getElementById('footer').style.display = 'block';
       var times = entity.getTimes();
+      var timenames = entity.getTimeNames();
       var list = bkg.settings.timenames;
       var tableContentDOM = '';
       for(var i in list) {
-        var listItem = list[i];
-        tableContentDOM += '<tr><td>'+ listItem + '</td>';
-        tableContentDOM += '<td>'+ times[listItem.toLowerCase()] + '</td></tr>';
+        var listItem = list[i].toLowerCase();
+        tableContentDOM += '<tr><td>'+ timenames[listItem] + '</td>';
+        tableContentDOM += '<td>'+ times[listItem] + '</td></tr>';
       }
       document.getElementById('timetable').innerHTML = tableContentDOM;
     }
