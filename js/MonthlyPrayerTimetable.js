@@ -9,7 +9,7 @@ MonthlyPrayerTimetable = function(entity, id, timeNames)
   this.id = id;
   this.entity = entity;
 	this.currentDate = new Date();
-	this.timeNames = timeNames;
+	this.timeNames = this._translateTimeNames(timeNames);
 };
 
 /**
@@ -26,7 +26,21 @@ MonthlyPrayerTimetable.prototype.viewMonth = function(offset)
   document.getElementById('table-title').innerHTML = title;
   this._createTable(year, month);
 };
- 
+
+/**
+ * Translates the current timenames.
+ * @param {Array<string>} data the timenames saved in localstorage.
+ * @returns {Array<string>} the translated timenames.
+ */
+MonthlyPrayerTimetable.prototype._translateTimeNames = function(data) {
+  var timenames = this.entity.getTimeNames();
+  var translatedNames = [];
+  for (var i in data) {
+    translatedNames.push(timenames[data[i].toLowerCase()]);
+  }
+  return translatedNames;
+};
+
 /**
  * Create monthly timetable based on todays date.
  *
