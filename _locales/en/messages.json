@@ -53,47 +53,47 @@
   },
   "geolocation": {
     "message": "Geolocation",
-    "description": ""
+    "description": "The current geographic location."
   },
   "latitude": {
     "message": "Latitude",
-    "description": ""
+    "description": "Measurement of a location on earth, lines that appear horizontal."
   },
   "longitude": {
     "message": "Longitude",
-    "description": ""
+    "description": "Measurement of a location on earth, lines that appear vertical."
   },
   "chooseLocation": {
     "message": "Choose Location",
-    "description": ""
+    "description": "Choose a custom geographic location."
   },
   "myGeoLocation": {
     "message": "My Geolocation",
-    "description": ""
+    "description": "Automatically figure out my location."
   },
   "optionsWarning": {
     "message": "Make sure you save the settings after your done editing!",
-    "description": ""
+    "description": "Options warning to make sure the user selects save after done editing."
   },
   "optionSaveResponse": {
     "message": "Options saved!",
-    "description": ""
+    "description": "Response when a user hits save."
   },
   "locationOnMap": {
     "message": "Location on Map",
-    "description": ""
+    "description": "Label showing the user his/her location on the map."
   },
   "locationSettings": {
     "message": "Location Settings",
-    "description": ""
+    "description": "Heading label that shows the location settings."
   },
   "timeSettings": {
     "message": "Time Settings",
-    "description": ""
+    "description": "Heading label that shows the time settings."
   },
   "timeFormat": {
     "message": "Time Format",
-    "description": ""
+    "description": "Sub header label for time format group."
   },
   "notFound": {
     "message": "Location Not Found",
@@ -101,11 +101,11 @@
   },
   "calculationsSettings": {
     "message": "Calculation Settings",
-    "description": ""
+    "description": "Heading label for Prayer time calculation settings."
   },
   "visibleTimenames": {
     "message": "Visible Time Names",
-    "description": ""
+    "description": "Sub header labels for visible time names."
   },
   "fetchingGeolocation": {
     "message": "Fetching Geolocation ...",
