@@ -27,7 +27,7 @@ GeoPrayerTimes.prototype.getGeolocation = function(callback)
     navigator.geolocation.getCurrentPosition(this.successHandler.bind(this),
                                              this.errorHandler.bind(this));
   } else {
-    error('not supported');
+    this.errorHandler('not supported');
   }
 };
 
@@ -37,7 +37,7 @@ GeoPrayerTimes.prototype.getGeolocation = function(callback)
  */
 GeoPrayerTimes.prototype.errorHandler = function(msg)
 {
-  console.log(msg);
+  console.error(msg);
 };
 
 /**
