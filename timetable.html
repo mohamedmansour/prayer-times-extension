@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Prayer Timetable</title>
+  <title></title>
   <link rel="stylesheet" type="text/css" href="/css/timetable.css" />
   <script type='text/javascript' src='/js/MonthlyPrayerTimetable.js'></script>
 </head>
 <body> 
   <div id="header">
-    <h1>Prayer Timetable <em id="version"></em></h1>
+    <h1><span class="prayertimetable"></span> <em id="version"></em></h1>
   </div>
   <div class="extension-template">
-    <div class="extension-header">Timetable</div>
+    <div class="extension-header prayertimetable"></div>
     <div class="extension-options">
       <div id="controls">
-        <button onclick="getPrevious()">&laquo; prev </button>
+        <button onclick="getPrevious()" id="prev"></button>
         <span id="table-title"></span>
-        <button onclick="getNext()">next &raquo;</button>
+        <button onclick="getNext()" id="next"></button>
       </div>
       <table id="timetable" align="center"> 
         <tbody></tbody> 
       </table>
       <div id="footerTimetable">
-        <p id="precaution">The above times are based on 
-            calculations only. Please allow +/- 3  minutes for Fajr, 1 minute 
-            for Dhuhr, and 2 minutes for Maghrib as a precaution.</p>
+        <p id="precaution"></p>
         <p><strong>Calculation method:</strong> <span id="calculation"></span>
            [<a href="javascript:visitOptions();">options</a>]</p>
       </div>
@@ -40,6 +38,19 @@
     var monthlyTimetable = new MonthlyPrayerTimetable(entity,
         'timetable', bkg.settings.timenames);
 
+    // Translate view.
+    var prayerTimetableTranslation = chrome.i18n.getMessage('prayerTimetable');
+    document.title = prayerTimetableTranslation;
+    var timetableText = document.getElementsByClassName('prayertimetable');
+    for (var i in timetableText) {
+      timetableText[i].innerHTML = prayerTimetableTranslation;
+    }
+    document.getElementById('precaution').innerHTML =
+        chrome.i18n.getMessage('timePrecaution');
+    document.getElementById('next').innerHTML = chrome.i18n.getMessage('next');
+    document.getElementById('prev').innerHTML = chrome.i18n.getMessage('previous');
+
+    // View the month.
     monthlyTimetable.viewMonth(0);
     document.getElementById('version').innerHTML = 
         ' (v' + bkg.settings.version + ')';
