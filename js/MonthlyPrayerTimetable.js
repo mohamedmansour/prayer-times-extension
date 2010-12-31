@@ -10,6 +10,20 @@ MonthlyPrayerTimetable = function(entity, id, timeNames)
   this.entity = entity;
 	this.currentDate = new Date();
 	this.timeNames = this._translateTimeNames(timeNames);
+  this.monthName = [
+      chrome.i18n.getMessage('january'),
+      chrome.i18n.getMessage('february'),
+      chrome.i18n.getMessage('march'),
+      chrome.i18n.getMessage('april'),
+      chrome.i18n.getMessage('may'),
+      chrome.i18n.getMessage('june'),
+      chrome.i18n.getMessage('july'),
+      chrome.i18n.getMessage('august'),
+      chrome.i18n.getMessage('september'),
+      chrome.i18n.getMessage('october'),
+      chrome.i18n.getMessage('november'),
+      chrome.i18n.getMessage('december'),
+  ];
 };
 
 /**
@@ -130,7 +144,5 @@ MonthlyPrayerTimetable.prototype._removeAllChild = function(node)
  */
 MonthlyPrayerTimetable.prototype._monthFullName = function(month)
 {
-  var monthName = new Array('January', 'February', 'March', 'April', 'May',
-      'June', 'July', 'August', 'September', 'October', 'November', 'December');
-  return monthName[month];
+  return this.monthName[month];
 };

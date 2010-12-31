@@ -12,12 +12,16 @@
     "description": "Fetching geolocation text in the popup."
   },
   "next": {
-    "message": "next &raquo;",
+    "message": "next",
     "description": "Next button text that displays in the timetable."
   },
   "previous": {
-    "message": "&laquo; prev",
+    "message": "prev",
     "description": "Previous button text that displays in the timetable."
+  },
+  "options": {
+    "message": "options",
+    "description": "The options label to visit the settings page."
   },
   "pleaseWait": {
     "message": "Please wait",
@@ -34,6 +38,10 @@
   "timePrecaution": {
     "message": "The above times are based on calculations only. Please allow +/- 3  minutes for Fajr, 1 minute for Dhuhr, and 2 minutes for Maghrib as a precaution.",
     "description": "A warning to the user when using the calculations. This will be shown in the timetable page."
+  },
+  "calculationMethod": {
+    "message": "Calculation Method",
+    "description": "Label that denotes the prayer calculation to use."
   },
   "imsak": {
     "message": "Imsak",
@@ -70,5 +78,53 @@
   "midnight": {
     "message": "Midnight",
     "description": "Midnight timename."
+  },
+  "january": {
+    "message": "January",
+    "description": "The month name January,"
+  },
+  "february": {
+    "message": "February",
+    "description": "The month name February,"
+  },
+  "march": {
+    "message": "March",
+    "description": "The month name March,"
+  },
+  "april": {
+    "message": "April",
+    "description": "The month name April,"
+  },
+  "may": {
+    "message": "May",
+    "description": "The month name May,"
+  },
+  "june": {
+    "message": "June",
+    "description": "The month name June,"
+  },
+  "july": {
+    "message": "July",
+    "description": "The month name July,"
+  },
+  "august": {
+    "message": "August",
+    "description": "The month name August,"
+  },
+  "september": {
+    "message": "September",
+    "description": "The month name September,"
+  },
+  "october": {
+    "message": "October",
+    "description": "The month name October,"
+  },
+  "november": {
+    "message": "November",
+    "description": "The month name November,"
+  },
+  "december": {
+    "message": "December",
+    "description": "The month name December,"
   }
 }

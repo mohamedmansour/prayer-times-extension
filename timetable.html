@@ -22,8 +22,11 @@
       </table>
       <div id="footerTimetable">
         <p id="precaution"></p>
-        <p><strong>Calculation method:</strong> <span id="calculation"></span>
-           [<a href="javascript:visitOptions();">options</a>]</p>
+        <p>
+          <span id="calculation-method-label">Calculation method:</span>
+          <span id="calculation"></span>
+          [<a href="javascript:visitOptions();" id="options-label"></a>]
+        </p>
       </div>
     </div>
   </div>
@@ -47,9 +50,15 @@
     }
     document.getElementById('precaution').innerHTML =
         chrome.i18n.getMessage('timePrecaution');
-    document.getElementById('next').innerHTML = chrome.i18n.getMessage('next');
-    document.getElementById('prev').innerHTML = chrome.i18n.getMessage('previous');
-
+    document.getElementById('next').innerHTML = 
+        chrome.i18n.getMessage('next') + '&raquo;';
+    document.getElementById('prev').innerHTML = 
+        '&laquo;' + chrome.i18n.getMessage('previous');
+    document.getElementById('calculation-method-label').innerHTML = 
+        chrome.i18n.getMessage('calculationMethod') + ':';
+    document.getElementById('options-label').innerHTML =
+        chrome.i18n.getMessage('options');
+        
     // View the month.
     monthlyTimetable.viewMonth(0);
     document.getElementById('version').innerHTML = 

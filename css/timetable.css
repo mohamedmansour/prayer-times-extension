@@ -68,3 +68,7 @@ tr.odd-row:hover, tr.even-row:hover {
   border-radius: 10px;
   color: #333;
 }
+
+#calculation-method-label {
+  font-weight: bold;
+}
