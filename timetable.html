@@ -35,6 +35,9 @@
     <span id="extension-source-label"></span> <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a>
   </div>
   <script type='text/javascript'>
+    // Set bidi direction.
+    document.body.dir = chrome.i18n.getMessage('@@bidi_dir');
+    
     // Initialization code.
     var bkg = chrome.extension.getBackgroundPage();
     var entity = bkg.getPrayerEntity();

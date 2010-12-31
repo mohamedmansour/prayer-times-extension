@@ -64,6 +64,10 @@
    * Internationalization support.
    */
   function showTranslations() {
+    // Set bidi direction.
+    document.body.dir = chrome.i18n.getMessage('@@bidi_dir');
+    
+    // Labels.
     document.getElementById('error').innerHTML =
         chrome.i18n.getMessage('fetchingGeolocation') + '<br />' + 
         chrome.i18n.getMessage('pleaseWait') + '!';

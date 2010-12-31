@@ -61,6 +61,10 @@ function saveOptions() {
  * Translations for labels.
  */
 function translateLabels() {
+  // Set bidi direction.
+  document.body.dir = chrome.i18n.getMessage('@@bidi_dir');
+  
+  // Labels.
   document.getElementById('header-label').innerHTML =
       chrome.i18n.getMessage('extName') + ' ' +
       chrome.i18n.getMessage('options');

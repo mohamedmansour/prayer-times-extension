@@ -43,18 +43,18 @@ body {
 }
 
 #timetable td:first-child {
-  text-align: left;
+  text-align: __MSG_@@bidi_start_edge__;
   font-weight: bold;
 }
 
 #timetable td:last-child {
-  text-align: right;
+  text-align: __MSG_@@bidi_end_edge__;
 }
 
 #footer {
   margin-top: 3px; 
   margin-right: 10px;
-  text-align: right;
+  text-align: __MSG_@@bidi_end_edge__;
 }
 
 #footer a {

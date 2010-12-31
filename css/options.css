@@ -12,7 +12,7 @@ dt {
 }
 
 dd {
-  margin-left: 16em;
+  margin-__MSG_@@bidi_start_edge__: 16em;
   padding: .4em;
 }
 
@@ -21,10 +21,10 @@ dd {
   -webkit-transition-duration: 1s;
   display: none;
   background:#FDFFBD none repeat scroll 0 0;
-  -webkit-border-radius: 5px;
   border-radius: 5px;
+  -webkit-border-radius: 5px;
   padding: 7px 10px;
-  margin-right: 30px;
+  margin-__MSG_@@bidi_end_edge__: 30px;
 }
 
 .visibleTimeNamesList {
