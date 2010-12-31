@@ -4,7 +4,7 @@ body {
   margin: 10px;
 }
 h1 {
-  background: url("/img/icon48.png") 0px 30px no-repeat;
+  background: url("/img/icon48.png") __MSG_@@bidi_start_edge__ no-repeat;
   display: inline;
   margin: 0;
   padding-bottom: 43px;

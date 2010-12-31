@@ -23,6 +23,18 @@
     "message": "pm",
     "description": "Time suffix for after midday."
   },
+  "24hour": {
+    "message": "24 hour",
+    "description": "Time formating for 24 hour clock."
+  },
+  "12hour": {
+    "message": "12 hour",
+    "description": "Time formating for 12 hour clock including suffix."
+  },
+  "12hourNoSuffix": {
+    "message": "12 hour with no suffix",
+    "description": "Time formating for 12 hour clock without suffix."
+  },
   "next": {
     "message": "next",
     "description": "Next button text that displays in the timetable."
@@ -173,50 +185,50 @@
   },
   "january": {
     "message": "January",
-    "description": "The month name January,"
+    "description": "The month name January"
   },
   "february": {
     "message": "February",
-    "description": "The month name February,"
+    "description": "The month name February"
   },
   "march": {
     "message": "March",
-    "description": "The month name March,"
+    "description": "The month name March"
   },
   "april": {
     "message": "April",
-    "description": "The month name April,"
+    "description": "The month name April"
   },
   "may": {
     "message": "May",
-    "description": "The month name May,"
+    "description": "The month name May"
   },
   "june": {
     "message": "June",
-    "description": "The month name June,"
+    "description": "The month name June"
   },
   "july": {
     "message": "July",
-    "description": "The month name July,"
+    "description": "The month name July"
   },
   "august": {
     "message": "August",
-    "description": "The month name August,"
+    "description": "The month name August"
   },
   "september": {
     "message": "September",
-    "description": "The month name September,"
+    "description": "The month name September"
   },
   "october": {
     "message": "October",
-    "description": "The month name October,"
+    "description": "The month name October"
   },
   "november": {
     "message": "November",
-    "description": "The month name November,"
+    "description": "The month name November"
   },
   "december": {
     "message": "December",
-    "description": "The month name December,"
+    "description": "The month name December"
   }
 }

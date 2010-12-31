@@ -64,10 +64,13 @@ function translateLabels() {
   // Set bidi direction.
   document.body.dir = chrome.i18n.getMessage('@@bidi_dir');
   
-  // Labels.
-  document.getElementById('header-label').innerHTML =
-      chrome.i18n.getMessage('extName') + ' ' +
+  // Title of the page.
+  var header_title = chrome.i18n.getMessage('extName') + ' ' +
       chrome.i18n.getMessage('options');
+  document.title = header_title;
+    
+  // Labels.
+  document.getElementById('header-label').innerHTML = header_title;
   document.getElementById('options-warning-label').innerHTML =
       chrome.i18n.getMessage('optionsWarning');
   document.getElementById('location-settings-label').innerHTML = 
@@ -104,6 +107,12 @@ function translateLabels() {
       chrome.i18n.getMessage('extBy');
   document.getElementById('extension-source-label').innerHTML = 
       chrome.i18n.getMessage('extSource');
+  document.getElementById('24h-label').innerHTML = 
+      chrome.i18n.getMessage('24hour');
+  document.getElementById('12h-label').innerHTML = 
+      chrome.i18n.getMessage('12hour');
+  document.getElementById('12hNS-label').innerHTML = 
+      chrome.i18n.getMessage('12hourNoSuffix');
 }
 
 /**
@@ -321,9 +330,9 @@ function getAddress() {
           <dt id="time-format-label"></dt>
           <dd>
             <select id="timeformat">
-              <option value="24h">24 hour</option>
-              <option value="12h">12 hour</option>
-              <option value="12hNS">12 hour with no suffix</option>
+              <option value="24h" id="24h-label"></option>
+              <option value="12h" id="12h-label"></option>
+              <option value="12hNS" id="12hNS-label"></option>
             </select>
           </dd>
           <dt id="visible-timenames-label"></dt>
