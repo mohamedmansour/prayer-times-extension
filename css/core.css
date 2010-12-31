@@ -1,6 +1,5 @@
-@import url("core.css");
-
 body {
+  dir: __MSG_@@bidi_dir__;
   font-size: 87%;
   font-family: Helvetica, Arial, sans-serif;
   margin: 10px;
