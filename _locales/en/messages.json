@@ -15,6 +15,10 @@
     "message": "Source Code available in",
     "description": "Phrases that says the location where source code is available in."
   },
+  "day": {
+    "message": "Day",
+    "description": "The label 'Day' for the month. Usually numbered from 1-31"
+  },
   "am": {
     "message": "am",
     "description": "Time suffix for before midday."

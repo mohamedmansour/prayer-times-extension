@@ -135,15 +135,15 @@ function restoreOptions() {
   // Add timenames group.
   var timenames = entity.getTimeNames();
   var timenamesgroup = document.getElementById('timenamesgroup');
-  timenamesgroup.appendChild(createTimenamesGroup([timenames.imsak,
-                                                   timenames.fajr, 
-                                                   timenames.sunrise]));
-  timenamesgroup.appendChild(createTimenamesGroup([timenames.dhuhr, 
-                                                   timenames.asr, 
-                                                   timenames.sunset]));
-  timenamesgroup.appendChild(createTimenamesGroup([timenames.maghrib, 
-                                                   timenames.isha, 
-                                                   timenames.midnight]));
+  timenamesgroup.appendChild(createTimenamesGroup([['Imsak', timenames.imsak],
+                                                   ['Fajr', timenames.fajr], 
+                                                   ['Sunrise', timenames.sunrise]]));
+  timenamesgroup.appendChild(createTimenamesGroup([['Dhuhr', timenames.dhuhr], 
+                                                   ['Asr', timenames.asr], 
+                                                   ['Sunset', timenames.sunset]]));
+  timenamesgroup.appendChild(createTimenamesGroup([['Maghrib', timenames.maghrib], 
+                                                   ['Isha', timenames.isha], 
+                                                   ['Midnight', timenames.midnight]]));
   
   // Restore settings.
   document.getElementById('version').innerHTML = ' (v' + bkg.settings.version + ')';
@@ -187,11 +187,11 @@ function createTimenamesGroup(times) {
     var time = times[i];
     input.setAttribute('type', 'checkbox');
     input.setAttribute('name', 'timenames');
-    input.setAttribute('id', time);
+    input.setAttribute('id', time[0]);
     p.appendChild(input);
     var label = document.createElement('label');
-    label.setAttribute('for', time);
-    label.innerHTML = time;
+    label.setAttribute('for', time[0]);
+    label.innerHTML = time[1];
     p.appendChild(label);
   }
   return p;

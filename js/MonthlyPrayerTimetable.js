@@ -9,7 +9,7 @@ MonthlyPrayerTimetable = function(entity, id, timeNames)
   this.id = id;
   this.entity = entity;
 	this.currentDate = new Date();
-	this.timeNames = this._translateTimeNames(timeNames);
+	this.timeNames = timeNames;
   this.monthName = [
       chrome.i18n.getMessage('january'),
       chrome.i18n.getMessage('february'),
@@ -42,20 +42,6 @@ MonthlyPrayerTimetable.prototype.viewMonth = function(offset)
 };
 
 /**
- * Translates the current timenames.
- * @param {Array<string>} data the timenames saved in localstorage.
- * @returns {Array<string>} the translated timenames.
- */
-MonthlyPrayerTimetable.prototype._translateTimeNames = function(data) {
-  var timenames = this.entity.getTimeNames();
-  var translatedNames = [];
-  for (var i in data) {
-    translatedNames.push(timenames[data[i].toLowerCase()]);
-  }
-  return translatedNames;
-};
-
-/**
  * Create monthly timetable based on todays date.
  *
  * @param {number} year The year to base.
@@ -63,11 +49,7 @@ MonthlyPrayerTimetable.prototype._translateTimeNames = function(data) {
  */
 MonthlyPrayerTimetable.prototype._createTable = function(year, month)
 {
-  var items = ['Day'];
-  for (var i in this.timeNames) {
-    items.push(this.timeNames[i]);
-  }
-
+  var items = ['Day'].concat(this.timeNames);
   var table = document.getElementById(this.id); 
   var tbody = document.createElement('tbody');
   tbody.appendChild(this._createTableHeader(items));
@@ -96,11 +78,14 @@ MonthlyPrayerTimetable.prototype._createTable = function(year, month)
  * Create the header row.
  * @param {Array<string>} data The headers to print.
  */
-MonthlyPrayerTimetable.prototype._createTableHeader = function(data) {
+MonthlyPrayerTimetable.prototype._createTableHeader = function(data)
+{
+  var timenames = this.entity.getTimeNames();
+  timenames.day = chrome.i18n.getMessage('day');
   var row = document.createElement('tr');
   for (var i in data) {
     var cell = document.createElement('td');
-    cell.innerHTML = data[i];
+    cell.innerHTML = timenames[data[i].toLowerCase()];
     row.appendChild(cell);
   }
   row.className = 'head-row';
