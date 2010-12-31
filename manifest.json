@@ -1,8 +1,8 @@
 {
- "name": "Prayer Times",
- "version": "1.0.2",
+ "name": "__MSG_extName__",
+ "version": "1.0.3",
  "minimum_chrome_version": "6",
- "description": "Prayer Timetable based on geolocation including options to change calculation methods.",
+ "description": "__MSG_extDescription__",
  "icons": {
     "16": "img/icon16.png",
     "32": "img/icon32.png",
@@ -17,5 +17,6 @@
  "background_page": "background.html",
  "permissions": [
    "geolocation"
- ]
+ ],
+ "default_locale": "en"
 }

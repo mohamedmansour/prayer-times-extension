@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Prayer Times",
+    "description": "Extension name."
+  },
+  "extDescription": {
+    "message": "Prayer Times including all year timetable based on geolocation including options to change calculation methods.",
+    "description": "Extension description."
+  }
+}
