@@ -1,238 +1,179 @@
 {
-  "extName": {
-    "message": "أوقات الصلاة",
-    "description": "Extension name."
-  },
-  "extDescription": {
-    "message": "أوقات الصلاة بما في ذلك جميع الجدول الزمني العام على أساس تحديد الموقع الجغرافي بما في ذلك خيارات لتغيير طرق الحساب.",
-    "description": "Extension description."
-  },
-  "extBy": {
-    "message": "التي وضعتها",
-    "description": "Phrases that says the extension is developed by."
-  },
-  "extSource": {
-    "message": "شفرة المصدر متاحا في",
-    "description": "Phrases that says the location where source code is available in."
-  },
-  "day": {
-    "message": "يوم",
-    "description": "The label 'Day' for the month. Usually numbered from 1-31"
-  },
-  "am": {
-    "message": "صباحًا",
-    "description": "Time suffix for before midday."
-  },
-  "pm": {
-    "message": "مساءً",
-    "description": "Time suffix for after midday."
-  },
-  "24hour": {
-    "message": "24 ساعة",
-    "description": "Time formating for 24 hour clock."
-  },
-  "12hour": {
-    "message": "12 ساعة",
-    "description": "Time formating for 12 hour clock including suffix."
-  },
-  "12hourNoSuffix": {
-    "message": "12 ساعة مع عدم وجود لاحقة",
-    "description": "Time formating for 12 hour clock without suffix."
-  },
-  "next": {
-    "message": "القادم",
-    "description": "Next button text that displays in the timetable."
-  },
-  "previous": {
-    "message": "السابقة",
-    "description": "Previous button text that displays in the timetable."
-  },
-  "options": {
-    "message": "خيارات",
-    "description": "The options label to visit the settings page."
-  },
-  "save": {
-    "message": "حفظ",
-    "description": "The save label for an action of saving."
-  },
-  "search": {
-    "message": "البحث",
-    "description": "The search label for an action of searching."
-  },
-  "cancel": {
-    "message": "إلغاء",
-    "description": "The search label for an action of canceling."
-  },
-  "close": {
-    "message": "إغلاق",
-    "description": "The close label for an action of closing."
-  },
-  "geolocation": {
-    "message": "تحديد الموقع الجغرافي",
-    "description": "The current geographic location."
-  },
-  "latitude": {
-    "message": "خط العرض",
-    "description": "Measurement of a location on earth, lines that appear horizontal."
-  },
-  "longitude": {
-    "message": "خط الطول",
-    "description": "Measurement of a location on earth, lines that appear vertical."
-  },
-  "chooseLocation": {
-    "message": "اختيار الموقع",
-    "description": "Choose a custom geographic location."
-  },
-  "myGeoLocation": {
-    "message": "موقعي",
-    "description": "Automatically figure out my location."
-  },
-  "optionsWarning": {
-    "message": "تأكد من حفظ الإعدادات الخاصة بك القيام به بعد التحرير!",
-    "description": "Options warning to make sure the user selects save after done editing."
-  },
-  "optionSaveResponse": {
-    "message": "حفظ الخيارات!",
-    "description": "Response when a user hits save."
-  },
-  "locationOnMap": {
-    "message": "الموقع على الخريطة",
-    "description": "Label showing the user his/her location on the map."
-  },
-  "locationSettings": {
-    "message": "إعدادات الموقع",
-    "description": "Heading label that shows the location settings."
-  },
-  "timeSettings": {
-    "message": "إعدادات الوقت",
-    "description": "Heading label that shows the time settings."
-  },
-  "timeFormat": {
-    "message": "تنسيق الوقت",
-    "description": "Sub header label for time format group."
-  },
-  "notFound": {
-    "message": "لم يتم العثور على موقع",
-    "description": "Standard text for location not found."
-  },
-  "calculationsSettings": {
-    "message": "إعدادات الحساب",
-    "description": "Heading label for Prayer time calculation settings."
-  },
-  "visibleTimenames": {
-    "message": "أسماء من الزمن مرئي",
-    "description": "Sub header labels for visible time names."
-  },
-  "fetchingGeolocation": {
-    "message": "جلب الموقع...",
-    "description": "Fetching geolocation text in the popup."
-  },
-  "searchPlaceholder": {
-    "message": "البحث عن موقع...",
-    "description": "Searching placeholder in the text box. Assited text."
-  },
-  "pleaseWait": {
-    "message": "الرجاء الانتظار",
-    "description": "Asking user to please wait for extension loading."
-  },
-  "viewTimetable": {
-    "message": "عرض الأوقات الصلاة",
-    "description": "View prayer timetable."
-  },
-  "prayerTimetable": {
-    "message": "أوقات الصلاة",
-    "description": "Prayer timetable header text."
-  },
-  "timePrecaution": {
-    "message": "وتستند مرات أعلاه على الحسابات فقط. أرجو أن تسمحوا -- / + 3 دقائق لصلاة الفجر، 1 دقيقة عن الظهر، والمغرب 2 دقيقة كاجراء وقائي.",
-    "description": "A warning to the user when using the calculations. This will be shown in the timetable page."
-  },
-  "calculationMethod": {
-    "message": "طريقة الحساب",
-    "description": "Label that denotes the prayer calculation to use."
-  },
-  "imsak": {
-    "message": "إمساك",
-    "description": "Imsak timename."
-  },
-  "fajr": {
-    "message": "الفجر",
-    "description": "Fajr timename."
-  },
-  "sunrise": {
-    "message": "شروق الشمس",
-    "description": "Sunrise timename."
-  },
-  "dhuhr": {
-    "message": "الظهر",
-    "description": "Dhuhr timename."
-  },
-  "asr": {
-    "message": "العصر",
-    "description": "Asr timename."
-  },
-  "sunset": {
-    "message": "غروب",
-    "description": "Sunset timename."
-  },
-  "maghrib": {
-    "message": "المغرب",
-    "description": "Maghrib timename."
-  },
-  "isha": {
-    "message": "العشاء",
-    "description": "Isha timename."
-  },
-  "midnight": {
-    "message": "منتصف الليل",
-    "description": "Midnight timename."
-  },
-  "january": {
-    "message": "كانون الثاني",
-    "description": "The month name January"
-  },
-  "february": {
-    "message": "شباط",
-    "description": "The month name February"
-  },
-  "march": {
-    "message": "آذار",
-    "description": "The month name March"
-  },
-  "april": {
-    "message": "نيسان",
-    "description": "The month name April"
-  },
-  "may": {
-    "message": "أيار",
-    "description": "The month name May"
-  },
-  "june": {
-    "message": "حزيران",
-    "description": "The month name June"
-  },
-  "july": {
-    "message": "تموز",
-    "description": "The month name July"
-  },
-  "august": {
-    "message": "آب",
-    "description": "The month name August"
-  },
-  "september": {
-    "message": "أيلول",
-    "description": "The month name September"
-  },
-  "october": {
-    "message": "تشرين الأول",
-    "description": "The month name October"
-  },
-  "november": {
-    "message": "تشرين الثاني",
-    "description": "The month name November"
-  },
-  "december": {
-    "message": "كانون الأول",
-    "description": "The month name December"
-  }
+	"march": {
+		"message": "آذار"
+	},
+	"april": {
+		"message": "نيسان"
+	},
+	"may": {
+		"message": "أيار"
+	},
+	"june": {
+		"message": "حزيران"
+	},
+	"july": {
+		"message": "تموز"
+	},
+	"august": {
+		"message": "آب"
+	},
+	"september": {
+		"message": "أيلول"
+	},
+	"october": {
+		"message": "تشرين الأول"
+	},
+	"november": {
+		"message": "تشرين الثاني"
+	},
+	"december": {
+		"message": "كانون الأول"
+	},
+	"extName": {
+		"message": "أوقات الصلاة"
+	},
+	"extDescription": {
+		"message": "أوقات الصلاة بما في ذلك جميع الجدول الزمني العام على أساس تحديد الموقع الجغرافي بما في ذلك خيارات لتغيير طرق الحساب."
+	},
+	"extBy": {
+		"message": "التي وضعتها"
+	},
+	"extSource": {
+		"message": "شفرة المصدر متاحا في"
+	},
+	"day": {
+		"message": "يوم"
+	},
+	"am": {
+		"message": "صباحًا"
+	},
+	"pm": {
+		"message": "مساءً"
+	},
+	"24hour": {
+		"message": "24 ساعة"
+	},
+	"12hour": {
+		"message": "12 ساعة"
+	},
+	"12hourNoSuffix": {
+		"message": "12 ساعة مع عدم وجود لاحقة"
+	},
+	"next": {
+		"message": "القادم"
+	},
+	"previous": {
+		"message": "السابقة"
+	},
+	"options": {
+		"message": "خيارات"
+	},
+	"save": {
+		"message": "حفظ"
+	},
+	"search": {
+		"message": "البحث"
+	},
+	"cancel": {
+		"message": "إلغاء"
+	},
+	"close": {
+		"message": "إغلاق"
+	},
+	"geolocation": {
+		"message": "تحديد الموقع الجغرافي"
+	},
+	"latitude": {
+		"message": "خط العرض"
+	},
+	"longitude": {
+		"message": "خط الطول"
+	},
+	"chooseLocation": {
+		"message": "اختيار الموقع"
+	},
+	"myGeoLocation": {
+		"message": "موقعي"
+	},
+	"optionsWarning": {
+		"message": "تأكد من حفظ الإعدادات الخاصة بك القيام به بعد التحرير!"
+	},
+	"optionSaveResponse": {
+		"message": "حفظ الخيارات!"
+	},
+	"locationOnMap": {
+		"message": "الموقع على الخريطة"
+	},
+	"locationSettings": {
+		"message": "إعدادات الموقع"
+	},
+	"timeSettings": {
+		"message": "إعدادات الوقت"
+	},
+	"timeFormat": {
+		"message": "تنسيق الوقت"
+	},
+	"notFound": {
+		"message": "لم يتم العثور على موقع"
+	},
+	"calculationsSettings": {
+		"message": "إعدادات الحساب"
+	},
+	"visibleTimenames": {
+		"message": "أسماء من الزمن مرئي"
+	},
+	"fetchingGeolocation": {
+		"message": "جلب الموقع..."
+	},
+	"searchPlaceholder": {
+		"message": "البحث عن موقع..."
+	},
+	"pleaseWait": {
+		"message": "الرجاء الانتظار"
+	},
+	"viewTimetable": {
+		"message": "عرض الأوقات الصلاة"
+	},
+	"prayerTimetable": {
+		"message": "أوقات الصلاة"
+	},
+	"timePrecaution": {
+		"message": "وتستند مرات أعلاه على الحسابات فقط. أرجو أن تسمحوا -- \/ + 3 دقائق لصلاة الفجر، 1 دقيقة عن الظهر، والمغرب 2 دقيقة كاجراء وقائي."
+	},
+	"calculationMethod": {
+		"message": "طريقة الحساب"
+	},
+	"imsak": {
+		"message": "إمساك"
+	},
+	"fajr": {
+		"message": "الفجر"
+	},
+	"sunrise": {
+		"message": "شروق الشمس"
+	},
+	"dhuhr": {
+		"message": "الظهر"
+	},
+	"asr": {
+		"message": "العصر"
+	},
+	"sunset": {
+		"message": "غروب"
+	},
+	"maghrib": {
+		"message": "المغرب"
+	},
+	"isha": {
+		"message": "العشاء"
+	},
+	"midnight": {
+		"message": "منتصف الليل"
+	},
+	"january": {
+		"message": "كانون الثاني"
+	},
+	"february": {
+		"message": "شباط"
+	}
 }
