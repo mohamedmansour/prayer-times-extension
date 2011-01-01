@@ -1,34 +1,4 @@
 {
-	"march": {
-		"message": "آذار"
-	},
-	"april": {
-		"message": "نيسان"
-	},
-	"may": {
-		"message": "أيار"
-	},
-	"june": {
-		"message": "حزيران"
-	},
-	"july": {
-		"message": "تموز"
-	},
-	"august": {
-		"message": "آب"
-	},
-	"september": {
-		"message": "أيلول"
-	},
-	"october": {
-		"message": "تشرين الأول"
-	},
-	"november": {
-		"message": "تشرين الثاني"
-	},
-	"december": {
-		"message": "كانون الأول"
-	},
 	"extName": {
 		"message": "أوقات الصلاة"
 	},
@@ -143,6 +113,15 @@
 	"calculationMethod": {
 		"message": "طريقة الحساب"
 	},
+  "followMeTwitter": {
+    "message": "يتبعني Twitter"
+  },
+  "visitExtensionPage": {
+    "message": "زيارة صفحة التمديد"
+  },
+  "fileBugsSuggestions": {
+    "message": "ملف الخلل واقتراحات"
+  },
 	"imsak": {
 		"message": "إمساك"
 	},
@@ -175,5 +154,35 @@
 	},
 	"february": {
 		"message": "شباط"
+	},
+	"march": {
+		"message": "آذار"
+	},
+	"april": {
+		"message": "نيسان"
+	},
+	"may": {
+		"message": "أيار"
+	},
+	"june": {
+		"message": "حزيران"
+	},
+	"july": {
+		"message": "تموز"
+	},
+	"august": {
+		"message": "آب"
+	},
+	"september": {
+		"message": "أيلول"
+	},
+	"october": {
+		"message": "تشرين الأول"
+	},
+	"november": {
+		"message": "تشرين الثاني"
+	},
+	"december": {
+		"message": "كانون الأول"
 	}
 }

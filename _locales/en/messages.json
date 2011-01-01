@@ -151,6 +151,18 @@
     "message": "Calculation Method",
     "description": "Label that denotes the prayer calculation to use."
   },
+  "followMeTwitter": {
+    "message": "Follow me on Twitter",
+    "description": "Text to tell the user to follow me on Twitter which is a social network."
+  },
+  "visitExtensionPage": {
+    "message": "Visit extension page",
+    "description": "Visit the main extension home page."
+  },
+  "fileBugsSuggestions": {
+    "message": "File bugs and suggestions",
+    "description": "File bugs and suggestions for this extension."
+  },
   "imsak": {
     "message": "Imsak",
     "description": "Imsak timename."

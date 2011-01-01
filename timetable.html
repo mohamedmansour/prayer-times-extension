@@ -32,7 +32,8 @@
   </div>
   <div id="credits">
     <span id="extension-by-label"></span> <a href="http://www.mohamedmansour.com">Mohamed Mansour</a>, 
-    <span id="extension-source-label"></span> <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a>
+    <span id="extension-source-label"></span> <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a><br/>
+    <span id="followme-label"></span> <a href="http://twitter.com/mohamedmansour">@mohamedmansour</a>
   </div>
   <script type='text/javascript'>
     // Set bidi direction.
@@ -65,6 +66,8 @@
         chrome.i18n.getMessage('extBy');
     document.getElementById('extension-source-label').innerHTML = 
         chrome.i18n.getMessage('extSource');
+    document.getElementById('followme-label').innerHTML =
+        chrome.i18n.getMessage('followMeTwitter');
         
     // View the month.
     monthlyTimetable.viewMonth(0);

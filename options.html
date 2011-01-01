@@ -113,6 +113,12 @@ function translateLabels() {
       chrome.i18n.getMessage('12hour');
   document.getElementById('12hNS-label').innerHTML = 
       chrome.i18n.getMessage('12hourNoSuffix');
+  document.getElementById('followme-label').innerHTML =
+      chrome.i18n.getMessage('followMeTwitter');
+  document.getElementById('visit-extension-label').innerHTML =
+      chrome.i18n.getMessage('visitExtensionPage');
+  document.getElementById('suggestions-label').innerHTML =
+      chrome.i18n.getMessage('fileBugsSuggestions');
 }
 
 /**
@@ -300,7 +306,15 @@ function getAddress() {
     <div id="header">
       <h1><span id="header-label"></span><em id="version"></em></h1>
     </div>
-    <p id="options-warning-label"></p>
+    <p>
+      <span id="options-warning-label"></span>
+      <a id="visit-extension-label"
+       href="https://chrome.google.com/webstore/detail/ndmbeogingkjkmmkoomnigifmpajmbkc">
+      </a>,
+      <a id="suggestions-label"
+       href="http://groups.google.com/group/mohamedmansour-extensions">
+      </a>
+    </p>
     <div class="extension-template">
       <div class="extension-header" id="location-settings-label"></div>
       <div class="extension-options">
@@ -358,7 +372,8 @@ function getAddress() {
     </div>
     <div id="credits">
       <span id="extension-by-label"></span> <a href="http://www.mohamedmansour.com">Mohamed Mansour</a>, 
-      <span id="extension-source-label"></span> <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a>
+      <span id="extension-source-label"></span> <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a><br/>
+      <span id="followme-label"></span> <a href="http://twitter.com/mohamedmansour">@mohamedmansour</a>
     </div>
   </div>
   </form>

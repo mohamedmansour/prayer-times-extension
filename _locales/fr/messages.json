@@ -113,6 +113,15 @@
 	"calculationMethod": {
 		"message": "Méthode de calcul"
 	},
+  "followMeTwitter": {
+    "message": "Suivez-moi sur Twitter"
+  },
+  "visitExtensionPage": {
+    "message": "Visitez la page extension"
+  },
+  "fileBugsSuggestions": {
+    "message": "Fichier bugs et suggestions"
+  },
 	"imsak": {
 		"message": "Imsak"
 	},
