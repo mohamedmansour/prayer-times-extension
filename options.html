@@ -61,6 +61,31 @@ function saveOptions() {
  * Translations for labels.
  */
 function translateLabels() {
+  // Add a Warning to the top of this page asking for help if not english.
+  chrome.i18n.getAcceptLanguages(function(languages) {
+    for (var lang in languages) {
+      if (languages[lang].indexOf('en') != 0) {
+        // The user has a locale which isn't english, lets ask nicely for help.
+        var helpGroup = document.getElementById('extra-buttons-group');
+        var note = document.createElement('div');
+        note.setAttribute('class', 'note');
+        var h2 = document.createElement('h2');
+        h2.innerHTML = "Translation poor? Help me improve it!"
+        note.appendChild(h2);
+        var p = document.createElement('p');
+        p.innerHTML = 'This translation is experimental, mostly done using ' +
+            'Google Translate. You may find many mistakes or even its not ' + 
+            'translated in your own language. If you want to help me translate ' + 
+            'or even fix mistakes, please visit the ' +
+            '<a href="https://github.com/mohamedmansour/prayer-times-extension/wiki">wiki</a> ' +
+            'for more information how you can help :)';
+        note.appendChild(p);
+        helpGroup.appendChild(note);
+        break;
+      }
+    }
+  });
+
   // Set bidi direction.
   document.body.dir = chrome.i18n.getMessage('@@bidi_dir');
   
@@ -306,7 +331,7 @@ function getAddress() {
     <div id="header">
       <h1><span id="header-label"></span><em id="version"></em></h1>
     </div>
-    <p>
+    <p id="extra-buttons-group">
       <span id="options-warning-label"></span>
       <a id="visit-extension-label"
        href="https://chrome.google.com/webstore/detail/ndmbeogingkjkmmkoomnigifmpajmbkc">

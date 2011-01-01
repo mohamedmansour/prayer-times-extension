@@ -45,3 +45,11 @@ dd {
 #latitude, #longitude {
   width: 100px;
 }
+
+.note {
+  background-color: #fef0b3;
+  outline: 1px solid #9f7626;
+  color: #9f7626;
+  margin: 10px;
+  padding: 10px;
+}
