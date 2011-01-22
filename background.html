@@ -48,9 +48,9 @@ settings = {
 };
 
 /**
-* Open a singleton page, which means, if a page already exists, it just selects it.
-* @param url The page which it will navigate to.
-*/
+ * Open a singleton page, which means, if a page already exists, it just selects it.
+ * @param url The page which it will navigate to.
+ */
 function openSingletonPage(url) {
   var views = chrome.extension.getViews();
   for (var v in views) {
@@ -60,19 +60,19 @@ function openSingletonPage(url) {
       return;
     }
   }
-  chrome.tabs.create({url: url});
+  chrome.tabs.create({url: url, selected: true});
 }
   
 /**
-* Get the main prayer time entity.
-*/
+ * Get the main prayer time entity.
+ */
 function getPrayerEntity() {
   return entity;
 }
 
 /**
-* Get the version number from the manifest.
-*/
+ * Get the version number from the manifest.
+ */
 function getVersion() {
   var version = 'NaN';
   var xhr = new XMLHttpRequest();
@@ -83,8 +83,16 @@ function getVersion() {
 }
 
 /**
-* Initialization routine.
-*/ 
+ * When the extension first installed. Lets bring up the options page so they
+ * could start setting it up!
+ */
+function onInstall() {
+  openSingletonPage('options.html');
+}
+
+/**
+ * Initialization routine.
+ */ 
 function init() {
   // Get the current geo location coordinates if none exist.
   if (settings.currentPosition == null) {
@@ -115,7 +123,9 @@ function init() {
   if (currVersion != prevVersion) {
     // Check if we just installed this extension.
     if (typeof prevVersion == 'undefined') {
-      // Do nothing now.
+      onInstall();
+    } else {
+      // onUpdatae: Do nothing now.
     }
     // Update the version incase we want to do something in future.
     settings.version = currVersion;
