@@ -4,7 +4,7 @@
  * @param {GeoPrayerTime} entity The prayer time entity.
  * @param {string} id The element id where the table exists.
  */
-MonthlyPrayerTimetable = function(entity, id, timeNames)
+TimetableModel = function(entity, id, timeNames)
 {
   this.id = id;
   this.entity = entity;
@@ -31,7 +31,7 @@ MonthlyPrayerTimetable = function(entity, id, timeNames)
  *
  * @param {number} offset The month offset starting by 0 for January.
  */
-MonthlyPrayerTimetable.prototype.viewMonth = function(offset)
+TimetableModel.prototype.viewMonth = function(offset)
 {
   this.currentDate.setMonth(this.currentDate.getMonth() + 1 * offset);
   var month = this.currentDate.getMonth();
@@ -47,7 +47,7 @@ MonthlyPrayerTimetable.prototype.viewMonth = function(offset)
  * @param {number} year The year to base.
  * @param {month} month The month to base.
  */
-MonthlyPrayerTimetable.prototype._createTable = function(year, month)
+TimetableModel.prototype._createTable = function(year, month)
 {
   var items = ['Day'].concat(this.timeNames);
   var table = document.getElementById(this.id); 
@@ -78,7 +78,7 @@ MonthlyPrayerTimetable.prototype._createTable = function(year, month)
  * Create the header row.
  * @param {Array<string>} data The headers to print.
  */
-MonthlyPrayerTimetable.prototype._createTableHeader = function(data)
+TimetableModel.prototype._createTableHeader = function(data)
 {
   var timenames = this.entity.getTimeNames();
   timenames.day = chrome.i18n.getMessage('day');
@@ -98,7 +98,7 @@ MonthlyPrayerTimetable.prototype._createTableHeader = function(data)
  * @param {Array<string>} items The items for the given row.
  * @param {string} clazz The classname for the row.
  */
-MonthlyPrayerTimetable.prototype._createTableRow = function(data, items, clazz)
+TimetableModel.prototype._createTableRow = function(data, items, clazz)
 {
   var row = document.createElement('tr');
   for (var i in items) {
@@ -114,7 +114,7 @@ MonthlyPrayerTimetable.prototype._createTableRow = function(data, items, clazz)
  * Remove all children from a node.
  * @param {Node} node the document element node.
  */
-MonthlyPrayerTimetable.prototype._removeAllChild = function(node)
+TimetableModel.prototype._removeAllChild = function(node)
 {
   if (node == undefined || node == null)
     return;
@@ -127,7 +127,7 @@ MonthlyPrayerTimetable.prototype._removeAllChild = function(node)
  * Return the month name given its offset, where 0 is January.
  * @param {number} month the offset of the month.
  */
-MonthlyPrayerTimetable.prototype._monthFullName = function(month)
+TimetableModel.prototype._monthFullName = function(month)
 {
   return this.monthName[month];
 };
