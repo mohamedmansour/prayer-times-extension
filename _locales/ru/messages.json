@@ -1,0 +1,254 @@
+{
+      "nowPrayerTime": {
+      "description": "настало время",
+      "message": "настало время"
+   },
+   "12hour": {
+      "description": "Выводить время в 12 ч формате с указанием.",
+      "message": "12 часов"
+   },
+   "12hourNoSuffix": {
+      "description": "Выводить время в 12 ч. формате без указания",
+      "message": "12 часов без указания"
+   },
+   "24hour": {
+      "description": "Выводить время в 24 ч. формате",
+      "message": "24 часа"
+   },
+   "am": {
+      "description": "До полудня",
+      "message": "утра"
+   },
+   "april": {
+      "description": "The month name April",
+      "message": "Апрель"
+   },
+   "asr": {
+      "description": "Asr timename.",
+      "message": "Аср"
+   },
+   "august": {
+      "description": "The month name August",
+      "message": "Август"
+   },
+   "calculationMethod": {
+      "description": "Label that denotes the prayer calculation to use.",
+      "message": "Метод расчета"
+   },
+   "calculationsSettings": {
+      "description": "Heading label for Prayer time calculation settings.",
+      "message": "Настройки расчета"
+   },
+   "cancel": {
+      "description": "The search label for an action of canceling.",
+      "message": "Отмена"
+   },
+   "chooseLocation": {
+      "description": "Choose a custom geographic location.",
+      "message": "Выбрать расположение"
+   },
+   "close": {
+      "description": "The close label for an action of closing.",
+      "message": "Закрыть"
+   },
+   "day": {
+      "description": "The label 'Day' for the month. Usually numbered from 1-31",
+      "message": "День"
+   },
+   "december": {
+      "description": "The month name December",
+      "message": "Декабрь"
+   },
+   "dhuhr": {
+      "description": "Dhuhr timename.",
+      "message": "Зухр"
+   },
+   "extBy": {
+      "description": "Phrases that says the extension is developed by.",
+      "message": "Разработано "
+   },
+   "extDescription": {
+      "description": "Extension description.",
+      "message": "Расписание намазов учитывая местоположения с выбором метода расчета"
+   },
+   "extName": {
+      "description": "Extension name.",
+      "message": "Prayer Times"
+   },
+   "extSource": {
+      "description": "Phrases that says the location where source code is available in.",
+      "message": "Исходник доступен в"
+   },
+   "fajr": {
+      "description": "Fajr timename.",
+      "message": "Фаджр"
+   },
+   "february": {
+      "description": "The month name February",
+      "message": "Февраль"
+   },
+   "fetchingGeolocation": {
+      "description": "Fetching geolocation text in the popup.",
+      "message": "Ищем вас :) ..."
+   },
+   "fileBugsSuggestions": {
+      "description": "File bugs and suggestions for this extension.",
+      "message": "Ошибки и предложения"
+   },
+   "followMeTwitter": {
+      "description": "Text to tell the user to follow me on Twitter which is a social network.",
+      "message": "Follow me on Twitter"
+   },
+   "geolocation": {
+      "description": "The current geographic location.",
+      "message": "Расположение"
+   },
+   "imsak": {
+      "description": "Imsak timename.",
+      "message": "Имсак"
+   },
+   "isha": {
+      "description": "Isha timename.",
+      "message": "Иша"
+   },
+   "january": {
+      "description": "The month name January",
+      "message": "Январь"
+   },
+   "july": {
+      "description": "The month name July",
+      "message": "Июль"
+   },
+   "june": {
+      "description": "The month name June",
+      "message": "Июнь"
+   },
+   "latitude": {
+      "description": "Measurement of a location on earth, lines that appear horizontal.",
+      "message": "Широта"
+   },
+   "locationOnMap": {
+      "description": "Label showing the user his/her location on the map.",
+      "message": "Расположение на карте"
+   },
+   "locationSettings": {
+      "description": "Heading label that shows the location settings.",
+      "message": "Настройки местоположения"
+   },
+   "longitude": {
+      "description": "Measurement of a location on earth, lines that appear vertical.",
+      "message": "Долгота"
+   },
+   "maghrib": {
+      "description": "Maghrib timename.",
+      "message": "Магриб"
+   },
+   "march": {
+      "description": "The month name March",
+      "message": "Март"
+   },
+   "may": {
+      "description": "The month name May",
+      "message": "Май"
+   },
+   "midnight": {
+      "description": "Midnight timename.",
+      "message": "Полночь"
+   },
+   "myGeoLocation": {
+      "description": "Automatically figure out my location.",
+      "message": "Мое расположение"
+   },
+   "next": {
+      "description": "Next button text that displays in the timetable.",
+      "message": "вперед"
+   },
+   "notFound": {
+      "description": "Standard text for location not found.",
+      "message": "Место не найдено"
+   },
+   "november": {
+      "description": "The month name November",
+      "message": "Ноябрь"
+   },
+   "october": {
+      "description": "The month name October",
+      "message": "Октябрь"
+   },
+   "optionSaveResponse": {
+      "description": "Response when a user hits save.",
+      "message": "Настройки сохранены!"
+   },
+   "options": {
+      "description": "The options label to visit the settings page.",
+      "message": "Настройки"
+   },
+   "optionsWarning": {
+      "description": "Options warning to make sure the user selects save after done editing.",
+      "message": "Проверьте, что вы сохранили настройки!"
+   },
+   "pleaseWait": {
+      "description": "Asking user to please wait for extension loading.",
+      "message": "Ждите"
+   },
+   "pm": {
+      "description": "Time suffix for after midday.",
+      "message": "после полудня"
+   },
+   "prayerTimetable": {
+      "description": "Prayer timetable header text.",
+      "message": "Расписание на месяц"
+   },
+   "previous": {
+      "description": "Previous button text that displays in the timetable.",
+      "message": "назад"
+   },
+   "save": {
+      "description": "The save label for an action of saving.",
+      "message": "Сохранить"
+   },
+   "search": {
+      "description": "The search label for an action of searching.",
+      "message": "Поиск"
+   },
+   "searchPlaceholder": {
+      "description": "Searching placeholder in the text box. Assited text.",
+      "message": "Поиск расположения ."
+   },
+   "september": {
+      "description": "The month name September",
+      "message": "Сентябрь"
+   },
+   "sunrise": {
+      "description": "Sunrise timename.",
+      "message": "Восход"
+   },
+   "sunset": {
+      "description": "Sunset timename.",
+      "message": "Закат"
+   },
+   "timeFormat": {
+      "description": "Sub header label for time format group.",
+      "message": "Формат времени"
+   },
+   "timePrecaution": {
+      "description": "A warning to the user when using the calculations. This will be shown in the timetable page.",
+      "message": "Эти времена основаны на расчетах. Погрешность +/- 3  минуты для Фаджра, 1 минута для Зухра, и 2 минуты для Магриба."
+   },
+   "timeSettings": {
+      "description": "Heading label that shows the time settings.",
+      "message": "Настройки времени"
+   },
+   "viewTimetable": {
+      "description": "View prayer timetable.",
+      "message": "расписание на месяц"
+   },
+   "visibleTimenames": {
+      "description": "Sub header labels for visible time names.",
+      "message": "Включить названия"
+   },
+   "visitExtensionPage": {
+      "description": "Visit the main extension home page.",
+      "message": "Посетите страницу расширения"
+   }
+}

@@ -1,100 +1,149 @@
 <!doctype html> 
 <html>
-<head>
-<script type='text/javascript' src='/js/functions.js'></script>
-<script type='text/javascript' src='/js/settings.js'></script>
-<script type='text/javascript' src='/js/pray_time.js'></script>
-<script type='text/javascript' src='/js/geo_prayer_time.js'></script>
-<script>
-// Global entity variable that has direct access to Prayer Times.
-var entity = new GeoPrayerTimes();
+    <head>
+        <script type='text/javascript' src='/js/Shared.js'></script>
+        <script type='text/javascript' src='/js/PrayTime.js'></script>
+        <script type='text/javascript' src='/js/GeoPrayerTime.js'></script>
+        <script type="text/javascript" src="js/AlarmCalcs.js"></script>
+        <script>
+            // Global entity variable that has direct access to Prayer Times.
+            var entity = new GeoPrayerTimes();
+            var interval_id;
+            // Settings.
+            settings = {
+                get version() {
+                    return localStorage['version'];
+                },
+                set version(val) {
+                    localStorage['version'] = val;
+                },
+                get currentPosition() {
+                    var key = localStorage['currentPosition'];
+                    return (typeof key == 'undefined') ? null : key;
+                },
+                set currentPosition(val) {
+                    localStorage['currentPosition'] = val;
+                },
+                get timeformat() {
+                    var key = localStorage['timeformat'];
+                    return (typeof key == 'undefined') ? '24h' : key;
+                },
+                set timeformat(val) {
+                    localStorage['timeformat'] = val;
+                },
+                get calculation() {
+                    var key = localStorage['calculation'];
+                    return (typeof key == 'undefined') ? 'Jafari' : key;
+                },
+                set calculation(val) {
+                    localStorage['calculation'] = val;
+                },
+                get timenames() {
+                    var key = localStorage['timenames'];
+                    return (typeof key == 'undefined') ?
+                        ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'] : key.split(',');
+                },
+                set timenames(val) {
+                    localStorage['timenames'] = val;
+                },
+            };
 
-/**
- * Open a singleton page, which means, if a page already exists, it just selects it.
- * @param url The page which it will navigate to.
- */
-function openSingletonPage(url) {
-  var views = chrome.extension.getViews();
-  for (var v in views) {
-    var view = views[v];
-    if (view.location.href.indexOf(url) == 0) {
-      view.focus();
-      return;
-    }
-  }
-  chrome.tabs.create({url: url, selected: true});
-}
-  
-/**
- * Get the main prayer time entity.
- */
-function getPrayerEntity() {
-  return entity;
-}
+            /**
+             * Open a singleton page, which means, if a page already exists, it just selects it.
+             * @param url The page which it will navigate to.
+             */
+            function openSingletonPage(url) {
+                var views = chrome.extension.getViews();
+                for (var v in views) {
+                    var view = views[v];
+                    if (view.location.href.indexOf(url) == 0) {
+                        view.focus();
+                        return;
+                    }
+                }
+                chrome.tabs.create({url: url, selected: true});
+            }
+            /*
+             *Устанавливает уведомления о наступлении времени.
+             *Получить список времен. Получить текущее время. Если разница меньше 5 минут вывести предупреждение
+             *Вывести в BADGE ТЕКУЩЕЕ ВРЕМЯ
+             *
+             */
 
-/**
- * Get the version number from the manifest.
- */
-function getVersion() {
-  var version = 'NaN';
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', chrome.extension.getURL('manifest.json'), false);
-  xhr.send(null);
-  var manifest = JSON.parse(xhr.responseText);
-  return manifest.version;
-}
 
-/**
- * When the extension first installed. Lets bring up the options page so they
- * could start setting it up!
- */
-function onInstall() {
-  openSingletonPage('options.html');
-}
+            
 
-/**
- * Initialization routine.
- */ 
-function init() {
-  // Get the current geo location coordinates if none exist.
-  if (settings.currentPosition == null) {
-    entity.getGeolocation(function(latitude, longitude) {
-      settings.currentPosition = latitude + ',' + longitude;
-    });
-  } else {
-    var position = settings.currentPosition;
-    var index = position.indexOf(',');
-    var lat = parseFloat(position.substring(0, index));
-    var lng = parseFloat(position.substring(index + 1, position.length));
-    entity.setLatitude(lat);
-    entity.setLongitude(lng);
-    entity.setLoaded(true);
-  }
-  
-  
-  // Load defaults.
-  
-  // Praytime defaults.
-  entity.getPrayTime().setMethod(settings.calculation);
-  entity.getPrayTime().setTimeFormat(settings.timeformat);
-  
-  // Check if the version has changed. In case we want to do something in the
-  // future.
-  var currVersion = getVersion();
-  var prevVersion = settings.version
-  if (currVersion != prevVersion) {
-    // Check if we just installed this extension.
-    if (typeof prevVersion == 'undefined') {
-      onInstall();
-    } else {
-      // onUpdatae: Do nothing now.
-    }
-    // Update the version incase we want to do something in future.
-    settings.version = currVersion;
-  }
-}
+            /**
+             * Get the main prayer time entity.
+             */
+            function getPrayerEntity() {
+                return entity;
+            }
 
-init();
-</script>
-</head>
+            /**
+             * Get the version number from the manifest.
+             */
+            function getVersion() {
+                var version = 'NaN';
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', chrome.extension.getURL('manifest.json'), false);
+                xhr.send(null);
+                var manifest = JSON.parse(xhr.responseText);
+                return manifest.version;
+            }
+
+            /**
+             * When the extension first installed. Lets bring up the options page so they
+             * could start setting it up!
+             */
+            function onInstall() {
+                openSingletonPage('options.html');
+            }
+
+            /**
+             * Initialization routine.
+             */
+            function init() {
+                // Get the current geo location coordinates if none exist.
+                if (settings.currentPosition == null) {
+                    entity.getGeolocation(function(latitude, longitude) {
+                        settings.currentPosition = latitude + ',' + longitude;
+                    });
+                } else {
+                    var position = settings.currentPosition;
+                    var index = position.indexOf(',');
+                    var lat = parseFloat(position.substring(0, index));
+                    var lng = parseFloat(position.substring(index + 1, position.length));
+                    entity.setLatitude(lat);
+                    entity.setLongitude(lng);
+                    entity.setLoaded(true);
+                }
+  
+  
+                // Load defaults.
+  
+                // Praytime defaults.
+                entity.getPrayTime().setMethod(settings.calculation);
+                entity.getPrayTime().setTimeFormat(settings.timeformat);
+  
+                // Check if the version has changed. In case we want to do something in the
+                // future.
+                var currVersion = getVersion();
+                var prevVersion = settings.version
+                if (currVersion != prevVersion) {
+                    // Check if we just installed this extension.
+                    if (typeof prevVersion == 'undefined') {
+                        onInstall();
+                    } else {
+                        // onUpdatae: Do nothing now.
+                    }
+                    // Update the version incase we want to do something in future.
+                    settings.version = currVersion;
+                }
+            }
+
+            init();
+            setAlarm();
+        </script>
+    </head>
 </html>

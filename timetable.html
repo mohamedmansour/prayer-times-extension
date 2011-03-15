@@ -3,24 +3,19 @@
 <head>
   <title></title>
   <link rel="stylesheet" type="text/css" href="/css/timetable.css" />
-  <script type='text/javascript' src='/js/functions.js'></script>
-  <script type='text/javascript' src='/js/timetable_controller.js'></script>
-  <script type='text/javascript' src='/js/timetable_model.js'></script>
+  <script type='text/javascript' src='/js/MonthlyPrayerTimetable.js'></script>
 </head>
 <body> 
   <div id="header">
     <h1><span class="prayertimetable"></span> <em id="version"></em></h1>
   </div>
-  <p>
-    <span id="followme-label"></span> <a href="http://twitter.com/mohamedmansour">@mohamedmansour</a>
-  </p>
   <div class="extension-template">
     <div class="extension-header prayertimetable"></div>
     <div class="extension-options">
       <div id="controls">
-        <button id="button-prev"></button>
+        <button onclick="getPrevious()" id="prev"></button>
         <span id="table-title"></span>
-        <button id="button-next"></button>
+        <button onclick="getNext()" id="next"></button>
       </div>
       <table id="timetable" align="center"> 
         <tbody></tbody> 
@@ -30,18 +25,77 @@
         <p>
           <span id="calculation-method-label"></span>
           <span id="calculation"></span>
-          [<a href="#" id="options-link"></a>]
+          [<a href="javascript:visitOptions();" id="options-label"></a>]
         </p>
       </div>
     </div>
   </div>
   <div id="credits">
     <span id="extension-by-label"></span> <a href="http://www.mohamedmansour.com">Mohamed Mansour</a>, 
-    <span id="extension-source-label"></span> <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a>
+    <span id="extension-source-label"></span> <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a><br/>
+    <span id="followme-label"></span> <a href="http://twitter.com/mohamedmansour">@mohamedmansour</a>
   </div>
   <script type='text/javascript'>
-    var timetableController = new TimetableController('timetable');
-    timetableController.init();
+    // Set bidi direction.
+    document.body.dir = chrome.i18n.getMessage('@@bidi_dir');
+    
+    // Initialization code.
+    var bkg = chrome.extension.getBackgroundPage();
+    var entity = bkg.getPrayerEntity();
+    var monthlyTimetable = new MonthlyPrayerTimetable(entity,
+        'timetable', bkg.settings.timenames);
+
+    // Translate view.
+    var prayerTimetableTranslation = chrome.i18n.getMessage('prayerTimetable');
+    document.title = prayerTimetableTranslation;
+    var timetableText = document.getElementsByClassName('prayertimetable');
+    for (var i in timetableText) {
+      timetableText[i].innerHTML = prayerTimetableTranslation;
+    }
+    document.getElementById('precaution').innerHTML =
+        chrome.i18n.getMessage('timePrecaution');
+    document.getElementById('next').innerHTML = 
+        chrome.i18n.getMessage('next') + '&raquo;';
+    document.getElementById('prev').innerHTML = 
+        '&laquo;' + chrome.i18n.getMessage('previous');
+    document.getElementById('calculation-method-label').innerHTML = 
+        chrome.i18n.getMessage('calculationMethod');
+    document.getElementById('options-label').innerHTML =
+        chrome.i18n.getMessage('options');
+    document.getElementById('extension-by-label').innerHTML = 
+        chrome.i18n.getMessage('extBy');
+    document.getElementById('extension-source-label').innerHTML = 
+        chrome.i18n.getMessage('extSource');
+    document.getElementById('followme-label').innerHTML =
+        chrome.i18n.getMessage('followMeTwitter');
+        
+    // View the month.
+    monthlyTimetable.viewMonth(0);
+    document.getElementById('version').innerHTML = 
+        ' (v' + bkg.settings.version + ')';
+    document.getElementById('calculation').innerHTML = 
+        entity.getCalculationName(bkg.settings.calculation);
+    
+    /**
+     * Visit Options window.
+     */
+    function visitOptions() {
+      bkg.openSingletonPage(chrome.extension.getURL('options.html'));
+    }
+    
+    /**
+     * View next month.
+     */
+    function getNext() {
+      monthlyTimetable.viewMonth(+1);
+    }
+    
+    /**
+     * View previous month.
+     */
+    function getPrevious() {
+      monthlyTimetable.viewMonth(-1);
+    }
   </script>
 </body>
 </html>

@@ -5,14 +5,14 @@ body {
   background-repeat:no-repeat;
   background-position: center center;
   width: 198px;
-  height: 268px;
+  height: 321px;
 }
 
-#dateA {
+#dateA, dateH {
   font-size: 1.2em;
 }
 
-#dateA, #dateB, #time  {
+#dateA, #dateB, #dateH, #time  {
   text-align: center;
   font-weight: bold;
   text-shadow: 2px 2px 2px #eee;

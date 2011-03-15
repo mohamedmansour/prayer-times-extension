@@ -1,188 +1,188 @@
 {
-	"extName": {
-		"message": "Horaires des prières"
-	},
-	"extDescription": {
-		"message": "Temps de prière, y compris tous les calendrier d'un an sur la base de géolocalisation y compris les options pour changer les méthodes de calcul."
-	},
-	"extBy": {
-		"message": "Extension développé par"
-	},
-	"extSource": {
-		"message": "Source Code disponible dans"
-	},
-	"day": {
-		"message": "Jour"
-	},
-	"am": {
-		"message": "a.m."
-	},
-	"pm": {
-		"message": "p.m."
-	},
-	"24hour": {
-		"message": "24 heures"
-	},
-	"12hour": {
-		"message": "12 heures"
-	},
-	"12hourNoSuffix": {
-		"message": "12 heures sans suffixe"
-	},
-	"next": {
-		"message": "prochaine"
-	},
-	"previous": {
-		"message": "précédente"
-	},
-	"options": {
-		"message": "Options"
-	},
-	"save": {
-		"message": "Sauver"
-	},
-	"search": {
-		"message": "Rechercher"
-	},
-	"cancel": {
-		"message": "Annuler"
-	},
-	"close": {
-		"message": "Fermer"
-	},
-	"geolocation": {
-		"message": "Géolocalisation"
-	},
-	"latitude": {
-		"message": "Latitude"
-	},
-	"longitude": {
-		"message": "Longitude"
-	},
-	"chooseLocation": {
-		"message": "Choisir un emplacement"
-	},
-	"myGeoLocation": {
-		"message": "Ma position"
-	},
-	"optionsWarning": {
-		"message": "Assurez-vous de conserver les réglages après l'édition de votre fait!"
-	},
-	"optionSaveResponse": {
-		"message": "Options sauvé!"
-	},
-	"locationOnMap": {
-		"message": "Situé sur la carte"
-	},
-	"locationSettings": {
-		"message": "Lieu Paramètres"
-	},
-	"timeSettings": {
-		"message": "Paramètres de temps"
-	},
-	"timeFormat": {
-		"message": "Format de l'heure"
-	},
-	"notFound": {
-		"message": "Emplacement introuvable"
-	},
-	"calculationsSettings": {
-		"message": "Calcul des paramètres"
-	},
-	"visibleTimenames": {
-		"message": "Noms de temps visibles"
-	},
-	"fetchingGeolocation": {
-		"message": "Récupérer l'emplacement ..."
-	},
-	"searchPlaceholder": {
-		"message": "Lieu de recherche ..."
-	},
-	"pleaseWait": {
-		"message": "S'il vous plaît attendre"
-	},
-	"viewTimetable": {
-		"message": "Consulter les horaires"
-	},
-	"prayerTimetable": {
-		"message": "Horaires des prières"
-	},
-	"timePrecaution": {
-		"message": "Les temps ci-dessus sont basées sur des calculs seulement. S'il vous plaît permettre à + \/ - 3 minutes pour Fajr, 1 minute pour Dhuhr, et 2 minutes pour Maghrib par mesure de précaution."
-	},
-	"calculationMethod": {
-		"message": "Méthode de calcul"
-	},
-  "followMeTwitter": {
-    "message": "Suivez-moi sur Twitter"
-  },
-  "visitExtensionPage": {
-    "message": "Visitez la page extension"
-  },
-  "fileBugsSuggestions": {
-    "message": "Fichier bugs et suggestions"
-  },
-	"imsak": {
-		"message": "Imsak"
-	},
-	"fajr": {
-		"message": "L'aube"
-	},
-	"sunrise": {
-		"message": "Lever du soleil"
-	},
-	"dhuhr": {
-		"message": "Coucher du soleil"
-	},
-	"asr": {
-		"message": "Asr"
-	},
-	"sunset": {
-		"message": "Crépuscule"
-	},
-	"maghrib": {
-		"message": "Maghrib"
-	},
-	"isha": {
-		"message": "Isha"
-	},
-	"midnight": {
-		"message": "Minuit"
-	},
-	"january": {
-		"message": "Janvier"
-	},
-	"february": {
-		"message": "Février"
-	},
-	"march": {
-		"message": "Mars"
-	},
-	"april": {
-		"message": "Avril"
-	},
-	"may": {
-		"message": "Mai"
-	},
-	"june": {
-		"message": "Juin"
-	},
-	"july": {
-		"message": "Juillet"
-	},
-	"august": {
-		"message": "Août"
-	},
-	"september": {
-		"message": "Septembre"
-	},
-	"october": {
-		"message": "Octobre"
-	},
-	"november": {
-		"message": "Novembre"
-	},
-	"december": {
-		"message": "Décembre"
-	}
+   "12hour": {
+      "message": "12 heures"
+   },
+   "12hourNoSuffix": {
+      "message": "12 heures sans suffixe"
+   },
+   "24hour": {
+      "message": "24 heures"
+   },
+   "am": {
+      "message": "a.m."
+   },
+   "april": {
+      "message": "Avril"
+   },
+   "asr": {
+      "message": "Asr"
+   },
+   "august": {
+      "message": "Ao\u00FBt"
+   },
+   "calculationMethod": {
+      "message": "M\u00E9thode de calcul"
+   },
+   "calculationsSettings": {
+      "message": "Calcul des param\u00E8tres"
+   },
+   "cancel": {
+      "message": "Annuler"
+   },
+   "chooseLocation": {
+      "message": "Choisir un emplacement"
+   },
+   "close": {
+      "message": "Fermer"
+   },
+   "day": {
+      "message": "Jour"
+   },
+   "december": {
+      "message": "D\u00E9cembre"
+   },
+   "dhuhr": {
+      "message": "Coucher du soleil"
+   },
+   "extBy": {
+      "message": "Extension d\u00E9velopp\u00E9 par"
+   },
+   "extDescription": {
+      "message": "Temps de pri\u00E8re, y compris tous les calendrier d'un an sur la base de g\u00E9olocalisation y compris les options pour changer les m\u00E9thodes de calcul."
+   },
+   "extName": {
+      "message": "Horaires des pri\u00E8res"
+   },
+   "extSource": {
+      "message": "Source Code disponible dans"
+   },
+   "fajr": {
+      "message": "L'aube"
+   },
+   "february": {
+      "message": "F\u00E9vrier"
+   },
+   "fetchingGeolocation": {
+      "message": "R\u00E9cup\u00E9rer l'emplacement ..."
+   },
+   "fileBugsSuggestions": {
+      "message": "Fichier bugs et suggestions"
+   },
+   "followMeTwitter": {
+      "message": "Suivez-moi sur Twitter"
+   },
+   "geolocation": {
+      "message": "G\u00E9olocalisation"
+   },
+   "imsak": {
+      "message": "Imsak"
+   },
+   "isha": {
+      "message": "Isha"
+   },
+   "january": {
+      "message": "Janvier"
+   },
+   "july": {
+      "message": "Juillet"
+   },
+   "june": {
+      "message": "Juin"
+   },
+   "latitude": {
+      "message": "Latitude"
+   },
+   "locationOnMap": {
+      "message": "Situ\u00E9 sur la carte"
+   },
+   "locationSettings": {
+      "message": "Lieu Param\u00E8tres"
+   },
+   "longitude": {
+      "message": "Longitude"
+   },
+   "maghrib": {
+      "message": "Maghrib"
+   },
+   "march": {
+      "message": "Mars"
+   },
+   "may": {
+      "message": "Mai"
+   },
+   "midnight": {
+      "message": "Minuit"
+   },
+   "myGeoLocation": {
+      "message": "Ma position"
+   },
+   "next": {
+      "message": "prochaine"
+   },
+   "notFound": {
+      "message": "Emplacement introuvable"
+   },
+   "november": {
+      "message": "Novembre"
+   },
+   "october": {
+      "message": "Octobre"
+   },
+   "optionSaveResponse": {
+      "message": "Options sauv\u00E9!"
+   },
+   "options": {
+      "message": "Options"
+   },
+   "optionsWarning": {
+      "message": "Assurez-vous de conserver les r\u00E9glages apr\u00E8s l'\u00E9dition de votre fait!"
+   },
+   "pleaseWait": {
+      "message": "S'il vous pla\u00EEt attendre"
+   },
+   "pm": {
+      "message": "p.m."
+   },
+   "prayerTimetable": {
+      "message": "Horaires des pri\u00E8res"
+   },
+   "previous": {
+      "message": "pr\u00E9c\u00E9dente"
+   },
+   "save": {
+      "message": "Sauver"
+   },
+   "search": {
+      "message": "Rechercher"
+   },
+   "searchPlaceholder": {
+      "message": "Lieu de recherche ..."
+   },
+   "september": {
+      "message": "Septembre"
+   },
+   "sunrise": {
+      "message": "Lever du soleil"
+   },
+   "sunset": {
+      "message": "Cr\u00E9puscule"
+   },
+   "timeFormat": {
+      "message": "Format de l'heure"
+   },
+   "timePrecaution": {
+      "message": "Les temps ci-dessus sont bas\u00E9es sur des calculs seulement. S'il vous pla\u00EEt permettre \u00E0 + / - 3 minutes pour Fajr, 1 minute pour Dhuhr, et 2 minutes pour Maghrib par mesure de pr\u00E9caution."
+   },
+   "timeSettings": {
+      "message": "Param\u00E8tres de temps"
+   },
+   "viewTimetable": {
+      "message": "Consulter les horaires"
+   },
+   "visibleTimenames": {
+      "message": "Noms de temps visibles"
+   },
+   "visitExtensionPage": {
+      "message": "Visitez la page extension"
+   }
 }

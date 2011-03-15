@@ -1,22 +1,22 @@
 {
- "name": "__MSG_extName__",
- "version": "1.1.2",
- "minimum_chrome_version": "6",
- "description": "__MSG_extDescription__",
- "icons": {
-    "16": "img/icon16.png",
-    "32": "img/icon32.png",
-    "48": "img/icon48.png",
-    "128": "img/icon128.png"
- },
- "browser_action": {
-   "default_icon": "img/icon24.png",
-   "default_popup": "popup.html" 
- },
- "options_page": "options.html",
- "background_page": "background.html",
- "permissions": [
-   "geolocation"
- ],
- "default_locale": "en"
+   "background_page": "background.html",
+   "browser_action": {
+      "default_icon": "img/icon24.png",
+      "default_popup": "popup.html"
+   },
+   "default_locale": "en",
+   "description": "__MSG_extDescription__",
+   "icons": {
+      "128": "img/icon128.png",
+      "16": "img/icon16.png",
+      "32": "img/icon32.png",
+      "48": "img/icon48.png"
+   },
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCjNft4cHJeRnNS4r7GmsTOlJ7yWttJ/fohuZfWKgxB4flSV4g0iFbKVrcpvelJ761LgQyEgb30bi7byy4N78Nb7cmrOyF8Yt2e5ePk02pTB8SyWEI5oZcQxqDOvxQOe/wBwQcJ+6Ci6oJ/hUAPeJa49j0XK9L3M2XrIWnBGuI0NQIDAQAB",
+   "minimum_chrome_version": "6",
+   "name": "__MSG_extName__",
+   "options_page": "options.html",
+   "permissions": [ "geolocation" , "notifications"],
+   "update_url": "http://clients2.google.com/service/update2/crx",
+   "version": "1.1.2"
 }
