@@ -1,60 +1,20 @@
-var NextPrayer = {
-    "time" : "",
-    "name" : "",
-    "type" : 2, //0 - намаз, 1 - не намаз, 2 - не инициализировано
-    "delta" : 1000 //время оставшееся до
-}
-var CurrentPrayer = {
-    "time" : "",
-    "name" : "",
-    "type" : 2, //0 - намаз, 1 - не намаз, 2 - не инициализировано
-    "delta" : 1000
-}
-
-function is_namaz_time(namaz){
-    var namaz_array = [
-    "fajr", "dhuhr", "asr", "maghrib", "isha"
-    ];
-    var i = namaz_array.length;
-    while (i--) {
-        if (namaz_array[i] === namaz) {
-            return true;
-        }
-    }
-    return false;
-}
-function cTimeMinites(){
-    var d = new Date();
-    var h = d.getHours();
-    var m = d.getMinutes();
-    return (60 * h + m);
-}
-function sTimeMinutes(s){
-    var h = 1.0 * s.split(":")[0];
-    var m = 1.0 * s.split(":")[1];
-    return (60 * h + m);
-}
-
-function makeAlarm(title, body, type){
-    // Create a simple text notification:
-    var notification = webkitNotifications.createNotification(
-        'img/icon48.png',  // icon url - can be relative
-        title,  // notification title
-        body  // notification body text
-        );
-
-    // Then show the notification.
-    notification.show();
-}
-function setAlarm(){
-    /*  Устанавливаем параметры
+function AlarmClock (){
+    var NextPrayer = {
+        "time" : "",
+        "name" : "",
+        "type" : 2, //0 - намаз, 1 - не намаз, 2 - не инициализировано
+        "delta" : 1000 //время оставшееся до
+    };
+    var CurrentPrayer = {
+        "time" : "",
+        "name" : "",
+        "type" : 2, //0 - намаз, 1 - не намаз, 2 - не инициализировано
+        "delta" : 1000
+    }  /*  Устанавливаем параметры
                  */
     var i = 0;
-    var flag = 0; //0 - еще не выдавались сообщения о наступлении нового времени 
-    interval_id = window.setInterval(
-        /*
-                 *Что будем делать при наступлении интервала
-                 */
+    var flag = 0; //0 - еще не выдавались сообщения о наступлении нового времени
+    window.setInterval(
         function(){
             var times = entity.getTimes();
             var timenames = entity.getTimeNames();
@@ -76,7 +36,6 @@ function setAlarm(){
                 if ((delta1<CurrentPrayer.delta) && (delta1>0)){
                     CurrentPrayer.delta = delta1;
                     CurrentPrayer.time = times[listItem];
-                    flag = (CurrentPrayer.name == timenames[listItem])? flag : 0;
                     CurrentPrayer.name = timenames[listItem];
                 }
             }
@@ -90,11 +49,57 @@ function setAlarm(){
             } else {
                 CurrentPrayer.type = 1
             }
-            if(CurrentPrayer.delta<10 && flag==0){
+            if((CurrentPrayer.delta<10) && (flag ==0)){
                 makeAlarm(CurrentPrayer.name, chrome.i18n.getMessage('nowPrayerTime')+ " " + CurrentPrayer.name);
                 flag = 1;
             }
+            if(CurrentPrayer.delta>10){
+                flag = 0;
+            }
         },
-        20000
+        2000
         );
+
+    function is_namaz_time (namaz){
+        var namaz_array = [
+        "fajr", "dhuhr", "asr", "maghrib", "isha"
+        ];
+        var i = namaz_array.length;
+        while (i--) {
+            if (namaz_array[i] === namaz) {
+                return true;
+            }
+        }
+        return false;
+    }
+    function cTimeMinites(){
+        var d = new Date();
+        var h = d.getHours();
+        var m = d.getMinutes();
+        return (60 * h + m);
+    }
+    function sTimeMinutes(s){
+        var h = 1.0 * s.split(":")[0];
+        var m = 1.0 * s.split(":")[1];
+        return (60 * h + m);
+    }
+
+    function makeAlarm(title, body, type){
+        // Create a simple text notification:
+        var notification = webkitNotifications.createNotification(
+            'img/icon48.png',  // icon url - can be relative
+            title,  // notification title
+            body  // notification body text
+            );
+
+        // Then show the notification.
+        notification.show();
+    }
+    function setAlarm(){
+
+    }
+    return {
+        
+    }
+
 }
