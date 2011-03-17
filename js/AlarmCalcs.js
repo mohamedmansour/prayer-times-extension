@@ -8,7 +8,7 @@ var AlarmCalcs = function  (){
     var CurrentPrayer = {
         "time" : "",
         "name" : "",
-        "type" : 2, //0 - намаз, 1 - не намаз, 2 - не инициализировано
+        "type" : 2, //0 - namaz, 1 -not namaz,
         "delta" : 1000 //time from prevous prayer
     }  /*  Устанавливаем параметры
                  */
@@ -38,7 +38,7 @@ var AlarmCalcs = function  (){
             delta = minutes_namaz - minutes_ctime; // ищем следующее время
             //ищем текущее время
             delta1 = minutes_ctime - minutes_namaz;
-            if ((delta<NextPrayer.delta) && (delta>=0)){
+            if ((delta<NextPrayer.delta) && (delta>0)){
                 NextPrayer.delta = delta;
                 NextPrayer.time = times[listItem];
                 NextPrayer.name = timenames[listItem];
