@@ -140,20 +140,7 @@ function translateLabels() {
       if (languages[lang].indexOf('en') != 0) {
         // The user has a locale which isn't english, lets ask nicely for help.
         var helpGroup = $('extra-buttons-group');
-        var note = document.createElement('div');
-        note.setAttribute('class', 'note');
-        var h2 = document.createElement('h2');
-        h2.innerHTML = "Translation poor? Help me improve it!"
-        note.appendChild(h2);
-        var p = document.createElement('p');
-        p.innerHTML = 'This translation is experimental, mostly done using ' +
-            'Google Translate. You may find many mistakes or even its not ' + 
-            'translated in your own language. If you want to help me translate ' + 
-            'or even fix mistakes, please visit the ' +
-            '<a href="https://github.com/mohamedmansour/prayer-times-extension/wiki">wiki</a> ' +
-            'for more information how you can help :)';
-        note.appendChild(p);
-        helpGroup.appendChild(note);
+       
         break;
       }
     }

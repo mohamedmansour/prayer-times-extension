@@ -141,6 +141,14 @@ function PrayTimes(method) {
                 maghrib: 4.5,
                 midnight: 'Jafari'
             }
+        },
+        Moscow: {
+            name: "Moscow DUMER calculation method",
+            params: {
+                fajr: 16,
+                isha: 15,
+                
+            }
         }
     },
 
