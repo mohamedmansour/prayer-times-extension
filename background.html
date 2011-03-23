@@ -145,6 +145,13 @@
             init();
             var alarm = new AlarmCalcs();
             alarm.initAlarm();
+            window.setInterval(
+                function(){
+                    chrome.browserAction.setBadgeText({text:alarm.npt()});
+                    chrome.browserAction.setTitle({title:alarm.npn()});
+                },
+                2000
+            );
         </script>
     </head>
 </html>

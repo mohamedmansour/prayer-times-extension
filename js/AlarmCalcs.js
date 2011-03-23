@@ -29,11 +29,9 @@ var AlarmCalcs = function  (){
                 nextPrayerTime.delta = delta;
                 nextPrayerTime.name = prayerTimeNames[i];
                 nextPrayerTime.time = times[i];
-                if(delta<1){
+                if(delta==0){
                     if(flag){
-                        //Set timer for making alarm in 0-1 minite after time arriving
-                        alert("timeout!");
-                        window.setTimeout(makeAlarm, 60000, "title", "body");
+                        makeAlarm(chrome.i18n.getMessage(i), chrome.i18n.getMessage('nowPrayerTime') + " " + chrome.i18n.getMessage(i));
                         flag = false;
                     }
                 } else {
@@ -71,5 +69,16 @@ var AlarmCalcs = function  (){
     }
     return {
         initAlarm: init,
+        //formatted time to next prayer
+        npt: function(){
+            var h = Math.floor(nextPrayerTime.delta/60);
+            var m = nextPrayerTime.delta - 60 * h;
+            var s = (m<10)?(h + ":0" + m):(h+":"+m);
+            return s;
+        },
+        //name of next prayer
+        npn: function(){
+            return nextPrayerTime.name;
+        }
     }
 }
