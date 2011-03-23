@@ -1,72 +1,49 @@
 var AlarmCalcs = function  (){
-    var NextPrayer = {
-        "time" : "",
-        "name" : "",
-        "type" : 2, //0 - prayer, 1 - not prayer, 2 - initial value
-        "delta" : 1000 //time to prayer
-    };
-    var CurrentPrayer = {
-        "time" : "",
-        "name" : "",
-        "type" : 2, //0 - namaz, 1 -not namaz,
-        "delta" : 1000 //time from prevous prayer
-    }  /*  Устанавливаем параметры
-                 */
-    var flag = 0; //0 - еще не выдавались сообщения о наступлении нового времени
-    var nextTimeInfo = function(){
-        return (NextPrayer.name + " " + NextPrayer.delta);
-    }
-    var currentTimeInfo = function(){
-        return (CurrentPrayer.name + " " + CurrentPrayer.delta);
-    }
-    var flagInfo  = function(){
-        return (flag);
-    }
+    var times,  prayerTimeNames, nextPrayerTime;
+    var flag = true; //give Alarm?
+    function reset(){
+        times = entity.getTimes();
+        prayerTimeNames = {
+            fajr     : chrome.i18n.getMessage('fajr'),
+            dhuhr    : chrome.i18n.getMessage('dhuhr'),
+            asr      : chrome.i18n.getMessage('asr'),
+            maghrib  : chrome.i18n.getMessage('maghrib'),
+            isha     : chrome.i18n.getMessage('isha')
+        };
+        nextPrayerTime = {
+            time : times.fajr,
+            name : chrome.i18n.getMessage('fajr'),
+            delta : (1.0*sTimeMinutes(times.fajr) + 24*60 - cTimeMinites())
+        };
+    }   
     var init = function(){
-        var i = 0;
-        var times = entity.getTimes();
-        var timenames = entity.getTimeNames();
-        var list = settings.timenames;
-        NextPrayer.delta = 10000;
-        CurrentPrayer.delta = 10000;
-        for(var i in list) {
-            var listItem = list[i].toLowerCase();
-            var minutes_namaz =  sTimeMinutes(times[listItem]);
-            var minutes_ctime =  cTimeMinites();
-            var delta;
-            var delta1;
-            delta = minutes_namaz - minutes_ctime; // ищем следующее время
-            //ищем текущее время
-            delta1 = minutes_ctime - minutes_namaz;
-            if ((delta<NextPrayer.delta) && (delta>0)){
-                NextPrayer.delta = delta;
-                NextPrayer.time = times[listItem];
-                NextPrayer.name = timenames[listItem];
-            }
-            if ((delta1<CurrentPrayer.delta) && (delta1>=0)){
-                CurrentPrayer.delta = delta1;
-                CurrentPrayer.time = times[listItem];
-                CurrentPrayer.name = timenames[listItem];
-            }
-        }
-        if(CurrentPrayer.delta<10){
-            makeAlarm(CurrentPrayer.name, chrome.i18n.getMessage('nowPrayerTime')+ " " + CurrentPrayer.name);
-        } else {
-            flag = 0;
-        }
-        window.setTimeout(init, 60001);
-    }
-    function is_namaz_time (namaz){
-        var namaz_array = [
-        "fajr", "dhuhr", "asr", "maghrib", "isha"
-        ];
-        var i = namaz_array.length;
-        while (i--) {
-            if (namaz_array[i] === namaz) {
-                return true;
+        reset();
+        var crMinutes = cTimeMinites(); //current time in minutes from day beginning
+        var delta = -1;
+        for(i in prayerTimeNames){
+            var prMinutes = sTimeMinutes(times[i]); //prayer time in minutes from day beginning
+            delta = prMinutes - crMinutes;
+            //if delta became >0 then we found next prayer
+
+            if(delta>=0){
+                nextPrayerTime.delta = delta;
+                nextPrayerTime.name = prayerTimeNames[i];
+                nextPrayerTime.time = times[i];
+                if(delta<1){
+                    if(flag){
+                        //Set timer for making alarm in 0-1 minite after time arriving
+                        alert("timeout!");
+                        window.setTimeout(makeAlarm, 60000, "title", "body");
+                        flag = false;
+                    }
+                } else {
+                    flag = true;
+                }
+                break;
+            //exit from loop
             }
         }
-        return false;
+        window.setTimeout(init ,4000);
     }
     function cTimeMinites(){
         var d = new Date();
@@ -82,23 +59,17 @@ var AlarmCalcs = function  (){
 
     function makeAlarm(title, body, type){
         // Create a simple text notification:
-        if (flag == 0) {
-            var notification = webkitNotifications.createNotification(
-                'img/icon48.png',  // icon url - can be relative
-                title,  // notification title
-                body  // notification body text
-                );
+        var notification = webkitNotifications.createNotification(
+            'img/icon48.png',  // icon url - can be relative
+            title,  // notification title
+            body  // notification body text
+            );
 
-            // Then show the notification.
-            notification.show();
-            flag = 1;
-        }
+        // Then show the notification.
+        notification.show();
         
     }
     return {
         initAlarm: init,
-        currentTime: currentTimeInfo,
-        nextTime:nextTimeInfo,
-        flagShow:flagInfo
     }
 }
