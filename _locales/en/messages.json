@@ -1,254 +1,254 @@
 {
-     "nowPrayerTime": {
-      "description": "now prayer time",
-      "message": "now prayer time"
-   },
-   "12hour": {
-      "description": "Time formating for 12 hour clock including suffix.",
-      "message": "12 hour"
-   },
-   "12hourNoSuffix": {
-      "description": "Time formating for 12 hour clock without suffix.",
-      "message": "12 hour with no suffix"
-   },
-   "24hour": {
-      "description": "Time formating for 24 hour clock.",
-      "message": "24 hour"
-   },
-   "am": {
-      "description": "Time suffix for before midday.",
-      "message": "am"
-   },
-   "april": {
-      "description": "The month name April",
-      "message": "April"
-   },
-   "asr": {
-      "description": "Asr timename.",
-      "message": "Asr"
-   },
-   "august": {
-      "description": "The month name August",
-      "message": "August"
-   },
-   "calculationMethod": {
-      "description": "Label that denotes the prayer calculation to use.",
-      "message": "Calculation Method"
-   },
-   "calculationsSettings": {
-      "description": "Heading label for Prayer time calculation settings.",
-      "message": "Calculation Settings"
-   },
-   "cancel": {
-      "description": "The search label for an action of canceling.",
-      "message": "Cancel"
-   },
-   "chooseLocation": {
-      "description": "Choose a custom geographic location.",
-      "message": "Choose Location"
-   },
-   "close": {
-      "description": "The close label for an action of closing.",
-      "message": "Close"
-   },
-   "day": {
-      "description": "The label 'Day' for the month. Usually numbered from 1-31",
-      "message": "Day"
-   },
-   "december": {
-      "description": "The month name December",
-      "message": "December"
-   },
-   "dhuhr": {
-      "description": "Dhuhr timename.",
-      "message": "Dhuhr"
-   },
-   "extBy": {
-      "description": "Phrases that says the extension is developed by.",
-      "message": "Extension developed by"
-   },
-   "extDescription": {
-      "description": "Extension description.",
-      "message": "Prayer Times including all year timetable based on geolocation including options to change calculation methods."
-   },
-   "extName": {
-      "description": "Extension name.",
-      "message": "Prayer Times"
-   },
-   "extSource": {
-      "description": "Phrases that says the location where source code is available in.",
-      "message": "Source Code available in"
-   },
-   "fajr": {
-      "description": "Fajr timename.",
-      "message": "Fajr"
-   },
-   "february": {
-      "description": "The month name February",
-      "message": "February"
-   },
-   "fetchingGeolocation": {
-      "description": "Fetching geolocation text in the popup.",
-      "message": "Fetching Geolocation ..."
-   },
-   "fileBugsSuggestions": {
-      "description": "File bugs and suggestions for this extension.",
-      "message": "File bugs and suggestions"
-   },
-   "followMeTwitter": {
-      "description": "Text to tell the user to follow me on Twitter which is a social network.",
-      "message": "Follow me on Twitter"
-   },
-   "geolocation": {
-      "description": "The current geographic location.",
-      "message": "Geolocation"
-   },
-   "imsak": {
-      "description": "Imsak timename.",
-      "message": "Imsak"
-   },
-   "isha": {
-      "description": "Isha timename.",
-      "message": "Isha"
-   },
-   "january": {
-      "description": "The month name January",
-      "message": "January"
-   },
-   "july": {
-      "description": "The month name July",
-      "message": "July"
-   },
-   "june": {
-      "description": "The month name June",
-      "message": "June"
-   },
-   "latitude": {
-      "description": "Measurement of a location on earth, lines that appear horizontal.",
-      "message": "Latitude"
-   },
-   "locationOnMap": {
-      "description": "Label showing the user his/her location on the map.",
-      "message": "Location on Map"
-   },
-   "locationSettings": {
-      "description": "Heading label that shows the location settings.",
-      "message": "Location Settings"
-   },
-   "longitude": {
-      "description": "Measurement of a location on earth, lines that appear vertical.",
-      "message": "Longitude"
-   },
-   "maghrib": {
-      "description": "Maghrib timename.",
-      "message": "Maghrib"
-   },
-   "march": {
-      "description": "The month name March",
-      "message": "March"
-   },
-   "may": {
-      "description": "The month name May",
-      "message": "May"
-   },
-   "midnight": {
-      "description": "Midnight timename.",
-      "message": "Midnight"
-   },
-   "myGeoLocation": {
-      "description": "Automatically figure out my location.",
-      "message": "My Geolocation"
-   },
-   "next": {
-      "description": "Next button text that displays in the timetable.",
-      "message": "next"
-   },
-   "notFound": {
-      "description": "Standard text for location not found.",
-      "message": "Location Not Found"
-   },
-   "november": {
-      "description": "The month name November",
-      "message": "November"
-   },
-   "october": {
-      "description": "The month name October",
-      "message": "October"
-   },
-   "optionSaveResponse": {
-      "description": "Response when a user hits save.",
-      "message": "Options saved!"
-   },
-   "options": {
-      "description": "The options label to visit the settings page.",
-      "message": "Options"
-   },
-   "optionsWarning": {
-      "description": "Options warning to make sure the user selects save after done editing.",
-      "message": "Make sure you save the settings after your done editing!"
-   },
-   "pleaseWait": {
-      "description": "Asking user to please wait for extension loading.",
-      "message": "Please wait"
-   },
-   "pm": {
-      "description": "Time suffix for after midday.",
-      "message": "pm"
-   },
-   "prayerTimetable": {
-      "description": "Prayer timetable header text.",
-      "message": "Prayer Timetable"
-   },
-   "previous": {
-      "description": "Previous button text that displays in the timetable.",
-      "message": "prev"
-   },
-   "save": {
-      "description": "The save label for an action of saving.",
-      "message": "Save"
-   },
-   "search": {
-      "description": "The search label for an action of searching.",
-      "message": "Search"
-   },
-   "searchPlaceholder": {
-      "description": "Searching placeholder in the text box. Assited text.",
-      "message": "Search location ..."
-   },
-   "september": {
-      "description": "The month name September",
-      "message": "September"
-   },
-   "sunrise": {
-      "description": "Sunrise timename.",
-      "message": "Sunrise"
-   },
-   "sunset": {
-      "description": "Sunset timename.",
-      "message": "Sunset"
-   },
-   "timeFormat": {
-      "description": "Sub header label for time format group.",
-      "message": "Time Format"
-   },
-   "timePrecaution": {
-      "description": "A warning to the user when using the calculations. This will be shown in the timetable page.",
-      "message": "The above times are based on calculations only. Please allow +/- 3  minutes for Fajr, 1 minute for Dhuhr, and 2 minutes for Maghrib as a precaution."
-   },
-   "timeSettings": {
-      "description": "Heading label that shows the time settings.",
-      "message": "Time Settings"
-   },
-   "viewTimetable": {
-      "description": "View prayer timetable.",
-      "message": "view timetable"
-   },
-   "visibleTimenames": {
-      "description": "Sub header labels for visible time names.",
-      "message": "Visible Time Names"
-   },
-   "visitExtensionPage": {
-      "description": "Visit the main extension home page.",
-      "message": "Visit extension page"
-   }
+  "extName": {
+    "message": "Prayer Times",
+    "description": "Extension name."
+  },
+  "extDescription": {
+    "message": "Prayer Times including all year timetable based on geolocation including options to change calculation methods.",
+    "description": "Extension description."
+  },
+  "extBy": {
+    "message": "Extension developed by",
+    "description": "Phrases that says the extension is developed by."
+  },
+  "extSource": {
+    "message": "Source Code available in",
+    "description": "Phrases that says the location where source code is available in."
+  },
+  "day": {
+    "message": "Day",
+    "description": "The label 'Day' for the month. Usually numbered from 1-31"
+  },
+  "am": {
+    "message": "am",
+    "description": "Time suffix for before midday."
+  },
+  "pm": {
+    "message": "pm",
+    "description": "Time suffix for after midday."
+  },
+  "24hour": {
+    "message": "24 hour",
+    "description": "Time formating for 24 hour clock."
+  },
+  "12hour": {
+    "message": "12 hour",
+    "description": "Time formating for 12 hour clock including suffix."
+  },
+  "12hourNoSuffix": {
+    "message": "12 hour with no suffix",
+    "description": "Time formating for 12 hour clock without suffix."
+  },
+  "next": {
+    "message": "next",
+    "description": "Next button text that displays in the timetable."
+  },
+  "previous": {
+    "message": "prev",
+    "description": "Previous button text that displays in the timetable."
+  },
+  "options": {
+    "message": "Options",
+    "description": "The options label to visit the settings page."
+  },
+  "save": {
+    "message": "Save",
+    "description": "The save label for an action of saving."
+  },
+  "search": {
+    "message": "Search",
+    "description": "The search label for an action of searching."
+  },
+  "cancel": {
+    "message": "Cancel",
+    "description": "The search label for an action of canceling."
+  },
+  "close": {
+    "message": "Close",
+    "description": "The close label for an action of closing."
+  },
+  "geolocation": {
+    "message": "Geolocation",
+    "description": "The current geographic location."
+  },
+  "latitude": {
+    "message": "Latitude",
+    "description": "Measurement of a location on earth, lines that appear horizontal."
+  },
+  "longitude": {
+    "message": "Longitude",
+    "description": "Measurement of a location on earth, lines that appear vertical."
+  },
+  "chooseLocation": {
+    "message": "Choose Location",
+    "description": "Choose a custom geographic location."
+  },
+  "myGeoLocation": {
+    "message": "My Geolocation",
+    "description": "Automatically figure out my location."
+  },
+  "optionsWarning": {
+    "message": "Make sure you save the settings after your done editing!",
+    "description": "Options warning to make sure the user selects save after done editing."
+  },
+  "optionSaveResponse": {
+    "message": "Options saved!",
+    "description": "Response when a user hits save."
+  },
+  "locationOnMap": {
+    "message": "Location on Map",
+    "description": "Label showing the user his/her location on the map."
+  },
+  "locationSettings": {
+    "message": "Location Settings",
+    "description": "Heading label that shows the location settings."
+  },
+  "timeSettings": {
+    "message": "Time Settings",
+    "description": "Heading label that shows the time settings."
+  },
+  "timeFormat": {
+    "message": "Time Format",
+    "description": "Sub header label for time format group."
+  },
+  "notFound": {
+    "message": "Location Not Found",
+    "description": "Standard text for location not found."
+  },
+  "calculationsSettings": {
+    "message": "Calculation Settings",
+    "description": "Heading label for Prayer time calculation settings."
+  },
+  "visibleTimenames": {
+    "message": "Visible Time Names",
+    "description": "Sub header labels for visible time names."
+  },
+  "fetchingGeolocation": {
+    "message": "Fetching Geolocation ...",
+    "description": "Fetching geolocation text in the popup."
+  },
+  "searchPlaceholder": {
+    "message": "Search location ...",
+    "description": "Searching placeholder in the text box. Assited text."
+  },
+  "pleaseWait": {
+    "message": "Please wait",
+    "description": "Asking user to please wait for extension loading."
+  },
+  "viewTimetable": {
+    "message": "view timetable",
+    "description": "View prayer timetable."
+  },
+  "prayerTimetable": {
+    "message": "Prayer Timetable",
+    "description": "Prayer timetable header text."
+  },
+  "nowPrayerTime": {
+    "description": "now prayer time",
+    "message": "now prayer time"
+  },
+  "timePrecaution": {
+    "message": "The above times are based on calculations only. Please allow +/- 3  minutes for Fajr, 1 minute for Dhuhr, and 2 minutes for Maghrib as a precaution.",
+    "description": "A warning to the user when using the calculations. This will be shown in the timetable page."
+  },
+  "calculationMethod": {
+    "message": "Calculation Method",
+    "description": "Label that denotes the prayer calculation to use."
+  },
+  "followMeTwitter": {
+    "message": "Follow me on Twitter",
+    "description": "Text to tell the user to follow me on Twitter which is a social network."
+  },
+  "visitExtensionPage": {
+    "message": "Visit extension page",
+    "description": "Visit the main extension home page."
+  },
+  "fileBugsSuggestions": {
+    "message": "File bugs and suggestions",
+    "description": "File bugs and suggestions for this extension."
+  },
+  "imsak": {
+    "message": "Imsak",
+    "description": "Imsak timename."
+  },
+  "fajr": {
+    "message": "Fajr",
+    "description": "Fajr timename."
+  },
+  "sunrise": {
+    "message": "Sunrise",
+    "description": "Sunrise timename."
+  },
+  "dhuhr": {
+    "message": "Dhuhr",
+    "description": "Dhuhr timename."
+  },
+  "asr": {
+    "message": "Asr",
+    "description": "Asr timename."
+  },
+  "sunset": {
+    "message": "Sunset",
+    "description": "Sunset timename."
+  },
+  "maghrib": {
+    "message": "Maghrib",
+    "description": "Maghrib timename."
+  },
+  "isha": {
+    "message": "Isha",
+    "description": "Isha timename."
+  },
+  "midnight": {
+    "message": "Midnight",
+    "description": "Midnight timename."
+  },
+  "january": {
+    "message": "January",
+    "description": "The month name January"
+  },
+  "february": {
+    "message": "February",
+    "description": "The month name February"
+  },
+  "march": {
+    "message": "March",
+    "description": "The month name March"
+  },
+  "april": {
+    "message": "April",
+    "description": "The month name April"
+  },
+  "may": {
+    "message": "May",
+    "description": "The month name May"
+  },
+  "june": {
+    "message": "June",
+    "description": "The month name June"
+  },
+  "july": {
+    "message": "July",
+    "description": "The month name July"
+  },
+  "august": {
+    "message": "August",
+    "description": "The month name August"
+  },
+  "september": {
+    "message": "September",
+    "description": "The month name September"
+  },
+  "october": {
+    "message": "October",
+    "description": "The month name October"
+  },
+  "november": {
+    "message": "November",
+    "description": "The month name November"
+  },
+  "december": {
+    "message": "December",
+    "description": "The month name December"
+  }
 }

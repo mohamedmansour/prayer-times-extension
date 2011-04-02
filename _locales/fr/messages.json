@@ -146,6 +146,9 @@
    "prayerTimetable": {
       "message": "Horaires des pri\u00E8res"
    },
+   "nowPrayerTime": {
+      "message": "maintenant temps de pri\u00E8re"
+   },
    "previous": {
       "message": "pr\u00E9c\u00E9dente"
    },
