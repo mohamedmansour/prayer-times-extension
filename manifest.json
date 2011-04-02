@@ -16,6 +16,5 @@
    "name": "__MSG_extName__",
    "options_page": "options.html",
    "permissions": [ "geolocation" , "notifications"],
-   "update_url": "http://clients2.google.com/service/update2/crx",
    "version": "1.1.2"
 }
