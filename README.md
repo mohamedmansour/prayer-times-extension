@@ -7,10 +7,13 @@ and fetches the prayer times.
 
 ![Screenshot of the Chrome Extension](https://github.com/mohamedmansour/prayer-times-extension/raw/master/screenshot.jpg)
 
-The base of this extension is developed by [Mohamed Mansour](http://mohamedmansour.com) but the prayer time calculations are based off the brother
-[Dr. Hamid Zarrabi-Zadeh](http://cg.scs.carleton.ca/~zarrabi/home)
+This extension is developed by [Mohamed Mansour](http://mohamedmansour.com) but 
+the prayer time calculations are based off the brother
+[Dr. Hamid Zarrabi-Zadeh](http://cg.scs.carleton.ca/~zarrabi/home) A list of
+contributions are listed in the ![AUTHORS file](https://github.com/mohamedmansour/prayer-times-extension/raw/master/AUTHORS.md)
 
-There are differing opinions on what angle to use to calculate Fajr and Isha. It currently supports 6 different calculations.
+There are differing opinions on what angle to use to calculate Fajr and Isha. It
+currently supports 6 different calculations.
 
 <table border="1">
 <tbody>
