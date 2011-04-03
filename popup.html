@@ -2,93 +2,11 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="/css/popup.css" />
-  <script src="/js/IslamicDate.js"  type="text/javascript"></script>
-  <script>
-  var bkg = chrome.extension.getBackgroundPage();
-  
-  /**
-   * Show prayer time table.
-   */
-  function viewTimetable() {
-    bkg.openSingletonPage(chrome.extension.getURL('timetable.html'));
-  }
-  
-  /**
-   * Show live time.
-   **/
-  function showCurrentTime() {
-    var date = new Date();
-    var timeElt = document.getElementById("time");
-    timeElt.innerHTML = date.toLocaleTimeString();
-    window.setTimeout("showCurrentTime()", 1000);
-  }
-  
-  /**
-   * Show current date.
-   */
-  function showCurrentDate() {
-    var date = (new Date()).toLocaleDateString();
-    var idate = new IslamicDate();
-    var index = date.indexOf(',');
-    document.getElementById('dateA').innerHTML = date.substring(0, index);
-    document.getElementById('dateB').innerHTML = date.substring(index + 2,
-        date.length);
-        document.getElementById('dateH').innerHTML = idate.show_current_hijri_date();
-  }
-  
-  /**
-   * Show prayer time.
-   */
-  function showPrayerTime() { 
-    var entity = bkg.getPrayerEntity();
-    if (!entity.isLoaded()) {
-      var html = ""
-      document.getElementById('error').style.display = 'block';
-      document.getElementById('footer').style.display = 'none';
-      window.setTimeout("showPrayerTime()", 1000);
-    } else {
-      document.getElementById('error').style.display = 'none';
-      document.getElementById('footer').style.display = 'block';
-      var times = entity.getTimes();
-      var timenames = entity.getTimeNames();
-      var list = bkg.settings.timenames;
-      var tableContentDOM = '';
-      for(var i in list) {
-        var listItem = list[i].toLowerCase();
-        tableContentDOM += '<tr><td>'+ timenames[listItem] + '</td>';
-        tableContentDOM += '<td>'+ times[listItem] + '</td></tr>';
-      }
-      document.getElementById('timetable').innerHTML = tableContentDOM;
-    }
-  }
-  
-  /**
-   * Internationalization support.
-   */
-  function showTranslations() {
-    // Set bidi direction.
-    document.body.dir = chrome.i18n.getMessage('@@bidi_dir');
-    
-    // Labels.
-    document.getElementById('error').innerHTML =
-        chrome.i18n.getMessage('fetchingGeolocation') + '<br />' + 
-        chrome.i18n.getMessage('pleaseWait') + '!';
-    document.getElementById('view_timetable').innerHTML =
-        chrome.i18n.getMessage('viewTimetable');
-  }
-  
-  /**
-   * Initialize View.
-   */
-  function init() {
-    showTranslations();
-    showCurrentTime();
-    showCurrentDate();
-    showPrayerTime();
-  }
-  </script>
+  <script type="text/javascript" src="/js/functions.js"></script>
+  <script type="text/javascript" src="/js/popup_controller.js"></script>
+  <script type="text/javascript" src="/js/islamic_date.js"></script>
 </head>
-<body onload="init();">
+<body>
   <div id="content">
     <p id="dateA"></p>
     <p id="dateB"></p>
@@ -96,7 +14,11 @@
     <p id="time"></p>
     <p id="error"></p>
     <table id="timetable" align="center"></table>
-    <p id="footer"><a href="javascript:viewTimetable()" id="view_timetable"></a></p>
+    <p id="footer"><a href="#" id="view_timetable"></a></p>
   </div>
+  <script type="text/javascript">
+  var popupController = new PopupController();
+  popupController.init();
+  </script>
 </body>
 </html>

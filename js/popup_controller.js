@@ -7,6 +7,7 @@ PopupController = function()
 {
   this.bkg_ = chrome.extension.getBackgroundPage();
   this.entity_ = this.bkg_.getPrayerEntity();
+  this.islamicDate_ = new IslamicDate();
 };
 
 /**
@@ -82,4 +83,5 @@ PopupController.prototype.showCurrentDate = function()
   var index = dateString.indexOf(',');
   $('dateA').innerHTML = dateString.substring(0, index);
   $('dateB').innerHTML = dateString.substring(index + 2, dateString.length);
+  $('dateH').innerHTML = this.islamicDate_.show_current_hijri_date();
 }
