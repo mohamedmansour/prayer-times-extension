@@ -19,6 +19,7 @@ PopupController.prototype.init = function()
   this.showCurrentTime();
   this.showCurrentDate();
   this.showPrayerTime();
+  this.bindViewTimetable();
 };
 
 /**
@@ -85,4 +86,14 @@ PopupController.prototype.showCurrentDate = function()
   $('dateA').innerHTML = dateString.substring(0, index);
   $('dateB').innerHTML = dateString.substring(index + 2, dateString.length);
   $('dateH').innerHTML = this.islamicDate_.getHijriDate(date);
+};
+
+/**
+ * Show prayer time table.
+ */
+PopupController.prototype.bindViewTimetable = function()
+{
+  $('view_timetable').addEventListener('click', function() {
+    this.bkg_.openSingletonPage(chrome.extension.getURL('timetable.html'));
+  }.bind(this));
 };
