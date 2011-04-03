@@ -1,11 +1,10 @@
 @import url("core.css");
 
 body {
-  background-image: url('/img/background.jpg');
-  background-repeat:no-repeat;
-  background-position: center center;
-  width: 198px;
-  height: 321px;
+  background: url('/img/wallpaper_scroll_top.png') top no-repeat, 
+              url('/img/wallpaper_scroll_bottom.png') bottom no-repeat,
+              url('/img/wallpaper_scroll_side.png') top repeat-y;
+  padding-bottom: 10px;
 }
 
 #dateA, dateH {
