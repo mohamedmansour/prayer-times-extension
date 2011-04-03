@@ -1,0 +1,102 @@
+--- C:/Sandbox/Code/Chrome/extensions/prayer-times-extension/js/PrayTimes.js	Sat Apr 02 20:26:17 2011
++++ C:/Sandbox/Code/Chrome/extensions/prayer-times-extension/js/pray_time.js	Sat Apr 02 21:18:46 2011
+@@ -5,6 +5,10 @@
+ Copyright (C) 2007-2011 PrayTimes.org
+ 
+ Developer: Hamid Zarrabi-Zadeh
++
++Modifications by Mohamed Mansour (2010)
++Source: http://mohamedmansour.com
++
+ License: GNU LGPL v3.0
+ 
+ TERMS OF USE:
+@@ -68,15 +72,15 @@
+ 
+ 	// Time Names
+ 	timeNames = {
+-		imsak    : 'Imsak',
+-		fajr     : 'Fajr',
+-		sunrise  : 'Sunrise',
+-		dhuhr    : 'Dhuhr',
+-		asr      : 'Asr',
+-		sunset   : 'Sunset',
+-		maghrib  : 'Maghrib',
+-		isha     : 'Isha',
+-		midnight : 'Midnight'
++		imsak    : chrome.i18n.getMessage('imsak'),
++		fajr     : chrome.i18n.getMessage('fajr'),
++		sunrise  : chrome.i18n.getMessage('sunrise'),
++		dhuhr    : chrome.i18n.getMessage('dhuhr'),
++		asr      : chrome.i18n.getMessage('asr'),
++		sunset   : chrome.i18n.getMessage('sunset'),
++		maghrib  : chrome.i18n.getMessage('maghrib'),
++		isha     : chrome.i18n.getMessage('isha'),
++		midnight : chrome.i18n.getMessage('midnight')
+ 	},
+ 
+ 
+@@ -162,8 +166,11 @@
+ 	},
+ 
+ 	timeFormat = '24h',
+-	timeSuffixes = ['am', 'pm'],
+-	invalidTime =  '-----',
++	timeSuffixes = [
++		chrome.i18n.getMessage('am'),
++		chrome.i18n.getMessage('pm')
++	],
++	InvalidTime =  '-----',
+ 
+ 	numIterations = 1,
+ 	offset = {},
+@@ -245,8 +252,9 @@
+ 		lng = 1* coords[1];
+ 		elv = coords[2] ? 1* coords[2] : 0;
+ 		timeFormat = format || timeFormat;
+-		if (date.constructor === Date)
+-			date = [date.getFullYear(), date.getMonth()+ 1, date.getDate()];
++		// Chrome Fix for bug crbug.com/78256
++		// if (date.constructor === Date)
++		date = [date.getFullYear(), date.getMonth()+ 1, date.getDate()];
+ 		if (typeof(timezone) == 'undefined' || timezone == 'auto')
+ 			timezone = this.getTimeZone(date);
+ 		if (typeof(dst) == 'undefined' || dst == 'auto')
+@@ -535,8 +543,28 @@
+ 	// add a leading 0 if necessary
+ 	twoDigitsFormat: function(num) {
+ 		return (num <10) ? '0'+ num : num;
+-	}
++	},
+ 
++	//---------------------- Mohamed Extension Update -----------------------
++	
++	// returns the time names.
++	getTimeNames: function() {
++		return timeNames;
++	},
++
++	// returns the method name.
++	getMethodName: function(method) {
++		if (methods[method]) {
++			return methods[method].name;
++		} else {
++			return InvalidTime;
++		}
++	},
++  
++	// set time format method.
++	setTimeFormat: function(format) {
++		timeFormat = format;
++	}
+ }}
+ 
+ 
+@@ -573,4 +601,4 @@
+ //---------------------- Init Object -----------------------
+ 
+ 
+-var prayTimes = new PrayTimes();
+\ No newline at end of file
++var prayTimes = new PrayTimes('Jafari');
+\ No newline at end of file

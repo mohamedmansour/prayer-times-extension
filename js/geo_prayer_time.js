@@ -9,7 +9,6 @@ GeoPrayerTimes = function()
   this.longitude = NaN;
   this.times = null;
   this.date = null;
-  this.timezone = -5;
   this.loaded = false;
   this.callback = null;
 };
@@ -60,10 +59,7 @@ GeoPrayerTimes.prototype.successHandler = function(position)
 GeoPrayerTimes.prototype.getTimes = function(opt_date)
 {
   this.date = opt_date || new Date();
-  this.timezone = -this.date.getTimezoneOffset() / 60;
-  return prayTimes.getTimes(this.date,
-                            [this.latitude, this.longitude],
-                            this.timezone, 0);
+  return prayTimes.getTimes(this.date, [this.latitude, this.longitude]);
 };
 
 /**
@@ -118,15 +114,6 @@ GeoPrayerTimes.prototype.getLongitude = function()
 GeoPrayerTimes.prototype.setLongitude = function(val)
 {
   this.longitude = val;
-};
-
-/**
- * Returns the current timezone present.
- * @return {number} A timezone
- */
-GeoPrayerTimes.prototype.getTimezone = function()
-{
-  return this.timezone;
 };
 
 /**
