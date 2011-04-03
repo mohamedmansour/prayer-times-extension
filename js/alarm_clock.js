@@ -98,6 +98,10 @@ AlarmCalcs.prototype.dateStringInMinutes = function(s)
  */
 AlarmCalcs.prototype.makeAlarm = function(title, body)
 {
+  if (!settings.notificationVisible) {
+    return;
+  }
+
   // Create a simple text notification:
   var notification = webkitNotifications.createNotification(
       'img/icon48.png',  // icon url - can be relative
@@ -114,6 +118,10 @@ AlarmCalcs.prototype.makeAlarm = function(title, body)
  */
 AlarmCalcs.prototype.makeBadge = function()
 {
+  if (!settings.badgeVisible) {
+    return;
+  }
+
   chrome.browserAction.setBadgeText({text: this.getNextPrayerTime()});
   chrome.browserAction.setTitle({title: this.getNextPrayerName()});
 };

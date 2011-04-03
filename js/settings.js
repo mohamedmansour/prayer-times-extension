@@ -35,4 +35,18 @@ settings = {
   set timenames(val) {
     localStorage['timenames'] = val;
   },
+  get notificationVisible() {
+    var key = localStorage['notificationVisible'];
+    return (typeof key == 'undefined') ? true : key;
+  },
+  set notificationVisible(val) {
+    localStorage['notificationVisible'] = val;
+  },
+  get badgeVisible() {
+    var key = localStorage['badgeVisible'];
+    return (typeof key == 'undefined') ? true : key;
+  },
+  set badgeVisible(val) {
+    localStorage['badgeVisible'] = val;
+  },
 };
