@@ -33,6 +33,13 @@ function onSave() {
   bkg.settings.currentPosition = position;
   bkg.settings.timeformat = $('timeformat').value;
   bkg.settings.calculation = $('calculation').value;
+  bkg.settings.notificationVisible = $('notificationVisible').checked;
+  bkg.settings.badgeVisible = $('badgeVisible').checked;
+  
+  // Reset badge if we do not want it to be visible.
+  if (!bkg.settings.badgeVisible) {
+    chrome.browserAction.setBadgeText({text: ''})
+  }
   
   // Update visible time names.
   var timeNames = [];
@@ -105,6 +112,8 @@ function onRestore() {
   $('version').innerHTML = ' (v' + bkg.settings.version + ')';
   $('timeformat').value = bkg.settings.timeformat;
   $('calculation').value = bkg.settings.calculation;
+  $('notificationVisible').checked = bkg.settings.notificationVisible;
+  $('badgeVisible').checked = bkg.settings.badgeVisible;
   
   var position = bkg.settings.currentPosition;
   if (position) {
@@ -167,6 +176,9 @@ function translateLabels() {
   $('time-settings-label').innerHTML = chrome.i18n.getMessage('locationSettings');
   $('time-format-label').innerHTML = chrome.i18n.getMessage('timeFormat');
   $('calculation-settings-label').innerHTML = chrome.i18n.getMessage('calculationsSettings');
+  $('notification-settings-label').innerHTML = chrome.i18n.getMessage('notificationsSettings');
+  $('notification-visible-label').innerHTML = chrome.i18n.getMessage('notificationVisible');
+  $('badge-visible-label').innerHTML = chrome.i18n.getMessage('badgeVisible');
   $('visible-timenames-label').innerHTML = chrome.i18n.getMessage('visibleTimenames');
   $('calculation-method-label').innerHTML = chrome.i18n.getMessage('calculationMethod');
   $('button-save').innerHTML = chrome.i18n.getMessage('save');

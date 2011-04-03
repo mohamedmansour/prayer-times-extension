@@ -75,6 +75,8 @@ function init() {
   
   
   // Load defaults.
+  // Badge Color default.
+  chrome.browserAction.setBadgeBackgroundColor({ color: [162, 150, 168, 255]});
   
   // Praytime defaults.
   entity.getPrayTime().setMethod(settings.calculation);

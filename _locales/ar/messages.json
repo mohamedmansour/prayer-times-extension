@@ -89,6 +89,15 @@
 	"calculationsSettings": {
 		"message": "إعدادات الحساب"
 	},
+  "notificationsSettings": {
+    "message": "إعدادات الصلاة إعلام"
+  },
+  "notificationVisible": {
+    "message": "تمكين بالنوافذ",
+  },
+  "badgeVisible": {
+    "message": "وتظهر شارة العد التنازلي إعلام",
+  },
 	"visibleTimenames": {
 		"message": "أسماء من الزمن مرئي"
 	},

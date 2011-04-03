@@ -37,14 +37,14 @@ settings = {
   },
   get notificationVisible() {
     var key = localStorage['notificationVisible'];
-    return (typeof key == 'undefined') ? true : key;
+    return (typeof key == 'undefined') ? true : key === 'true';
   },
   set notificationVisible(val) {
     localStorage['notificationVisible'] = val;
   },
   get badgeVisible() {
     var key = localStorage['badgeVisible'];
-    return (typeof key == 'undefined') ? true : key;
+    return (typeof key == 'undefined') ? true : key === 'true';
   },
   set badgeVisible(val) {
     localStorage['badgeVisible'] = val;

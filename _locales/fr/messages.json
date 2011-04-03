@@ -89,6 +89,15 @@
 	"calculationsSettings": {
 		"message": "Calcul des paramètres"
 	},
+  "notificationsSettings": {
+    "message": "Prières Paramètres de notification"
+  },
+  "notificationVisible": {
+    "message": "Popups Activer",
+  },
+  "badgeVisible": {
+    "message": "Compte à rebours Afficher Badge Notification",
+  },
 	"visibleTimenames": {
 		"message": "Noms de temps visibles"
 	},

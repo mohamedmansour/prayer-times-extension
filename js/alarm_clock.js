@@ -115,15 +115,17 @@ AlarmCalcs.prototype.makeAlarm = function(title, body)
 
 /**
  * Creates and updates the Chrome Badge Text.
+ * Always change the title, but decide whether to show the badge.
  */
 AlarmCalcs.prototype.makeBadge = function()
 {
+  chrome.browserAction.setTitle({title: this.getNextPrayerName()});
+  
   if (!settings.badgeVisible) {
     return;
   }
 
   chrome.browserAction.setBadgeText({text: this.getNextPrayerTime()});
-  chrome.browserAction.setTitle({title: this.getNextPrayerName()});
 };
 
 /**

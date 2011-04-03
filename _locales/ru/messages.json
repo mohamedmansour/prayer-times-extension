@@ -20,6 +20,9 @@
    "august": {
       "message": "Август"
    },
+   "badgeVisible": {
+      "message": "Показать Уведомление Знак Countdown",
+   },
    "calculationMethod": {
       "message": "Метод расчета"
    },
@@ -121,6 +124,12 @@
    },
    "notFound": {
       "message": "Место не найдено"
+   },
+   "notificationsSettings": {
+      "message": "Настройки уведомлений Молитва",
+   },
+   "notificationVisible": {
+      "message": "Включить всплывающие окна",
    },
    "november": {
       "message": "Ноябрь"

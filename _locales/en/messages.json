@@ -119,6 +119,18 @@
     "message": "Calculation Settings",
     "description": "Heading label for Prayer time calculation settings."
   },
+  "notificationsSettings": {
+    "message": "Prayer Notification Settings",
+    "description": "Heading label for Prayer time notification settings."
+  },
+  "notificationVisible": {
+    "message": "Enable Notification Popups",
+    "description": "Show the notfication Popups from HTML5"
+  },
+  "badgeVisible": {
+    "message": "Show Notification Badge Countdown",
+    "description": "Show the countdown badge on the browser action."
+  },
   "visibleTimenames": {
     "message": "Visible Time Names",
     "description": "Sub header labels for visible time names."
@@ -144,8 +156,8 @@
     "description": "Prayer timetable header text."
   },
   "nowPrayerTime": {
-    "description": "now prayer time",
-    "message": "now prayer time"
+    "description": "It is now time to pray",
+    "message": "Text that represents that it is now time to pray."
   },
   "timePrecaution": {
     "message": "The above times are based on calculations only. Please allow +/- 3  minutes for Fajr, 1 minute for Dhuhr, and 2 minutes for Maghrib as a precaution.",
