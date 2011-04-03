@@ -79,9 +79,10 @@ PopupController.prototype.showCurrentTime = function()
  */
 PopupController.prototype.showCurrentDate = function()
 {
-  var dateString = (new Date()).toLocaleDateString();
+  var date = new Date();
+  var dateString = date.toLocaleDateString();
   var index = dateString.indexOf(',');
   $('dateA').innerHTML = dateString.substring(0, index);
   $('dateB').innerHTML = dateString.substring(index + 2, dateString.length);
-  $('dateH').innerHTML = this.islamicDate_.show_current_hijri_date();
-}
+  $('dateH').innerHTML = this.islamicDate_.getHijriDate(date);
+};
