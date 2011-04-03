@@ -105,10 +105,6 @@ init();
  */
 var alarm = new AlarmCalcs(entity);
 alarm.start();
-window.setInterval(function() {
-  chrome.browserAction.setBadgeText({text: alarm.getNextPrayerTime()});
-  chrome.browserAction.setTitle({title: alarm.getNextPrayerName()});
-}, 2000);
 </script>
 </head>
 </html>

@@ -64,6 +64,7 @@ AlarmCalcs.prototype.start = function()
       break;
     }
   }
+  this.makeBadge();
   window.setTimeout(this.start.bind(this), 4000);
 };
 
@@ -106,6 +107,15 @@ AlarmCalcs.prototype.makeAlarm = function(title, body)
 
   // Then show the notification.
   notification.show();
+};
+
+/**
+ * Creates and updates the Chrome Badge Text.
+ */
+AlarmCalcs.prototype.makeBadge = function()
+{
+  chrome.browserAction.setBadgeText({text: this.getNextPrayerTime()});
+  chrome.browserAction.setTitle({title: this.getNextPrayerName()});
 };
 
 /**
