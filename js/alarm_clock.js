@@ -9,13 +9,7 @@ AlarmCalcs = function(entity)
   this.entity = entity;
   this.times = null;
   this.nowPrayerTimeLabel = chrome.i18n.getMessage('nowPrayerTime');
-  this.prayerTimeNames = {
-      fajr     : chrome.i18n.getMessage('fajr'),
-      dhuhr    : chrome.i18n.getMessage('dhuhr'),
-      asr      : chrome.i18n.getMessage('asr'),
-      maghrib  : chrome.i18n.getMessage('maghrib'),
-      isha     : chrome.i18n.getMessage('isha')
-  };
+  this.prayerTimeNames = settings.timenames;
   this.nextPrayerTime = null;
   this.flag = true; // Give Alarm?
 };
@@ -25,10 +19,10 @@ AlarmCalcs = function(entity)
  */
 AlarmCalcs.prototype.reset = function()
 {
-  this.times = this.entity.getTimes();
+  this.times = this.entity.getTimes(null, '24h');
   this.nextPrayerTime = {
       time : this.times.fajr,
-      name : this.prayerTimeNames.fajr,
+      name : this.prayerTimeNames[0],
       delta : (1.0 * this.dateStringInMinutes(this.times.fajr) + 24 * 60 - this.currentTimeInMinutes())
   };
 };
@@ -42,16 +36,19 @@ AlarmCalcs.prototype.start = function()
   // Current time in minutes from day beginning
   var crMinutes =  this.currentTimeInMinutes();
   var delta = -1;
-  for (var i in  this.prayerTimeNames) {
+  for (var i in this.prayerTimeNames) {
+    var timeName = this.prayerTimeNames[i];
+    var time = this.times[timeName.toLowerCase()];
+
     // Prayer time in minutes from day beginning
-    var prMinutes =  this.dateStringInMinutes(this.times[i]);
+    var prMinutes =  this.dateStringInMinutes(time);
     delta = prMinutes - crMinutes;
 
     // If delta became >0 then we found next prayer
     if (delta >= 0) {
       this.nextPrayerTime.delta = delta;
-      this.nextPrayerTime.name = this.prayerTimeNames[i];
-      this.nextPrayerTime.time = this.times[i];
+      this.nextPrayerTime.name = timeName;
+      this.nextPrayerTime.time = time;
       if (delta == 0) {
         if (this.flag) {
           this.makeAlarm(this.getNextPrayerName(), this.nowPrayerTimeLabel +

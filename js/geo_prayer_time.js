@@ -8,7 +8,7 @@ GeoPrayerTimes = function()
   this.latitude = NaN;
   this.longitude = NaN;
   this.times = null;
-  this.date = null;
+  this.timeFormat = null;
   this.loaded = false;
   this.callback = null;
 };
@@ -36,7 +36,7 @@ GeoPrayerTimes.prototype.getGeolocation = function(callback)
  */
 GeoPrayerTimes.prototype.errorHandler = function(msg)
 {
-  console.error(msg);
+  alert(msg);
 };
 
 /**
@@ -56,19 +56,20 @@ GeoPrayerTimes.prototype.successHandler = function(position)
  * @param {date} The date to get the prayer times for.
  * @return {array<string>}  An array of times.
  */
-GeoPrayerTimes.prototype.getTimes = function(opt_date)
+GeoPrayerTimes.prototype.getTimes = function(opt_date, opt_format)
 {
-  this.date = opt_date || new Date();
-  return prayTimes.getTimes(this.date, [this.latitude, this.longitude]);
+  date = opt_date || new Date();
+  format = opt_format || this.timeFormat;
+  return prayTimes.getTimes(date, [this.latitude, this.longitude], 'auto', 'auto', format);
 };
 
 /**
- * The current prayer time stored date.
- * @return {array<string>}  An array of times.
+ * Sets the timeformat for the personalized times.
+ * @param {string} format The time format to set, usually 24h, 12h
  */
-GeoPrayerTimes.prototype.getDate = function()
+GeoPrayerTimes.prototype.setTimeFormat = function(format)
 {
-  return this.date;
+  this.timeFormat = format;
 };
 
 /**
