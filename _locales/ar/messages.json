@@ -90,10 +90,10 @@
     "message": "صلاة الإشعارات"
   },
   "notificationVisible": {
-    "message": "تمكين بالنوافذ",
+    "message": "تمكين بالنوافذ"
   },
   "badgeVisible": {
-    "message": "وتظهر شارة العد التنازلي إعلام",
+    "message": "وتظهر شارة العد التنازلي إعلام"
   },
 	"visibleTimenames": {
 		"message": "أسماء من الزمن مرئي"

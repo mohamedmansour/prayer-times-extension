@@ -90,10 +90,10 @@
     "message": "Prières de notification"
   },
   "notificationVisible": {
-    "message": "Popups Activer",
+    "message": "Popups Activer"
   },
   "badgeVisible": {
-    "message": "Compte à rebours Afficher Badge Notification",
+    "message": "Compte à rebours Afficher Badge Notification"
   },
 	"visibleTimenames": {
 		"message": "Noms de temps visibles"
