@@ -46,7 +46,7 @@
       </div>
     </div>
     <div class="extension-template">
-      <div class="extension-header" id="time-settings-label"></div>
+      <div class="extension-header" id="prayer-settings-label"></div>
       <div class="extension-options">
         <dl>
           <dt id="time-format-label"></dt>
@@ -62,13 +62,11 @@
             <div id="timenamesgroup"></div>
             <p id="visible-timenames-info-label"></p>
           </dd>
-        </dl>
-      </div>
-    </div>
-    <div class="extension-template">
-      <div class="extension-header" id="calculation-settings-label"></div>
-      <div class="extension-options">
-        <dl>
+          <dt id="notification-label"></dt>
+          <dd>
+            <input type="checkbox" id="notificationVisible"/><label for="notificationVisible" id="notification-visible-label"></label>
+            <input type="checkbox" id="badgeVisible"/><label for="badgeVisible" id="badge-visible-label"></label>
+          </dd>
           <dt id="calculation-method-label"></dt>
           <dd>
             <select id="calculation"></select>
@@ -77,13 +75,12 @@
       </div>
     </div>
     <div class="extension-template">
-      <div class="extension-header" id="notification-settings-label"></div>
+      <div class="extension-header">Misc</div>
       <div class="extension-options">
         <dl>
-          <dt id="calculation-method-label"></dt>
+          <dt>Opt-Out of future notifications:</dt>
           <dd>
-            <input type="checkbox" id="notificationVisible"/><label for="notificationVisible" id="notification-visible-label"></label>
-            <input type="checkbox" id="badgeVisible"/><label for="badgeVisible" id="badge-visible-label"></label>
+            <label for="opt_out"><input type="checkbox" id="opt_out" /></label>
           </dd>
         </dl>
       </div>

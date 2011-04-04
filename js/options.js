@@ -30,6 +30,7 @@ function onSave() {
   var lat = parseFloat($('latitude').value);
   var lng = parseFloat($('longitude').value);
   var position =  lat + ',' + lng;
+  bkg.settings.opt_out = $('opt_out').checked;
   bkg.settings.currentPosition = position;
   bkg.settings.timeformat = $('timeformat').value;
   bkg.settings.calculation = $('calculation').value;
@@ -111,6 +112,7 @@ function onRestore() {
   
   // Restore settings.
   $('version').innerHTML = ' (v' + bkg.settings.version + ')';
+  $('opt_out').checked = bkg.settings.opt_out;
   $('timeformat').value = bkg.settings.timeformat;
   $('calculation').value = bkg.settings.calculation;
   $('notificationVisible').checked = bkg.settings.notificationVisible;
@@ -174,10 +176,9 @@ function translateLabels() {
   $('button-choose-location').innerHTML = chrome.i18n.getMessage('chooseLocation');
   $('button-mygeolocation').innerHTML = chrome.i18n.getMessage('myGeoLocation');
   $('location-map-label').innerHTML = chrome.i18n.getMessage('locationOnMap');
-  $('time-settings-label').innerHTML = chrome.i18n.getMessage('locationSettings');
+  $('prayer-settings-label').innerHTML = chrome.i18n.getMessage('prayerSettings');
   $('time-format-label').innerHTML = chrome.i18n.getMessage('timeFormat');
-  $('calculation-settings-label').innerHTML = chrome.i18n.getMessage('calculationsSettings');
-  $('notification-settings-label').innerHTML = chrome.i18n.getMessage('notificationsSettings');
+  $('notification-label').innerHTML = chrome.i18n.getMessage('prayerNotifications');
   $('notification-visible-label').innerHTML = chrome.i18n.getMessage('notificationVisible');
   $('badge-visible-label').innerHTML = chrome.i18n.getMessage('badgeVisible');
   $('visible-timenames-label').innerHTML = chrome.i18n.getMessage('visibleTimenames');

@@ -77,8 +77,8 @@
 	"locationSettings": {
 		"message": "Lieu Paramètres"
 	},
-	"timeSettings": {
-		"message": "Paramètres de temps"
+	"prayerSettings": {
+		"message": "Paramètres de prières"
 	},
 	"timeFormat": {
 		"message": "Format de l'heure"
@@ -86,11 +86,8 @@
 	"notFound": {
 		"message": "Emplacement introuvable"
 	},
-	"calculationsSettings": {
-		"message": "Calcul des paramètres"
-	},
-  "notificationsSettings": {
-    "message": "Prières Paramètres de notification"
+  "prayerNotifications": {
+    "message": "Prières de notification"
   },
   "notificationVisible": {
     "message": "Popups Activer",

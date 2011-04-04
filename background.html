@@ -47,6 +47,16 @@ function getVersion() {
 }
 
 /**
+ * Hook for updates.
+ */
+function onUpdate() {
+  // Do not send updates if the user is opt'd out!
+  if (!settings.opt_out) {
+    chrome.tabs.create({url: 'updates.html'});
+  }
+}
+
+/**
  * When the extension first installed. Lets bring up the options page so they
  * could start setting it up!
  */
@@ -91,7 +101,7 @@ function init() {
     if (typeof prevVersion == 'undefined') {
       onInstall();
     } else {
-      // onUpdatae: Do nothing now.
+      onUpdate();
     }
     // Update the version incase we want to do something in future.
     settings.version = currVersion;

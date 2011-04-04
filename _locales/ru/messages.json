@@ -26,9 +26,6 @@
    "calculationMethod": {
       "message": "Метод расчета"
    },
-   "calculationsSettings": {
-      "message": "Настройки расчета"
-   },
    "cancel": {
       "message": "Отмена"
    },
@@ -54,7 +51,7 @@
       "message": "Расписание намазов учитывая местоположения с выбором метода расчета"
    },
    "extName": {
-      "message": "Prayer Times"
+      "message": "Расписание намазов"
    },
    "extSource": {
       "message": "Исходник доступен в"
@@ -125,9 +122,6 @@
    "notFound": {
       "message": "Место не найдено"
    },
-   "notificationsSettings": {
-      "message": "Настройки уведомлений Молитва",
-   },
    "notificationVisible": {
       "message": "Включить всплывающие окна",
    },
@@ -154,6 +148,12 @@
    },
    "pm": {
       "message": "после полудня"
+   },
+   "prayerNotifications": {
+      "message": "Настройки уведомлений",
+   },
+   "prayerSettings": {
+      "message": "Расписание времени"
    },
    "prayerTimetable": {
       "message": "Расписание на месяц"
@@ -184,9 +184,6 @@
    },
    "timePrecaution": {
       "message": "Эти времена основаны на расчетах. Погрешность +/- 3  минуты для Фаджра, 1 минута для Зухра, и 2 минуты для Магриба."
-   },
-   "timeSettings": {
-      "message": "Настройки времени"
    },
    "viewTimetable": {
       "message": "расписание на месяц"

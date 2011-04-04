@@ -103,9 +103,9 @@
     "message": "Location Settings",
     "description": "Heading label that shows the location settings."
   },
-  "timeSettings": {
-    "message": "Time Settings",
-    "description": "Heading label that shows the time settings."
+  "prayerSettings": {
+    "message": "Prayer Settings",
+    "description": "Heading label that shows the prayer settings."
   },
   "timeFormat": {
     "message": "Time Format",
@@ -115,13 +115,9 @@
     "message": "Location Not Found",
     "description": "Standard text for location not found."
   },
-  "calculationsSettings": {
-    "message": "Calculation Settings",
-    "description": "Heading label for Prayer time calculation settings."
-  },
-  "notificationsSettings": {
-    "message": "Prayer Notification Settings",
-    "description": "Heading label for Prayer time notification settings."
+  "prayerNotifications": {
+    "message": "Prayer Notifications",
+    "description": "Heading label for Prayer notification."
   },
   "notificationVisible": {
     "message": "Enable Notification Popups",

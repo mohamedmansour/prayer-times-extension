@@ -77,8 +77,8 @@
 	"locationSettings": {
 		"message": "إعدادات الموقع"
 	},
-	"timeSettings": {
-		"message": "إعدادات الوقت"
+	"prayerSettings": {
+		"message": "صلاة إعدادات"
 	},
 	"timeFormat": {
 		"message": "تنسيق الوقت"
@@ -86,11 +86,8 @@
 	"notFound": {
 		"message": "لم يتم العثور على موقع"
 	},
-	"calculationsSettings": {
-		"message": "إعدادات الحساب"
-	},
-  "notificationsSettings": {
-    "message": "إعدادات الصلاة إعلام"
+  "prayerNotifications": {
+    "message": "صلاة الإشعارات"
   },
   "notificationVisible": {
     "message": "تمكين بالنوافذ",
