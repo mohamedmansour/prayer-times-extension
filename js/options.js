@@ -57,6 +57,7 @@ function onSave() {
   var prayTime = entity.getPrayTime()
   prayTime.setMethod(bkg.settings.calculation);
   entity.setTimeFormat(bkg.settings.timeformat);
+  bkg.alarm.setPrayerTimeNames(bkg.settings.timenames);
   entity.setLatitude(lat);
   entity.setLongitude(lng)
   

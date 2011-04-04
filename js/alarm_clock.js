@@ -15,15 +15,25 @@ AlarmCalcs = function(entity)
 };
 
 /**
+ * Update the local cache of the prayer time names.
+ */
+AlarmCalcs.prototype.setPrayerTimeNames = function(times)
+{
+  this.prayerTimeNames = times;
+};
+
+/**
  * Resets the Alarm Clock to Fajr.
  */
 AlarmCalcs.prototype.reset = function()
 {
   this.times = this.entity.getTimes(null, '24h');
+  var timeName = this.prayerTimeNames[0];
+  var time = this.times[timeName.toLowerCase()];
   this.nextPrayerTime = {
-      time : this.times.fajr,
-      name : this.prayerTimeNames[0],
-      delta : (1.0 * this.dateStringInMinutes(this.times.fajr) + 24 * 60 - this.currentTimeInMinutes())
+      time : time,
+      name : timeName,
+      delta : (1.0 * this.dateStringInMinutes(time) + 24 * 60 - this.currentTimeInMinutes())
   };
 };
 
