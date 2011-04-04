@@ -135,6 +135,10 @@
     "message": "Visible Time Names",
     "description": "Sub header labels for visible time names."
   },
+  "visibleTimenamesInfo": {
+    "message": "Only these prayer times will be notified.",
+    "description": "Note that tells the user what is being notified."
+  },
   "fetchingGeolocation": {
     "message": "Fetching Geolocation ...",
     "description": "Fetching geolocation text in the popup."

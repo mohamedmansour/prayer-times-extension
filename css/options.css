@@ -46,10 +46,9 @@ dd {
   width: 100px;
 }
 
-.note {
-  background-color: #fef0b3;
-  outline: 1px solid #9f7626;
-  color: #9f7626;
-  margin: 10px;
-  padding: 10px;
+#visible-timenames-info-label {
+  color: #333;
+  margin-top: 10px;
+  font-style: italic;
+  font-size: 0.8em;
 }

@@ -180,6 +180,7 @@ function translateLabels() {
   $('notification-visible-label').innerHTML = chrome.i18n.getMessage('notificationVisible');
   $('badge-visible-label').innerHTML = chrome.i18n.getMessage('badgeVisible');
   $('visible-timenames-label').innerHTML = chrome.i18n.getMessage('visibleTimenames');
+  $('visible-timenames-info-label').innerHTML = chrome.i18n.getMessage('visibleTimenamesInfo');
   $('calculation-method-label').innerHTML = chrome.i18n.getMessage('calculationMethod');
   $('button-save').innerHTML = chrome.i18n.getMessage('save');
   $('button-close').innerHTML = chrome.i18n.getMessage('close');

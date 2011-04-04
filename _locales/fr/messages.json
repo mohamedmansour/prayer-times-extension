@@ -101,6 +101,9 @@
 	"visibleTimenames": {
 		"message": "Noms de temps visibles"
 	},
+  "visibleTimenamesInfo": {
+    "message": "Seuls ces temps de prière seront avisés."
+  },
 	"fetchingGeolocation": {
 		"message": "Récupérer l'emplacement ..."
 	},

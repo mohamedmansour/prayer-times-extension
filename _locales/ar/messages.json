@@ -101,6 +101,9 @@
 	"visibleTimenames": {
 		"message": "أسماء من الزمن مرئي"
 	},
+  "visibleTimenamesInfo": {
+    "message": "فقط سوف يتم إخطار هذه أوقات الصلاة."
+  },
 	"fetchingGeolocation": {
 		"message": "جلب الموقع..."
 	},

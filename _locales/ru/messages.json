@@ -194,6 +194,9 @@
    "visibleTimenames": {
       "message": "Включить названия"
    },
+   "visibleTimenamesInfo": {
+      "message": "Только эти молитвы раз будете уведомлены."
+   },
    "visitExtensionPage": {
       "message": "Посетите страницу расширения"
    }
