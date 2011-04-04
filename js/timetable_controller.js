@@ -11,8 +11,7 @@ TimetableController = function(timetableID)
   this.settings_ = this.bkg_.settings;
   this.model_ = new TimetableModel(
         this.entity_,
-        timetableID,
-        this.settings_.timenames);
+        timetableID);
 };
 
 /**

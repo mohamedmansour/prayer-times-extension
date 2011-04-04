@@ -3,13 +3,14 @@
  *
  * @param {GeoPrayerTime} entity The prayer time entity.
  * @param {string} id The element id where the table exists.
+ * @param {map} opt_timeNames Optional Array of Prayer Times
  */
-TimetableModel = function(entity, id, timeNames)
+TimetableModel = function(entity, id, opt_timeNames)
 {
   this.id = id;
   this.entity = entity;
 	this.currentDate = new Date();
-	this.timeNames = timeNames;
+	this.timeNames = opt_timeNames || entity.getPrayTime().getTimeNames();
   this.monthName = [
       chrome.i18n.getMessage('january'),
       chrome.i18n.getMessage('february'),
@@ -49,7 +50,15 @@ TimetableModel.prototype.viewMonth = function(offset)
  */
 TimetableModel.prototype._createTable = function(year, month)
 {
-  var items = ['Day'].concat(this.timeNames);
+  var items = ['Day'];
+  if (this.timeNames instanceof Array) {
+    items = items.concat(this.timeNames)
+  }
+  else {
+    for (var i in this.timeNames) {
+      items.push(i);
+    }
+  }
   var table = document.getElementById(this.id); 
   var tbody = document.createElement('tbody');
   tbody.appendChild(this._createTableHeader(items));
@@ -81,11 +90,14 @@ TimetableModel.prototype._createTable = function(year, month)
 TimetableModel.prototype._createTableHeader = function(data)
 {
   var timenames = this.entity.getTimeNames();
-  timenames.day = chrome.i18n.getMessage('day');
+  //timenames.day = chrome.i18n.getMessage('day');
   var row = document.createElement('tr');
   for (var i in data) {
     var cell = document.createElement('td');
-    cell.innerHTML = timenames[data[i].toLowerCase()];
+    var cellContents = timenames[data[i].toLowerCase()]
+    if (cellContents) {
+      cell.innerHTML = cellContents;
+    }
     row.appendChild(cell);
   }
   row.className = 'head-row';
