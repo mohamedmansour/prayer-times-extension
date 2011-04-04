@@ -54,8 +54,8 @@ AlarmCalcs.prototype.start = function()
       this.nextPrayerTime.time = this.times[i];
       if (delta == 0) {
         if (this.flag) {
-          this.makeAlarm(this.nextPrayerTime.name, this.nowPrayerTimeLabel +
-                          ' ' + this.nextPrayerTime.name);
+          this.makeAlarm(this.getNextPrayerName(), this.nowPrayerTimeLabel +
+                          ' ' + this.getNextPrayerName());
           this.flag = false;
         }
       } else {

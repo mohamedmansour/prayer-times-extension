@@ -156,8 +156,8 @@
     "description": "Prayer timetable header text."
   },
   "nowPrayerTime": {
-    "description": "It is now time to pray",
-    "message": "Text that represents that it is now time to pray."
+    "message": "It is now time to pray",
+    "description": "Text that represents that it is now time to pray."
   },
   "timePrecaution": {
     "message": "The above times are based on calculations only. Please allow +/- 3  minutes for Fajr, 1 minute for Dhuhr, and 2 minutes for Maghrib as a precaution.",
