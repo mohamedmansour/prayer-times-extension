@@ -13,6 +13,37 @@ function onLoad() {
   $('button-close').addEventListener('click', onClose, false);
   $('button-choose-location').addEventListener('click', chooseLocation, false);
   $('button-mygeolocation').addEventListener('click', chooseMyLocation, false);
+  onInstall();
+}
+
+/**
+ * Allow the user to choose their prayer time method, easier to setup for
+ * cultures.
+ */
+function onInstall() {
+  if (location.search == '?install') {
+    var dialog = new DialogController('initial-setup-dialog');
+    dialog.addEventListener('click', function(state) {
+      if (state != DialogController.OK) {
+        return;
+      }
+      var calculation = $('initial-calculation').value;
+      $('calculation').value = calculation;
+      bkg.settings.calculation = calculation;
+      dialog.setVisible(false);
+      location.search = '';
+    });
+    dialog.addEventListener('load', function() {
+      $('initial-calculation-label').innerHTML = chrome.i18n.getMessage('calculationMethod');
+      var initialCalculation = $('initial-calculation');
+      initialCalculation.innerHTML = $('calculation').innerHTML;
+      initialCalculation.value = bkg.settings.calculation;
+      initialCalculation.focus();
+    });
+    dialog.setTemplate({header: chrome.i18n.getMessage('extName')});
+    dialog.init();
+    dialog.setVisible(true);
+  }
 }
 
 /**

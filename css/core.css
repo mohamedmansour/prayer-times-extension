@@ -1,3 +1,5 @@
+@import url("common.css");
+
 body {
   font-size: 87%;
   font-family: Helvetica, Arial, sans-serif;
@@ -68,30 +70,4 @@ p {
   font-size: 85%;
   margin-top: 1em;
   text-align: __MSG_@@bidi_end_edge__;
-}
-
-button {
-  -webkit-border-radius: 2px;
-  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-  -webkit-user-select: none;
-  background: -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
-  border: 1px solid #AAA;
-  color: #444;
-  font-size: inherit;
-  margin-bottom: 0px;
-  min-width: 4em;
-  padding: 3px 12px 3px 12px;
-}
-
-button:hover {
-  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
-  background: #EBEBEB -webkit-linear-gradient(#FEFEFE, #F8F8F8 40%, #E9E9E9);
-  border-color: #999;
-  color: #222;
-}
-
-button:active {
-  -webkit-box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2);
-  background: #EBEBEB -webkit-linear-gradient(#F4F4F4, #EFEFEF 40%, gainsboro);
-  color: #333;
 }
