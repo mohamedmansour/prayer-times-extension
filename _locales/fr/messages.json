@@ -3,13 +3,13 @@
 		"message": "Horaires des prières"
 	},
 	"extDescription": {
-		"message": "Temps de prière, y compris tous les calendrier d'un an sur la base de géolocalisation y compris les options pour changer les méthodes de calcul."
+		"message": "Horaires des prières, avec un calendrier d'un an sur la base de géolocalisation y compris les options pour changer les méthodes de calcul."
 	},
 	"extBy": {
-		"message": "Extension développé par"
+		"message": "Extension développée par"
 	},
 	"extSource": {
-		"message": "Source Code disponible dans"
+		"message": "Code source disponible sur"
 	},
 	"day": {
 		"message": "Jour"
@@ -30,16 +30,16 @@
 		"message": "12 heures sans suffixe"
 	},
 	"next": {
-		"message": "prochaine"
+		"message": "suivant"
 	},
 	"previous": {
-		"message": "précédente"
+		"message": "précédent"
 	},
 	"options": {
 		"message": "Options"
 	},
 	"save": {
-		"message": "Sauver"
+		"message": "Enregistrer"
 	},
 	"search": {
 		"message": "Rechercher"
@@ -66,19 +66,19 @@
 		"message": "Ma position"
 	},
 	"optionsWarning": {
-		"message": "Assurez-vous de conserver les réglages après l'édition de votre fait!"
+		"message": "Sauvegardez vos réglages avant la fermeture de la page!"
 	},
 	"optionSaveResponse": {
-		"message": "Options sauvé!"
+		"message": "Options enregistrées!"
 	},
 	"locationOnMap": {
-		"message": "Situé sur la carte"
+		"message": "Situation sur la carte"
 	},
 	"locationSettings": {
-		"message": "Lieu Paramètres"
+		"message": "Paramètres du lieu"
 	},
 	"prayerSettings": {
-		"message": "Paramètres de prières"
+		"message": "Paramètres des prières"
 	},
 	"timeFormat": {
 		"message": "Format de l'heure"
@@ -87,28 +87,28 @@
 		"message": "Emplacement introuvable"
 	},
   "prayerNotifications": {
-    "message": "Prières de notification"
+    "message": "Notification des prières"
   },
   "notificationVisible": {
-    "message": "Popups Activer"
+    "message": "Popups Activées"
   },
   "badgeVisible": {
-    "message": "Compte à rebours Afficher Badge Notification"
+    "message": "Afficher le compte à rebours"
   },
 	"visibleTimenames": {
-		"message": "Noms de temps visibles"
+		"message": "Temps visibles"
 	},
   "visibleTimenamesInfo": {
-    "message": "Seuls ces temps de prière seront avisés."
+    "message": "Seuls les temps cochés seront avisés."
   },
 	"fetchingGeolocation": {
-		"message": "Récupérer l'emplacement ..."
+		"message": "Récupération de l'emplacement ..."
 	},
 	"searchPlaceholder": {
-		"message": "Lieu de recherche ..."
+		"message": "Lieu à rechercher ..."
 	},
 	"pleaseWait": {
-		"message": "S'il vous plaît attendre"
+		"message": "Veuillez patienter ..."
 	},
 	"viewTimetable": {
 		"message": "Consulter les horaires"
@@ -117,10 +117,10 @@
 		"message": "Horaires des prières"
 	},
   "nowPrayerTime": {
-    "message": "Maintenant temps de prières"
+    "message": "Il est maintenant temps de"
   },
 	"timePrecaution": {
-		"message": "Les temps ci-dessus sont basées sur des calculs seulement. S'il vous plaît permettre à + \/ - 3 minutes pour Fajr, 1 minute pour Dhuhr, et 2 minutes pour Maghrib par mesure de précaution."
+		"message": "Les temps ci-dessus sont basées sur des calculs seulement. Veuillez tolérer +/-3 minutes pour Fajr, 1 minute pour Dhuhr, et 2 minutes pour Maghrib par mesure de précaution."
 	},
 	"calculationMethod": {
 		"message": "Méthode de calcul"
@@ -129,10 +129,10 @@
     "message": "Suivez-moi sur Twitter"
   },
   "visitExtensionPage": {
-    "message": "Visitez la page extension"
+    "message": "Visitez la page de l'extension"
   },
   "fileBugsSuggestions": {
-    "message": "Fichier bugs et suggestions"
+    "message": "Vos suggestions et bugs découverts"
   },
 	"imsak": {
 		"message": "Imsak"
