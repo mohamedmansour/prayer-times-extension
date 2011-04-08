@@ -52,7 +52,7 @@ function getVersion() {
 function onUpdate() {
   // Do not send updates if the user is opt'd out!
   if (!settings.opt_out) {
-    chrome.tabs.create({url: 'updates.html'});
+    // chrome.tabs.create({url: 'updates.html'});
   }
 }
 
@@ -61,7 +61,7 @@ function onUpdate() {
  * could start setting it up!
  */
 function onInstall() {
-  // openSingletonPage('options.html');
+  openSingletonPage('options.html');
 }
 
 /**
