@@ -16,5 +16,5 @@
    "name": "__MSG_extName__",
    "options_page": "options.html",
    "permissions": [ "geolocation" , "notifications"],
-   "version": "2.1.0"
+   "version": "2.1.1"
 }
