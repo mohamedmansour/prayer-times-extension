@@ -1,12 +1,12 @@
 //--------------------- Copyright Block ----------------------
 /*
 
-PrayTimes.js: Prayer Times Calculator (ver 2.2)
+PrayTimes.js: Prayer Times Calculator (ver 2.3)
 Copyright (C) 2007-2011 PrayTimes.org
 
 Developer: Hamid Zarrabi-Zadeh
 
-Modifications by Mohamed Mansour (2010)
+Modifications by Mohamed Mansour (2010-2011)
 Source: http://mohamedmansour.com
 
 License: GNU LGPL v3.0
@@ -130,7 +130,7 @@ function PrayTimes(method) {
 	// Midnight Mode
 	midnightMethods = [
 		'Standard',    // Mid Sunset to Sunrise
-		'Jafari'       // Mid Maghrib to Fajr
+		'Jafari'       // Mid Sunset to Fajr
 	],
 
 
@@ -277,8 +277,8 @@ function PrayTimes(method) {
 		var hours = Math.floor(time);
 		var minutes = Math.floor((time- hours)* 60);
 		var suffix = (format == '12h') ? suffixes[hours < 12 ? 0 : 1] : '';
-		hours = (format == '24h') ? this.twoDigitsFormat(hours) : ((hours+ 12 -1)% 12+ 1);
-		return hours+ ':'+ this.twoDigitsFormat(minutes)+ (suffix ? ' '+ suffix : '');
+		var hour = (format == '24h') ? this.twoDigitsFormat(hours) : ((hours+ 12 -1)% 12+ 1);
+		return hour+ ':'+ this.twoDigitsFormat(minutes)+ (suffix ? ' '+ suffix : '');
 	},
 
 
@@ -385,7 +385,7 @@ function PrayTimes(method) {
 
 		// add midnight time
 		times.midnight = (setting.midnight == 'Jafari') ?
-				times.maghrib+ this.timeDiff(times.maghrib, times.fajr)/ 2 :
+				times.sunset+ this.timeDiff(times.sunset, times.fajr)/ 2 :
 				times.sunset+ this.timeDiff(times.sunset, times.sunrise)/ 2;
 
 		times = this.tuneTimes(times);
