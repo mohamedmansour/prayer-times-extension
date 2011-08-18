@@ -11,7 +11,7 @@ AlarmCalcs = function(entity)
   this.nowPrayerTimeLabel = chrome.i18n.getMessage('nowPrayerTime');
   this.nowTimeAtLabel	= chrome.i18n.getMessage('nowTimeAtLabel');		// FIXME French and Russian translation 
   this.prayerTimeNames = settings.timenames;
-  this.nonPrayerTimesNames = [ settings.timenames.imsak, settings.timenames.sunrise, settings.timenames.sunset, settings.timenames.midnight];
+  this.nonPrayerTimesNames = [ settings.timenames[0], settings.timenames[2], settings.timenames[5], settings.timenames[8]];
   this.nextPrayerTime = null;
   this.flag = true; // Give Alarm?
 };
