@@ -9,7 +9,9 @@ AlarmCalcs = function(entity)
   this.entity = entity;
   this.times = null;
   this.nowPrayerTimeLabel = chrome.i18n.getMessage('nowPrayerTime');
+  this.nowTimeAtLabel	= chrome.i18n.getMessage('nowTimeAtLabel');		// FIXME French and Russian translation 
   this.prayerTimeNames = settings.timenames;
+  this.nonPrayerTimesNames = [ settings.timenames[0], settings.timenames[2], settings.timenames[5], settings.timenames[8]];
   this.nextPrayerTime = null;
   this.flag = true; // Give Alarm?
 };
@@ -61,8 +63,22 @@ AlarmCalcs.prototype.start = function()
       this.nextPrayerTime.time = time;
       if (delta == 0) {
         if (this.flag) {
-          this.makeAlarm(this.getNextPrayerName(), this.nowPrayerTimeLabel +
-                          ' ' + this.getNextPrayerName());
+
+		  var prayerTime = true;
+		  for( var i = 0; i <= 3;i++){ // only 4 times: imsak,sunrise,sunset and midnight
+		    if(this.getNextPrayerName() == this.nonPrayerTimesNames[i]){
+			  prayerTime = false;
+			  break;
+		    }
+		  }
+		
+		  if(prayerTime){
+            this.makeAlarm(this.getNextPrayerName(), this.nowPrayerTimeLabel +
+                            ' ' + this.getNextPrayerName());
+		  }else{
+		    this.makeAlarm(this.getNextPrayerName(), this.nowTimeAtLabel +
+				  ' ' + this.getNextPrayerName());
+		  }
           this.flag = false;
         }
       } else {
