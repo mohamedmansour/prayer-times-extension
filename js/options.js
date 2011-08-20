@@ -68,7 +68,8 @@ function onSave() {
   bkg.settings.calculation = $('calculation').value;
   bkg.settings.notificationVisible = $('notificationVisible').checked;
   bkg.settings.badgeVisible = $('badgeVisible').checked;
-  
+  bkg.settings.athanVisible = $('athanVisible').checked;
+
   // Reset badge if we do not want it to be visible.
   if (!bkg.settings.badgeVisible) {
     chrome.browserAction.setBadgeText({text: ''})
@@ -149,6 +150,7 @@ function onRestore() {
   $('calculation').value = bkg.settings.calculation;
   $('notificationVisible').checked = bkg.settings.notificationVisible;
   $('badgeVisible').checked = bkg.settings.badgeVisible;
+  $('athanVisible').checked = bkg.settings.athanVisible;
   
   var position = bkg.settings.currentPosition;
   if (position) {
@@ -213,6 +215,7 @@ function translateLabels() {
   $('notification-label').innerHTML = chrome.i18n.getMessage('prayerNotifications');
   $('notification-visible-label').innerHTML = chrome.i18n.getMessage('notificationVisible');
   $('badge-visible-label').innerHTML = chrome.i18n.getMessage('badgeVisible');
+  $('athan-visible-label').innerHTML = chrome.i18n.getMessage('athanVisible');
   $('visible-timenames-label').innerHTML = chrome.i18n.getMessage('visibleTimenames');
   $('visible-timenames-info-label').innerHTML = chrome.i18n.getMessage('visibleTimenamesInfo');
   $('calculation-method-label').innerHTML = chrome.i18n.getMessage('calculationMethod');

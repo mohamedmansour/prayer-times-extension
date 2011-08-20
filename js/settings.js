@@ -49,6 +49,13 @@ settings = {
   set badgeVisible(val) {
     localStorage['badgeVisible'] = val;
   },
+  get athanVisible() {
+    var key = localStorage['athanVisible'];
+    return (typeof key == 'undefined') ? true : key === 'true';
+  },
+  set athanVisible(val) {
+    localStorage['athanVisible'] = val;
+  },
   get opt_out() {
     var key = localStorage['opt_out'];
     return (typeof key == 'undefined') ? false : key === 'true';

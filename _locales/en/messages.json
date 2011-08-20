@@ -127,6 +127,10 @@
     "message": "Show Notification Badge Countdown",
     "description": "Show the countdown badge on the browser action."
   },
+  "athanVisible": {
+    "message": "Enable Athan Sound",
+    "description": "To enable athan sounds."
+  },
   "visibleTimenames": {
     "message": "Visible Time Names",
     "description": "Sub header labels for visible time names."
