@@ -61,7 +61,7 @@ PrayerTimesController.prototype.initializeExtensionDefaults = function() {
  * future.
  */
 PrayerTimesController.prototype.initializeVersion = function() {
-  var currVersion = this.getVersion();
+  var currVersion = chrome.app.getDetails().version;
   var prevVersion = settings.version
   if (currVersion != prevVersion) {
     // Check if we just installed this extension.
@@ -75,8 +75,6 @@ PrayerTimesController.prototype.initializeVersion = function() {
     settings.version = currVersion;
   }
 };
-
-
 
 /**
  * When the extension first installed. Lets bring up the options page so they
@@ -95,20 +93,6 @@ PrayerTimesController.prototype.onUpdate = function() {
     // chrome.tabs.create({url: 'updates.html'});
   }
 };
-
-/**
- * Get the version number from the manifest.
- * TODO(mohamed): Use the built-in version API.
- */
-PrayerTimesController.prototype.getVersion = function() {
-  var version = 'NaN';
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', chrome.extension.getURL('manifest.json'), false);
-  xhr.send(null);
-  var manifest = JSON.parse(xhr.responseText);
-  return manifest.version;
-};
-
 
 /**
  * Open a singleton page, which means, if a page already exists, it just selects it.
