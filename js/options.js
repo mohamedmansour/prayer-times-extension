@@ -1,5 +1,6 @@
 // Extensions pages can all have access to the bacground page.
 var bkg = chrome.extension.getBackgroundPage();
+var AppController = bkg.controller;
 
 // When the DOM is loaded, make sure all the saved info is restored.
 window.addEventListener('load', onLoad, false);
@@ -85,11 +86,11 @@ function onSave() {
   bkg.settings.timenames = timeNames;
   
   // Update prayer settings.
-  var entity = bkg.getPrayerEntity();
+  var entity = AppController.getPrayerEntity();
   var prayTime = entity.getPrayTime()
   prayTime.setMethod(bkg.settings.calculation);
   entity.setTimeFormat(bkg.settings.timeformat);
-  bkg.alarm.setPrayerTimeNames(bkg.settings.timenames);
+  AppController.alarm.setPrayerTimeNames(bkg.settings.timenames);
   entity.setLatitude(lat);
   entity.setLongitude(lng)
   
@@ -119,7 +120,7 @@ function onRestore() {
 
   // Add calculations settings.
   var calculationElement = $('calculation');
-  var entity = bkg.getPrayerEntity();
+  var entity = AppController.getPrayerEntity();
   calculationElement.add(createCalculationOption(entity, 'Jafari'));
   calculationElement.add(createCalculationOption(entity, 'Tehran'));
   calculationElement.add(createCalculationOption(entity, 'MWL'));

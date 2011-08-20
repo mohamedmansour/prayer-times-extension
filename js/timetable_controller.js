@@ -7,11 +7,9 @@
 TimetableController = function(timetableID)
 {
   this.bkg_ = chrome.extension.getBackgroundPage();
-  this.entity_ = this.bkg_.getPrayerEntity();
+  this.entity_ = this.bkg_.controller.getPrayerEntity();
   this.settings_ = this.bkg_.settings;
-  this.model_ = new TimetableModel(
-        this.entity_,
-        timetableID);
+  this.model_ = new TimetableModel(this.entity_, timetableID);
 };
 
 /**
@@ -61,7 +59,7 @@ TimetableController.prototype.translateView = function()
  */
 TimetableController.prototype.onVisitOptions = function()
 {
-  this.bkg_.openSingletonPage(chrome.extension.getURL('options.html'));
+  this.bkg_.controller.openSingletonPage(chrome.extension.getURL('options.html'));
   return false;
 };
 

@@ -6,7 +6,7 @@
 PopupController = function()
 {
   this.bkg_ = chrome.extension.getBackgroundPage();
-  this.entity_ = this.bkg_.getPrayerEntity();
+  this.entity_ = this.bkg_.controller.getPrayerEntity();
   this.islamicDate_ = new IslamicDate();
 };
 
@@ -94,6 +94,6 @@ PopupController.prototype.showCurrentDate = function()
 PopupController.prototype.bindViewTimetable = function()
 {
   $('view_timetable').addEventListener('click', function() {
-    this.bkg_.openSingletonPage(chrome.extension.getURL('timetable.html'));
+    this.bkg_.controller.openSingletonPage(chrome.extension.getURL('timetable.html'));
   }.bind(this));
 };
