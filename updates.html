@@ -17,7 +17,7 @@ function displayVersion() {
  * View options screen.
  */
 function viewOptions() {
-  bkg.openSingletonPage(chrome.extension.getURL('options.html'));
+  bkg.controller.openSingletonPage(chrome.extension.getURL('options.html'));
 }
 </script>
 </head>
@@ -33,21 +33,17 @@ function viewOptions() {
       you wish to <strong>opt-out</strong>, please visit 
       <a href="#" onclick="viewOptions()">options</a> and disable <strong>notify
       new features</strong> from one of the items.<br/><br/>
-      Follow me on Twitter <a href="http://twitter.com/mohamedmansour">@mohamedmansour</a>
+      Follow me on Twitter <a href="http://twitter.com/mohamedmansour">@mohamedmansour</a> and 
+         <a href="https://plus.google.com/116805285176805120365/about">Google+</a>
     </p>
     <div class="extension-template">
       <div class="extension-header">What's new in this version?</div>
       <div class="extension-options">
         <ul>
-          <li><strong>New Feature:</strong> Countdown to prayer thanks to Dmitri Babaev. <a href="https://github.com/mohamedmansour/prayer-times-extension/issues/issue/2">issue2</a></li>
-          <li><strong>New Feature:</strong> Praying Time notifications thanks to Dmitri Babaev. <a href="https://github.com/mohamedmansour/prayer-times-extension/issues/issue/1">issue1</a></li>
-          <li><strong>Bug Fixed:</strong> Time Zone Issues Resolved. <a href="https://github.com/mohamedmansour/prayer-times-extension/issues/issue/5">issue5</a></li>
-          <li><strong>Improvement:</strong> Show all prayer times in the timetable. <a href="https://github.com/mohamedmansour/prayer-times-extension/commit/18f0c38429ebe1bf8940a7b1e4a1e96c88bfa840">18f0c38429ebe1bf8940</a></li>
-          <li><strong>Improvement:</strong> Fluid Prayer Popup size. <a href="https://github.com/mohamedmansour/prayer-times-extension/commit/b8a26c7dd2801accc237b81e08b5155625adfe19">b8a26c7dd2801accc237</a></li>
-          <li><strong>Improvement:</strong> Options page to manage new features. <a href="https://github.com/mohamedmansour/prayer-times-extension/commit/751ca07018877afeebb776f8e23f44200f032671">751ca07018877afeebb7</a></li>
-          <li><strong>Improvement:</strong> Hijri Date in the Popup thanks to Dmitri Babaev. <a href="https://github.com/mohamedmansour/prayer-times-extension/commit/b69a610a48457cb34436025a44ffc93b40e7bfc2">b69a610a48457cb34436</a></li>
+          <li><strong>New Feature:</strong> Finally athan support when prayer starts you will here athans. Customizable by the user.</li>
+          <li><strong>Bug Fix:</strong> Athan notification will now only show for valid prayer times. Contributed by Emad Al-Shihabi, thanks :)</li>
         </ul>
-        <p>For a complete list of changes, you can view them <a href="https://github.com/mohamedmansour/prayer-times-extension/commits/master/">here</a>.<br/><br />
+        <p>For a complete list of changes, you can view them <a href="https://github.com/mohamedmansour/prayer-times-extension/compare/e2e0c41eb4...58e69b31a0">here</a>.<br/><br />
            If you would like to help contribute code or translations to this project, please let me know :) I have included some brief instructions on the <a href="https://github.com/mohamedmansour/prayer-times-extension/wiki">wiki</a>.</p>
       </div>
     </div>
@@ -55,7 +51,7 @@ function viewOptions() {
       <button onclick="window.close();">Close</button>
     </div>
     <div id="credits">
-      Extension developed by <a href="http://www.mohamedmansour.com">Mohamed Mansour</a>, 
+      Extension developed by <a href="http://mohamedmansour.com">Mohamed Mansour</a>, 
       Source Code available in <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a>
     </div>
   </div>

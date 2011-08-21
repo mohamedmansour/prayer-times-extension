@@ -87,7 +87,7 @@ PrayerTimesController.prototype.onInstall = function() {
 PrayerTimesController.prototype.onUpdate = function() {
   // Do not send updates if the user is opt'd out!
   if (!settings.opt_out) {
-    // chrome.tabs.create({url: 'updates.html'});
+    chrome.tabs.create({url: 'updates.html'});
   }
 };
 
