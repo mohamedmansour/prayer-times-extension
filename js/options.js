@@ -1,6 +1,7 @@
 // Extensions pages can all have access to the bacground page.
 var bkg = chrome.extension.getBackgroundPage();
 var AppController = bkg.controller;
+var tempPlayer = new AthanPlayer();
 
 // When the DOM is loaded, make sure all the saved info is restored.
 window.addEventListener('load', onLoad, false);
@@ -14,6 +15,7 @@ function onLoad() {
   $('button-close').addEventListener('click', onClose, false);
   $('button-choose-location').addEventListener('click', chooseLocation, false);
   $('button-mygeolocation').addEventListener('click', chooseMyLocation, false);
+  $('play-stop').addEventListener('click', playStopAthan, false);
   onInstall();
 }
 
@@ -66,6 +68,7 @@ function onSave() {
   bkg.settings.currentPosition = position;
   bkg.settings.timeformat = $('timeformat').value;
   bkg.settings.calculation = $('calculation').value;
+  bkg.settings.athan = $('athan').value;
   bkg.settings.notificationVisible = $('notificationVisible').checked;
   bkg.settings.badgeVisible = $('badgeVisible').checked;
   bkg.settings.athanVisible = $('athanVisible').checked;
@@ -130,6 +133,17 @@ function onRestore() {
   calculationElement.add(createCalculationOption(entity, 'Makkah'));
   calculationElement.add(createCalculationOption(entity, 'Karachi'));
   
+  // Add Athans
+  var athansElement = $('athan');
+  var shiaAthans = AthanPlayer.AUDIO_TRACKS.Shia;
+  var sunniAthans = AthanPlayer.AUDIO_TRACKS.Sunni;
+  for (var i in shiaAthans) {
+    athansElement.add(createAthanOption('Shia', shiaAthans[i]));
+  }
+  for (var i in sunniAthans) {
+    athansElement.add(createAthanOption('Sunni', sunniAthans[i]));
+  }
+  
   // Add timenames group.
   var timenames = entity.getTimeNames();
   var timenamesgroup = $('timenamesgroup');
@@ -142,12 +156,13 @@ function onRestore() {
   timenamesgroup.appendChild(createTimenamesGroup([['Maghrib', timenames.maghrib], 
                                                    ['Isha', timenames.isha], 
                                                    ['Midnight', timenames.midnight]]));
-  
+
   // Restore settings.
   $('version').innerHTML = ' (v' + bkg.settings.version + ')';
   $('opt_out').checked = bkg.settings.opt_out;
   $('timeformat').value = bkg.settings.timeformat;
   $('calculation').value = bkg.settings.calculation;
+  $('athan').value = bkg.settings.athan;
   $('notificationVisible').checked = bkg.settings.notificationVisible;
   $('badgeVisible').checked = bkg.settings.badgeVisible;
   $('athanVisible').checked = bkg.settings.athanVisible;
@@ -219,6 +234,8 @@ function translateLabels() {
   $('visible-timenames-label').innerHTML = chrome.i18n.getMessage('visibleTimenames');
   $('visible-timenames-info-label').innerHTML = chrome.i18n.getMessage('visibleTimenamesInfo');
   $('calculation-method-label').innerHTML = chrome.i18n.getMessage('calculationMethod');
+  $('athan-track-label').innerHTML = chrome.i18n.getMessage('athanTrack');
+  $('play-stop').innerHTML = chrome.i18n.getMessage('playTrack');
   $('button-save').innerHTML = chrome.i18n.getMessage('save');
   $('button-close').innerHTML = chrome.i18n.getMessage('close');
   $('info-message').innerHTML = chrome.i18n.getMessage('optionSaveResponse');
@@ -263,8 +280,32 @@ function createTimenamesGroup(times) {
  * @returns {HTMLElement} an option element.
  */
 function createCalculationOption(entity, value) {
+  return createOption(entity.getCalculationName(value), value);
+}
+
+/**
+ * Creates the DOM for the athan option.
+ *
+ * @param {string} type The prayer type.
+ * @param {object} athan The athan object.
+ * @returns {HTMLElement} an option element.
+ */
+function createAthanOption(type, athan) {
+  var name = athan[0];
+  var format = athan[1];
+  return createOption(type + ': ' + name,  (type == 'Shia' ? '1' : '0') + name);
+}
+
+/**
+ * Creates an Option Element with a specific text and its value.
+ *
+ * @param {object<Entity>} text The name for the option.
+ * @param {string} value The value for the option.
+ * @returns {HTMLElement} an option element.
+ */
+function createOption(text, value) {
   var option = document.createElement('option');
-  option.text = entity.getCalculationName(value);
+  option.text = text;
   option.value = value;
   return option;
 }
@@ -348,4 +389,25 @@ function getAddress() {
       }
     }
   );
+}
+/**
+ *
+ */
+function playStopAthan() {
+  var currentText = $('play-stop').innerHTML;
+  var playText = chrome.i18n.getMessage('playTrack');
+  var stopText = chrome.i18n.getMessage('stopTrack');
+  if (currentText == playText) {
+    $('play-stop').innerHTML = stopText;
+    var audioValue = $('athan').value;
+    var audioSource = audioValue.substring(1);
+    var audioType = audioValue.substring(0, 1) == '1' ? 'Shia' : 'Sunni';
+    console.log(audioSource);
+    tempPlayer.setAthanTrack(audioType, audioSource);
+    tempPlayer.playAthan();
+  }
+  else {
+    $('play-stop').innerHTML = playText;
+    tempPlayer.stopAthan();
+  }
 }

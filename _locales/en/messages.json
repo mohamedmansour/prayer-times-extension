@@ -131,6 +131,18 @@
     "message": "Enable Athan Sound",
     "description": "To enable athan sounds."
   },
+  "athanTrack": {
+    "message": "Athan Sound",
+    "description": "The Athan sound to setup in options."
+  },
+  "playTrack": {
+    "message": "Play Athan",
+    "description": "Text that goes on the play button."
+  },
+  "stopTrack": {
+    "message": "Stop Athan",
+    "description": "Text that goes on the stop button."
+  },
   "visibleTimenames": {
     "message": "Visible Time Names",
     "description": "Sub header labels for visible time names."

@@ -27,6 +27,13 @@ settings = {
   set calculation(val) {
     localStorage['calculation'] = val;
   },
+  get athan() {
+    var key = localStorage['athan'];
+    return (typeof key == 'undefined') ? '1Salimi' : key;
+  },
+  set athan(val) {
+    localStorage['athan'] = val;
+  },
   get timenames() {
     var key = localStorage['timenames'];
     return (typeof key == 'undefined') ?

@@ -4,7 +4,11 @@
  */
 AthanPlayer = function() {
   this.audio = new Audio();
-  this.track = null;
+  this.track = {
+    'name': 'Salimi',
+    'format': 'MP3',
+    'src': 'http://praytimes.org/audio/adhan/Shia/Salimi.mp3'
+  };
 };
 
 /**
@@ -63,6 +67,17 @@ AthanPlayer.prototype.setAthanTrack = function(type, name) {
   }
   this.track = null;
 };
+
+/**
+ * Plays the athan which is currently in the track.
+ */
+AthanPlayer.prototype.playAthan = function() {
+  if (this.track) {
+    this.audio.src = this.track.src;
+    this.audio.play();
+  }
+};
+
 
 /**
  * Stops  the athan which is currently in the track.

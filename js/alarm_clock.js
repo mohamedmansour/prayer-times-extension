@@ -19,6 +19,7 @@ AlarmCalcs = function(entity)
   };
   this.nextPrayerTime = null;
   this.flag = true; // Give Alarm?
+  this.athanPlayer = new AthanPlayer();
 };
 
 /**
@@ -135,6 +136,7 @@ AlarmCalcs.prototype.makeAlarm = function(title, body)
 
   // Then show the notification.
   notification.show();
+  this.athanPlayer.playAthan();
 };
 
 /**

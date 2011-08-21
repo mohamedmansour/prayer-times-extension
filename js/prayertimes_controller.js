@@ -3,10 +3,7 @@
  * @constructor
  */
 PrayerTimesController = function() {
-  // Global entity variable that has direct access to Prayer Times.
   this.entity = new GeoPrayerTimes();
-  
-  // Alarm clock.
   this.alarm = new AlarmCalcs(this.entity);
 };
 
