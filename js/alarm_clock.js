@@ -3,8 +3,10 @@
  *
  * Contributed by:
  *   Dmitri Babaev
+ *   Emad Al-Shihabi
+ *   Mohamed Mansour
  */
-AlarmCalcs = function(entity)
+AlarmClock = function(entity)
 {
   this.entity = entity;
   this.times = null;
@@ -25,7 +27,7 @@ AlarmCalcs = function(entity)
 /**
  * Update the local cache of the prayer time names.
  */
-AlarmCalcs.prototype.setPrayerTimeNames = function(times)
+AlarmClock.prototype.setPrayerTimeNames = function(times)
 {
   this.prayerTimeNames = times;
 };
@@ -33,7 +35,7 @@ AlarmCalcs.prototype.setPrayerTimeNames = function(times)
 /**
  * Resets the Alarm Clock to Fajr.
  */
-AlarmCalcs.prototype.reset = function()
+AlarmClock.prototype.reset = function()
 {
   this.times = this.entity.getTimes(null, '24h');
   var timeName = this.prayerTimeNames[0];
@@ -48,7 +50,7 @@ AlarmCalcs.prototype.reset = function()
 /**
  * Starts the Alarm Clock to figure out when the next prayer is.
  */
-AlarmCalcs.prototype.start = function()
+AlarmClock.prototype.start = function()
 {
   this.reset();
   // Current time in minutes from day beginning
@@ -96,7 +98,7 @@ AlarmCalcs.prototype.start = function()
 /**
  * The Current Time in Minutes.
  */
-AlarmCalcs.prototype.currentTimeInMinutes = function()
+AlarmClock.prototype.currentTimeInMinutes = function()
 {
   var d = new Date();
   var h = d.getHours();
@@ -107,7 +109,7 @@ AlarmCalcs.prototype.currentTimeInMinutes = function()
 /**
  * From the given date string, returns the number of minutes.
  */
-AlarmCalcs.prototype.dateStringInMinutes = function(s)
+AlarmClock.prototype.dateStringInMinutes = function(s)
 {
   var h = 1.0 * s.split(':')[0];
   var m = 1.0 * s.split(':')[1];
@@ -121,7 +123,7 @@ AlarmCalcs.prototype.dateStringInMinutes = function(s)
  * @param {string} body The description that will be shown in the body of the 
  *                      notification.
  */
-AlarmCalcs.prototype.makeAlarm = function(title, body)
+AlarmClock.prototype.makeAlarm = function(title, body)
 {
   if (!settings.notificationVisible) {
     return;
@@ -143,7 +145,7 @@ AlarmCalcs.prototype.makeAlarm = function(title, body)
  * Creates and updates the Chrome Badge Text.
  * Always change the title, but decide whether to show the badge.
  */
-AlarmCalcs.prototype.makeBadge = function()
+AlarmClock.prototype.makeBadge = function()
 {
   chrome.browserAction.setTitle({title: this.getNextPrayerName()});
   
@@ -157,7 +159,7 @@ AlarmCalcs.prototype.makeBadge = function()
 /**
  * Formatted time to next prayer
  */
-AlarmCalcs.prototype.getNextPrayerTime = function()
+AlarmClock.prototype.getNextPrayerTime = function()
 {
   var h = Math.floor(this.nextPrayerTime.delta / 60);
   var m = this.nextPrayerTime.delta - 60 * h;
@@ -168,7 +170,7 @@ AlarmCalcs.prototype.getNextPrayerTime = function()
 /**
  * Name of next prayer
  */
-AlarmCalcs.prototype.getNextPrayerName = function()
+AlarmClock.prototype.getNextPrayerName = function()
 {
   return this.nextPrayerTime.name;
 };

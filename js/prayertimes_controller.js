@@ -4,7 +4,7 @@
  */
 PrayerTimesController = function() {
   this.entity = new GeoPrayerTimes();
-  this.alarm = new AlarmCalcs(this.entity);
+  this.alarm = new AlarmClock(this.entity);
 };
 
 /**
