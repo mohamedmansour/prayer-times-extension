@@ -83,14 +83,17 @@ AlarmClock.prototype.start = function()
       // It is time to show the notification!
       if (delta == 0) {
         if (this.flag) {
+          var isPrayerTime = true;
           var prayerNotificationLabel = this.nowPrayerTimeLabel;
 
           // Filter out the invalid prayer times for alaram.
           if (this.nonPrayerTimesNames[this.getNextPrayerName()]) {
               prayerNotificationLabel = this.nowTimeAtLabel;
+              isPrayerTime = false;
           }
 
-          this.makeAlarm(this.getNextPrayerName(), prayerNotificationLabel + ' ' + this.getNextPrayerName());
+          this.makeAlarm(isPrayerTime, this.getNextPrayerName(),
+                         prayerNotificationLabel + ' ' + this.getNextPrayerName());
           this.flag = false;
         }
       }
@@ -129,11 +132,12 @@ AlarmClock.prototype.dateStringInMinutes = function(s)
 /**
  * Creates the HTML5 Notification payload and shows it.
  *
+ * @param {boolean} isPrayerTime If it is a valid prayer time.
  * @param {string} title The title of the HTML5 notification.
  * @param {string} body The description that will be shown in the body of the 
  *                      notification.
  */
-AlarmClock.prototype.makeAlarm = function(title, body)
+AlarmClock.prototype.makeAlarm = function(isPrayerTime, title, body)
 {
   if (!settings.notificationVisible) {
     return;
@@ -150,7 +154,7 @@ AlarmClock.prototype.makeAlarm = function(title, body)
   notification.show();
   
   // Only show athans if needed.
-  if (settings.athanVisible) {
+  if (settings.athanVisible && isPrayerTime) {
     this.athanPlayer.playAthan();
   }
 };
