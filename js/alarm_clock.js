@@ -149,7 +149,10 @@ AlarmClock.prototype.makeAlarm = function(isPrayerTime, title, body)
       title,             // notification title
       body               // notification body text
   );
-
+  notification.onclose = function() {
+    this.athanPlayer.stopAthan();
+  }.bind(this);
+  
   // Then show the notification.
   notification.show();
   
