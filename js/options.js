@@ -27,25 +27,44 @@ function onInstall() {
   if (location.search == '?install') {
     var dialog = new DialogController('initial-setup-dialog');
     dialog.addEventListener('click', function(state) {
+      // Force the athan audio to close.
+      tempPlayer.stopAthan();
+      
       if (state != DialogController.OK) {
         return;
       }
+      
+      // Persist Calculation Method.
       var calculation = $('initial-calculation').value;
       $('calculation').value = calculation;
       bkg.settings.calculation = calculation;
+      
+      // Persist Athan Track.
+      var athan = $('initial-athan').value;
+      $('athan').value = athan;
+      bkg.settings.athan = athan;
+      
       dialog.setVisible(false);
       location.search = '';
     });
     dialog.addEventListener('load', function() {
-      $('initial-calculation-label').innerHTML = chrome.i18n.getMessage('calculationMethod');
+      $('initial-calculation-label').innerHTML = $('calculation-method-label').innerHTML;
       var initialCalculation = $('initial-calculation');
       initialCalculation.innerHTML = $('calculation').innerHTML;
       initialCalculation.value = bkg.settings.calculation;
       initialCalculation.focus();
+      
+      $('initial-athan-label').innerHTML = $('athan-track-label').innerHTML;
+      var initialAthan = $('initial-athan');
+      initialAthan.innerHTML = $('athan').innerHTML;
+      initialAthan.value = bkg.settings.athan;
     });
     dialog.setTemplate({header: chrome.i18n.getMessage('extName')});
     dialog.init();
     dialog.setVisible(true);
+    
+    // Play Athan listener.
+    $('initial-play-stop').addEventListener('click', playStopAthan, false);
   }
 }
 
@@ -236,6 +255,7 @@ function translateLabels() {
   $('calculation-method-label').innerHTML = chrome.i18n.getMessage('calculationMethod');
   $('athan-track-label').innerHTML = chrome.i18n.getMessage('athanTrack');
   $('play-stop').innerHTML = chrome.i18n.getMessage('playTrack');
+  $('initial-play-stop').innerHTML = chrome.i18n.getMessage('playTrack');
   $('button-save').innerHTML = chrome.i18n.getMessage('save');
   $('button-close').innerHTML = chrome.i18n.getMessage('close');
   $('info-message').innerHTML = chrome.i18n.getMessage('optionSaveResponse');
@@ -390,16 +410,18 @@ function getAddress() {
     }
   );
 }
+
 /**
- *
+ * Play or Stop the athan preview.
  */
-function playStopAthan() {
-  var currentText = $('play-stop').innerHTML;
+function playStopAthan(e) {
+  var currentText = e.target.innerHTML;
   var playText = chrome.i18n.getMessage('playTrack');
   var stopText = chrome.i18n.getMessage('stopTrack');
   if (currentText == playText) {
-    $('play-stop').innerHTML = stopText;
-    var audioValue = $('athan').value;
+    e.target.innerHTML = stopText;
+    var isInitialID = e.target.id.indexOf('initial-') == 0;
+    var audioValue = $(isInitialID ? 'initial-athan' : 'athan').value;
     var audioSource = audioValue.substring(1);
     var audioType = audioValue.substring(0, 1) == '1' ? 'Shia' : 'Sunni';
     console.log(audioSource);
