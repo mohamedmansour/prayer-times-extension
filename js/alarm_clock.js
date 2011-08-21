@@ -11,7 +11,12 @@ AlarmCalcs = function(entity)
   this.nowPrayerTimeLabel = chrome.i18n.getMessage('nowPrayerTime');
   this.nowTimeAtLabel	= chrome.i18n.getMessage('nowTimeAtLabel');		// FIXME French and Russian translation 
   this.prayerTimeNames = settings.timenames;
-  this.nonPrayerTimesNames = [ settings.timenames[0], settings.timenames[2], settings.timenames[5], settings.timenames[8]];
+  this.nonPrayerTimesNames = { 
+    'Imsak'   : 1,
+    'Sunrise' : 1,
+    'Sunset'  : 1,
+    'Midnight': 1
+  };
   this.nextPrayerTime = null;
   this.flag = true; // Give Alarm?
 };
@@ -52,38 +57,34 @@ AlarmCalcs.prototype.start = function()
     var timeName = this.prayerTimeNames[i];
     var time = this.times[timeName.toLowerCase()];
 
-    // Prayer time in minutes from day beginning
+    // Prayer time in minutes from day beginning.
     var prMinutes =  this.dateStringInMinutes(time);
     delta = prMinutes - crMinutes;
 
-    // If delta became >0 then we found next prayer
+    // If delta became > 0 then we found next prayer.
     if (delta >= 0) {
       this.nextPrayerTime.delta = delta;
       this.nextPrayerTime.name = timeName;
       this.nextPrayerTime.time = time;
+      
+      // It is time to show the notification!
       if (delta == 0) {
         if (this.flag) {
+          var prayerNotificationLabel = this.nowPrayerTimeLabel;
 
-		  var prayerTime = true;
-		  for( var i = 0; i <= 3;i++){ // only 4 times: imsak,sunrise,sunset and midnight
-		    if(this.getNextPrayerName() == this.nonPrayerTimesNames[i]){
-			  prayerTime = false;
-			  break;
-		    }
-		  }
-		
-		  if(prayerTime){
-            this.makeAlarm(this.getNextPrayerName(), this.nowPrayerTimeLabel +
-                            ' ' + this.getNextPrayerName());
-		  }else{
-		    this.makeAlarm(this.getNextPrayerName(), this.nowTimeAtLabel +
-				  ' ' + this.getNextPrayerName());
-		  }
+          // Filter out the invalid prayer times for alaram.
+          if (this.nonPrayerTimesNames[this.getNextPrayerName()]) {
+              prayerNotificationLabel = this.nowTimeAtLabel;
+          }
+
+          this.makeAlarm(this.getNextPrayerName(), prayerNotificationLabel + ' ' + this.getNextPrayerName());
           this.flag = false;
         }
-      } else {
+      }
+      else {
         this.flag = true;
       }
+      
       break;
     }
   }
