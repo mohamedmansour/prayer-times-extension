@@ -49,6 +49,9 @@ PrayerTimesController.prototype.initializeExtensionDefaults = function() {
   this.entity.getPrayTime().setMethod(settings.calculation);
   this.entity.setTimeFormat(settings.timeformat);
   
+  // Setup the Athan type.
+  this.alarm.setAthan(settings.athan);
+  
   // Start the Alarm Clock count down.
   this.alarm.start();
 };

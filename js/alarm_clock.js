@@ -25,6 +25,16 @@ AlarmClock = function(entity)
 };
 
 /**
+ * Sets the athan sound for this alaram.
+ * @param{string} audioValue The alarm sound text.
+ */
+AlarmClock.prototype.setAthan = function(audioValue) {
+  var audioSource = audioValue.substring(1);
+  var audioType = audioValue.substring(0, 1) == '1' ? 'Shia' : 'Sunni';
+  this.athanPlayer.setAthanTrack(audioType, audioSource);
+};
+
+/**
  * Update the local cache of the prayer time names.
  */
 AlarmClock.prototype.setPrayerTimeNames = function(times)
@@ -138,7 +148,11 @@ AlarmClock.prototype.makeAlarm = function(title, body)
 
   // Then show the notification.
   notification.show();
-  this.athanPlayer.playAthan();
+  
+  // Only show athans if needed.
+  if (settings.athanVisible) {
+    this.athanPlayer.playAthan();
+  }
 };
 
 /**

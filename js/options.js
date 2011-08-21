@@ -97,6 +97,9 @@ function onSave() {
     chrome.browserAction.setBadgeText({text: ''})
   }
   
+  // Update the athan.
+  AppController.alarm.setAthan(bkg.settings.athan);
+  
   // Update visible time names.
   var timeNames = [];
   var timeNameNodes = document.getElementsByName('timenames');
