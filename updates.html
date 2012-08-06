@@ -1,0 +1,60 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<title>Prayer Times Updated!</title>
+<link rel="stylesheet" type="text/css" href="/css/options.css">
+<script type="text/javascript">
+var bkg = chrome.extension.getBackgroundPage();
+  
+/**
+ *  Displays version on the screen.
+ */
+function displayVersion() {
+  document.getElementById('version').innerHTML = 'Prayer Times Updated to ' + bkg.settings.version + '!';
+}
+
+/**
+ * View options screen.
+ */
+function viewOptions() {
+  bkg.controller.openSingletonPage(chrome.extension.getURL('options.html'));
+}
+</script>
+</head>
+
+<body onload="displayVersion()"> 
+  <form onsubmit="return false;">
+  <div id="body-container">
+    <div id="header">
+      <h1 id="version"></h1>
+    </div>
+    <p>
+      This message only exists to notify you when brand new features exists, if 
+      you wish to <strong>opt-out</strong>, please visit 
+      <a href="#" onclick="viewOptions()">options</a> and disable <strong>notify
+      new features</strong> from one of the items.<br/><br/>
+      Follow me on Twitter <a href="http://twitter.com/mohamedmansour">@mohamedmansour</a> and 
+         <a href="https://plus.google.com/116805285176805120365/about">Google+</a>
+    </p>
+    <div class="extension-template">
+      <div class="extension-header">What's new in this version?</div>
+      <div class="extension-options">
+        <ul>
+          <li><strong>New Feature:</strong> Finally athan support when prayer starts you will here athans. Customizable by the user.</li>
+          <li><strong>Bug Fix:</strong> Athan notification will now only show for valid prayer times. Contributed by Emad Al-Shihabi, thanks :)</li>
+        </ul>
+        <p>For a complete list of changes, you can view them <a href="https://github.com/mohamedmansour/prayer-times-extension/compare/e2e0c41eb4...58e69b31a0">here</a>.<br/><br />
+           If you would like to help contribute code or translations to this project, please let me know :) I have included some brief instructions on the <a href="https://github.com/mohamedmansour/prayer-times-extension/wiki">wiki</a>.</p>
+      </div>
+    </div>
+    <div id="extension-footer">
+      <button onclick="window.close();">Close</button>
+    </div>
+    <div id="credits">
+      Extension developed by <a href="http://mohamedmansour.com">Mohamed Mansour</a>, 
+      Source Code available in <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a>
+    </div>
+  </div>
+  </form>
+</body>
+</html>

@@ -1,0 +1,203 @@
+{
+	"extName": {
+		"message": "أوقات الصلاة"
+	},
+	"extDescription": {
+		"message": "أوقات الصلاة بما في ذلك جميع الجدول الزمني العام على أساس تحديد الموقع الجغرافي بما في ذلك خيارات لتغيير طرق الحساب."
+	},
+	"extBy": {
+		"message": "التي وضعتها"
+	},
+	"extSource": {
+		"message": "شفرة المصدر متاحا في"
+	},
+	"day": {
+		"message": "يوم"
+	},
+	"am": {
+		"message": "صباحًا"
+	},
+	"pm": {
+		"message": "مساءً"
+	},
+	"24hour": {
+		"message": "24 ساعة"
+	},
+	"12hour": {
+		"message": "12 ساعة"
+	},
+	"12hourNoSuffix": {
+		"message": "12 ساعة مع عدم وجود لاحقة"
+	},
+	"next": {
+		"message": "القادم"
+	},
+	"previous": {
+		"message": "السابقة"
+	},
+	"options": {
+		"message": "خيارات"
+	},
+	"save": {
+		"message": "حفظ"
+	},
+	"search": {
+		"message": "البحث"
+	},
+	"cancel": {
+		"message": "إلغاء"
+	},
+	"close": {
+		"message": "إغلاق"
+	},
+	"geolocation": {
+		"message": "تحديد الموقع الجغرافي"
+	},
+	"latitude": {
+		"message": "خط العرض"
+	},
+	"longitude": {
+		"message": "خط الطول"
+	},
+	"chooseLocation": {
+		"message": "اختيار الموقع"
+	},
+	"myGeoLocation": {
+		"message": "موقعي"
+	},
+	"optionsWarning": {
+		"message": "تأكد من حفظ الإعدادات الخاصة بك القيام به بعد التحرير!"
+	},
+	"optionSaveResponse": {
+		"message": "حفظ الخيارات!"
+	},
+	"locationOnMap": {
+		"message": "الموقع على الخريطة"
+	},
+	"locationSettings": {
+		"message": "إعدادات الموقع"
+	},
+	"prayerSettings": {
+		"message": "صلاة إعدادات"
+	},
+	"timeFormat": {
+		"message": "تنسيق الوقت"
+	},
+	"notFound": {
+		"message": "لم يتم العثور على موقع"
+	},
+  "prayerNotifications": {
+    "message": "صلاة الإشعارات"
+  },
+  "notificationVisible": {
+    "message": "تمكين بالنوافذ"
+  },
+  "badgeVisible": {
+    "message": "وتظهر شارة العد التنازلي إعلام"
+  },
+	"visibleTimenames": {
+		"message": "أسماء من الزمن مرئي"
+	},
+  "visibleTimenamesInfo": {
+    "message": "فقط سوف يتم إخطار هذه أوقات الصلاة."
+  },
+	"fetchingGeolocation": {
+		"message": "جلب الموقع..."
+	},
+	"searchPlaceholder": {
+		"message": "البحث عن موقع..."
+	},
+	"pleaseWait": {
+		"message": "الرجاء الانتظار"
+	},
+	"viewTimetable": {
+		"message": "عرض الأوقات الصلاة"
+	},
+	"prayerTimetable": {
+		"message": "أوقات الصلاة"
+	},
+  "nowPrayerTime": {
+    "message": "أوقات الصلاة الآن"
+  },
+  "nowTimeAtLabel": {
+    "message": "الآن وقت"
+  },
+	"timePrecaution": {
+		"message": "وتستند مرات أعلاه على الحسابات فقط. أرجو أن تسمحوا -- \/ + 3 دقائق لصلاة الفجر، 1 دقيقة عن الظهر، والمغرب 2 دقيقة كاجراء وقائي."
+	},
+	"calculationMethod": {
+		"message": "طريقة الحساب"
+	},
+  "followMeTwitter": {
+    "message": "يتبعني Twitter"
+  },
+  "visitExtensionPage": {
+    "message": "زيارة صفحة التمديد"
+  },
+  "fileBugsSuggestions": {
+    "message": "ملف الخلل واقتراحات"
+  },
+	"imsak": {
+		"message": "إمساك"
+	},
+	"fajr": {
+		"message": "الفجر"
+	},
+	"sunrise": {
+		"message": "شروق الشمس"
+	},
+	"dhuhr": {
+		"message": "الظهر"
+	},
+	"asr": {
+		"message": "العصر"
+	},
+	"sunset": {
+		"message": "غروب"
+	},
+	"maghrib": {
+		"message": "المغرب"
+	},
+	"isha": {
+		"message": "العشاء"
+	},
+	"midnight": {
+		"message": "منتصف الليل"
+	},
+	"january": {
+		"message": "كانون الثاني"
+	},
+	"february": {
+		"message": "شباط"
+	},
+	"march": {
+		"message": "آذار"
+	},
+	"april": {
+		"message": "نيسان"
+	},
+	"may": {
+		"message": "أيار"
+	},
+	"june": {
+		"message": "حزيران"
+	},
+	"july": {
+		"message": "تموز"
+	},
+	"august": {
+		"message": "آب"
+	},
+	"september": {
+		"message": "أيلول"
+	},
+	"october": {
+		"message": "تشرين الأول"
+	},
+	"november": {
+		"message": "تشرين الثاني"
+	},
+	"december": {
+		"message": "كانون الأول"
+	}
+}

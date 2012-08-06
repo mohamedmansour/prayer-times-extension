@@ -1,0 +1,58 @@
+@import url("core.css");
+
+body {
+  min-width: 650px;
+}
+
+dt {
+  width: 15em;
+  padding: .5em;
+  float: __MSG_@@bidi_start_edge__;
+  margin: 0;
+}
+
+dd {
+  margin-__MSG_@@bidi_start_edge__: 16em;
+  padding: .4em;
+}
+
+
+#info-message {
+  -webkit-transition-duration: 1s;
+  display: none;
+  background:#FDFFBD none repeat scroll 0 0;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  padding: 7px 10px;
+  margin-__MSG_@@bidi_end_edge__: 30px;
+}
+
+.visibleTimeNamesList {
+  margin: 0;
+  padding: 0;
+}
+
+.visibleTimeNamesList label {
+  width: 100px;
+  display: inline-block;
+}
+
+#map_canvas {
+  width: 600px;
+  height: 150px;
+}
+
+#latitude, #longitude {
+  width: 100px;
+}
+
+#visible-timenames-info-label {
+  color: #333;
+  margin-top: 10px;
+  font-style: italic;
+  font-size: 0.8em;
+}
+
+#initial-setup-dialog {
+  display: none;
+}

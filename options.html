@@ -1,0 +1,116 @@
+<!DOCTYPE html> 
+<html>
+<head>
+  <title>Prayer Times Options</title>
+  <link type="text/css" rel="stylesheet" href="/css/options.css">
+  <script type="text/javascript" src="/js/functions.js"></script>
+  <script type="text/javascript" src="/js/dialog_controller.js"></script>
+  <script type="text/javascript" src="/js/athan_player.js"></script>
+  <script type="text/javascript" src="/js/options.js"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAA8k8pIg1z-vAdcpqhpeR04hR53HbYEF0mLynKP7EnoFQKwKlG5BQpatQVDqwE2c_QgRmrX6_VlYH74w"></script>
+</head>
+<body"> 
+  <form onsubmit="return false;">
+  <div id="body-container">
+    <div id="header">
+      <h1><span id="header-label"></span><em id="version"></em></h1>
+    </div>
+    <p id="extra-buttons-group">
+      <span id="options-warning-label"></span>
+      <a id="visit-extension-label"
+       href="https://chrome.google.com/webstore/detail/ndmbeogingkjkmmkoomnigifmpajmbkc">
+      </a>,
+      <a id="suggestions-label"
+       href="http://groups.google.com/group/mohamedmansour-extensions">
+      </a><br/><br/>
+      <span id="followme-label"></span> <a href="http://twitter.com/mohamedmansour">@mohamedmansour</a> and 
+         <a href="https://plus.google.com/116805285176805120365/about">Google+</a>
+    </p>
+    <div class="extension-template">
+      <div class="extension-header" id="location-settings-label"></div>
+      <div class="extension-options">
+        <dl>
+          <dt id="geolocation-label"></dt>
+          <dd>
+            <div id="locationSection">
+              <span id="latitude-label"></label>
+              <input readonly="readonly" type="text" id="latitude" disabled="disabled" /> 
+              <span id="longitude-label"></label>
+              <input readonly="readonly" type="text" id="longitude" disabled="disabled" /> 
+              <button id="button-choose-location"></button>
+              <button id="button-mygeolocation"></button>
+            </div>
+          </dd>
+          <dt id="location-map-label"></dt>
+          <dd>
+            <div id="map_canvas"></div>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="extension-template">
+      <div class="extension-header" id="prayer-settings-label"></div>
+      <div class="extension-options">
+        <dl>
+          <dt id="time-format-label"></dt>
+          <dd>
+            <select id="timeformat">
+              <option value="24h" id="24h-label"></option>
+              <option value="12h" id="12h-label"></option>
+              <option value="12hNS" id="12hNS-label"></option>
+            </select>
+          </dd>
+          <dt id="visible-timenames-label"></dt>
+          <dd>
+            <div id="timenamesgroup"></div>
+            <p id="visible-timenames-info-label"></p>
+          </dd>
+          <dt id="notification-label"></dt>
+          <dd>
+            <input type="checkbox" id="notificationVisible"/><label for="notificationVisible" id="notification-visible-label"></label>
+            <input type="checkbox" id="badgeVisible"/><label for="badgeVisible" id="badge-visible-label"></label>
+            <input type="checkbox" id="athanVisible"/><label for="athanVisible" id="athan-visible-label"></label>
+          </dd>
+          <dt id="calculation-method-label"></dt>
+          <dd>
+            <select id="calculation"></select>
+          </dd>
+          <dt id="athan-track-label"></dt>
+          <dd>
+            <select id="athan"></select>
+            <button id="play-stop"></button>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="extension-template">
+      <div class="extension-header">Misc</div>
+      <div class="extension-options">
+        <dl>
+          <dt>Opt-Out of future notifications:</dt>
+          <dd>
+            <label for="opt_out"><input type="checkbox" id="opt_out" /></label>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div id="extension-footer">
+      <span id="info-message"></span>
+      <button id="button-save"></button>
+      <button id="button-close"></button>
+    </div>
+    <div id="credits">
+      <span id="extension-by-label"></span> <a href="http://www.mohamedmansour.com">Mohamed Mansour</a>, 
+      <span id="extension-source-label"></span> <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a><br/>
+    </div>
+  </div>
+  </form>
+  <div id="initial-setup-dialog">
+    <p id="initial-calculation-label"></p>
+    <select id="initial-calculation"></select>
+    <p id="initial-athan-label"></p>
+    <select id="initial-athan"></select>
+    <button id="initial-play-stop"></button>
+  </div>
+</body>
+</html>
