@@ -13,5 +13,6 @@ Contributors:
 
 Translations:
 
- * _German_ - https://github.com/alir1982
- * _French_ - Taha <miisorg@gmail.com>
+ * German - https://github.com/alir1982
+ * French - Taha <miisorg@gmail.com>
+ * Farsi - Shah Verdy - https://github.com/shahverdy
