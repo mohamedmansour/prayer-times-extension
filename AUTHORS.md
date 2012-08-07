@@ -16,4 +16,4 @@
 
  * German - https://github.com/alir1982
  * French - Taha <miisorg@gmail.com>
- * Farsi - Shah Verdy - https://github.com/shahverdy
+ * Farsi - Mostafa Shahverdy - https://github.com/shahverdy
