@@ -3,15 +3,15 @@
 
 Maintainer:
 
- * Mohamed Mansour <hello@mohamedmansour.com>
+ * Mohamed Mansour - http://github.com/mohamedmansour
 
 Contributors:
 
  * Hamid Zarrabi-Zadeh <zarrabi@scs.carleton.ca>
- * Dmitri Babaev <babaevdmitri@gmail.com>
- * Emad Al-Shihabi  <emad.shi@gmail.com>
+ * Dmitri Babaev - https://github.com/alir1982
+ * Emad Al-Shihabi - http://github.com/3emad
 
 Translations:
 
- * _German_ - Dmitri Babaev <babaevdmitri@gmail.com>
+ * _German_ - https://github.com/alir1982
  * _French_ - Taha <miisorg@gmail.com>
