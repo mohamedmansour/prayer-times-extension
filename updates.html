@@ -1,29 +1,12 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
 <title>Prayer Times Updated!</title>
 <link rel="stylesheet" type="text/css" href="/css/options.css">
-<script type="text/javascript">
-var bkg = chrome.extension.getBackgroundPage();
-  
-/**
- *  Displays version on the screen.
- */
-function displayVersion() {
-  document.getElementById('version').innerHTML = 'Prayer Times Updated to ' + bkg.settings.version + '!';
-}
-
-/**
- * View options screen.
- */
-function viewOptions() {
-  bkg.controller.openSingletonPage(chrome.extension.getURL('options.html'));
-}
-</script>
 </head>
 
-<body onload="displayVersion()"> 
-  <form onsubmit="return false;">
+<body id="myBody"> 
+  <form id="myFrm">
   <div id="body-container">
     <div id="header">
       <h1 id="version"></h1>
@@ -31,7 +14,7 @@ function viewOptions() {
     <p>
       This message only exists to notify you when brand new features exists, if 
       you wish to <strong>opt-out</strong>, please visit 
-      <a href="#" onclick="viewOptions()">options</a> and disable <strong>notify
+      <a href="#" id="myHref">options</a> and disable <strong>notify
       new features</strong> from one of the items.<br/><br/>
       Follow me on Twitter <a href="http://twitter.com/mohamedmansour">@mohamedmansour</a> and 
          <a href="https://plus.google.com/116805285176805120365/about">Google+</a>
@@ -48,7 +31,7 @@ function viewOptions() {
       </div>
     </div>
     <div id="extension-footer">
-      <button onclick="window.close();">Close</button>
+      <button id="btnClose">Close</button>
     </div>
     <div id="credits">
       Extension developed by <a href="http://mohamedmansour.com">Mohamed Mansour</a>, 
@@ -56,5 +39,6 @@ function viewOptions() {
     </div>
   </div>
   </form>
+  <script type="text/javascript" src="/js/updates.js"></script>
 </body>
 </html>

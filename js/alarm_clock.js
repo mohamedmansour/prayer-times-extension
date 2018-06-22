@@ -13,10 +13,12 @@ AlarmClock = function(entity)
   this.nowPrayerTimeLabel = chrome.i18n.getMessage('nowPrayerTime');
   this.nowTimeAtLabel	= chrome.i18n.getMessage('nowTimeAtLabel');		// FIXME French and Russian translation 
   this.prayerTimeNames = settings.timenames;
-  this.nonPrayerTimesNames = { 
-    'Imsak'   : 1,
+  this.nonPrayerTimesNames = {
+    'Fajr'   : 1,
     'Sunrise' : 1,
+    'Dhuhr' : 1,
     'Sunset'  : 1,
+    'Maghrib': 1,
     'Midnight': 1
   };
   this.nextPrayerTime = null;

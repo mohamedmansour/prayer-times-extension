@@ -1,19 +1,17 @@
-> Names should be added to this file like so:
-> 
-> Name or Organization- github url
+# Names should be added to this file like so:
+# Name or Organization <email address>
 
-### Maintainer:
+Maintainer:
 
- * Mohamed Mansour - http://github.com/mohamedmansour
+ * Mohamed Mansour <hello@mohamedmansour.com>
 
-### Contributors:
+Contributors:
 
  * Hamid Zarrabi-Zadeh <zarrabi@scs.carleton.ca>
- * Dmitri Babaev - https://github.com/alir1982
- * Emad Al-Shihabi - http://github.com/3emad
+ * Dmitri Babaev <babaevdmitri@gmail.com>
+ * Emad Al-Shihabi  <emad.shi@gmail.com>
 
-### Translations:
+Translations:
 
- * German - https://github.com/alir1982
- * French - Taha <miisorg@gmail.com>
- * Farsi - Mostafa Shahverdy - https://github.com/shahverdy
+ * _German_ - Dmitri Babaev <babaevdmitri@gmail.com>
+ * _French_ - Taha <miisorg@gmail.com>

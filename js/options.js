@@ -147,8 +147,8 @@ function onRestore() {
   // Add calculations settings.
   var calculationElement = $('calculation');
   var entity = AppController.getPrayerEntity();
-  calculationElement.add(createCalculationOption(entity, 'Jafari'));
   calculationElement.add(createCalculationOption(entity, 'Tehran'));
+  calculationElement.add(createCalculationOption(entity, 'Jafari'));
   calculationElement.add(createCalculationOption(entity, 'MWL'));
   calculationElement.add(createCalculationOption(entity, 'ISNA'));
   calculationElement.add(createCalculationOption(entity, 'Egypt'));

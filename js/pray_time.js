@@ -155,7 +155,7 @@ function PrayTimes(method) {
 
 	//---------------------- Default Settings --------------------
 
-	calcMethod = 'MWL',
+	calcMethod = 'Tehran',
 
 	// do not change anything here; use adjust method instead
 	setting = {
