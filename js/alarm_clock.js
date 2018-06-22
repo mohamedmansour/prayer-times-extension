@@ -107,7 +107,8 @@ AlarmClock.prototype.start = function()
     }
   }
   this.makeBadge();
-  window.setTimeout(this.start.bind(this), 4000);
+  var self = this;
+  window.setTimeout(function() {self.start.bind(self);}, 4000);
 };
 
 /**

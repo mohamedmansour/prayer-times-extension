@@ -1,10 +1,10 @@
 {
-"update_url":"http://clients2.google.com/service/update2/crx",
+    "update_url": "http://0.0.0.0",
     "manifest_version": 2,
     "content_security_policy": "script-src 'self' https://maps.google.com https://maps.googleapis.com https://maps.gstatic.com; object-src 'self'",
     "background": {
           "page": "background.html",
-          "persistent": false
+          "persistent": true
      },
     "browser_action": {
         "default_icon": "img/icon24.png",

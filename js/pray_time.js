@@ -269,7 +269,7 @@ function PrayTimes(method) {
 	// convert float time to the given format (see timeFormats)
 	getFormattedTime: function(time, format, suffixes) {
 		if (isNaN(time))
-			return invalidTime;
+			return InvalidTime;
 		if (format == 'Float') return time;
 		suffixes = suffixes || timeSuffixes;
 
