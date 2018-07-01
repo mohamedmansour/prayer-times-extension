@@ -16,6 +16,7 @@ function onLoad() {
   $('button-choose-location').addEventListener('click', chooseLocation, false);
   $('button-mygeolocation').addEventListener('click', chooseMyLocation, false);
   $('play-stop').addEventListener('click', playStopAthan, false);
+  $('test-notification').addEventListener('click', testNotification, false);
   onInstall();
 }
 
@@ -270,6 +271,7 @@ function translateLabels() {
   $('followme-label').innerHTML = chrome.i18n.getMessage('followMeTwitter');
   $('visit-extension-label').innerHTML = chrome.i18n.getMessage('visitExtensionPage');
   $('suggestions-label').innerHTML = chrome.i18n.getMessage('fileBugsSuggestions');
+  $('test-notification').innerHTML = chrome.i18n.getMessage('testNotification');
 }
 
 /**
@@ -428,7 +430,6 @@ function playStopAthan(e) {
     var audioValue = $(isInitialID ? 'initial-athan' : 'athan').value;
     var audioSource = audioValue.substring(1);
     var audioType = audioValue.substring(0, 1) == '1' ? 'Shia' : 'Sunni';
-    console.log(audioSource);
     tempPlayer.setAthanTrack(audioType, audioSource);
     tempPlayer.playAthan();
   }
@@ -437,4 +438,12 @@ function playStopAthan(e) {
     e.target.innerHTML = playText;
     tempPlayer.stopAthan();
   }
+}
+
+
+function testNotification(e) {
+  bkg.controller.alarm.makeAlarm(
+    true,
+    chrome.i18n.getMessage('testNotification'),
+    chrome.i18n.getMessage('prayerNotifications'));
 }

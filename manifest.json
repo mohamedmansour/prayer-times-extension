@@ -1,6 +1,13 @@
 {
     "manifest_version": 2,
     "content_security_policy": "script-src 'self' https://maps.google.com https://maps.googleapis.com https://maps.gstatic.com; object-src 'self'",
+    "web_accessible_resources": [
+        "img/icon16.png",
+        "img/icon24.png",
+        "img/icon32.png",
+        "img/icon48.png",
+        "img/icon128.png"
+    ],
     "background": {
           "page": "background.html",
           "persistent": true
@@ -12,10 +19,11 @@
     "default_locale": "en",
     "description": "__MSG_extDescription__",
     "icons": {
-        "128": "img/icon128.png",
         "16": "img/icon16.png",
+        "24": "img/icon24.png",
         "32": "img/icon32.png",
-        "48": "img/icon48.png"
+        "48": "img/icon48.png",
+        "128": "img/icon128.png"
     },
     "minimum_chrome_version": "6",
     "name": "Prayer Times",

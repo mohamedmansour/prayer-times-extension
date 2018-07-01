@@ -86,21 +86,21 @@
 	"notFound": {
 		"message": "Emplacement introuvable"
 	},
-  "prayerNotifications": {
-    "message": "Notification des prières"
-  },
-  "notificationVisible": {
-    "message": "Popups Activées"
-  },
-  "badgeVisible": {
-    "message": "Afficher le compte à rebours"
-  },
+	"prayerNotifications": {
+		"message": "Notification des prières"
+	},
+	"notificationVisible": {
+		"message": "Popups Activées"
+	},
+	"badgeVisible": {
+		"message": "Afficher le compte à rebours"
+	},
 	"visibleTimenames": {
 		"message": "Temps visibles"
 	},
-  "visibleTimenamesInfo": {
-    "message": "Seuls les temps cochés seront avisés."
-  },
+	"visibleTimenamesInfo": {
+		"message": "Seuls les temps cochés seront avisés."
+	},
 	"fetchingGeolocation": {
 		"message": "Récupération de l'emplacement ..."
 	},
@@ -116,24 +116,24 @@
 	"prayerTimetable": {
 		"message": "Horaires des prières"
 	},
-  "nowPrayerTime": {
-    "message": "Il est maintenant temps de"
-  },
+	"nowPrayerTime": {
+		"message": "Il est maintenant temps de"
+	},
 	"timePrecaution": {
 		"message": "Les temps ci-dessus sont basées sur des calculs seulement. Veuillez tolérer +/-3 minutes pour Fajr, 1 minute pour Dhuhr, et 2 minutes pour Maghrib par mesure de précaution."
 	},
 	"calculationMethod": {
 		"message": "Méthode de calcul"
 	},
-  "followMeTwitter": {
-    "message": "Suivez-moi sur Twitter"
-  },
-  "visitExtensionPage": {
-    "message": "Visitez la page de l'extension"
-  },
-  "fileBugsSuggestions": {
-    "message": "Vos suggestions et bugs découverts"
-  },
+	"followMeTwitter": {
+		"message": "Suivez-moi sur Twitter"
+	},
+	"visitExtensionPage": {
+		"message": "Visitez la page de l'extension"
+	},
+	"fileBugsSuggestions": {
+		"message": "Vos suggestions et bugs découverts"
+	},
 	"imsak": {
 		"message": "Imsak"
 	},
@@ -196,5 +196,8 @@
 	},
 	"december": {
 		"message": "Décembre"
+	},
+	"testNotification": {
+		"message": "Notifications de Test"
 	}
 }

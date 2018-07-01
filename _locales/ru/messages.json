@@ -1,200 +1,203 @@
 {
-   "12hour": {
-      "message": "12 часов"
-   },
-   "12hourNoSuffix": {
-      "message": "12 часов без указания"
-   },
-   "24hour": {
-      "message": "24 часа"
-   },
-   "am": {
-      "message": "утра"
-   },
-   "april": {
-      "message": "Апрель"
-   },
-   "asr": {
-      "message": "Аср"
-   },
-   "august": {
-      "message": "Август"
-   },
-   "badgeVisible": {
-      "message": "Показать Уведомление Знак Countdown"
-   },
-   "calculationMethod": {
-      "message": "Метод расчета"
-   },
-   "cancel": {
-      "message": "Отмена"
-   },
-   "chooseLocation": {
-      "message": "Выбрать расположение"
-   },
-   "close": {
-      "message": "Закрыть"
-   },
-   "day": {
-      "message": "День"
-   },
-   "december": {
-      "message": "Декабрь"
-   },
-   "dhuhr": {
-      "message": "Зухр"
-   },
-   "extBy": {
-      "message": "Разработано "
-   },
-   "extDescription": {
-      "message": "Расписание намазов учитывая местоположения с выбором метода расчета"
-   },
-   "extName": {
-      "message": "Расписание намазов"
-   },
-   "extSource": {
-      "message": "Исходник доступен в"
-   },
-   "fajr": {
-      "message": "Фаджр"
-   },
-   "february": {
-      "message": "Февраль"
-   },
-   "fetchingGeolocation": {
-      "message": "Ищем вас :) ..."
-   },
-   "fileBugsSuggestions": {
-      "message": "Ошибки и предложения"
-   },
-   "followMeTwitter": {
-      "message": "Follow me on Twitter"
-   },
-   "geolocation": {
-      "message": "Расположение"
-   },
-   "imsak": {
-      "message": "Имсак"
-   },
-   "isha": {
-      "message": "Иша"
-   },
-   "january": {
-      "message": "Январь"
-   },
-   "july": {
-      "message": "Июль"
-   },
-   "june": {
-      "message": "Июнь"
-   },
-   "latitude": {
-      "message": "Широта"
-   },
-   "locationOnMap": {
-      "message": "Расположение на карте"
-   },
-   "locationSettings": {
-      "message": "Настройки местоположения"
-   },
-   "longitude": {
-      "message": "Долгота"
-   },
-   "maghrib": {
-      "message": "Магриб"
-   },
-   "march": {
-      "message": "Март"
-   },
-   "may": {
-      "message": "Май"
-   },
-   "midnight": {
-      "message": "Полночь"
-   },
-   "myGeoLocation": {
-      "message": "Мое расположение"
-   },
-   "next": {
-      "message": "вперед"
-   },
-   "notFound": {
-      "message": "Место не найдено"
-   },
-   "notificationVisible": {
-      "message": "Включить всплывающие окна"
-   },
-   "november": {
-      "message": "Ноябрь"
-   },
-   "nowPrayerTime": {
-      "message": "настало время"
-   },
-   "october": {
-      "message": "Октябрь"
-   },
-   "optionSaveResponse": {
-      "message": "Настройки сохранены!"
-   },
-   "options": {
-      "message": "Настройки"
-   },
-   "optionsWarning": {
-      "message": "Проверьте, что вы сохранили настройки!"
-   },
-   "pleaseWait": {
-      "message": "Ждите"
-   },
-   "pm": {
-      "message": "после полудня"
-   },
-   "prayerNotifications": {
-      "message": "Настройки уведомлений"
-   },
-   "prayerSettings": {
-      "message": "Расписание времени"
-   },
-   "prayerTimetable": {
-      "message": "Расписание на месяц"
-   },
-   "previous": {
-      "message": "назад"
-   },
-   "save": {
-      "message": "Сохранить"
-   },
-   "search": {
-      "message": "Поиск"
-   },
-   "searchPlaceholder": {
-      "message": "Поиск расположения ."
-   },
-   "september": {
-      "message": "Сентябрь"
-   },
-   "sunrise": {
-      "message": "Восход"
-   },
-   "sunset": {
-      "message": "Закат"
-   },
-   "timeFormat": {
-      "message": "Формат времени"
-   },
-   "timePrecaution": {
-      "message": "Эти времена основаны на расчетах. Погрешность +/- 3  минуты для Фаджра, 1 минута для Зухра, и 2 минуты для Магриба."
-   },
-   "viewTimetable": {
-      "message": "расписание на месяц"
-   },
-   "visibleTimenames": {
-      "message": "Включить названия"
-   },
-   "visibleTimenamesInfo": {
-      "message": "Только эти молитвы раз будете уведомлены."
-   },
-   "visitExtensionPage": {
-      "message": "Посетите страницу расширения"
-   }
+    "12hour": {
+        "message": "12 часов"
+    },
+    "12hourNoSuffix": {
+        "message": "12 часов без указания"
+    },
+    "24hour": {
+        "message": "24 часа"
+    },
+    "am": {
+        "message": "утра"
+    },
+    "april": {
+        "message": "Апрель"
+    },
+    "asr": {
+        "message": "Аср"
+    },
+    "august": {
+        "message": "Август"
+    },
+    "badgeVisible": {
+        "message": "Показать Уведомление Знак Countdown"
+    },
+    "calculationMethod": {
+        "message": "Метод расчета"
+    },
+    "cancel": {
+        "message": "Отмена"
+    },
+    "chooseLocation": {
+        "message": "Выбрать расположение"
+    },
+    "close": {
+        "message": "Закрыть"
+    },
+    "day": {
+        "message": "День"
+    },
+    "december": {
+        "message": "Декабрь"
+    },
+    "dhuhr": {
+        "message": "Зухр"
+    },
+    "extBy": {
+        "message": "Разработано "
+    },
+    "extDescription": {
+        "message": "Расписание намазов учитывая местоположения с выбором метода расчета"
+    },
+    "extName": {
+        "message": "Расписание намазов"
+    },
+    "extSource": {
+        "message": "Исходник доступен в"
+    },
+    "fajr": {
+        "message": "Фаджр"
+    },
+    "february": {
+        "message": "Февраль"
+    },
+    "fetchingGeolocation": {
+        "message": "Ищем вас :) ..."
+    },
+    "fileBugsSuggestions": {
+        "message": "Ошибки и предложения"
+    },
+    "followMeTwitter": {
+        "message": "Follow me on Twitter"
+    },
+    "geolocation": {
+        "message": "Расположение"
+    },
+    "imsak": {
+        "message": "Имсак"
+    },
+    "isha": {
+        "message": "Иша"
+    },
+    "january": {
+        "message": "Январь"
+    },
+    "july": {
+        "message": "Июль"
+    },
+    "june": {
+        "message": "Июнь"
+    },
+    "latitude": {
+        "message": "Широта"
+    },
+    "locationOnMap": {
+        "message": "Расположение на карте"
+    },
+    "locationSettings": {
+        "message": "Настройки местоположения"
+    },
+    "longitude": {
+        "message": "Долгота"
+    },
+    "maghrib": {
+        "message": "Магриб"
+    },
+    "march": {
+        "message": "Март"
+    },
+    "may": {
+        "message": "Май"
+    },
+    "midnight": {
+        "message": "Полночь"
+    },
+    "myGeoLocation": {
+        "message": "Мое расположение"
+    },
+    "next": {
+        "message": "вперед"
+    },
+    "notFound": {
+        "message": "Место не найдено"
+    },
+    "notificationVisible": {
+        "message": "Включить всплывающие окна"
+    },
+    "november": {
+        "message": "Ноябрь"
+    },
+    "nowPrayerTime": {
+        "message": "настало время"
+    },
+    "october": {
+        "message": "Октябрь"
+    },
+    "optionSaveResponse": {
+        "message": "Настройки сохранены!"
+    },
+    "options": {
+        "message": "Настройки"
+    },
+    "optionsWarning": {
+        "message": "Проверьте, что вы сохранили настройки!"
+    },
+    "pleaseWait": {
+        "message": "Ждите"
+    },
+    "pm": {
+        "message": "после полудня"
+    },
+    "prayerNotifications": {
+        "message": "Настройки уведомлений"
+    },
+    "prayerSettings": {
+        "message": "Расписание времени"
+    },
+    "prayerTimetable": {
+        "message": "Расписание на месяц"
+    },
+    "previous": {
+        "message": "назад"
+    },
+    "save": {
+        "message": "Сохранить"
+    },
+    "search": {
+        "message": "Поиск"
+    },
+    "searchPlaceholder": {
+        "message": "Поиск расположения ."
+    },
+    "september": {
+        "message": "Сентябрь"
+    },
+    "sunrise": {
+        "message": "Восход"
+    },
+    "sunset": {
+        "message": "Закат"
+    },
+    "timeFormat": {
+        "message": "Формат времени"
+    },
+    "timePrecaution": {
+        "message": "Эти времена основаны на расчетах. Погрешность +/- 3  минуты для Фаджра, 1 минута для Зухра, и 2 минуты для Магриба."
+    },
+    "viewTimetable": {
+        "message": "расписание на месяц"
+    },
+    "visibleTimenames": {
+        "message": "Включить названия"
+    },
+    "visibleTimenamesInfo": {
+        "message": "Только эти молитвы раз будете уведомлены."
+    },
+    "visitExtensionPage": {
+        "message": "Посетите страницу расширения"
+    },
+    "testNotification": {
+        "message": "тестовые уведомления"
+    }
 }

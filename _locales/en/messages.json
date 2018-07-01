@@ -282,5 +282,9 @@
   "december": {
     "message": "December",
     "description": "The month name December"
+  },
+  "testNotification": {
+    "message": "Test Notification",
+    "description": "Tests the prayer time notification"
   }
 }

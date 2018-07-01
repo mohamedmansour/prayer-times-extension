@@ -24,6 +24,10 @@ AlarmClock = function(entity)
   this.nextPrayerTime = null;
   this.flag = true; // Give Alarm?
   this.athanPlayer = new AthanPlayer();
+
+  chrome.notifications.onClosed.addListener(callback => {
+    this.athanPlayer.stopAthan();
+  })
 };
 
 /**
@@ -146,23 +150,16 @@ AlarmClock.prototype.makeAlarm = function(isPrayerTime, title, body)
     return;
   }
 
-  // Create a simple text notification:
-  var notification = webkitNotifications.createNotification(
-      'img/icon48.png',  // icon url - can be relative
-      title,             // notification title
-      body               // notification body text
-  );
-  notification.onclose = function() {
-    this.athanPlayer.stopAthan();
-  }.bind(this);
-  
-  // Then show the notification.
-  notification.show();
-  
-  // Only show athans if needed.
-  if (settings.athanVisible && isPrayerTime) {
-    this.athanPlayer.playAthan();
-  }
+  chrome.notifications.create('hi', {
+    type: 'basic',
+    iconUrl: 'img/icon48.png', 
+    title: title,
+    message: body
+  }, (callback) => {
+    if (settings.athanVisible && isPrayerTime) {
+      this.athanPlayer.playAthan();
+    }
+  });
 };
 
 /**

@@ -86,21 +86,21 @@
 	"notFound": {
 		"message": "لم يتم العثور على موقع"
 	},
-  "prayerNotifications": {
-    "message": "صلاة الإشعارات"
-  },
-  "notificationVisible": {
-    "message": "تمكين بالنوافذ"
-  },
-  "badgeVisible": {
-    "message": "وتظهر شارة العد التنازلي إعلام"
-  },
+	"prayerNotifications": {
+		"message": "صلاة الإشعارات"
+	},
+	"notificationVisible": {
+		"message": "تمكين بالنوافذ"
+	},
+	"badgeVisible": {
+		"message": "وتظهر شارة العد التنازلي إعلام"
+	},
 	"visibleTimenames": {
 		"message": "أسماء من الزمن مرئي"
 	},
-  "visibleTimenamesInfo": {
-    "message": "فقط سوف يتم إخطار هذه أوقات الصلاة."
-  },
+	"visibleTimenamesInfo": {
+		"message": "فقط سوف يتم إخطار هذه أوقات الصلاة."
+	},
 	"fetchingGeolocation": {
 		"message": "جلب الموقع..."
 	},
@@ -116,27 +116,27 @@
 	"prayerTimetable": {
 		"message": "أوقات الصلاة"
 	},
-  "nowPrayerTime": {
-    "message": "أوقات الصلاة الآن"
-  },
-  "nowTimeAtLabel": {
-    "message": "الآن وقت"
-  },
+	"nowPrayerTime": {
+		"message": "أوقات الصلاة الآن"
+	},
+	"nowTimeAtLabel": {
+		"message": "الآن وقت"
+	},
 	"timePrecaution": {
 		"message": "وتستند مرات أعلاه على الحسابات فقط. أرجو أن تسمحوا -- \/ + 3 دقائق لصلاة الفجر، 1 دقيقة عن الظهر، والمغرب 2 دقيقة كاجراء وقائي."
 	},
 	"calculationMethod": {
 		"message": "طريقة الحساب"
 	},
-  "followMeTwitter": {
-    "message": "يتبعني Twitter"
-  },
-  "visitExtensionPage": {
-    "message": "زيارة صفحة التمديد"
-  },
-  "fileBugsSuggestions": {
-    "message": "ملف الخلل واقتراحات"
-  },
+	"followMeTwitter": {
+		"message": "يتبعني Twitter"
+	},
+	"visitExtensionPage": {
+		"message": "زيارة صفحة التمديد"
+	},
+	"fileBugsSuggestions": {
+		"message": "ملف الخلل واقتراحات"
+	},
 	"imsak": {
 		"message": "إمساك"
 	},
@@ -199,5 +199,8 @@
 	},
 	"december": {
 		"message": "كانون الأول"
+	},
+	"testNotification": {
+		"message": "اعلامات الاختبار"
 	}
 }
