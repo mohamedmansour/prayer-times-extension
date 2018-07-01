@@ -46,7 +46,8 @@ function onInstall() {
       bkg.settings.athan = athan;
       
       dialog.setVisible(false);
-      location.search = '';
+      
+      chooseMyLocation();
     });
     dialog.addEventListener('load', function() {
       $('initial-calculation-label').innerHTML = $('calculation-method-label').innerHTML;
@@ -204,7 +205,7 @@ function onRestore() {
   map.setCenter(new GLatLng(lat, lng), 13);
   var marker = new GMarker(new GPoint(lng, lat));
   map.addOverlay(marker);
-              
+
   // Restore timenames.
   if (bkg.settings.timenames) {
     var timeNames = bkg.settings.timenames;
@@ -338,7 +339,7 @@ function createOption(text, value) {
 /**
  * Using Geolocation API, get the user address automatically and graph it.
  */
-function chooseMyLocation() {
+function chooseMyLocation(callback) {
   var entity = bkg.controller.getPrayerEntity();
   entity.getGeolocation(function(lat, lng) {
     map.clearOverlays();
@@ -347,6 +348,8 @@ function chooseMyLocation() {
     $('latitude').value = lat;
     $('longitude').value = lng;
     map.addOverlay(marker);
+    bkg.settings.currentPosition = lat + ',' + lng;
+    bkg.controller.alarm.start();
   });
 }
 
