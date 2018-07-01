@@ -337,7 +337,7 @@ function createOption(text, value) {
  * Using Geolocation API, get the user address automatically and graph it.
  */
 function chooseMyLocation() {
-  var entity = bkg.getPrayerEntity();
+  var entity = bkg.controller.getPrayerEntity();
   entity.getGeolocation(function(lat, lng) {
     map.clearOverlays();
     map.setCenter(new GLatLng(lat, lng), 13);

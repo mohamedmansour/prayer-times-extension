@@ -6,10 +6,10 @@
  */
 TimetableController = function(timetableID)
 {
-  this.bkg_ = chrome.extension.getBackgroundPage();
-  this.entity_ = this.bkg_.controller.getPrayerEntity();
-  this.settings_ = this.bkg_.settings;
-  this.model_ = new TimetableModel(this.entity_, timetableID);
+  this.bkg = chrome.extension.getBackgroundPage();
+  this.entity = this.bkg.controller.getPrayerEntity();
+  this.settings = this.bkg.settings;
+  this.model = new TimetableModel(this.entity, timetableID);
 };
 
 /**
@@ -19,8 +19,8 @@ TimetableController.prototype.init = function()
 {
   this.translateView();
   
-  $('version').innerHTML = ' (v' + this.settings_.version + ')';
-  $('calculation').innerHTML = this.entity_.getCalculationName(this.settings_.calculation);
+  $('version').innerHTML = ' (v' + this.settings.version + ')';
+  $('calculation').innerHTML = this.entity.getCalculationName(this.settings.calculation);
   
   // Events initialization.
   $('options-link').addEventListener('click', this.onVisitOptions.bind(this), false);
@@ -28,7 +28,7 @@ TimetableController.prototype.init = function()
   $('button-prev').addEventListener('click', this.onPrevious.bind(this), false);
   
   // View the current month.
-  this.model_.viewMonth(0);
+  this.model.viewMonth(0);
 };
 
 /**
@@ -59,7 +59,7 @@ TimetableController.prototype.translateView = function()
  */
 TimetableController.prototype.onVisitOptions = function()
 {
-  this.bkg_.controller.openSingletonPage(chrome.extension.getURL('options.html'));
+  this.bkg.controller.openSingletonPage(chrome.extension.getURL('options.html'));
   return false;
 };
 
@@ -69,7 +69,7 @@ TimetableController.prototype.onVisitOptions = function()
  */
 TimetableController.prototype.onNext = function() 
 {
-  this.model_.viewMonth(+1);
+  this.model.viewMonth(+1);
 };
 
 /**
@@ -77,5 +77,5 @@ TimetableController.prototype.onNext = function()
  */
 TimetableController.prototype.onPrevious = function() 
 {
-  this.model_.viewMonth(-1);
+  this.model.viewMonth(-1);
 };

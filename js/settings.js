@@ -1,5 +1,5 @@
 // Global Settings.
-settings = {
+var settings = {
   get version() {
     return localStorage['version'];
   },
@@ -71,3 +71,5 @@ settings = {
     localStorage['opt_out'] = val;
   },
 };
+
+window.settings = settings;
