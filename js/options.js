@@ -440,7 +440,6 @@ function playStopAthan(e) {
   }
 }
 
-
 function testNotification(e) {
   bkg.controller.alarm.makeAlarm(
     true,

@@ -144,13 +144,13 @@
 		"message": "Lever du soleil"
 	},
 	"dhuhr": {
-		"message": "Coucher du soleil"
+		"message": "Dhuhr"
 	},
 	"asr": {
 		"message": "Asr"
 	},
 	"sunset": {
-		"message": "Crépuscule"
+		"message": "Coucher du soleil"
 	},
 	"maghrib": {
 		"message": "Maghrib"
@@ -198,6 +198,6 @@
 		"message": "Décembre"
 	},
 	"testNotification": {
-		"message": "Notifications de Test"
+		"message": "Signale du Test"
 	}
 }
