@@ -140,7 +140,7 @@ DialogController.prototype.onCancel = function ()
  */
 DialogController.prototype.setVisible = function (v) 
 {
-  this.dialog.style.display = v ? '-webkit-box' : 'none';
+  this.dialog.style.display = v ? 'flex' : 'none';
   if (v) {
     if (this.eventMap.load) {
       this.eventMap.load();
