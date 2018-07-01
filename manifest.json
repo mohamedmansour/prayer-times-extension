@@ -1,5 +1,4 @@
 {
-    "update_url": "http://0.0.0.0",
     "manifest_version": 2,
     "content_security_policy": "script-src 'self' https://maps.google.com https://maps.googleapis.com https://maps.gstatic.com; object-src 'self'",
     "background": {
@@ -11,7 +10,7 @@
         "default_popup": "popup.html"
     },
     "default_locale": "en",
-    "description": "Notice: Original deveoper is `Mohamed Mansour'. I only corrected the extension so that it is compatible with Chrome 67+.",
+    "description": "__MSG_extDescription__",
     "icons": {
         "128": "img/icon128.png",
         "16": "img/icon16.png",

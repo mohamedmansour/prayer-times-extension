@@ -10,6 +10,7 @@ Contributors:
  * Hamid Zarrabi-Zadeh <zarrabi@scs.carleton.ca>
  * Dmitri Babaev <babaevdmitri@gmail.com>
  * Emad Al-Shihabi  <emad.shi@gmail.com>
+ * Mohammad Sadeq Dousti <msdousti@gmail.com>
 
 Translations:
 
