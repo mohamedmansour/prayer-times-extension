@@ -37,7 +37,7 @@ settings = {
   get timenames() {
     var key = localStorage['timenames'];
     return (typeof key == 'undefined') ?
-        ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'] : key.split(',');
+        ['Fajr', 'Sunrise', 'Dhuhr', 'Sunset', 'Maghrib', 'Midnight'] : key.split(',');
   },
   set timenames(val) {
     localStorage['timenames'] = val;

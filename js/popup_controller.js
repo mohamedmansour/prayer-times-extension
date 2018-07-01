@@ -46,7 +46,8 @@ PopupController.prototype.showPrayerTime = function()
     var html = '';
     $('error').style.display = 'block';
     $('footer').style.display = 'none';
-    window.setTimeout(this.showPrayerTime.bind(this), 1000);
+    var self = this;
+    window.setTimeout(function() {self.showPrayerTime.bind(self);}, 1000);
   }
   else {
     $('error').style.display = 'none';
@@ -72,7 +73,8 @@ PopupController.prototype.showCurrentTime = function()
   var date = new Date();
   var timeElt = $('time');
   timeElt.innerHTML = date.toLocaleTimeString();
-  window.setTimeout(this.showCurrentTime, 1000);
+  var self = this;
+  window.setTimeout(function() {self.showCurrentTime();}, 1000);
 };
 
 /**
@@ -82,9 +84,9 @@ PopupController.prototype.showCurrentDate = function()
 {
   var date = new Date();
   var dateString = date.toLocaleDateString();
-  var index = dateString.indexOf(',');
-  $('dateA').innerHTML = dateString.substring(0, index);
-  $('dateB').innerHTML = dateString.substring(index + 2, dateString.length);
+  // var index = dateString.indexOf(',');
+  // $('dateA').innerHTML = dateString.substring(0, index);
+  $('dateB').innerHTML = dateString.substring(0, dateString.length);
   $('dateH').innerHTML = this.islamicDate_.getHijriDate(date);
 };
 
