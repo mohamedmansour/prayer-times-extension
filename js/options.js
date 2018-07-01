@@ -366,13 +366,13 @@ function chooseLocation() {
   
   // Search button.
   var searchButton = document.createElement('button');
-  searchButton.setAttribute('onclick', 'getAddress();');
+  searchButton.onclick = () => getAddress();
   searchButton.innerHTML = chrome.i18n.getMessage('search');
   gmapsDOM.appendChild(searchButton);
   
   // Cancel button.
   var cancelButton = document.createElement('button');
-  cancelButton.setAttribute('onclick', 'cancelAddress();');
+  cancelButton.onclick = () => cancelAddress();
   cancelButton.innerHTML = chrome.i18n.getMessage('cancel');
   gmapsDOM.appendChild(cancelButton);
 
