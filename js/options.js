@@ -422,6 +422,7 @@ function playStopAthan(e) {
   var playText = chrome.i18n.getMessage('playTrack');
   var stopText = chrome.i18n.getMessage('stopTrack');
   if (currentText == playText) {
+    $('play-stop').innerHTML = stopText;
     e.target.innerHTML = stopText;
     var isInitialID = e.target.id.indexOf('initial-') == 0;
     var audioValue = $(isInitialID ? 'initial-athan' : 'athan').value;
@@ -433,6 +434,7 @@ function playStopAthan(e) {
   }
   else {
     $('play-stop').innerHTML = playText;
+    e.target.innerHTML = playText;
     tempPlayer.stopAthan();
   }
 }
