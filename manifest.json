@@ -22,5 +22,5 @@
     "short_name": "Prayer Times",
     "options_page": "options.html",
     "permissions": [ "geolocation" , "notifications"],
-    "version": "5.0.1"
+    "version": "3.1.0"
 }
