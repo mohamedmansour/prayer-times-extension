@@ -1,8 +1,7 @@
 {
   "name": "prayer-times-extension",
   "version": "1.0.0",
-  "description": "Muslim Prayer Timetable Extension\r =================================",
-  "main": "index.js",
+  "description": "Muslim Prayer Timetable Extension",
   "private": true,
   "scripts": {
     "build": "webpack"
@@ -11,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/mohamedmansour/prayer-times-extension.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Mohamed Mansour",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mohamedmansour/prayer-times-extension/issues"
   },
