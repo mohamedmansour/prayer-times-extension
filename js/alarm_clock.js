@@ -111,8 +111,7 @@ AlarmClock.prototype.start = function()
     }
   }
   this.makeBadge();
-  var self = this;
-  window.setTimeout(function() {self.start.bind(self);}, 4000);
+  window.setTimeout(() => this.start(), 4000);
 };
 
 /**
