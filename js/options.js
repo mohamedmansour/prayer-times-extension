@@ -445,7 +445,6 @@ function playStopAthan(e) {
 
 function testNotification(e) {
   bkg.controller.alarm.makeAlarm(
-    true,
     chrome.i18n.getMessage('testNotification'),
     chrome.i18n.getMessage('prayerNotifications'));
 }

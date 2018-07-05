@@ -175,10 +175,6 @@
     "message": "It is now time to pray",
     "description": "Text that represents that it is now time to pray."
   },
-  "nowTimeAtLabel": {
-    "message": "It is now time of",
-    "description": "Text that represents that it is now time to."
-  },
   "timePrecaution": {
     "message": "The above times are based on calculations only. Please allow +/- 3  minutes for Fajr, 1 minute for Dhuhr, and 2 minutes for Maghrib as a precaution.",
     "description": "A warning to the user when using the calculations. This will be shown in the timetable page."
