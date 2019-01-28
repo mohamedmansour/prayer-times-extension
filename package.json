@@ -4,7 +4,9 @@
   "description": "Muslim Prayer Timetable Extension",
   "private": true,
   "scripts": {
-    "build": "webpack"
+    "start": "webpack --config ./webpack.config.js --watch",
+    "build": "webpack --config ./webpack.config.js",
+    "lint": "tslint --project tsconfig.json --config tslint.json -t stylish"
   },
   "repository": {
     "type": "git",
@@ -17,9 +19,13 @@
   },
   "homepage": "https://github.com/mohamedmansour/prayer-times-extension#readme",
   "devDependencies": {
-    "ts-loader": "^4.4.2",
-    "typescript": "^2.9.2",
-    "webpack": "^4.14.0",
-    "webpack-cli": "^3.0.8"
+    "@babel/core": "^7.2.2",
+    "@babel/preset-typescript": "^7.1.0",
+    "babel-loader": "^8.0.5",
+    "prettier": "^1.16.1",
+    "tslint": "^5.12.1",
+    "typescript": "^3.2.4",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1"
   }
 }

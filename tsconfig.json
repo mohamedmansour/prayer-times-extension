@@ -1,10 +1,27 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
-    "noImplicitAny": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "declaration": true,
+    "jsx": "react",
     "sourceMap": true,
-    "module": "es6",
-    "target": "es5",
-    "allowJs": true
-  }
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "preserveConstEnums": true,
+    "outDir": "dist",
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "include": [
+    "src"
+  ],
+  "types": [
+    "chrome"
+  ]
 }

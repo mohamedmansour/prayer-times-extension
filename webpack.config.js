@@ -1,23 +1,27 @@
-const path = require('path');
+const { resolve } = require('path');
 
 module.exports = {
-  entry: './src/background.ts',
-  devtool: 'inline-source-map',
   mode: 'development',
+  entry: {
+    'entry-background': './src/background/index.ts',
+    'entry-popup': './src/popup/index.ts',
+    'entry-options': './src/options/index.ts'
+  },
+  output: {
+    path: resolve(__dirname, 'dist/'),
+    filename: '[name].js',
+    chunkFilename: '[name].chunk.js',
+  },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
+        test: /\.(js|ts)$/,
+        use: 'babel-loader',
         exclude: /node_modules/
       }
     ]
   },
   resolve: {
-    extensions: [ '.ts', '.js' ]
-  },
-  output: {
-    filename: 'background.js',
-    path: path.resolve(__dirname, 'dist')
+    extensions: ['*', '.js', '.ts']
   }
 };

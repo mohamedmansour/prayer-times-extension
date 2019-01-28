@@ -1,0 +1,15 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:latest", "tslint-react"],
+  "rules": {
+    "quotemark": [true, "single"],
+    "eofline": false,
+    "trailing-comma": false,
+    "arrow-parens": false,
+    "semicolon": [true, "never"],
+    "newline-before-return": true,
+    "newline-per-chained-call": true,
+    "no-console": false,
+    "variable-name": false
+  }
+}
