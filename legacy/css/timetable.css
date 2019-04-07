@@ -1,0 +1,74 @@
+@import url("core.css");
+
+#table-title {
+  font-size: 1.5em;
+}
+
+#controls {
+  text-align: center;
+  padding: 10px;
+}
+
+#controls button {
+  padding: 5px;
+  margin: 0px;
+}
+
+#controls span {
+  margin: 0px;
+  background: #ebeff9;
+  border: 1px solid #b5c7de;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+#timetable {
+  width: 600px;
+	border-collapse: collapse;
+	border: 1px solid #b5c7de;
+  padding: 100px;
+}
+
+.head-row {
+  font-weight: bold;
+  font-size: 1.4em;
+  background-color: #ebeff9;
+}
+
+.today-row {
+  background-color: #333;
+  color: #fff;
+  font-size: 1.3em;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.odd-row {
+  background-color: #fff;
+}
+
+td {
+  text-align: center;
+}
+
+tr.odd-row:hover, tr.even-row:hover {
+  background-color: #b5c7de;
+}
+
+#footerTimetable {
+  margin: 10px auto;
+  text-align: center;
+  width: 500px;
+}
+
+#precaution {
+  background: #FDFFBD;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  color: #333;
+}
+
+#calculation-method-label {
+  font-weight: bold;
+}

@@ -1,0 +1,215 @@
+{
+  "extName": {
+    "message": "اوقات شرعی"
+  },
+  "extDescription": {
+    "message": "اوقات شرعی، قابل تنظیم برای همه ی منظقه های زمانی بر اساس موقعیت جغرافیایی"
+  },
+  "extBy": {
+    "message": "توسعه داده شده توسط "
+  },
+  "extSource": {
+    "message": "سورس کد در دسترس در "
+  },
+  "day": {
+    "message": "روز"
+  },
+  "am": {
+    "message": "قبل از ظهر"
+  },
+  "pm": {
+    "message": "بعد از ظهر"
+  },
+  "24hour": {
+    "message": "۲۴ ساعت"
+  },
+  "12hour": {
+    "message": "۱۲ ساعت"
+  },
+  "12hourNoSuffix": {
+    "message": "۱۲ ساعته بدون پسوند"
+  },
+  "next": {
+    "message": "بعدی"
+  },
+  "previous": {
+    "message": "قبلی"
+  },
+  "options": {
+    "message": "گزینه ها"
+  },
+  "save": {
+    "message": "ذخیره"
+  },
+  "search": {
+    "message": "جست و جو"
+  },
+  "cancel": {
+    "message": "لغو"
+  },
+  "close": {
+    "message": "بستن"
+  },
+  "geolocation": {
+    "message": "مکان جغرافیایی"
+  },
+  "latitude": {
+    "message": "عرض جغرافیایی"
+  },
+  "longitude": {
+    "message": "طول جغرافیایی"
+  },
+  "chooseLocation": {
+    "message": "انتخاب مکان"
+  },
+  "myGeoLocation": {
+    "message": "مکان من"
+  },
+  "optionsWarning": {
+    "message": "مطمئن شوید که قبل از بستن، تنظیمات خود را ذخیره می کنید!"
+  },
+  "optionSaveResponse": {
+    "message": "گزینه ها ذخیره شدند!"
+  },
+  "locationOnMap": {
+    "message": "مکان بر روی نقشه"
+  },
+  "locationSettings": {
+    "message": "تنظیمات مکان"
+  },
+  "prayerSettings": {
+    "message": "تنظیمات"
+  },
+  "timeFormat": {
+    "message": "قالب زمان"
+  },
+  "notFound": {
+    "message": "مکان یافت نشد"
+  },
+  "prayerNotifications": {
+    "message": "اعلان ها"
+  },
+  "notificationVisible": {
+    "message": "فعال کردن نمایش اعلان"
+  },
+  "badgeVisible": {
+    "message": "نمایش شمارش معکوس"
+  },
+  "athanVisible": {
+    "message": "فعال سازی صدای اذان"
+  },
+  "athanTrack": {
+    "message": "صدای اذان"
+  },
+  "playTrack": {
+    "message": "پخش اذان"
+  },
+  "stopTrack": {
+    "message": "توقف اذان"
+  },
+  "visibleTimenames": {
+    "message": "اوقات قابل نمایش"
+  },
+  "visibleTimenamesInfo": {
+    "message": "فقط برای این دسته از اوقات هشدار داده شود"
+  },
+  "fetchingGeolocation": {
+    "message": "دریافت مکان ..."
+  },
+  "searchPlaceholder": {
+    "message": "جست و جوی مکان"
+  },
+  "pleaseWait": {
+    "message": "لطفا صبر کنید"
+  },
+  "viewTimetable": {
+    "message": "نمایش جدول زمانی"
+  },
+  "prayerTimetable": {
+    "message": "جدول اوقات شرعی"
+  },
+  "nowPrayerTime": {
+    "message": "وقت نماز"
+  },
+  "timePrecaution": {
+    "message": "اوقات شرعی نمایش داده شده توسط این افزونه توسط محاسبات نرم افزاری به دست آمده اند، لطفا برای هر کدام تا ۳ دقیقه قبل و بعد احتیاط را رعایت کنید."
+  },
+  "calculationMethod": {
+    "message": "روش محاسبه"
+  },
+  "followMeTwitter": {
+    "message": "من را دنبال کنید : "
+  },
+  "visitExtensionPage": {
+    "message": "مشاهده ی صفحه ی افزونه"
+  },
+  "fileBugsSuggestions": {
+    "message": "پیشنهاد ها و انتقاد ها"
+  },
+  "imsak": {
+    "message": "سپیده دم"
+  },
+  "fajr": {
+    "message": "فجر"
+  },
+  "sunrise": {
+    "message": "طلوع آفتاب"
+  },
+  "dhuhr": {
+    "message": "ظهر"
+  },
+  "asr": {
+    "message": "عصر"
+  },
+  "sunset": {
+    "message": "غروب آفتاب"
+  },
+  "maghrib": {
+    "message": "مغرب"
+  },
+  "isha": {
+    "message": "عشا"
+  },
+  "midnight": {
+    "message": "نیمه شب"
+  },
+  "january": {
+    "message": "ژانویه"
+  },
+  "february": {
+    "message": "فوریه"
+  },
+  "march": {
+    "message": "مارچ"
+  },
+  "april": {
+    "message": "آپریل"
+  },
+  "may": {
+    "message": "می"
+  },
+  "june": {
+    "message": "ژوئن"
+  },
+  "july": {
+    "message": "جولای"
+  },
+  "august": {
+    "message": "آگوست"
+  },
+  "september": {
+    "message": "سپتامبر"
+  },
+  "october": {
+    "message": "اکتبر"
+  },
+  "november": {
+    "message": "نوامبر"
+  },
+  "december": {
+    "message": "دسامبر"
+  },
+  "testNotification": {
+    "message": "اعلان های"
+  }
+}

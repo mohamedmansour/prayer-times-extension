@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="/css/timetable.css" />
+  <script type='text/javascript' src='/js/functions.js'></script>
+  <script type='text/javascript' src='/js/timetable_controller.js'></script>
+  <script type='text/javascript' src='/js/timetable_model.js'></script>
+</head>
+<body> 
+  <div id="header">
+    <h1><span class="prayertimetable"></span> <em id="version"></em></h1>
+  </div>
+  <p>
+    <span id="followme-label"></span> <a href="http://twitter.com/mohamedmansour">@mohamedmansour</a> and 
+         <a href="https://plus.google.com/116805285176805120365/about">Google+</a>
+  </p>
+  <div class="extension-template">
+    <div class="extension-header prayertimetable"></div>
+    <div class="extension-options">
+      <div id="controls">
+        <button id="button-prev"></button>
+        <span id="table-title"></span>
+        <button id="button-next"></button>
+      </div>
+      <table id="timetable" align="center"> 
+        <tbody></tbody> 
+      </table>
+      <div id="footerTimetable">
+        <p id="precaution"></p>
+        <p>
+          <span id="calculation-method-label"></span>
+          <span id="calculation"></span>
+          [<a href="#" id="options-link"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="credits">
+    <span id="extension-by-label"></span> <a href="http://www.mohamedmansour.com">Mohamed Mansour</a>, 
+    <span id="extension-source-label"></span> <a href="http://github.com/mohamedmansour/prayer-times-extension">GitHub</a>
+  </div>
+  <script type='text/javascript' src='/js/timetableController.js'></script>
+</body>
+</html>
