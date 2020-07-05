@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "commonjs",
+    "module": "esnext",
     "declaration": true,
     "jsx": "react",
     "sourceMap": true,
@@ -12,11 +12,7 @@
     "strictNullChecks": true,
     "moduleResolution": "node",
     "preserveConstEnums": true,
-    "outDir": "dist",
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "outDir": "dist"
   },
   "include": [
     "src"

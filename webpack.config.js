@@ -7,9 +7,9 @@ module.exports = {
   devtool: 'inline-source-map',
   entry: {
     'entry-background': './src/background/index.ts',
-    'entry-options': './src/options/index.ts',
-    'entry-popup': './src/popup/index.ts',
-    'entry-timetable': './src/timetable/index.ts'
+    'entry-options': './src/options/index.tsx',
+    'entry-popup': './src/popup/index.tsx',
+    'entry-timetable': './src/timetable/index.tsx'
   },
   output: {
     path: path.resolve(__dirname, 'dist/'),
@@ -34,13 +34,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|ts)$/,
+        test: /\.(js|tsx?)$/,
         use: 'babel-loader',
         exclude: /node_modules/
       }
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.ts']
+    extensions: ['*', '.js', '.ts', '.tsx']
   }
 }
