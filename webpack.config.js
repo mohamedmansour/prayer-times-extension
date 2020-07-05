@@ -1,6 +1,6 @@
 const path = require('path')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -17,10 +17,19 @@ module.exports = {
     chunkFilename: '[name].chunk.js',
   },
   plugins: [
-    new CopyWebpackPlugin([{ from: './public/**/*', transformPath (targetPath) {
-      return targetPath.replace('public/', '');
-    }}]),
-    new CleanWebpackPlugin('dist')
+    new CopyPlugin({
+      patterns: [
+        {
+          from: './public/**/*',
+          transformPath (targetPath) {
+            return targetPath.replace('public' + path.sep, '');
+          }
+        }
+      ]
+    }),
+    new CleanWebpackPlugin({ 
+      cleanOnceBeforeBuildPatterns: 'dist' 
+    })
   ],
   module: {
     rules: [
