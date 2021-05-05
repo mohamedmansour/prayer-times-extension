@@ -1,24 +1,23 @@
 {
   "name": "__MSG_extName__",
   "short_name": "__MSG_extName__",
-  "version": "4.0.0",
-  "manifest_version": 2,
   "description": "__MSG_extDescription__",
+  "version": "4.0.0",
+  "manifest_version": 3,
   "default_locale": "en",
   "background": {
-    "scripts": ["entry-background.js"],
-    "persistent": false
+    "service_worker": "entry-background.js"
   },
-  "browser_action": {
+  "action": {
     "default_icon": "images/icon.png",
+    "default_title": "__MSG_extName__",
     "default_popup": "views/popup.html"
   },
   "icons": {
     "128": "images/icon.png"
   },
   "options_page": "views/options.html",
-  "permissions": ["geolocation", "notifications"],
-  "content_security_policy": "script-src 'self' https://maps.google.com https://maps.googleapis.com https://maps.gstatic.com; object-src 'self'",
+  "permissions": ["geolocation", "notifications", "storage"],
   "web_accessible_resources": [
     "images/icon.png"
   ]

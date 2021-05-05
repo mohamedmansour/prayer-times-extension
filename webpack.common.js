@@ -6,10 +6,10 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: {
-    'entry-background': './src/background/index.ts',
-    'entry-options': './src/options/index.tsx',
-    'entry-popup': './src/popup/index.tsx',
-    'entry-timetable': './src/timetable/index.tsx'
+    'entry-background': './src/background/background.ts',
+    'entry-options': './src/options/options.tsx',
+    'entry-popup': './src/popup/popup.tsx',
+    'entry-timetable': './src/timetable/timetable.tsx'
   },
   output: {
     path: path.resolve(__dirname, 'dist/'),
@@ -21,8 +21,8 @@ module.exports = {
       patterns: [
         {
           from: './public/**/*',
-          transformPath (targetPath) {
-            return targetPath.replace('public' + path.sep, '');
+          to({ context, absoluteFilename }) {
+            return path.join(context, 'dist', absoluteFilename.substr(context.length + 'public'.length + 1))
           }
         }
       ]
