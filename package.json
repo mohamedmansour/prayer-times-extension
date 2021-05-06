@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack --config ./webpack.dev.js --watch",
     "build": "webpack --config ./webpack.prod.js",
-    "lint": "tslint --project tsconfig.json --config tslint.json -t stylish"
+    "lint": "tslint --project tsconfig.json --config tslint.json -t stylish",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,10 +24,15 @@
     "@babel/preset-env": "^7.14.1",
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.23",
+    "@types/sinon": "^10.0.0",
+    "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^8.1.1",
+    "jest": "^26.6.3",
     "prettier": "^2.2.1",
+    "sinon": "^10.0.0",
     "tslint": "^6.1.2",
     "typescript": "^4.2.4",
     "webpack": "^5.36.2",
@@ -44,7 +50,14 @@
   },
   "babel": {
     "presets": [
-      "@babel/preset-env",
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ],
       "@babel/preset-react",
       "@babel/preset-typescript"
     ]
