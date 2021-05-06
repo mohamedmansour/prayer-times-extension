@@ -1,0 +1,25 @@
+{
+  "extensions": {
+    "recommendations": ["esbenp.prettier-vscode", "Orta.vscode-jest", "dbaeumer.vscode-eslint"]
+  },
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.tabSize": 2,
+    "javascript.preferences.quoteStyle": "single",
+    "typescript.preferences.quoteStyle": "single",
+    "prettier.singleQuote": true,
+    "prettier.semi": false,
+    "prettier.printWidth": 100,
+    "eslint.format.enable": true,
+    "javascript.format.enable": false,
+    "typescript.format.enable": false,
+    "prettier.documentSelectors": [
+      "**/*.ts",
+      "**/*.tsx"
+    ]
+  }
+}
