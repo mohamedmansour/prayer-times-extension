@@ -21,7 +21,7 @@ export class PopupState {
   format = PrayerTimeFormat.TwelveHourFormat
   coordinates: LocationCoordinate | undefined = undefined
   prayTimesProvider: PrayTimesProvider
-  prayerTimeNames = ['imsak', 'fajr', 'dhuhr', 'maghrib']
+  prayerTimeNames = ['imsak', 'fajr', 'dhuhr', 'asr', 'maghrib', 'isha']
 
   constructor() {
     makeAutoObservable(this, {
@@ -35,7 +35,7 @@ export class PopupState {
   }
 
   async init() {
-    this.prayTimesProvider = new PrayTimesProvider('Tehran', prayTimeMessages)
+    this.prayTimesProvider = new PrayTimesProvider('Jafari', prayTimeMessages)
     this.coordinates = (await browser.storage.sync.get(['coordinates'])).coordinates
     const times = this.getPrayerTimes()
     if (times) {

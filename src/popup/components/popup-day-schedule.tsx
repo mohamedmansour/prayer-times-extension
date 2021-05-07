@@ -46,7 +46,7 @@ const useStyles = createUseStyles({
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    padding: '40px 0px'
+    paddingTop: 40
   },
   footer: {
     position: 'relative',
