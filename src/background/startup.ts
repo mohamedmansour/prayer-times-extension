@@ -17,7 +17,7 @@ export async function init() {
     }
 
     // Update the version incase we want to do something in future.
-    chrome.storage.sync.set({ version: currVersion })
+    browser.storage.sync.set({ version: currVersion })
   }
 }
 
@@ -25,5 +25,5 @@ export async function init() {
  * When the extension first installed.
  */
 function onInstall() {
-  chrome.runtime.openOptionsPage()
+  browser.runtime.openOptionsPage()
 }

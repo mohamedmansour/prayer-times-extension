@@ -1,5 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 import { browser } from 'webextension-polyfill-ts'
+import { getHijriDate } from '../../shared/islamic_date'
 import { LocationCoordinate, PrayerTimeFormat, PrayerTimes, PrayTimesProvider } from '../../shared/pray_time'
 import { prayTimeMessages } from '../../shared/pray_time_messages'
 
@@ -11,10 +12,12 @@ export interface PrayerTimeRendered {
   delta: number
   isNext?: string
 }
+
 export class PopupState {
   page: PageType = 'popup'
   prayerTimes: PrayerTimeRendered[] = []
-
+  currentGregorianDate = new Date().toDateString()
+  currentIslamicDate = getHijriDate(new Date())
   format = PrayerTimeFormat.TwelveHourFormat
   coordinates: LocationCoordinate | undefined = undefined
   prayTimesProvider: PrayTimesProvider
@@ -42,6 +45,10 @@ export class PopupState {
     }
   }
 
+  openOptions() {
+    browser.runtime.openOptionsPage()
+  }
+  
   private getPrayerTimes() {
     if (!this.coordinates) {
       return undefined
