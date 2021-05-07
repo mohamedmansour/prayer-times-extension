@@ -17,8 +17,5 @@
     "128": "images/icon.png"
   },
   "options_page": "views/options.html",
-  "permissions": ["geolocation", "notifications", "storage"],
-  "web_accessible_resources": [
-    "images/icon.png"
-  ]
+  "permissions": ["alarms", "geolocation", "notifications", "storage"]
 }
