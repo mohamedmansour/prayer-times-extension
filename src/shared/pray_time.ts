@@ -114,6 +114,18 @@ export interface PrayerTimeMessages {
   timeSuffixes: TimeSuffixesMessages
 }
 
+export interface PrayerTimes {
+  imsak: number
+  fajr: number
+  sunrise: number
+  dhuhr: number
+  asr: number
+  sunset: number
+  maghrib: number
+  isha: number
+  midnight?: number
+}
+
 // Calculation Methods
 interface CalculationMethod {
   name: String
@@ -149,16 +161,10 @@ interface ShortDate {
   day: number
 }
 
-interface Times {
-  imsak: number
-  fajr: number
-  sunrise: number
-  dhuhr: number
-  asr: number
-  sunset: number
-  maghrib: number
-  isha: number
-  midnight?: number
+interface TimeQuery {
+  timezone?: number,
+  dst?: boolean,
+  format?: PrayerTimeFormat
 }
 
 const CalculationMethods: { [method: string]: CalculationMethod } = {
@@ -194,7 +200,7 @@ const CalculationMethods: { [method: string]: CalculationMethod } = {
 
 //----------------------- PrayTimes Class ------------------------
 
-export class PrayTimes {
+export class PrayTimesProvider {
   // Calculation Methods
   private methods = CalculationMethods
   // Default Parameters in Calculation Methods
@@ -287,14 +293,15 @@ export class PrayTimes {
   getTimes(
     date: Date,
     coords: LocationCoordinate,
-    timezone: number,
-    dst: boolean,
-    format: PrayerTimeFormat = PrayerTimeFormat.TwentyFourFormat
-  ) {
+    options?: TimeQuery
+  ): PrayerTimes {
+    let timezone: number | undefined = options?.timezone
+    let dst: boolean | undefined = options?.dst
+
     this.lat = coords.latitude
     this.lng = coords.longitude
     this.elv = coords.elevation || 0
-    this.timeFormat = format || this.timeFormat
+    this.timeFormat = options?.format || this.timeFormat
 
     const shortDate: ShortDate = {
       year: date.getFullYear(),
@@ -402,7 +409,7 @@ export class PrayTimes {
   //---------------------- Compute Prayer Times -----------------------
 
   // compute prayer times at given julian date
-  computePrayerTimes(times: Times): Times {
+  computePrayerTimes(times: PrayerTimes): PrayerTimes {
     const dayTimes = this.dayPortion(times)
 
     return {
@@ -428,7 +435,7 @@ export class PrayTimes {
   // compute prayer times
   computeTimes() {
     // default times
-    let times: Times = {
+    let times: PrayerTimes = {
       imsak: 5,
       fajr: 5,
       sunrise: 6,
@@ -455,7 +462,7 @@ export class PrayTimes {
   }
 
   // adjust times
-  adjustTimes(times: Times) {
+  adjustTimes(times: PrayerTimes) {
     for (const i in times) times[i] += this.timeZone - this.lng / 15
 
     if (this.setting.highLats != HighLatMethod.None) times = this.adjustHighLats(times)
@@ -486,19 +493,19 @@ export class PrayTimes {
   }
 
   // apply offsets to the times
-  tuneTimes(times: Times) {
+  tuneTimes(times: PrayerTimes) {
     for (const i in times) times[i] += this.offset[i] / 60
     return times
   }
 
   // convert times to given time format
-  modifyFormats(times: Times) {
+  modifyFormats(times: PrayerTimes) {
     for (const i in times) times[i] = this.getFormattedTime(times[i], this.timeFormat)
     return times
   }
 
   // adjust times for locations in higher latitudes
-  adjustHighLats(times: Times) {
+  adjustHighLats(times: PrayerTimes) {
     const params = this.setting
     const nightTime = this.timeDiff(times.sunset, times.sunrise)
 
@@ -555,7 +562,7 @@ export class PrayTimes {
   }
 
   // convert hours to day portions
-  dayPortion(times: Times) {
+  dayPortion(times: PrayerTimes) {
     for (const i in times) times[i] /= 24
     return times
   }
