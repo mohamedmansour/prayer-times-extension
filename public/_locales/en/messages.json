@@ -6,5 +6,49 @@
   "extDescription": {
     "message": "Prayer Times including all year timetable for any location in the world. Including prayer time notifications.",
     "description": "Extension description."
+  },
+  "imsak": {
+    "message": "Imsak",
+    "description": "Imsak timename."
+  },
+  "fajr": {
+    "message": "Fajr",
+    "description": "Fajr timename."
+  },
+  "sunrise": {
+    "message": "Sunrise",
+    "description": "Sunrise timename."
+  },
+  "dhuhr": {
+    "message": "Dhuhr",
+    "description": "Dhuhr timename."
+  },
+  "asr": {
+    "message": "Asr",
+    "description": "Asr timename."
+  },
+  "sunset": {
+    "message": "Sunset",
+    "description": "Sunset timename."
+  },
+  "maghrib": {
+    "message": "Maghrib",
+    "description": "Maghrib timename."
+  },
+  "isha": {
+    "message": "Isha",
+    "description": "Isha timename."
+  },
+  "midnight": {
+    "message": "Midnight",
+    "description": "Midnight timename."
+  },
+  "am": {
+    "message": "am",
+    "description": "Time suffix for before midday."
+  },
+  "pm": {
+    "message": "pm",
+    "description": "Time suffix for after midday."
   }
 }

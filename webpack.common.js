@@ -14,7 +14,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist/'),
     filename: '[name].js',
-    chunkFilename: '[name].chunk.js',
+    chunkFilename: '[name].chunk.js'
   },
   plugins: [
     new CopyPlugin({
@@ -22,21 +22,29 @@ module.exports = {
         {
           from: './public/**/*',
           to({ context, absoluteFilename }) {
-            return path.join(context, 'dist', absoluteFilename.substr(context.length + 'public'.length + 1))
+            return path.join(
+              context,
+              'dist',
+              absoluteFilename.substr(context.length + 'public'.length + 1)
+            )
           }
         }
       ]
     }),
-    new CleanWebpackPlugin({ 
-      cleanOnceBeforeBuildPatterns: 'dist' 
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: 'dist'
     })
   ],
   module: {
     rules: [
       {
-        test: /\.(js|tsx?)$/,
+        test: /\.(js|tsx?)$/i,
         use: 'babel-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
+        type: 'asset'
       }
     ]
   },

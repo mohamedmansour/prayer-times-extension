@@ -9,12 +9,12 @@
     "service_worker": "entry-background.js"
   },
   "action": {
-    "default_icon": "images/icon.png",
+    "default_icon": "images/icons/icon.png",
     "default_title": "__MSG_extName__",
     "default_popup": "views/popup.html"
   },
   "icons": {
-    "128": "images/icon.png"
+    "128": "images/icons/icon.png"
   },
   "options_page": "views/options.html",
   "permissions": ["alarms", "geolocation", "notifications", "storage"]
