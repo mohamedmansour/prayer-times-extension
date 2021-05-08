@@ -1,13 +1,9 @@
-//--------------------- Copyright Block ----------------------
 /*
-
-PrayTimes.js: Prayer Times Calculator (ver 2.3)
+PrayTimes.js: Prayer Times Calculator (ver 3.0)
 Copyright (C) 2007-2011 PrayTimes.org
 
-Developer: Hamid Zarrabi-Zadeh
-
-Modifications by Mohamed Mansour (2010-2021)
-Source: http://mohamedmansour.com
+Developers: Hamid Zarrabi-Zadeh (2007-2011)
+            Mohamed Mansour (2010-present)
 
 License: GNU LGPL v3.0
 
@@ -34,16 +30,14 @@ Calculation Formulas:
 http://praytimes.org/calculation
 
 
-
 //------------------------ User Interface -------------------------
-
 
 	getTimes (date, coordinates [, timeZone [, dst [, timeFormat]]])
 
 	setMethod (method)       // set calculation method
 	adjust (parameters)      // adjust calculation parameters
 	tune (offsets)           // tune times by given offsets
-
+  setFormat(format)        // change the time format
 	getMethod ()             // get calculation method
 	getSetting ()            // get current calculation parameters
 	getOffsets ()            // get current time offsets
@@ -129,14 +123,7 @@ export interface PrayerTimes {
 // Calculation Methods
 interface CalculationMethod {
   name: String
-  params: CalculationMethodParam
-}
-
-interface CalculationMethodParam {
-  fajr: number
-  isha: number | string
-  maghrib?: number
-  midnight?: MidnightMethod
+  params: CalculationMethodSetting
 }
 
 enum Direction {
@@ -144,15 +131,15 @@ enum Direction {
   CounterClockWise,
 }
 
-interface Settings {
-  imsak: string
-  fajr?: string
-  dhuhr: string
+interface CalculationMethodSetting {
+  imsak: string | number
+  fajr?: string | number
+  dhuhr?: string | number
   asr: AsrJuristic
-  maghrib?: string
-  isha?: string
+  maghrib: string | number
+  isha?: string | number
   midnight?: MidnightMethod
-  highLats: HighLatMethod
+  highLats?: HighLatMethod
 }
 
 interface ShortDate {
@@ -170,31 +157,31 @@ interface TimeQuery {
 const CalculationMethods: { [method: string]: CalculationMethod } = {
   MWL: {
     name: 'Muslim World League',
-    params: { fajr: 18, isha: 17 },
+    params: { imsak: '10 min', fajr: 18, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: '0 min', isha: 17, midnight: MidnightMethod.Standard, highLats: HighLatMethod.NightMiddle  },
   },
   ISNA: {
     name: 'Islamic Society of North America (ISNA)',
-    params: { fajr: 15, isha: 15 },
+    params: { imsak: '10 min', fajr: 15, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: '0 min', isha: 15, midnight: MidnightMethod.Standard, highLats: HighLatMethod.NightMiddle  },
   },
   Egypt: {
     name: 'Egyptian General Authority of Survey',
-    params: { fajr: 19.5, isha: 17.5 },
+    params: { imsak: '10 min', fajr: 19.5, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: '0 min', isha: 17.5, midnight: MidnightMethod.Standard, highLats: HighLatMethod.NightMiddle  },
   },
   Makkah: {
     name: 'Umm Al-Qura University, Makkah',
-    params: { fajr: 18.5, isha: '90 min' },
+    params: { imsak: '10 min', fajr: 18.5, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: '0 min', isha: '90 min', midnight: MidnightMethod.Standard, highLats: HighLatMethod.NightMiddle  },
   }, // fajr was 19 degrees before 1430 hijri
   Karachi: {
     name: 'University of Islamic Sciences, Karachi',
-    params: { fajr: 18, isha: 18 },
+    params: { imsak: '10 min', fajr: 18, dhuhr: '0 min',asr: AsrJuristic.Standard,  maghrib: '0 min', isha: 18, midnight: MidnightMethod.Standard, highLats: HighLatMethod.NightMiddle  },
   },
   Tehran: {
     name: 'Institute of Geophysics, University of Tehran',
-    params: { fajr: 17.7, isha: 14, maghrib: 4.5, midnight: MidnightMethod.Jafari },
+    params: { imsak: '10 min', fajr: 17.7, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: 4.5, isha: 14, midnight: MidnightMethod.Jafari, highLats: HighLatMethod.NightMiddle  },
   }, // isha is not explicitly specified in this method
   Jafari: {
     name: 'Shia Ithna-Ashari, Leva Institute, Qum',
-    params: { fajr: 16, isha: 14, maghrib: 4, midnight: MidnightMethod.Jafari },
+    params: { imsak: '10 min', fajr: 16, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: 4, isha: 14, midnight: MidnightMethod.Jafari, highLats: HighLatMethod.NightMiddle },
   },
 }
 
@@ -203,27 +190,13 @@ const CalculationMethods: { [method: string]: CalculationMethod } = {
 export class PrayTimesProvider {
   // Calculation Methods
   private methods = CalculationMethods
-  // Default Parameters in Calculation Methods
-  private defaultParams = {
-    maghrib: '0 min',
-    midnight: MidnightMethod.Standard,
-  }
 
-  private calcMethod = 'Tehran'
-
-  // do not change anything here; use adjust method instead
-  private setting: Settings = {
-    imsak: '10 min',
-    dhuhr: '0 min',
-    asr: AsrJuristic.Standard,
-    highLats: HighLatMethod.NightMiddle,
-  }
-
+  private calcMethod = 'ISNA'
   private timeFormat = PrayerTimeFormat.TwentyFourFormat
   private InvalidTime = '-----'
   private numIterations = 1
-  private offset = {}
-
+  private offset: PrayerTimes = { imsak: 0, fajr: 0, asr: 0, dhuhr: 0, isha: 0, maghrib: 0, sunrise: 0, sunset: 0, midnight: 0 }
+  private setting: CalculationMethodSetting
   //----------------------- Local Variables ---------------------
 
   private lat: number
@@ -234,20 +207,9 @@ export class PrayTimesProvider {
 
   //---------------------- Initialization -----------------------
   constructor(method: string, public messages: PrayerTimeMessages) {
-    // set methods defaults
-    for (const i in this.methods) {
-      const params = this.methods[i].params
-      for (const j in this.defaultParams)
-        if (typeof params[j] == 'undefined') params[j] = this.defaultParams[j]
-    }
-
     // initialize settings
     this.calcMethod = this.methods[method] ? method : this.calcMethod
-    const params = this.methods[this.calcMethod].params
-    for (const id in params) this.setting[id] = params[id]
-
-    // init time offsets
-    for (const i in this.messages.timeNames) this.offset[i] = 0
+    this.setting = this.methods[method].params
   }
 
   //----------------------- Public Functions ------------------------
@@ -260,27 +222,32 @@ export class PrayTimesProvider {
   }
 
   // set calculating parameters
-  adjust(params) {
+  adjust(params: CalculationMethodSetting): void {
     for (const id in params) this.setting[id] = params[id]
   }
 
   // set time offsets
-  tune(timeOffsets) {
+  tune(timeOffsets: PrayerTimes): void {
     for (const i in timeOffsets) this.offset[i] = timeOffsets[i]
   }
 
+  // set time format method.
+  timeformat(format: PrayerTimeFormat) {
+    this.timeFormat = format
+  }
+
   // get current calculation method
-  getMethod() {
+  getMethod(): string {
     return this.calcMethod
   }
 
   // get current setting
-  getSetting() {
+  getSetting(): CalculationMethodSetting {
     return this.setting
   }
 
   // get current time offsets
-  getOffsets() {
+  getOffsets(): PrayerTimes {
     return this.offset
   }
 
@@ -319,7 +286,7 @@ export class PrayTimesProvider {
   }
 
   // convert float time to the given format (see timeFormats)
-  getFormattedTime(time: number, format: PrayerTimeFormat) {
+  private getFormattedTime(time: number, format: PrayerTimeFormat) {
     if (isNaN(time)) return this.InvalidTime
     if (format == PrayerTimeFormat.Float) return time
     const suffixes = [this.messages.timeSuffixes.am, this.messages.timeSuffixes.pm]
@@ -338,14 +305,14 @@ export class PrayTimesProvider {
   //---------------------- Calculation Functions -----------------------
 
   // compute mid-day time
-  midDay(time: number) {
+  private midDay(time: number) {
     const eqt = this.sunPosition(this.julianDate + time).equation
     const noon = DegreeMath.fixHour(12 - eqt)
     return noon
   }
 
   // compute the time at which sun reaches a specific angle below horizon
-  sunAngleTime(angle: number, time: number, direction: Direction = Direction.ClockWise) {
+  private sunAngleTime(angle: number, time: number, direction: Direction = Direction.ClockWise) {
     const decl = this.sunPosition(this.julianDate + time).declination
     const noon = this.midDay(time)
     const t =
@@ -358,7 +325,7 @@ export class PrayTimesProvider {
   }
 
   // compute asr time
-  asrTime(factor: number, time: number) {
+  private asrTime(factor: number, time: number) {
     const decl = this.sunPosition(this.julianDate + time).declination
     const angle = -DegreeMath.arccot(factor + DegreeMath.tan(Math.abs(this.lat - decl)))
     return this.sunAngleTime(angle, time)
@@ -366,7 +333,7 @@ export class PrayTimesProvider {
 
   // compute declination angle of sun and equation of time
   // Ref: http://aa.usno.navy.mil/faq/docs/SunApprox.php
-  sunPosition(jd: number) {
+  private sunPosition(jd: number) {
     const D = jd - 2451545.0
     const g = DegreeMath.fixAngle(357.529 + 0.98560028 * D)
     const q = DegreeMath.fixAngle(280.459 + 0.98564736 * D)
@@ -384,7 +351,7 @@ export class PrayTimesProvider {
 
   // convert Gregorian date to Julian day
   // Ref: Astronomical Algorithms by Jean Meeus: 2440587.5 days + UNIX TIME in days === Julian Day
-  julian(date: ShortDate): number {
+  private julian(date: ShortDate): number {
     // We could do this approach  but it will be off by 1 minute.
     // const numberOfMillisecondsInDay = 86400000
     // const oneTenthOfDayInMinutes = 1440
@@ -409,7 +376,7 @@ export class PrayTimesProvider {
   //---------------------- Compute Prayer Times -----------------------
 
   // compute prayer times at given julian date
-  computePrayerTimes(times: PrayerTimes): PrayerTimes {
+  private computePrayerTimes(times: PrayerTimes): PrayerTimes {
     const dayTimes = this.dayPortion(times)
 
     return {
@@ -433,7 +400,7 @@ export class PrayTimesProvider {
   }
 
   // compute prayer times
-  computeTimes() {
+  private computeTimes(): PrayerTimes {
     // default times
     let times: PrayerTimes = {
       imsak: 5,
@@ -462,7 +429,7 @@ export class PrayTimesProvider {
   }
 
   // adjust times
-  adjustTimes(times: PrayerTimes) {
+  private adjustTimes(times: PrayerTimes): PrayerTimes {
     for (const i in times) times[i] += this.timeZone - this.lng / 15
 
     if (this.setting.highLats != HighLatMethod.None) times = this.adjustHighLats(times)
@@ -479,13 +446,13 @@ export class PrayTimesProvider {
   }
 
   // get asr shadow factor
-  asrFactor(asrParam: AsrJuristic): number {
+  private asrFactor(asrParam: AsrJuristic): number {
     const factor: number = asrParam.valueOf()
     return factor || this.eval(asrParam)
   }
 
   // return sun angle for sunset/sunrise
-  riseSetAngle() {
+  private riseSetAngle(): number {
     //var earthRad = 6371009; // in meters
     //var angle = DMath.arccos(earthRad/(earthRad+ elv));
     const angle = 0.0347 * Math.sqrt(this.elv) // an approximation
@@ -493,19 +460,19 @@ export class PrayTimesProvider {
   }
 
   // apply offsets to the times
-  tuneTimes(times: PrayerTimes) {
+  private tuneTimes(times: PrayerTimes): PrayerTimes {
     for (const i in times) times[i] += this.offset[i] / 60
     return times
   }
 
   // convert times to given time format
-  modifyFormats(times: PrayerTimes) {
+  private modifyFormats(times: PrayerTimes) {
     for (const i in times) times[i] = this.getFormattedTime(times[i], this.timeFormat)
     return times
   }
 
   // adjust times for locations in higher latitudes
-  adjustHighLats(times: PrayerTimes) {
+  private adjustHighLats(times: PrayerTimes) {
     const params = this.setting
     const nightTime = this.timeDiff(times.sunset, times.sunrise)
 
@@ -535,7 +502,7 @@ export class PrayTimesProvider {
   }
 
   // adjust a time for higher latitudes
-  adjustHLTime(
+  private adjustHLTime(
     time: number,
     base: number,
     angle: number,
@@ -553,7 +520,7 @@ export class PrayTimesProvider {
   }
 
   // the night portion used for adjusting times in higher latitudes
-  nightPortion(angle: number, night: number) {
+  private nightPortion(angle: number, night: number) {
     const method = this.setting.highLats
     let portion = 1 / 2 // MidNight
     if (method == HighLatMethod.AngleBased) portion = (1 / 60) * angle
@@ -562,7 +529,7 @@ export class PrayTimesProvider {
   }
 
   // convert hours to day portions
-  dayPortion(times: PrayerTimes) {
+  private dayPortion(times: PrayerTimes) {
     for (const i in times) times[i] /= 24
     return times
   }
@@ -570,7 +537,7 @@ export class PrayTimesProvider {
   //---------------------- Time Zone Functions -----------------------
 
   // get local time zone
-  getTimeZone(date: ShortDate) {
+  private getTimeZone(date: ShortDate) {
     const year = date.year
     const t1 = this.gmtOffset({ year, month: 0, day: 1 })
     const t2 = this.gmtOffset({ year, month: 6, day: 1 })
@@ -578,12 +545,12 @@ export class PrayTimesProvider {
   }
 
   // get daylight saving for a given date
-  isDstObserved(date: ShortDate): boolean {
+  private isDstObserved(date: ShortDate): boolean {
     return this.gmtOffset(date) != this.getTimeZone(date)
   }
 
   // GMT offset for a given date
-  gmtOffset(date: ShortDate): number {
+  private gmtOffset(date: ShortDate): number {
     const localDate = new Date(date.year, date.month - 1, date.day, 12, 0, 0, 0)
     return (localDate.getTimezoneOffset() / 60) * -1
   }
@@ -591,44 +558,23 @@ export class PrayTimesProvider {
   //---------------------- Misc Functions -----------------------
 
   // convert given string into a number
-  eval(str: string | number | undefined) {
+  private eval(str: string | number | undefined) {
     return 1 * parseInt((str + '').split(/[^0-9.+-]/)[0])
   }
 
   // detect if input contains 'min'
-  isMin(arg: string | number | undefined) {
+  private isMin(arg: string | number | undefined) {
     return (arg + '').indexOf('min') != -1
   }
 
   // compute the difference between two times
-  timeDiff(time1: number, time2: number) {
+  private timeDiff(time1: number, time2: number) {
     return DegreeMath.fixHour(time2 - time1)
   }
 
   // add a leading 0 if necessary
-  twoDigitsFormat(num: number) {
+  private twoDigitsFormat(num: number) {
     return num < 10 ? '0' + num : num
-  }
-
-  //---------------------- Mohamed Extension Update -----------------------
-
-  // returns the time names.
-  getTimeNames() {
-    return this.messages.timeNames
-  }
-
-  // returns the method name.
-  getMethodName(method) {
-    if (this.methods[method]) {
-      return this.methods[method].name
-    } else {
-      return this.InvalidTime
-    }
-  }
-
-  // set time format method.
-  setTimeFormat(format: PrayerTimeFormat) {
-    this.timeFormat = format
   }
 }
 
