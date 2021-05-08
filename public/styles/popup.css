@@ -5,3 +5,8 @@ body {
   min-height: 200px;
   background-color: #666;
 }
+
+.loading {
+  line-height: 200px;
+  text-align: center;
+}
