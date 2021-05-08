@@ -20,6 +20,11 @@
     "prettier.documentSelectors": [
       "**/*.ts",
       "**/*.tsx"
-    ]
+    ],
+    "prettier.configPath": "./configs/.prettierrc",
+    "eslint.alwaysShowStatus": true,
+    "eslint.options": {
+      "configFile": "./configs/.eslintrc.js"
+    }
   }
 }

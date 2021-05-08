@@ -122,7 +122,7 @@ export interface PrayerTimes {
 
 // Calculation Methods
 interface CalculationMethod {
-  name: String
+  name: string
   params: CalculationMethodSetting
 }
 
@@ -360,7 +360,7 @@ export class PrayTimesProvider {
     //   date.getTimezoneOffset() / oneTenthOfDayInMinutes +
     //   2440587.5
     // )
-    let { year, month, day } = date
+    let { year, month } = date
     if (month <= 2) {
       year -= 1
       month += 12
@@ -369,7 +369,7 @@ export class PrayTimesProvider {
     const B = 2 - A + Math.floor(A / 4)
 
     const JD =
-      Math.floor(365.25 * (year + 4716)) + Math.floor(30.6001 * (month + 1)) + day + B - 1524.5
+      Math.floor(365.25 * (year + 4716)) + Math.floor(30.6001 * (month + 1)) +  date.day + B - 1524.5
     return JD
   }
 

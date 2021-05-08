@@ -12,7 +12,7 @@ module.exports = {
     'entry-timetable': './src/timetable/timetable.tsx'
   },
   output: {
-    path: path.resolve(__dirname, 'dist/'),
+    path: path.resolve(__dirname, '../dist/'),
     filename: '[name].js',
     chunkFilename: '[name].chunk.js'
   },
@@ -32,7 +32,7 @@ module.exports = {
       ]
     }),
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: 'dist'
+      cleanOnceBeforeBuildPatterns: '../dist'
     })
   ],
   module: {
