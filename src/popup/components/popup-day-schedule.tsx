@@ -14,7 +14,7 @@ const useStyles = createUseStyles({
   wrapper: {
     position: 'relative',
     color: 'white',
-    padding: '0 24px'
+    padding: '0 16px'
   },
   background: {
     position: 'absolute',
@@ -40,7 +40,9 @@ const useStyles = createUseStyles({
   content: {
     position: 'relative'
   },
-  header: {},
+  header: {
+    padding: '0 8px'
+  },
   headerPrimary: {
     padding: '16px 0 4px 0',
     fontSize: 36,
@@ -72,7 +74,7 @@ const useStyles = createUseStyles({
   footer: {
     display: 'flex',
     flexDirection: 'row',
-    padding: '20px 0',
+    padding: '20px 8px',
     fontSize: 13,
     lineHeight: '15px',
     borderTop: '1px solid rgba(255,255,255,0.6)',
