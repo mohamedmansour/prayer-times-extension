@@ -50,5 +50,13 @@
   "pm": {
     "message": "pm",
     "description": "Time suffix for after midday."
+  },
+  "gregorianDay": {
+    "message": "Day",
+    "description": "The label 'Day' for the gregorian month. Usually numbered from 1-31"
+  },
+  "hijriDay": {
+    "message": "Hijri",
+    "description": "The label 'Hijri' for the month. The islamic day in the form of Ramadan 24"
   }
 }

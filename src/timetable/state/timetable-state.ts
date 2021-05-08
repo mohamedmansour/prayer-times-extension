@@ -22,7 +22,7 @@ export class TimetableState {
   page: PageType = 'timetable'
   data: PrayerMonthRendered[] = []
 
-  calendarDate: Date = new Date()
+  gregorianDate = new Date()
   coordinates: LocationCoordinate | undefined = undefined
   format = PrayerTimeFormat.TwelveHourFormat
   prayTimesProvider: PrayTimesProvider
@@ -42,7 +42,7 @@ export class TimetableState {
     const { coordinates } = await browser.storage.sync.get(['coordinates'])
     runInAction(async () => (this.coordinates = coordinates))
 
-    this.generateData(this.calendarDate.getFullYear(), this.calendarDate.getMonth())
+    this.generateData(this.gregorianDate.getFullYear(), this.gregorianDate.getMonth())
   }
 
   /**
@@ -72,7 +72,7 @@ export class TimetableState {
         times,
         isToday,
         gregorianDay: date.getDate(),
-        hijriDate: getHijriDate(date)
+        hijriDate: getHijriDate(date, { showYear: false })
       })
       
       date.setDate(date.getDate() + 1) // next day
@@ -82,18 +82,18 @@ export class TimetableState {
   }
 
   gotoNextMonth() {
-    this.calendarDate.setMonth(this.calendarDate.getMonth() + 1)
-    this.generateData(this.calendarDate.getFullYear(), this.calendarDate.getMonth())
+    this.gregorianDate.setMonth(this.gregorianDate.getMonth() + 1)
+    this.generateData(this.gregorianDate.getFullYear(), this.gregorianDate.getMonth())
   }
 
   gotoPreviousMonth() {
-    this.calendarDate.setMonth(this.calendarDate.getMonth() - 1)
-    this.generateData(this.calendarDate.getFullYear(), this.calendarDate.getMonth())
+    this.gregorianDate.setMonth(this.gregorianDate.getMonth() - 1)
+    this.generateData(this.gregorianDate.getFullYear(), this.gregorianDate.getMonth())
   }
 
   gotoToday() {
-    this.calendarDate = new Date()
-    this.generateData(this.calendarDate.getFullYear(), this.calendarDate.getMonth())
+    this.gregorianDate = new Date()
+    this.generateData(this.gregorianDate.getFullYear(), this.gregorianDate.getMonth())
 
   }
 }
