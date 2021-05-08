@@ -16,8 +16,7 @@ export interface PrayerTimeRendered {
 export class PopupState {
   page: PageType = 'popup'
   prayerTimes: PrayerTimeRendered[] = []
-  currentGregorianDate = new Date().toDateString()
-  currentIslamicDate = getHijriDate(new Date())
+  currentGregorianDate = new Date()
   format = PrayerTimeFormat.TwelveHourFormat
   coordinates: LocationCoordinate | undefined = undefined
   prayTimesProvider: PrayTimesProvider
@@ -49,6 +48,10 @@ export class PopupState {
     browser.runtime.openOptionsPage()
   }
   
+  openTimetable() {
+    browser.tabs.create({url: browser.runtime.getURL('/views/timetable.html'), active: true })
+  }
+
   private getPrayerTimes() {
     if (!this.coordinates) {
       return undefined

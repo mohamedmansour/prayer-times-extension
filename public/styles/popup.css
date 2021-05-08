@@ -2,4 +2,6 @@
 
 body {
   width: 260px;
+  min-height: 200px;
+  background-color: #666;
 }

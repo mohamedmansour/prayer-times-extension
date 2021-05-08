@@ -51,6 +51,10 @@
     "message": "pm",
     "description": "Time suffix for after midday."
   },
+  "monthlyView": {
+    "message": "Monthly View",
+    "description": "Appears in the popup, for the label to navigate to timetable."
+  },
   "gregorianDay": {
     "message": "Day",
     "description": "The label 'Day' for the gregorian month. Usually numbered from 1-31"
