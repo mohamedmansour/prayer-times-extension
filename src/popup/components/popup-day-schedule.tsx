@@ -98,7 +98,8 @@ const useItemStyles = createUseStyles({
     flexDirection: 'row',
     fontSize: 18,
     padding: '3px 8px',
-    borderRadius: 6
+    borderRadius: 6,
+    fontWeight: '500'
   },
   prayerName: {
     flex: '1'
@@ -106,7 +107,7 @@ const useItemStyles = createUseStyles({
   prayerTime: {},
   active: {
     backgroundColor: 'rgba(0,0,0,0.12)',
-    fontWeight: 'bolder'
+    fontWeight: '900'
   },
   activeBadge: {
     backgroundColor: 'rgba(45, 156, 219, 0.42)',
