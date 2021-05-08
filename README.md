@@ -1,16 +1,29 @@
 Muslim Prayer Timetable Extension
 =================================
 
-This is a Google Chrome extension that shows the prayer times for Muslims. 
+<div style="background-color:#99cc33;padding:10px;color:black">
+<h1>Under Development 🚀</h1>
+Salams! The original Prayer Times was released in 2008 and over the years of maintenance, I have decided to re-implement it under a modern stack and make it significantly better. 
+
+ - 🦊 Add Firefox Support
+ - 🎨 Add Themes with fresh design
+ - 👩‍💻 Modernize the tech stack (React/Webpack/TypeScript/ManifestV3)
+ - 🔨 Fix a bunch of bugs with prayer times, notifications, etc.
+ - ⚙ Allow detailed prayer time customization
+
+ If you would lke to help with Translations, Art Themes, or Coding, please reach out!
+</div>
+
+## About
+This is a Chromium / Firefox extension that shows the prayer times for Muslims. 
 It uses HTML5 geolocation features that grabs the current latitude and longitute 
 and fetches the prayer times.
 
-![Screenshot of the Chrome Extension](https://github.com/mohamedmansour/prayer-times-extension/raw/master/screenshot.jpg)
 
+## Prayer Calculation
 This extension is developed by [Mohamed Mansour](http://mohamedmansour.com) but 
 the prayer time calculations are based off the brother
-[Dr. Hamid Zarrabi-Zadeh](http://cg.scs.carleton.ca/~zarrabi/home) A list of
-contributions are listed in the [AUTHORS file](https://github.com/mohamedmansour/prayer-times-extension/raw/master/AUTHORS.md)
+[Dr. Hamid Zarrabi-Zadeh](http://cg.scs.carleton.ca/~zarrabi/home)
 
 There are differing opinions on what angle to use to calculate Fajr and Isha. It
 currently supports 6 different calculations.
