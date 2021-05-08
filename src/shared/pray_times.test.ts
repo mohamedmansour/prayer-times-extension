@@ -1,13 +1,5 @@
 import { PrayTimesProvider, PrayerTimeMessages, PrayerTimeFormat, LocationCoordinate }  from './pray_time'
 
-import * as sinon from 'sinon'
-
-global.chrome = global.chrome || {
-  i18n: {
-    getMessage: sinon.spy(name => name),
-  }
-}
-
 const messages: PrayerTimeMessages = {
   timeNames: {
     imsak: 'imsak',
