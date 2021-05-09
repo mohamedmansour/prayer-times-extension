@@ -3,7 +3,7 @@ import * as React from 'react'
 import { createUseStyles } from 'react-jss'
 import { browser } from 'webextension-polyfill-ts'
 import { getHijriDate } from '../../shared/islamic_date'
-import { prayTimeMessages } from '../../shared/pray_time_messages'
+import { localizedMessages } from '../../shared/pray_time_messages'
 import { useTimetableState } from '../state'
 import { PrayerMonthRendered } from '../state/timetable-state'
 
@@ -47,15 +47,15 @@ export const MonthView = observer(() => {
           <tr>
             <th>{localizationTimetable.gregorianDay}</th>
             <th>{localizationTimetable.hijriDay}</th>
-            <th>{prayTimeMessages.timeNames.imsak}</th>
-            <th>{prayTimeMessages.timeNames.fajr}</th>
-            <th>{prayTimeMessages.timeNames.sunrise}</th>
-            <th>{prayTimeMessages.timeNames.dhuhr}</th>
-            <th>{prayTimeMessages.timeNames.asr}</th>
-            <th>{prayTimeMessages.timeNames.sunset}</th>
-            <th>{prayTimeMessages.timeNames.maghrib}</th>
-            <th>{prayTimeMessages.timeNames.isha}</th>
-            <th>{prayTimeMessages.timeNames.midnight}</th>
+            <th>{localizedMessages.imsak}</th>
+            <th>{localizedMessages.fajr}</th>
+            <th>{localizedMessages.sunrise}</th>
+            <th>{localizedMessages.dhuhr}</th>
+            <th>{localizedMessages.asr}</th>
+            <th>{localizedMessages.sunset}</th>
+            <th>{localizedMessages.maghrib}</th>
+            <th>{localizedMessages.isha}</th>
+            <th>{localizedMessages.midnight}</th>
           </tr>
         </thead>
         <tbody>

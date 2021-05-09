@@ -2,12 +2,12 @@ import { makeAutoObservable, runInAction } from 'mobx'
 import { browser } from 'webextension-polyfill-ts'
 import { getHijriDate } from '../../shared/islamic_date'
 import {
+  CalculationName,
   LocationCoordinate,
   PrayerTimeFormat,
   PrayerTimes,
   PrayTimesProvider
 } from '../../shared/pray_time'
-import { prayTimeMessages } from '../../shared/pray_time_messages'
 
 type PageType = 'timetable'
 
@@ -37,7 +37,7 @@ export class TimetableState {
   }
 
   async init() {
-    this.prayTimesProvider = new PrayTimesProvider('Jafari', prayTimeMessages)
+    this.prayTimesProvider = new PrayTimesProvider(CalculationName.Jafari)
 
     const { coordinates } = await browser.storage.sync.get(['coordinates'])
     runInAction(async () => (this.coordinates = coordinates))
@@ -94,6 +94,5 @@ export class TimetableState {
   gotoToday() {
     this.gregorianDate = new Date()
     this.generateData(this.gregorianDate.getFullYear(), this.gregorianDate.getMonth())
-
   }
 }

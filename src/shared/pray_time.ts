@@ -82,7 +82,6 @@ export interface LocationCoordinate {
 export enum PrayerTimeFormat {
   TwentyFourFormat,
   TwelveHourFormat,
-  TwelveHourFormatWithNoSuffix,
   Float, // floating point number
 }
 
@@ -98,16 +97,6 @@ export interface TimeNamesMessages {
   midnight: string
 }
 
-export interface TimeSuffixesMessages {
-  am: string
-  pm: string
-}
-
-export interface PrayerTimeMessages {
-  timeNames: TimeNamesMessages
-  timeSuffixes: TimeSuffixesMessages
-}
-
 export interface PrayerTimes {
   imsak: number
   fajr: number
@@ -118,6 +107,47 @@ export interface PrayerTimes {
   maghrib: number
   isha: number
   midnight?: number
+}
+
+export enum CalculationName {
+  MWL,
+  ISNA,
+  Egypt,
+  Makkah,
+  Karachi,
+  Tehran,
+  Jafari
+}
+
+export const calculationMethods: { [method: string]: CalculationMethod } = {
+  [CalculationName.MWL]: {
+    name: 'Muslim World League',
+    params: { imsak: '10 min', fajr: 18, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: '0 min', isha: 17, midnight: MidnightMethod.Standard, highLats: HighLatMethod.NightMiddle  },
+  },
+  [CalculationName.ISNA]: {
+    name: 'Islamic Society of North America (ISNA)',
+    params: { imsak: '10 min', fajr: 15, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: '0 min', isha: 15, midnight: MidnightMethod.Standard, highLats: HighLatMethod.NightMiddle  },
+  },
+  [CalculationName.Egypt]: {
+    name: 'Egyptian General Authority of Survey',
+    params: { imsak: '10 min', fajr: 19.5, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: '0 min', isha: 17.5, midnight: MidnightMethod.Standard, highLats: HighLatMethod.NightMiddle  },
+  },
+  [CalculationName.Makkah]: {
+    name: 'Umm Al-Qura University, Makkah',
+    params: { imsak: '10 min', fajr: 18.5, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: '0 min', isha: '90 min', midnight: MidnightMethod.Standard, highLats: HighLatMethod.NightMiddle  },
+  }, // fajr was 19 degrees before 1430 hijri
+  [CalculationName.Karachi]: {
+    name: 'University of Islamic Sciences, Karachi',
+    params: { imsak: '10 min', fajr: 18, dhuhr: '0 min',asr: AsrJuristic.Standard,  maghrib: '0 min', isha: 18, midnight: MidnightMethod.Standard, highLats: HighLatMethod.NightMiddle  },
+  },
+  [CalculationName.Tehran]: {
+    name: 'Institute of Geophysics, University of Tehran',
+    params: { imsak: '10 min', fajr: 17.7, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: 4.5, isha: 14, midnight: MidnightMethod.Jafari, highLats: HighLatMethod.NightMiddle  },
+  }, // isha is not explicitly specified in this method
+  [CalculationName.Jafari]: {
+    name: 'Shia Ithna-Ashari, Leva Institute, Qum',
+    params: { imsak: '10 min', fajr: 16, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: 4, isha: 14, midnight: MidnightMethod.Jafari, highLats: HighLatMethod.NightMiddle },
+  },
 }
 
 // Calculation Methods
@@ -154,81 +184,48 @@ interface TimeQuery {
   format?: PrayerTimeFormat
 }
 
-const CalculationMethods: { [method: string]: CalculationMethod } = {
-  MWL: {
-    name: 'Muslim World League',
-    params: { imsak: '10 min', fajr: 18, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: '0 min', isha: 17, midnight: MidnightMethod.Standard, highLats: HighLatMethod.NightMiddle  },
-  },
-  ISNA: {
-    name: 'Islamic Society of North America (ISNA)',
-    params: { imsak: '10 min', fajr: 15, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: '0 min', isha: 15, midnight: MidnightMethod.Standard, highLats: HighLatMethod.NightMiddle  },
-  },
-  Egypt: {
-    name: 'Egyptian General Authority of Survey',
-    params: { imsak: '10 min', fajr: 19.5, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: '0 min', isha: 17.5, midnight: MidnightMethod.Standard, highLats: HighLatMethod.NightMiddle  },
-  },
-  Makkah: {
-    name: 'Umm Al-Qura University, Makkah',
-    params: { imsak: '10 min', fajr: 18.5, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: '0 min', isha: '90 min', midnight: MidnightMethod.Standard, highLats: HighLatMethod.NightMiddle  },
-  }, // fajr was 19 degrees before 1430 hijri
-  Karachi: {
-    name: 'University of Islamic Sciences, Karachi',
-    params: { imsak: '10 min', fajr: 18, dhuhr: '0 min',asr: AsrJuristic.Standard,  maghrib: '0 min', isha: 18, midnight: MidnightMethod.Standard, highLats: HighLatMethod.NightMiddle  },
-  },
-  Tehran: {
-    name: 'Institute of Geophysics, University of Tehran',
-    params: { imsak: '10 min', fajr: 17.7, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: 4.5, isha: 14, midnight: MidnightMethod.Jafari, highLats: HighLatMethod.NightMiddle  },
-  }, // isha is not explicitly specified in this method
-  Jafari: {
-    name: 'Shia Ithna-Ashari, Leva Institute, Qum',
-    params: { imsak: '10 min', fajr: 16, dhuhr: '0 min', asr: AsrJuristic.Standard, maghrib: 4, isha: 14, midnight: MidnightMethod.Jafari, highLats: HighLatMethod.NightMiddle },
-  },
-}
-
 //----------------------- PrayTimes Class ------------------------
-
 export class PrayTimesProvider {
   // Calculation Methods
-  private methods = CalculationMethods
-
-  private calcMethod = 'ISNA'
+  private calcMethod = CalculationName.ISNA
   private timeFormat = PrayerTimeFormat.TwentyFourFormat
   private InvalidTime = '-----'
   private numIterations = 1
   private offset: PrayerTimes = { imsak: 0, fajr: 0, asr: 0, dhuhr: 0, isha: 0, maghrib: 0, sunrise: 0, sunset: 0, midnight: 0 }
-  private setting: CalculationMethodSetting
-  //----------------------- Local Variables ---------------------
+  private settings: CalculationMethodSetting
 
+  //----------------------- Local Variables ---------------------
   private lat: number
   private lng: number
-  private elv: number // coordinates
+  private elv: number
   private timeZone: number
   private julianDate: number // time variables
 
   //---------------------- Initialization -----------------------
-  constructor(method: string, public messages: PrayerTimeMessages) {
-    // initialize settings
-    this.calcMethod = this.methods[method] ? method : this.calcMethod
-    this.setting = this.methods[method].params
+  constructor(method: CalculationName) {
+    this.calcMethod = calculationMethods[method] ? method : this.calcMethod
+    this.settings = calculationMethods[method].params
   }
 
   //----------------------- Public Functions ------------------------
-  // set calculation method
-  setMethod(method: string) {
-    if (this.methods[method]) {
-      this.adjust(this.methods[method].params)
+  setMethod(method: CalculationName) {
+    if (calculationMethods[method]) {
+      this.adjust(calculationMethods[method].params)
       this.calcMethod = method
     }
   }
 
-  // set calculating parameters
-  adjust(params: CalculationMethodSetting): void {
-    for (const id in params) this.setting[id] = params[id]
+  /**
+   * set calculation method settings. Make sure you get the current
+   * settings from |getSettings()| before you mutate it.
+   */
+  adjust(params: Partial<CalculationMethodSetting>): void {
+    for (const id in params) this.settings[id] = params[id]
   }
 
-  // set time offsets
-  tune(timeOffsets: PrayerTimes): void {
-    for (const i in timeOffsets) this.offset[i] = timeOffsets[i]
+  // set time offsets by minute
+  tune(offsets: Partial<PrayerTimes>): void {
+    for (const i in offsets) this.offset[i] = offsets[i]
   }
 
   // set time format method.
@@ -237,23 +234,18 @@ export class PrayTimesProvider {
   }
 
   // get current calculation method
-  getMethod(): string {
+  getMethod(): CalculationName {
     return this.calcMethod
   }
 
   // get current setting
-  getSetting(): CalculationMethodSetting {
-    return this.setting
+  getSettings(): CalculationMethodSetting {
+    return this.settings
   }
 
   // get current time offsets
   getOffsets(): PrayerTimes {
     return this.offset
-  }
-
-  // get default calc parametrs
-  getDefaults() {
-    return this.methods
   }
 
   // return prayer times for a given date
@@ -289,17 +281,18 @@ export class PrayTimesProvider {
   private getFormattedTime(time: number, format: PrayerTimeFormat) {
     if (isNaN(time)) return this.InvalidTime
     if (format == PrayerTimeFormat.Float) return time
-    const suffixes = [this.messages.timeSuffixes.am, this.messages.timeSuffixes.pm]
 
     time = DegreeMath.fixHour(time + 0.5 / 60) // add 0.5 minutes to round
     const hours = Math.floor(time)
     const minutes = Math.floor((time - hours) * 60)
-    const suffix = format == PrayerTimeFormat.TwelveHourFormat ? suffixes[hours < 12 ? 0 : 1] : ''
-    const hour =
-      format == PrayerTimeFormat.TwentyFourFormat
-        ? this.twoDigitsFormat(hours)
-        : ((hours + 12 - 1) % 12) + 1
-    return hour + ':' + this.twoDigitsFormat(minutes) + (suffix ? ' ' + suffix : '')
+    const date = new Date()
+    date.setHours(hours)
+    date.setMinutes(minutes)
+    return new Intl.DateTimeFormat(navigator.language, {
+      hourCycle: format == PrayerTimeFormat.TwelveHourFormat ? 'h12' : 'h24',
+      hour: 'numeric',
+      minute: 'numeric',
+    }).format(date)
   }
 
   //---------------------- Calculation Functions -----------------------
@@ -381,21 +374,21 @@ export class PrayTimesProvider {
 
     return {
       imsak: this.sunAngleTime(
-        this.eval(this.setting.imsak),
+        this.eval(this.settings.imsak),
         dayTimes.imsak,
         Direction.CounterClockWise
       ),
       fajr: this.sunAngleTime(
-        this.eval(this.setting.fajr),
+        this.eval(this.settings.fajr),
         dayTimes.fajr,
         Direction.CounterClockWise
       ),
       sunrise: this.sunAngleTime(this.riseSetAngle(), dayTimes.sunrise, Direction.CounterClockWise),
       dhuhr: this.midDay(dayTimes.dhuhr),
-      asr: this.asrTime(this.asrFactor(this.setting.asr), dayTimes.asr),
+      asr: this.asrTime(this.asrFactor(this.settings.asr), dayTimes.asr),
       sunset: this.sunAngleTime(this.riseSetAngle(), dayTimes.sunset),
-      maghrib: this.sunAngleTime(this.eval(this.setting.maghrib), dayTimes.maghrib),
-      isha: this.sunAngleTime(this.eval(this.setting.isha), dayTimes.isha),
+      maghrib: this.sunAngleTime(this.eval(this.settings.maghrib), dayTimes.maghrib),
+      isha: this.sunAngleTime(this.eval(this.settings.isha), dayTimes.isha),
     }
   }
 
@@ -420,7 +413,7 @@ export class PrayTimesProvider {
 
     // add midnight time
     times.midnight =
-      this.setting.midnight == MidnightMethod.Jafari
+      this.settings.midnight == MidnightMethod.Jafari
         ? times.sunset + this.timeDiff(times.sunset, times.fajr) / 2
         : times.sunset + this.timeDiff(times.sunset, times.sunrise) / 2
 
@@ -432,15 +425,15 @@ export class PrayTimesProvider {
   private adjustTimes(times: PrayerTimes): PrayerTimes {
     for (const i in times) times[i] += this.timeZone - this.lng / 15
 
-    if (this.setting.highLats != HighLatMethod.None) times = this.adjustHighLats(times)
+    if (this.settings.highLats != HighLatMethod.None) times = this.adjustHighLats(times)
 
-    if (this.isMin(this.setting.imsak))
-      times.imsak = times.fajr - this.eval(this.setting.imsak) / 60
-    if (this.isMin(this.setting.maghrib))
-      times.maghrib = times.sunset + this.eval(this.setting.maghrib) / 60
-    if (this.isMin(this.setting.isha))
-      times.isha = times.maghrib + this.eval(this.setting.isha) / 60
-    times.dhuhr += this.eval(this.setting.dhuhr) / 60
+    if (this.isMin(this.settings.imsak))
+      times.imsak = times.fajr - this.eval(this.settings.imsak) / 60
+    if (this.isMin(this.settings.maghrib))
+      times.maghrib = times.sunset + this.eval(this.settings.maghrib) / 60
+    if (this.isMin(this.settings.isha))
+      times.isha = times.maghrib + this.eval(this.settings.isha) / 60
+    times.dhuhr += this.eval(this.settings.dhuhr) / 60
 
     return times
   }
@@ -473,7 +466,7 @@ export class PrayTimesProvider {
 
   // adjust times for locations in higher latitudes
   private adjustHighLats(times: PrayerTimes) {
-    const params = this.setting
+    const params = this.settings
     const nightTime = this.timeDiff(times.sunset, times.sunrise)
 
     times.imsak = this.adjustHLTime(
@@ -521,7 +514,7 @@ export class PrayTimesProvider {
 
   // the night portion used for adjusting times in higher latitudes
   private nightPortion(angle: number, night: number) {
-    const method = this.setting.highLats
+    const method = this.settings.highLats
     let portion = 1 / 2 // MidNight
     if (method == HighLatMethod.AngleBased) portion = (1 / 60) * angle
     if (method == HighLatMethod.OneSeventh) portion = 1 / 7
@@ -570,11 +563,6 @@ export class PrayTimesProvider {
   // compute the difference between two times
   private timeDiff(time1: number, time2: number) {
     return DegreeMath.fixHour(time2 - time1)
-  }
-
-  // add a leading 0 if necessary
-  private twoDigitsFormat(num: number) {
-    return num < 10 ? '0' + num : num
   }
 }
 

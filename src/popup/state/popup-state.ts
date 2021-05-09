@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 import { browser } from 'webextension-polyfill-ts'
-import { LocationCoordinate, PrayerTimeFormat, PrayTimesProvider } from '../../shared/pray_time'
-import { prayTimeMessages } from '../../shared/pray_time_messages'
+import { CalculationName, LocationCoordinate, PrayerTimeFormat, PrayTimesProvider } from '../../shared/pray_time'
+import { localizedMessages } from '../../shared/pray_time_messages'
 
 type PageType = 'popup'
 
@@ -33,7 +33,7 @@ export class PopupState {
   }
 
   async init() {
-    this.prayTimesProvider = new PrayTimesProvider('Jafari', prayTimeMessages)
+    this.prayTimesProvider = new PrayTimesProvider(CalculationName.Jafari)
     this.coordinates = (await browser.storage.sync.get(['coordinates'])).coordinates
     const times = this.getPrayerTimes()
     if (times) {
@@ -64,7 +64,7 @@ export class PopupState {
     let foundNextPrayer = false
 
     for (const i in this.prayerTimeNames) {
-      const name = prayTimeMessages.timeNames[this.prayerTimeNames[i]]
+      const name = localizedMessages[this.prayerTimeNames[i]]
       const time = times[name.toLowerCase()]
 
       // Prayer time in minutes from day beginning.
@@ -95,7 +95,7 @@ export class PopupState {
     const m = parseInt(timeSplit[1])
 
     if (this.format == PrayerTimeFormat.TwelveHourFormat) {
-      const isPm = s.split(' ')[1]== 'pm'
+      const isPm = s.toLowerCase().split(' ')[1] == 'pm'
       h = isPm ? (12 + h) : h
     }
 
