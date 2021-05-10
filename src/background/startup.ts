@@ -1,4 +1,5 @@
 import { browser } from 'webextension-polyfill-ts'
+import { getSetting, Setting } from '../shared/settings'
 
 /**
  * Checks if the version has changed or initially installed.
@@ -8,7 +9,7 @@ import { browser } from 'webextension-polyfill-ts'
 export async function init() {
   // Version Check.
   const currVersion = browser.runtime.getManifest().version
-  const { version } = await browser.storage.sync.get(['version'])
+  const { version } = await getSetting([Setting.version])
   
   if (currVersion != version) {
     // Check if we just installed this extension.

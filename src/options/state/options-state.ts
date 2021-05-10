@@ -1,60 +1,8 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 import { browser } from 'webextension-polyfill-ts'
-import { CalculationName, PrayerTimeFormat } from '../../shared/pray_time'
+import { getSetting, setSetting, Setting, Settings } from '../../shared/settings'
 
 type PageType = 'fre' | 'settings'
-
-async function getSetting<T>(keys: string[]) {
-  const values = await browser.storage.sync.get(keys)
-  const results = {}
-  keys.forEach(key => {
-    let result = undefined
-    const value = values[key]
-
-    switch (key) {
-      case 'version':
-      case 'currentPosition':
-        result = value
-        break
-      case 'timeformat':
-        result = (typeof value == 'undefined') ? PrayerTimeFormat.TwelveHourFormat : PrayerTimeFormat[value]
-        break
-      case 'calculation':
-        result = (typeof value == 'undefined') ? CalculationName.Jafari : CalculationName[value]
-        break
-      case 'timenames':
-        result = (typeof value == 'undefined') ? [
-          'imsak',
-          'fajr',
-          'sunrise',
-          'dhuhr',
-          'asr',
-          'sunset',
-          'maghrib',
-          'isha',
-          'midnight'
-        ] : value.split(',')
-        break
-      // case 'bypassCache':
-      //   result = value == true
-      //   break
-      default:
-        result = undefined
-        break
-    }
-
-    results[key] = result
-  })
-
-  return results as T
-}
-
-interface Settings {
-  currentPosition: GeolocationCoordinates
-  calculation: CalculationName
-  timeformat: PrayerTimeFormat
-  timenames: string[]
-}
 
 export class OptionsState {
   page: PageType = 'fre'
@@ -67,10 +15,10 @@ export class OptionsState {
 
   async init() {
     const settings = await getSetting<Settings>([
-      'currentPosition',
-      'timeformat',
-      'calculation',
-      'timenames'
+      Setting.currentPosition,
+      Setting.timeformat,
+      Setting.calculation,
+      Setting.timenames
     ])
     runInAction(async () => {
       this.settings = settings
@@ -82,7 +30,7 @@ export class OptionsState {
       navigator.geolocation.getCurrentPosition(
         async (position: GeolocationPosition) => {
           const { latitude, longitude } = position.coords
-          await browser.storage.sync.set({'currentPosition': { latitude, longitude }})
+          await setSetting(Setting.currentPosition, { latitude, longitude })
           runInAction(() => this.settings.currentPosition = position.coords)
         },
         (positionError: GeolocationPositionError) => {
@@ -92,5 +40,16 @@ export class OptionsState {
     } else {
       console.error('Geolocation Not supported')
     }
+  }
+
+  async updateTimename(timename: string, checked: boolean) {
+    const timenames = {...this.settings.timenames, [timename]: checked }
+    await this.updateSetting(Setting.timenames, timenames)
+  }
+
+  async updateSetting<T>(setting: Setting, value: T) {
+    this.settings[setting.toString()] = value
+    await setSetting(setting, value)
+    await browser.storage.sync.set({[setting]: value})
   }
 }

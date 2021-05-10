@@ -1,7 +1,8 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 import { browser } from 'webextension-polyfill-ts'
-import { CalculationName, LocationCoordinate, PrayerTimeFormat, PrayTimesProvider } from '../../shared/pray_time'
+import { PrayerTimeFormat, PrayTimesProvider } from '../../shared/pray_time'
 import { localizedMessages } from '../../shared/pray_time_messages'
+import { getSetting, Setting, Settings } from '../../shared/settings'
 
 type PageType = 'popup'
 
@@ -16,70 +17,89 @@ export class PopupState {
   page: PageType = 'popup'
   prayerTimes: PrayerTimeRendered[] = []
   currentGregorianDate = new Date()
-  format = PrayerTimeFormat.TwelveHourFormat
-  coordinates: LocationCoordinate | undefined = undefined
-  prayTimesProvider: PrayTimesProvider
-  prayerTimeNames = ['imsak', 'fajr', 'dhuhr', 'asr', 'maghrib', 'isha']
+  settings: Settings
 
   constructor() {
-    makeAutoObservable(this, {
-      prayTimesProvider: false,
-      coordinates: false,
-      format: false,
-      prayerTimeNames: false
-    })
+    makeAutoObservable(this, {})
 
     this.init()
   }
 
   async init() {
-    this.prayTimesProvider = new PrayTimesProvider(CalculationName.Jafari)
-    this.coordinates = (await browser.storage.sync.get(['coordinates'])).coordinates
-    const times = this.getPrayerTimes()
-    if (times) {
-      runInAction(() => {
-        this.prayerTimes = times
-      })
-    }
+    browser.storage.onChanged.addListener(
+      async (settings) => await this.onSettingsChanged(settings)
+    )
+    
+    await this.fetchSettings()
+    this.refreshPrayerTimes()
   }
 
   openOptions() {
     browser.runtime.openOptionsPage()
   }
-  
+
   openTimetable() {
-    browser.tabs.create({url: browser.runtime.getURL('/views/timetable.html'), active: true })
+    browser.tabs.create({ url: browser.runtime.getURL('/views/timetable.html'), active: true })
   }
 
-  private getPrayerTimes() {
-    if (!this.coordinates) {
+  private async onSettingsChanged(settings: Settings) {
+    if (
+      settings[Setting.calculation] != undefined ||
+      settings[Setting.currentPosition] != undefined ||
+      settings[Setting.timenames] != undefined ||
+      settings[Setting.timeformat] != undefined
+    ) {
+      await this.fetchSettings()
+      this.refreshPrayerTimes()
+    }
+  }
+
+  private async fetchSettings() {
+    this.settings = await getSetting([
+      Setting.calculation,
+      Setting.currentPosition,
+      Setting.timenames,
+      Setting.timeformat
+    ])
+  }
+
+  private refreshPrayerTimes() {
+    if (!this.settings.currentPosition) {
       return undefined
     }
-    const { latitude, longitude } = this.coordinates
-    const times = this.prayTimesProvider.getTimes(new Date(), { latitude, longitude }, { format: this.format })
 
+    const prayTimesProvider = new PrayTimesProvider(this.settings.calculation)
+    const times = prayTimesProvider.getTimes(new Date(), this.settings.currentPosition, {
+      format: this.settings.timeformat
+    })
     const userTimes: PrayerTimeRendered[] = []
     const currentMinutes = this.currentTimeInMinutes()
-    let delta = -1
+
     let foundNextPrayer = false
 
-    for (const i in this.prayerTimeNames) {
-      const name = localizedMessages[this.prayerTimeNames[i]]
+    Object.keys(localizedMessages).forEach((key) => {
+      if (!this.settings.timenames[key]) return
+
+      const name = localizedMessages[key]
       const time = times[name.toLowerCase()]
 
       // Prayer time in minutes from day beginning.
       const prayerTimeMinutes = this.dateStringInMinutes(time)
-      delta = prayerTimeMinutes - currentMinutes
-0
+      const delta = prayerTimeMinutes - currentMinutes
+
       if (!foundNextPrayer && delta >= 0) {
         foundNextPrayer = true
         userTimes.push({ delta, name, time, isNext: this.getNextPrayerTime(delta) })
       } else {
         userTimes.push({ delta, name, time })
       }
-    }
+    })
 
-    return userTimes
+    if (userTimes) {
+      runInAction(() => {
+        this.prayerTimes = userTimes
+      })
+    }
   }
 
   private currentTimeInMinutes() {
@@ -94,9 +114,9 @@ export class PopupState {
     let h = parseInt(timeSplit[0])
     const m = parseInt(timeSplit[1])
 
-    if (this.format == PrayerTimeFormat.TwelveHourFormat) {
+    if (this.settings.timeformat == PrayerTimeFormat.TwelveHourFormat) {
       const isPm = s.toLowerCase().split(' ')[1] == 'pm'
-      h = isPm ? (12 + h) : h
+      h = isPm ? 12 + h : h
     }
 
     return 60 * h + m
