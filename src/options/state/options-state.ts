@@ -30,8 +30,14 @@ export class OptionsState {
       navigator.geolocation.getCurrentPosition(
         async (position: GeolocationPosition) => {
           const { latitude, longitude } = position.coords
+          if (
+            this.settings &&
+            this.settings.currentPosition.latitude == latitude &&
+            this.settings.currentPosition.longitude == longitude
+          )
+            return
           await setSetting(Setting.currentPosition, { latitude, longitude })
-          runInAction(() => this.settings.currentPosition = position.coords)
+          runInAction(() => (this.settings.currentPosition = position.coords))
         },
         (positionError: GeolocationPositionError) => {
           console.error('Geolocation Error', positionError)
@@ -43,13 +49,13 @@ export class OptionsState {
   }
 
   async updateTimename(timename: string, checked: boolean) {
-    const timenames = {...this.settings.timenames, [timename]: checked }
+    const timenames = { ...this.settings.timenames, [timename]: checked }
     await this.updateSetting(Setting.timenames, timenames)
   }
 
   async updateSetting<T>(setting: Setting, value: T) {
     this.settings[setting.toString()] = value
     await setSetting(setting, value)
-    await browser.storage.sync.set({[setting]: value})
+    await browser.storage.sync.set({ [setting]: value })
   }
 }

@@ -25,6 +25,7 @@
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.13.0",
     "@types/jest": "^26.0.23",
+    "@types/leaflet": "^1.7.0",
     "@types/sinon": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^4.22.1",
     "@typescript-eslint/parser": "^4.22.1",
@@ -50,11 +51,13 @@
     "@types/chrome": "0.0.137",
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.3",
+    "leaflet": "^1.7.1",
     "mobx": "^6.3.0",
     "mobx-react-lite": "^3.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-jss": "^10.6.0"
+    "react-jss": "^10.6.0",
+    "react-leaflet": "^3.1.0"
   },
   "babel": {
     "presets": [
