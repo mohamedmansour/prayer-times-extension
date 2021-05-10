@@ -21,7 +21,6 @@ export class PopupState {
 
   constructor() {
     makeAutoObservable(this, {})
-
     this.init()
   }
 
@@ -29,7 +28,7 @@ export class PopupState {
     browser.storage.onChanged.addListener(
       async (settings) => await this.onSettingsChanged(settings)
     )
-    
+
     await this.fetchSettings()
     this.refreshPrayerTimes()
   }

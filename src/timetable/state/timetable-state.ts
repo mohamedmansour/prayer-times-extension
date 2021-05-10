@@ -8,6 +8,7 @@ import {
   PrayerTimes,
   PrayTimesProvider
 } from '../../shared/pray_time'
+import { getSetting, Setting, Settings } from '../../shared/settings'
 
 type PageType = 'timetable'
 
@@ -21,49 +22,44 @@ export interface PrayerMonthRendered {
 export class TimetableState {
   page: PageType = 'timetable'
   data: PrayerMonthRendered[] = []
-
+  settings: Settings
   gregorianDate = new Date()
-  coordinates: LocationCoordinate | undefined = undefined
-  format = PrayerTimeFormat.TwelveHourFormat
-  prayTimesProvider: PrayTimesProvider
 
   constructor() {
-    makeAutoObservable(this, {
-      prayTimesProvider: false,
-      format: false,
-      coordinates: false
-    })
+    makeAutoObservable(this, {})
     this.init()
   }
 
   async init() {
-    this.prayTimesProvider = new PrayTimesProvider(CalculationName.Jafari)
-
-    const { coordinates } = await browser.storage.sync.get(['coordinates'])
-    runInAction(async () => (this.coordinates = coordinates))
-
-    this.generateData(this.gregorianDate.getFullYear(), this.gregorianDate.getMonth())
+    browser.storage.onChanged.addListener(
+      async (settings) => await this.onSettingsChanged(settings)
+    )
+    
+    await this.fetchSettings()
+    this.refreshData()
   }
 
   /**
    * |month| starts at 0
    */
-  generateData(year: number, month: number) {
-    if (!this.coordinates) {
+  refreshData() {
+    if (!this.settings.currentPosition) {
       return undefined
     }
 
-    const { latitude, longitude } = this.coordinates
+    const year = this.gregorianDate.getFullYear()
+    const month = this.gregorianDate.getMonth()
+    const prayTimesProvider = new PrayTimesProvider(this.settings.calculation)
     const date = new Date(year, month, 1)
     const endDate = new Date(year, month + 1, 1)
     const today = new Date()
 
     const data: PrayerMonthRendered[] = []
     while (date < endDate) {
-      const times = this.prayTimesProvider.getTimes(
+      const times = prayTimesProvider.getTimes(
         date,
-        { latitude, longitude },
-        { format: this.format }
+        this.settings.currentPosition,
+        { format: this.settings.timeformat }
       )
 
       const isToday = date.getMonth() == today.getMonth() && date.getDate() == today.getDate()
@@ -83,16 +79,36 @@ export class TimetableState {
 
   gotoNextMonth() {
     this.gregorianDate.setMonth(this.gregorianDate.getMonth() + 1)
-    this.generateData(this.gregorianDate.getFullYear(), this.gregorianDate.getMonth())
+    this.refreshData()
   }
 
   gotoPreviousMonth() {
     this.gregorianDate.setMonth(this.gregorianDate.getMonth() - 1)
-    this.generateData(this.gregorianDate.getFullYear(), this.gregorianDate.getMonth())
+    this.refreshData()
   }
 
   gotoToday() {
     this.gregorianDate = new Date()
-    this.generateData(this.gregorianDate.getFullYear(), this.gregorianDate.getMonth())
+    this.refreshData()
+  }
+  
+  private async onSettingsChanged(settings: Settings) {
+    if (
+      settings[Setting.calculation] != undefined ||
+      settings[Setting.currentPosition] != undefined ||
+      settings[Setting.timeformat] != undefined
+    ) {
+      await this.fetchSettings()
+      this.refreshData()
+    }
+  }
+
+  private async fetchSettings() {
+    this.settings = await getSetting([
+      Setting.calculation,
+      Setting.currentPosition,
+      Setting.timenames,
+      Setting.timeformat
+    ])
   }
 }
