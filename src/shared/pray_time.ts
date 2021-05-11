@@ -278,7 +278,7 @@ export class PrayTimesProvider {
   }
 
   // convert float time to the given format (see timeFormats)
-  private getFormattedTime(time: number, format: PrayerTimeFormat) {
+  getFormattedTime(time: number, format: PrayerTimeFormat) {
     if (isNaN(time)) return this.InvalidTime
     if (format == PrayerTimeFormat.Float) return time
 

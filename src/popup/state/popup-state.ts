@@ -67,12 +67,13 @@ export class PopupState {
       return undefined
     }
 
+    const currentDateTime = new Date()
     const prayTimesProvider = new PrayTimesProvider(this.settings.calculation)
-    const times = prayTimesProvider.getTimes(new Date(), this.settings.currentPosition, {
-      format: this.settings.timeformat
+    const times = prayTimesProvider.getTimes(currentDateTime, this.settings.currentPosition, {
+      format: PrayerTimeFormat.Float
     })
     const userTimes: PrayerTimeRendered[] = []
-    const currentMinutes = this.currentTimeInMinutes()
+    const currentMinutes = 60 * currentDateTime.getHours() + currentDateTime.getMinutes()
 
     let foundNextPrayer = false
 
@@ -80,10 +81,11 @@ export class PopupState {
       if (!this.settings.timenames[key]) return
 
       const name = localizedMessages[key]
-      const time = times[name.toLowerCase()]
+      const timeInFloat = times[name.toLowerCase()]
+      const prayerTimeMinutes = Math.floor(timeInFloat * 60)
+      const time = prayTimesProvider.getFormattedTime(timeInFloat, this.settings.timeformat) as string
 
       // Prayer time in minutes from day beginning.
-      const prayerTimeMinutes = this.dateStringInMinutes(time)
       const delta = prayerTimeMinutes - currentMinutes
 
       if (!foundNextPrayer && delta >= 0) {
@@ -99,26 +101,6 @@ export class PopupState {
         this.prayerTimes = userTimes
       })
     }
-  }
-
-  private currentTimeInMinutes() {
-    const d = new Date()
-    const h = d.getHours()
-    const m = d.getMinutes()
-    return 60 * h + m
-  }
-
-  private dateStringInMinutes(s: string) {
-    const timeSplit = s.split(':')
-    let h = parseInt(timeSplit[0])
-    const m = parseInt(timeSplit[1])
-
-    if (this.settings.timeformat == PrayerTimeFormat.TwelveHourFormat) {
-      const isPm = s.toLowerCase().split(' ')[1] == 'pm'
-      h = isPm ? 12 + h : h
-    }
-
-    return 60 * h + m
   }
 
   private getNextPrayerTime(delta: number) {
