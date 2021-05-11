@@ -126,8 +126,8 @@ export const DaySchedule = observer(() => {
             state.prayerTimes.map((obj, idx) => <PrayerTime key={idx} {...obj} />)}
         </div>
         {state.prayersCompletedToday && <PrayerActiveBadge color="orange">{browser.i18n.getMessage('prayersCompletedToday')}</PrayerActiveBadge>}
-        <div className={classes.footer}>
-          <div className={classes.footerContent} onClick={() => state.openTimetable()}>
+        <div className={classes.footer} onClick={() => state.openTimetable()}>
+          <div className={classes.footerContent}>
             {localization.monthlyView}
           </div>
           <div className={classes.footerControl}>
