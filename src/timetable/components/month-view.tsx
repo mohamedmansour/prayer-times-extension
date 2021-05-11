@@ -8,13 +8,67 @@ import { useTimetableState } from '../state'
 import { PrayerMonthRendered } from '../state/timetable-state'
 
 const useStyles = createUseStyles({
+  timetable: {
+    margin: 10,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+
+  },
+  date: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 20
+  },
+  controls: {
+    textAlign: 'right',
+    borderRadius: 20,
+    backgroundColor: '#074207',
+    marginBottom: 10,
+    '& button': {
+      border: 0,
+      background: 'transparent',
+      padding: 8,
+      margin: 4,
+      color: 'white',
+      '&:hover': {
+        background: '#007500',
+        borderRadius: 20,
+        cursor: 'pointer'
+      }
+    }
+  },
   month: {
+    zIndex: 1,
+    overflow: 'hidden',
     borderCollapse: 'collapse',
     whiteSpace: 'nowrap',
+    thead: {
+
+    },
     '& th, & td': {
-      padding: 5,
-      textAlign: 'center'
+      padding: '8px 10px',
+      textAlign: 'center',
+      cursor: 'pointer',
+      position: 'relative'
+    },
+    '& td:hover::after': {
+      backgroundColor: '#BFE3BF',
+      content: '" "',
+      height: 10000,
+      left: '0',
+      position: 'absolute',
+      top: -5000,
+      width: '100%',
+      zIndex: -1
     }
+  },
+  columnHijri: {
+    width: 110
+  },
+  columnDay: {
+    width: 80
   }
 })
 
@@ -35,9 +89,9 @@ export const MonthView = observer(() => {
   const hijriDateString = getHijriDate(state.gregorianDate, { showDay: false })
 
   return (
-    <div>
-      <div>{gregorianDateString} ({hijriDateString})</div>
-      <div>
+    <div className={classes.timetable}>
+      <div className={classes.date}>{gregorianDateString} ({hijriDateString})</div>
+      <div className={classes.controls}>
         <button onClick={() => state.gotoPreviousMonth()}>Previous</button>
         <button onClick={() => state.gotoToday()}>Today</button>
         <button onClick={() => state.gotoNextMonth()}>Next</button>
@@ -46,16 +100,16 @@ export const MonthView = observer(() => {
         <thead>
           <tr>
             <th>{localizationTimetable.gregorianDay}</th>
-            <th>{localizationTimetable.hijriDay}</th>
-            <th>{localizedMessages.imsak}</th>
-            <th>{localizedMessages.fajr}</th>
-            <th>{localizedMessages.sunrise}</th>
-            <th>{localizedMessages.dhuhr}</th>
-            <th>{localizedMessages.asr}</th>
-            <th>{localizedMessages.sunset}</th>
-            <th>{localizedMessages.maghrib}</th>
-            <th>{localizedMessages.isha}</th>
-            <th>{localizedMessages.midnight}</th>
+            <th className={classes.columnHijri}>{localizationTimetable.hijriDay}</th>
+            <th className={classes.columnDay}>{localizedMessages.imsak}</th>
+            <th className={classes.columnDay}>{localizedMessages.fajr}</th>
+            <th className={classes.columnDay}>{localizedMessages.sunrise}</th>
+            <th className={classes.columnDay}>{localizedMessages.dhuhr}</th>
+            <th className={classes.columnDay}>{localizedMessages.asr}</th>
+            <th className={classes.columnDay}>{localizedMessages.sunset}</th>
+            <th className={classes.columnDay}>{localizedMessages.maghrib}</th>
+            <th className={classes.columnDay}>{localizedMessages.isha}</th>
+            <th className={classes.columnDay}>{localizedMessages.midnight}</th>
           </tr>
         </thead>
         <tbody>
@@ -70,17 +124,13 @@ export const MonthView = observer(() => {
 
 const useRowStyles = createUseStyles({
   today: {
-    backgroundColor: 'red'
+    backgroundColor: '#009000',
+    fontWeight: 'bold'
   },
   day: {
-    '&:nth-child(odd)': {
-      backgroundColor: '#eee',
-      '&$today': {
-        backgroundColor: 'red'
-      }
-    },
     '&:hover': {
-      backgroundColor: 'green',
+      backgroundColor: '#004800',
+      color: 'white'
     }
   },
   time: {
