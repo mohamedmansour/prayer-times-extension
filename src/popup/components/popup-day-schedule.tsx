@@ -76,7 +76,6 @@ const useStyles = createUseStyles({
     flexDirection: 'row',
     padding: '20px 8px',
     fontSize: 13,
-    lineHeight: '15px',
     borderTop: '1px solid rgba(255,255,255,0.6)',
     cursor: 'pointer',
     marginTop: 10
