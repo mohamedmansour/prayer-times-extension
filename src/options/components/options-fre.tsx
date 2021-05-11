@@ -46,7 +46,7 @@ function CurrentPositionMarker(props: CurrentPositionMarkerProps) {
   const map = useMapEvents({
     mouseup: () => {
       const center = map.getCenter()
-      state.updateSetting(Setting.currentPosition, {latitude: center.lat, longitude: center.lng })
+      state.updateSetting(Setting.currentPosition, {latitude: center.lat.toFixed(4), longitude: center.lng.toFixed(4) })
     },
   })
 
