@@ -18,6 +18,7 @@ export class PopupState {
   prayerTimes: PrayerTimeRendered[] = []
   currentGregorianDate = new Date()
   settings: Settings
+  prayersCompletedToday: boolean
 
   constructor() {
     makeAutoObservable(this, {})
@@ -66,14 +67,34 @@ export class PopupState {
     if (!this.settings.currentPosition) {
       return undefined
     }
+    const currentDate = new Date()
+    const prayerTimes = this.fetchPrayerTimesForDay(currentDate)
+    let userTimes = prayerTimes.userTimes
 
-    const currentDateTime = new Date()
+    if (!prayerTimes.foundNextPrayer) {
+      currentDate.setDate(currentDate.getDate() + 1)
+      const nextDayPrayerTimes = this.fetchPrayerTimesForDay(currentDate)
+      userTimes = nextDayPrayerTimes.userTimes
+      // this.prayersCompletedToday = true // This needs more testing to add the badge when auto redirecting to second day
+    }
+
+    if (userTimes) {
+      runInAction(() => {
+        this.prayerTimes = userTimes
+      })
+    }
+  }
+
+  private fetchPrayerTimesForDay(
+    date: Date
+  ): { userTimes: PrayerTimeRendered[]; foundNextPrayer: boolean } {
     const prayTimesProvider = new PrayTimesProvider(this.settings.calculation)
-    const times = prayTimesProvider.getTimes(currentDateTime, this.settings.currentPosition, {
+    const times = prayTimesProvider.getTimes(date, this.settings.currentPosition, {
       format: PrayerTimeFormat.Float
     })
     const userTimes: PrayerTimeRendered[] = []
-    const currentMinutes = 60 * currentDateTime.getHours() + currentDateTime.getMinutes()
+    const dayDiff = date.getDay() - new Date().getDay() + 1
+    const currentMinutes = 60 * date.getHours() + date.getMinutes()
 
     let foundNextPrayer = false
 
@@ -81,9 +102,13 @@ export class PopupState {
       if (!this.settings.timenames[key]) return
 
       const name = localizedMessages[key]
-      const timeInFloat = times[name.toLowerCase()]
+      const timeInFloat = times[name.toLowerCase()] + (dayDiff > 1 ? dayDiff * 24 : 0)
+      console.log(date, name, timeInFloat)
       const prayerTimeMinutes = Math.floor(timeInFloat * 60)
-      const time = prayTimesProvider.getFormattedTime(timeInFloat, this.settings.timeformat) as string
+      const time = prayTimesProvider.getFormattedTime(
+        timeInFloat,
+        this.settings.timeformat
+      ) as string
 
       // Prayer time in minutes from day beginning.
       const delta = prayerTimeMinutes - currentMinutes
@@ -96,20 +121,18 @@ export class PopupState {
       }
     })
 
-    if (userTimes) {
-      runInAction(() => {
-        this.prayerTimes = userTimes
-      })
-    }
+    return { userTimes, foundNextPrayer }
   }
 
   private getNextPrayerTime(delta: number) {
     const h = Math.floor(delta / 60)
     const m = delta - 60 * h
-    // This is the countdown, we might use it for badge
-    // const s = (m < 10) ? (h + ':0' + m) : (h + ':' + m)
+    const rtf = new Intl.RelativeTimeFormat(navigator.language, { numeric: 'auto' })
 
-    // This needs to be localized
-    return (h > 0 ? h + ' hrs ' : '') + (m + ' min')
+    if (h > 0) {
+      return rtf.format(h, 'hours')
+    }
+
+    return rtf.format(m, 'minutes')
   }
 }

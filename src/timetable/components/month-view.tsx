@@ -88,7 +88,7 @@ const useRowStyles = createUseStyles({
 })
 
 export function DayRow(props: PrayerMonthRendered) {
-  const classes = useRowStyles(props as any) // eslint-disable-line @typescript-eslint/no-explicit-any
+  const classes = useRowStyles()
 
   return (
     <tr className={classes.day + (props.isToday ? ' ' + classes.today : '')}>

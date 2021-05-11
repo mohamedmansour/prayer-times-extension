@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import * as React from 'react'
+import { ReactNode } from 'react'
 import { createUseStyles } from 'react-jss'
 import { browser } from 'webextension-polyfill-ts'
 import { getHijriDate } from '../../shared/islamic_date'
@@ -124,6 +125,7 @@ export const DaySchedule = observer(() => {
           {state.prayerTimes &&
             state.prayerTimes.map((obj, idx) => <PrayerTime key={idx} {...obj} />)}
         </div>
+        {state.prayersCompletedToday && <PrayerActiveBadge color="orange">{browser.i18n.getMessage('prayersCompletedToday')}</PrayerActiveBadge>}
         <div className={classes.footer}>
           <div className={classes.footerContent} onClick={() => state.openTimetable()}>
             {localization.monthlyView}
@@ -166,18 +168,6 @@ const useItemStyles = createUseStyles({
     backgroundColor: 'rgba(0,0,0,0.3)',
     fontWeight: '700'
   },
-  activeBadge: {
-    backgroundColor: 'rgba(45, 156, 219, 0.42)',
-    padding: '4px 6px',
-    display: 'inline-flex',
-    fontSize: 10,
-    alignItems: 'center',
-    borderRadius: 4,
-    marginBottom: 8,
-    '& svg': {
-      marginRight: 4
-    }
-  },
   done: {
     opacity: 0.5
   }
@@ -187,27 +177,7 @@ function PrayerTime(props: PrayerTimeRendered) {
   const classes = useItemStyles()
   return (
     <div className={classes.item}>
-      {props.isNext && (
-        <div className={classes.activeBadge}>
-          <svg
-            width="10"
-            height="10"
-            viewBox="0 0 8 8"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M3.99663 0.666626C2.15663 0.666626 0.666626 2.15996 0.666626 3.99996C0.666626 5.83996 2.15663 7.33329 3.99663 7.33329C5.83996 7.33329 7.33329 5.83996 7.33329 3.99996C7.33329 2.15996 5.83996 0.666626 3.99663 0.666626ZM3.99996 6.66663C2.52663 6.66663 1.33329 5.47329 1.33329 3.99996C1.33329 2.52663 2.52663 1.33329 3.99996 1.33329C5.47329 1.33329 6.66663 2.52663 6.66663 3.99996C6.66663 5.47329 5.47329 6.66663 3.99996 6.66663Z"
-              fill="white"
-            />
-            <path
-              d="M4.16663 2.33337H3.66663V4.33337L5.41663 5.38337L5.66663 4.97337L4.16663 4.08337V2.33337Z"
-              fill="white"
-            />
-          </svg>
-          In {props.isNext}
-        </div>
-      )}
+      {props.isNext && (<PrayerActiveBadge>{props.isNext}</PrayerActiveBadge>)}
       <div
         className={
           classes.timeEntry +
@@ -221,3 +191,48 @@ function PrayerTime(props: PrayerTimeRendered) {
     </div>
   )
 }
+
+const useActiveBadgeStyles = createUseStyles({
+  activeBadge: {
+    backgroundColor: (props: PrayerActiveBadgeProps) => props.color ? props.color : 'rgba(45, 156, 219, 0.42)',
+    padding: '4px 6px',
+    display: 'inline-flex',
+    fontSize: 10,
+    alignItems: 'center',
+    borderRadius: 4,
+    marginBottom: 8,
+    '& svg': {
+      marginRight: 4
+    }
+  },
+})
+
+interface PrayerActiveBadgeProps {
+  children: ReactNode,
+  color?: string
+}
+
+function PrayerActiveBadge(props: PrayerActiveBadgeProps) {
+  const classes = useActiveBadgeStyles(props as any) // eslint-disable-line @typescript-eslint/no-explicit-any
+  return (
+    <div className={classes.activeBadge}>
+      <svg
+        width="10"
+        height="10"
+        viewBox="0 0 8 8"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M3.99663 0.666626C2.15663 0.666626 0.666626 2.15996 0.666626 3.99996C0.666626 5.83996 2.15663 7.33329 3.99663 7.33329C5.83996 7.33329 7.33329 5.83996 7.33329 3.99996C7.33329 2.15996 5.83996 0.666626 3.99663 0.666626ZM3.99996 6.66663C2.52663 6.66663 1.33329 5.47329 1.33329 3.99996C1.33329 2.52663 2.52663 1.33329 3.99996 1.33329C5.47329 1.33329 6.66663 2.52663 6.66663 3.99996C6.66663 5.47329 5.47329 6.66663 3.99996 6.66663Z"
+          fill="white"
+        />
+        <path
+          d="M4.16663 2.33337H3.66663V4.33337L5.41663 5.38337L5.66663 4.97337L4.16663 4.08337V2.33337Z"
+          fill="white"
+        />
+      </svg>
+      {props.children}
+    </div>
+  )
+} 

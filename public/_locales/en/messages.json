@@ -62,5 +62,9 @@
   "hijriDay": {
     "message": "Hijri",
     "description": "The label 'Hijri' for the month. The islamic day in the form of Ramadan 24"
+  },
+  "prayersCompletedToday": {
+    "message": "Showing prayer times for tomorrow",
+    "description": "The label that describes that the prayers today have already completed so showing for tomorrow."
   }
 }

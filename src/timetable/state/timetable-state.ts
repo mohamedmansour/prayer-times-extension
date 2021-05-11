@@ -1,10 +1,7 @@
-import { makeAutoObservable, runInAction } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { browser } from 'webextension-polyfill-ts'
 import { getHijriDate } from '../../shared/islamic_date'
 import {
-  CalculationName,
-  LocationCoordinate,
-  PrayerTimeFormat,
   PrayerTimes,
   PrayTimesProvider
 } from '../../shared/pray_time'
