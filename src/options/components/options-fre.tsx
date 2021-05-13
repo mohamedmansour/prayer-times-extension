@@ -145,7 +145,7 @@ const Timenames = observer(() => {
             name="timenames"
             onChange={(e) => state.updateTimename(timename, e.target.checked)}
             type="checkbox"
-          />{' '}
+          />
           {localizedMessages[timename]}
         </span>
       ))}

@@ -44,10 +44,10 @@ export class PopupState {
 
   private async onSettingsChanged(settings: Settings) {
     if (
-      settings[Setting.calculation] != undefined ||
-      settings[Setting.currentPosition] != undefined ||
-      settings[Setting.timenames] != undefined ||
-      settings[Setting.timeformat] != undefined
+      settings.calculation != undefined ||
+      settings.currentPosition != undefined ||
+      settings.timenames != undefined ||
+      settings.timeformat != undefined
     ) {
       await this.fetchSettings()
       this.refreshPrayerTimes()
@@ -93,6 +93,10 @@ export class PopupState {
       format: PrayerTimeFormat.Float
     })
     const userTimes: PrayerTimeRendered[] = []
+
+    // Since this function figures out what the prayer times is for some date, calculate
+    // how many days ahead it is so it can be added to the float times. The float times are
+    // relative to the same day, so it must be normalized.
     const dayDiff = date.getDay() - new Date().getDay() + 1
     const currentMinutes = 60 * date.getHours() + date.getMinutes()
 
@@ -102,8 +106,9 @@ export class PopupState {
       if (!this.settings.timenames[key]) return
 
       const name = localizedMessages[key]
+
+      // Add 24 hours if the day is the next day so the timings will be correct.
       const timeInFloat = times[name.toLowerCase()] + (dayDiff > 1 ? dayDiff * 24 : 0)
-      console.log(date, name, timeInFloat)
       const prayerTimeMinutes = Math.floor(timeInFloat * 60)
       const time = prayTimesProvider.getFormattedTime(
         timeInFloat,
