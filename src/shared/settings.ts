@@ -7,6 +7,7 @@ export enum Setting {
   timenames = 'timenames',
   version = 'version',
   currentPosition = 'currentPosition',
+  offsets = 'offsets'
 }
 
 export interface Settings {
@@ -15,6 +16,7 @@ export interface Settings {
   calculation?: CalculationName
   timeformat?: PrayerTimeFormat
   timenames?: {[key: string]: boolean}
+  offsets?: {[key: string]: number}
 }
 
 export async function setSetting<T>(key: Setting, value: T) {
@@ -46,6 +48,19 @@ export async function getSetting<T>(keys: Setting[]): Promise<Partial<Settings>>
           'maghrib': true,
           'isha': true,
           'midnight': true
+        } : value
+        break
+      case Setting.offsets:
+        result = (typeof value == 'undefined') ? {
+          'imsak': 0,
+          'fajr': 0,
+          'sunrise': 0,
+          'dhuhr': 0,
+          'asr': 0,
+          'sunset': 0,
+          'maghrib': 0,
+          'isha': 0,
+          'midnight': 0
         } : value
         break
       case Setting.currentPosition:

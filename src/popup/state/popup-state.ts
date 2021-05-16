@@ -47,7 +47,8 @@ export class PopupState {
       settings.calculation != undefined ||
       settings.currentPosition != undefined ||
       settings.timenames != undefined ||
-      settings.timeformat != undefined
+      settings.timeformat != undefined ||
+      settings.offsets != undefined
     ) {
       await this.fetchSettings()
       this.refreshPrayerTimes()
@@ -59,7 +60,8 @@ export class PopupState {
       Setting.calculation,
       Setting.currentPosition,
       Setting.timenames,
-      Setting.timeformat
+      Setting.timeformat,
+      Setting.offsets
     ])
   }
 
@@ -89,6 +91,7 @@ export class PopupState {
     date: Date
   ): { userTimes: PrayerTimeRendered[]; foundNextPrayer: boolean } {
     const prayTimesProvider = new PrayTimesProvider(this.settings.calculation)
+    prayTimesProvider.tune(this.settings.offsets)
     const times = prayTimesProvider.getTimes(date, this.settings.currentPosition, {
       format: PrayerTimeFormat.Float
     })

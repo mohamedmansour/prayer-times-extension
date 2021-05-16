@@ -53,7 +53,12 @@ export const OptionTimenames = observer(() => {
               </td>
               <td>{localizedPrayerTimeMessages[timename]}</td>
               <td>
-                <input className={classes.offset} type="number" />
+                <input
+                  className={classes.offset}
+                  type="number"
+                  value={state.settings.offsets[timename]}
+                  onChange={(e) => state.updateTimeNameOffset(timename, parseInt(e.target.value))}
+                />
               </td>
             </tr>
           ))}

@@ -18,7 +18,8 @@ export class OptionsState {
       Setting.currentPosition,
       Setting.timeformat,
       Setting.calculation,
-      Setting.timenames
+      Setting.timenames,
+      Setting.offsets
     ])
     runInAction(async () => {
       this.settings = settings
@@ -65,5 +66,10 @@ export class OptionsState {
       return prev
     }, {})
     await this.updateSetting(Setting.timenames, timenames)
+  }
+
+  async updateTimeNameOffset(timename: string, value: number) {
+    const offsets = { ...this.settings.offsets, [timename]: value }
+    await this.updateSetting(Setting.offsets, offsets)
   }
 }

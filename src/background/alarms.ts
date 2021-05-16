@@ -13,7 +13,8 @@ async function onSettingsChanged(settings: Settings) {
   if (
     settings.calculation != undefined ||
     settings.currentPosition != undefined ||
-    settings.timenames != undefined
+    settings.timenames != undefined ||
+    settings.offsets != undefined
   ) {
     await refreshAllAlarms()
   }
@@ -28,13 +29,15 @@ async function createAlarmsForDay(date: Date) {
   const settings = await getSetting([
     Setting.calculation,
     Setting.currentPosition,
-    Setting.timenames
+    Setting.timenames,
+    Setting.offsets
   ])
 
   // Reset to beginning of the day so we can get the number of ms
   date.setHours(0, 1, 0, 0)
 
   const prayTimesProvider = new PrayTimesProvider(settings.calculation)
+  prayTimesProvider.tune(settings.offsets)
   const times = prayTimesProvider.getTimes(date, settings.currentPosition, {
     format: PrayerTimeFormat.Float
   })

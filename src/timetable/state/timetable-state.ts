@@ -46,10 +46,11 @@ export class TimetableState {
 
     const year = this.gregorianDate.getFullYear()
     const month = this.gregorianDate.getMonth()
-    const prayTimesProvider = new PrayTimesProvider(this.settings.calculation)
     const date = new Date(year, month, 1)
     const endDate = new Date(year, month + 1, 1)
     const today = new Date()
+    const prayTimesProvider = new PrayTimesProvider(this.settings.calculation)
+    prayTimesProvider.tune(this.settings.offsets)
 
     const data: PrayerMonthRendered[] = []
     while (date < endDate) {
@@ -91,9 +92,10 @@ export class TimetableState {
   
   private async onSettingsChanged(settings: Settings) {
     if (
-      settings[Setting.calculation] != undefined ||
-      settings[Setting.currentPosition] != undefined ||
-      settings[Setting.timeformat] != undefined
+      settings.calculation != undefined ||
+      settings.currentPosition != undefined ||
+      settings.timeformat != undefined ||
+      settings.offsets != undefined
     ) {
       await this.fetchSettings()
       this.refreshData()
@@ -105,7 +107,8 @@ export class TimetableState {
       Setting.calculation,
       Setting.currentPosition,
       Setting.timenames,
-      Setting.timeformat
+      Setting.timeformat,
+      Setting.offsets
     ])
   }
 }
