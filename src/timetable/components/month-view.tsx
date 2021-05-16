@@ -49,19 +49,7 @@ const useStyles = createUseStyles({
     },
     '& th, & td': {
       padding: '8px 10px',
-      textAlign: 'center',
-      cursor: 'pointer',
-      position: 'relative'
-    },
-    '& td:hover::after': {
-      backgroundColor: '#BFE3BF',
-      content: '" "',
-      height: 10000,
-      left: '0',
-      position: 'absolute',
-      top: -5000,
-      width: '100%',
-      zIndex: -1
+      textAlign: 'center'
     }
   },
   columnHijri: {
