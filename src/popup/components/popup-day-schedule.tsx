@@ -1,94 +1,15 @@
 import { observer } from 'mobx-react-lite'
 import * as React from 'react'
-import { ReactNode } from 'react'
-import { createUseStyles } from 'react-jss'
 import { browser } from 'webextension-polyfill-ts'
 import { getHijriDate } from '../../shared/islamic_date'
 import { usePopupState } from '../state'
-import { PrayerTimeRendered } from '../state/popup-state'
+import { ActiveTimeBadge } from './active-time-badge'
+import useStyles from './popup-day-schedule.styles'
+import { PrayerTimeRow } from './prayer-time-row'
 
 const localization = {
   monthlyView: browser.i18n.getMessage('monthlyView')
 }
-
-const useStyles = createUseStyles({
-  wrapper: {
-    position: 'relative',
-    color: 'white',
-    padding: '0 16px'
-  },
-  background: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundImage: 'url(/images/themes/claudio-fonte-1037599-unsplash.png)',
-    backgroundPosition: 'bottom',
-
-    '&::after': {
-      content: '" "',
-      display: 'block',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'black',
-      opacity: 0.57
-    }
-  },
-  content: {
-    position: 'relative'
-  },
-  header: {
-    padding: '0 8px'
-  },
-  headerPrimary: {
-    padding: '16px 0 4px 0',
-    fontSize: 36,
-    lineHeight: '42px'
-  },
-  headerSecondary: {
-    fontSize: 13,
-    lineHeight: '15px'
-  },
-  headerSecondaryItem: {
-    marginBottom: 5
-  },
-  settings: {
-    position: 'absolute',
-    top: 18,
-    right: 18,
-    fill: 'white',
-    zIndex: 1,
-    '&:hover': {
-      fill: 'black',
-      cursor: 'pointer'
-    }
-  },
-  times: {
-    display: 'flex',
-    flexDirection: 'column',
-    paddingTop: 20
-  },
-  footer: {
-    display: 'flex',
-    flexDirection: 'row',
-    padding: '20px 8px',
-    fontSize: 13,
-    borderTop: '1px solid rgba(255,255,255,0.6)',
-    cursor: 'pointer',
-    marginTop: 10
-  },
-  footerContent: {
-    flex: 1
-  },
-  footerControl: {
-    whiteSpace: 'nowrap',
-    fill: 'white'
-  }
-})
 
 export const DaySchedule = observer(() => {
   const classes = useStyles()
@@ -123,9 +44,9 @@ export const DaySchedule = observer(() => {
         </div>
         <div className={classes.times}>
           {state.prayerTimes &&
-            state.prayerTimes.map((obj, idx) => <PrayerTime key={idx} {...obj} />)}
+            state.prayerTimes.map((obj, idx) => <PrayerTimeRow key={idx} {...obj} />)}
         </div>
-        {state.prayersCompletedToday && <PrayerActiveBadge color="orange">{browser.i18n.getMessage('prayersCompletedToday')}</PrayerActiveBadge>}
+        {state.prayersCompletedToday && <ActiveTimeBadge color="orange">{browser.i18n.getMessage('prayersCompletedToday')}</ActiveTimeBadge>}
         <div className={classes.footer} onClick={() => state.openTimetable()}>
           <div className={classes.footerContent}>
             {localization.monthlyView}
@@ -146,93 +67,3 @@ export const DaySchedule = observer(() => {
     </div>
   )
 })
-
-const useItemStyles = createUseStyles({
-  item: {
-    marginBottom: 6
-  },
-  timeEntry: {
-    display: 'flex',
-    flexDirection: 'row',
-    fontSize: 13,
-    padding: '5px 8px',
-    borderRadius: 6,
-    fontWeight: '400',
-    lineHeight: '15px'
-  },
-  prayerName: {
-    flex: '1'
-  },
-  prayerTime: {},
-  active: {
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    fontWeight: '700'
-  },
-  done: {
-    opacity: 0.5
-  }
-})
-
-function PrayerTime(props: PrayerTimeRendered) {
-  const classes = useItemStyles()
-  return (
-    <div className={classes.item}>
-      {props.isNext && (<PrayerActiveBadge>{props.isNext}</PrayerActiveBadge>)}
-      <div
-        className={
-          classes.timeEntry +
-          (props.isNext ? ' ' + classes.active : '') +
-          (props.delta < 0 ? ' ' + classes.done : '')
-        }
-      >
-        <span className={classes.prayerName}>{props.name}</span>
-        <span className={classes.prayerTime}>{props.time}</span>
-      </div>
-    </div>
-  )
-}
-
-const useActiveBadgeStyles = createUseStyles({
-  activeBadge: {
-    backgroundColor: (props: PrayerActiveBadgeProps) => props.color ? props.color : 'rgba(45, 156, 219, 0.42)',
-    padding: '4px 6px',
-    display: 'inline-flex',
-    fontSize: 10,
-    alignItems: 'center',
-    borderRadius: 4,
-    marginBottom: 8,
-    '& svg': {
-      marginRight: 4
-    }
-  },
-})
-
-interface PrayerActiveBadgeProps {
-  children: ReactNode,
-  color?: string
-}
-
-function PrayerActiveBadge(props: PrayerActiveBadgeProps) {
-  const classes = useActiveBadgeStyles(props as any) // eslint-disable-line @typescript-eslint/no-explicit-any
-  return (
-    <div className={classes.activeBadge}>
-      <svg
-        width="10"
-        height="10"
-        viewBox="0 0 8 8"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M3.99663 0.666626C2.15663 0.666626 0.666626 2.15996 0.666626 3.99996C0.666626 5.83996 2.15663 7.33329 3.99663 7.33329C5.83996 7.33329 7.33329 5.83996 7.33329 3.99996C7.33329 2.15996 5.83996 0.666626 3.99663 0.666626ZM3.99996 6.66663C2.52663 6.66663 1.33329 5.47329 1.33329 3.99996C1.33329 2.52663 2.52663 1.33329 3.99996 1.33329C5.47329 1.33329 6.66663 2.52663 6.66663 3.99996C6.66663 5.47329 5.47329 6.66663 3.99996 6.66663Z"
-          fill="white"
-        />
-        <path
-          d="M4.16663 2.33337H3.66663V4.33337L5.41663 5.38337L5.66663 4.97337L4.16663 4.08337V2.33337Z"
-          fill="white"
-        />
-      </svg>
-      {props.children}
-    </div>
-  )
-} 
