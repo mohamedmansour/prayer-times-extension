@@ -66,5 +66,17 @@
   "prayersCompletedToday": {
     "message": "Showing prayer times for tomorrow",
     "description": "The label that describes that the prayers today have already completed so showing for tomorrow."
+  },
+  "optionsTimenameTitle": {
+    "message": "Visible Times",
+    "description": "The option title to modify the visible timenames"
+  },
+  "optionsTimenameColumnName": {
+    "message": "Name",
+    "description": "The header name for the timenames"
+  },
+  "optionsTimenameColumnOffset": {
+    "message": "Offset (in mins)",
+    "description": "The header name for the timenames offset in minutes"
   }
 }

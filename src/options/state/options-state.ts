@@ -58,4 +58,12 @@ export class OptionsState {
     await setSetting(setting, value)
     await browser.storage.sync.set({ [setting]: value })
   }
+
+  async toggleAllTimenames(checked: boolean) {
+    const timenames = Object.keys(this.settings.timenames).reduce((prev, current) => {
+      prev[current] = checked
+      return prev
+    }, {})
+    await this.updateSetting(Setting.timenames, timenames)
+  }
 }
