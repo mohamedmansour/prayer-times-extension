@@ -1,68 +1,15 @@
 import { observer } from 'mobx-react-lite'
 import * as React from 'react'
-import { createUseStyles } from 'react-jss'
 import { browser } from 'webextension-polyfill-ts'
 import { getHijriDate } from '../../shared/islamic_date'
 import { localizedMessages } from '../../shared/pray_time_messages'
 import { useTimetableState } from '../state'
-import { PrayerMonthRendered } from '../state/timetable-state'
-
-const useStyles = createUseStyles({
-  timetable: {
-    margin: 10,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
-
-  },
-  date: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 20
-  },
-  controls: {
-    textAlign: 'right',
-    borderRadius: 20,
-    backgroundColor: '#074207',
-    marginBottom: 10,
-    '& button': {
-      border: 0,
-      background: 'transparent',
-      padding: 8,
-      margin: 4,
-      color: 'white',
-      '&:hover': {
-        background: '#007500',
-        borderRadius: 20,
-        cursor: 'pointer'
-      }
-    }
-  },
-  month: {
-    zIndex: 1,
-    overflow: 'hidden',
-    borderCollapse: 'collapse',
-    whiteSpace: 'nowrap',
-    thead: {
-
-    },
-    '& th, & td': {
-      padding: '8px 10px',
-      textAlign: 'center'
-    }
-  },
-  columnHijri: {
-    width: 110
-  },
-  columnDay: {
-    width: 80
-  }
-})
+import { DayRow } from './day-row'
+import useStyles from './month-view.styles'
 
 export const localizationTimetable = {
   gregorianDay: browser.i18n.getMessage('gregorianDay'),
-  hijriDay: browser.i18n.getMessage('hijriDay'),
+  hijriDay: browser.i18n.getMessage('hijriDay')
 }
 
 export const MonthView = observer(() => {
@@ -78,7 +25,9 @@ export const MonthView = observer(() => {
 
   return (
     <div className={classes.timetable}>
-      <div className={classes.date}>{gregorianDateString} ({hijriDateString})</div>
+      <div className={classes.date}>
+        {gregorianDateString} ({hijriDateString})
+      </div>
       <div className={classes.controls}>
         <button onClick={() => state.gotoPreviousMonth()}>Previous</button>
         <button onClick={() => state.gotoToday()}>Today</button>
@@ -109,38 +58,3 @@ export const MonthView = observer(() => {
     </div>
   )
 })
-
-const useRowStyles = createUseStyles({
-  today: {
-    backgroundColor: '#009000',
-    fontWeight: 'bold'
-  },
-  day: {
-    '&:hover': {
-      backgroundColor: '#004800',
-      color: 'white'
-    }
-  },
-  time: {
-  }
-})
-
-export function DayRow(props: PrayerMonthRendered) {
-  const classes = useRowStyles()
-
-  return (
-    <tr className={classes.day + (props.isToday ? ' ' + classes.today : '')}>
-      <td className={classes.time}>{props.gregorianDay}</td>
-      <td className={classes.time}>{props.hijriDate}</td>
-      <td className={classes.time}>{props.times.imsak}</td>
-      <td className={classes.time}>{props.times.fajr}</td>
-      <td className={classes.time}>{props.times.sunrise}</td>
-      <td className={classes.time}>{props.times.dhuhr}</td>
-      <td className={classes.time}>{props.times.asr}</td>
-      <td className={classes.time}>{props.times.sunset}</td>
-      <td className={classes.time}>{props.times.maghrib}</td>
-      <td className={classes.time}>{props.times.isha}</td>
-      <td className={classes.time}>{props.times.midnight}</td>
-    </tr>
-  )
-}
