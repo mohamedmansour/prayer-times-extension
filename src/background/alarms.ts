@@ -5,6 +5,7 @@ import { getSetting, Setting, Settings } from '../shared/settings'
 export async function init() {
   browser.storage.onChanged.addListener(async (settings) => await onSettingsChanged(settings))
   browser.alarms.onAlarm.addListener(alarm => onAlarm(alarm))
+  browser.notifications.onClicked.addListener(async (notificationId) => await onNotificationClicked(notificationId))
   await refreshAllAlarms()
 }
 
@@ -58,6 +59,7 @@ async function onAlarm(alarm: Alarms.Alarm) {
     console.log('Prayer Time was in past!', alarm.name)
   } else {
     console.log('Prayer Time is now!', alarm.name)
+    runNotification(alarm.name)
   }
   
   // Check if there are any more remaining alarms, if not that implies that
@@ -68,4 +70,17 @@ async function onAlarm(alarm: Alarms.Alarm) {
     currentDate.setDate(currentDate.getDate() + 1)
     await createAlarmsForDay(currentDate)
   }
+}
+
+function runNotification(alarmName: string) {
+  // Bug in Chromium MV3, we can't send a notification: crbug.com/1209552
+  chrome.notifications.create(alarmName, {
+    type: 'basic',
+    title: 'test title',
+    message: 'Time to pray!'
+  })
+}
+
+async function onNotificationClicked(notificationId: string) {
+  console.log('onNotificationClicked', notificationId)
 }
