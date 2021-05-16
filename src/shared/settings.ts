@@ -48,8 +48,10 @@ export async function getSetting<T>(keys: Setting[]): Promise<Partial<Settings>>
           'midnight': true
         } : value
         break
-      case Setting.version:
       case Setting.currentPosition:
+        result = (typeof value == 'undefined') ? { latitude: 21.3891,longitude: 39.8579 } : value
+        break
+      case Setting.version:
       default:
         result = value
         break
