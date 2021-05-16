@@ -1,6 +1,6 @@
 import { browser } from 'webextension-polyfill-ts';
 
-export const localizedMessages = {
+export const localizedPrayerTimeMessages = {
   imsak: browser.i18n.getMessage('imsak'),
   fajr: browser.i18n.getMessage('fajr'),
   sunrise: browser.i18n.getMessage('sunrise'),

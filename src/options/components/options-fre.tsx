@@ -6,7 +6,7 @@ import { createUseStyles } from 'react-jss'
 import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet'
 import { browser } from 'webextension-polyfill-ts'
 import { calculationMethods, PrayerTimeFormat } from '../../shared/pray_time'
-import { localizedMessages } from '../../shared/pray_time_messages'
+import { localizedPrayerTimeMessages } from '../../shared/pray_time_messages'
 import { Setting } from '../../shared/settings'
 import { useOptionsState } from '../state'
 
@@ -138,7 +138,7 @@ const Timenames = observer(() => {
   return (
     <div>
       <h2>Visible Times</h2>
-      {Object.keys(localizedMessages).map((timename, idx) => (
+      {Object.keys(localizedPrayerTimeMessages).map((timename, idx) => (
         <span key={idx}>
           <input
             checked={timenames[timename]}
@@ -146,7 +146,7 @@ const Timenames = observer(() => {
             onChange={(e) => state.updateTimename(timename, e.target.checked)}
             type="checkbox"
           />
-          {localizedMessages[timename]}
+          {localizedPrayerTimeMessages[timename]}
         </span>
       ))}
     </div>

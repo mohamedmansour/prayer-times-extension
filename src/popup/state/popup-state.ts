@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 import { browser } from 'webextension-polyfill-ts'
 import { PrayerTimeFormat, PrayTimesProvider } from '../../shared/pray_time'
-import { localizedMessages } from '../../shared/pray_time_messages'
+import { localizedPrayerTimeMessages } from '../../shared/pray_time_messages'
 import { getSetting, Setting, Settings } from '../../shared/settings'
 
 type PageType = 'popup'
@@ -102,10 +102,10 @@ export class PopupState {
 
     let foundNextPrayer = false
 
-    Object.keys(localizedMessages).forEach((key) => {
+    Object.keys(localizedPrayerTimeMessages).forEach((key) => {
       if (!this.settings.timenames[key]) return
 
-      const name = localizedMessages[key]
+      const name = localizedPrayerTimeMessages[key]
 
       // Add 24 hours if the day is the next day so the timings will be correct.
       const timeInFloat = times[name.toLowerCase()] + (dayDiff > 1 ? dayDiff * 24 : 0)

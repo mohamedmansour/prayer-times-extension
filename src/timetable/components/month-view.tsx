@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite'
 import * as React from 'react'
 import { browser } from 'webextension-polyfill-ts'
 import { getHijriDate } from '../../shared/islamic_date'
-import { localizedMessages } from '../../shared/pray_time_messages'
+import { localizedPrayerTimeMessages } from '../../shared/pray_time_messages'
 import { useTimetableState } from '../state'
 import { DayRow } from './day-row'
 import useStyles from './month-view.styles'
@@ -38,15 +38,15 @@ export const MonthView = observer(() => {
           <tr>
             <th>{localizationTimetable.gregorianDay}</th>
             <th className={classes.columnHijri}>{localizationTimetable.hijriDay}</th>
-            <th className={classes.columnDay}>{localizedMessages.imsak}</th>
-            <th className={classes.columnDay}>{localizedMessages.fajr}</th>
-            <th className={classes.columnDay}>{localizedMessages.sunrise}</th>
-            <th className={classes.columnDay}>{localizedMessages.dhuhr}</th>
-            <th className={classes.columnDay}>{localizedMessages.asr}</th>
-            <th className={classes.columnDay}>{localizedMessages.sunset}</th>
-            <th className={classes.columnDay}>{localizedMessages.maghrib}</th>
-            <th className={classes.columnDay}>{localizedMessages.isha}</th>
-            <th className={classes.columnDay}>{localizedMessages.midnight}</th>
+            <th className={classes.columnDay}>{localizedPrayerTimeMessages.imsak}</th>
+            <th className={classes.columnDay}>{localizedPrayerTimeMessages.fajr}</th>
+            <th className={classes.columnDay}>{localizedPrayerTimeMessages.sunrise}</th>
+            <th className={classes.columnDay}>{localizedPrayerTimeMessages.dhuhr}</th>
+            <th className={classes.columnDay}>{localizedPrayerTimeMessages.asr}</th>
+            <th className={classes.columnDay}>{localizedPrayerTimeMessages.sunset}</th>
+            <th className={classes.columnDay}>{localizedPrayerTimeMessages.maghrib}</th>
+            <th className={classes.columnDay}>{localizedPrayerTimeMessages.isha}</th>
+            <th className={classes.columnDay}>{localizedPrayerTimeMessages.midnight}</th>
           </tr>
         </thead>
         <tbody>
