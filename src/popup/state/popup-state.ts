@@ -100,7 +100,7 @@ export class PopupState {
     // Since this function figures out what the prayer times is for some date, calculate
     // how many days ahead it is so it can be added to the float times. The float times are
     // relative to the same day, so it must be normalized.
-    const dayDiff = date.getDay() - new Date().getDay() + 1
+    const dayDiff = date.getDay() - new Date().getDay()
     const currentMinutes = 60 * date.getHours() + date.getMinutes()
 
     let foundNextPrayer = false
@@ -111,7 +111,7 @@ export class PopupState {
       const name = localizedPrayerTimeMessages[key]
 
       // Add 24 hours if the day is the next day so the timings will be correct.
-      const timeInFloat = times[name.toLowerCase()] + (dayDiff > 1 ? dayDiff * 24 : 0)
+      const timeInFloat = times[name.toLowerCase()] + (dayDiff > 0 ? dayDiff * 24 : 0)
       const prayerTimeMinutes = Math.floor(timeInFloat * 60)
       const time = prayTimesProvider.getFormattedTime(
         timeInFloat,
