@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import * as React from 'react'
-import { calculationMethods } from '../../shared/pray-time'
-import { Setting } from '../../shared/settings'
+import { calculationMethods, Setting } from '../../shared'
 import { useOptionsState } from '../state'
 
 export const OptionCalculationMethod = observer(() => {

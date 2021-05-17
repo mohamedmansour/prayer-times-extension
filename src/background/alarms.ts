@@ -1,11 +1,12 @@
 import { Alarms, browser } from 'webextension-polyfill-ts'
-import { PrayerTimeFormat, PrayTimesProvider } from '../shared/pray-time'
-import { getSetting, Setting, Settings } from '../shared/settings'
+import { getSetting, PrayerTimeFormat, PrayTimesProvider, Setting, Settings } from '../shared'
 
 export async function init() {
   browser.storage.onChanged.addListener(async (settings) => await onSettingsChanged(settings))
-  browser.alarms.onAlarm.addListener(alarm => onAlarm(alarm))
-  browser.notifications.onClicked.addListener(async (notificationId) => await onNotificationClicked(notificationId))
+  browser.alarms.onAlarm.addListener((alarm) => onAlarm(alarm))
+  browser.notifications.onClicked.addListener(
+    async (notificationId) => await onNotificationClicked(notificationId)
+  )
   await refreshAllAlarms()
 }
 
@@ -42,12 +43,11 @@ async function createAlarmsForDay(date: Date) {
     format: PrayerTimeFormat.Float
   })
 
-  Object.keys(settings.timenames).forEach(timename => {
-    if (!settings.timenames[timename])
-      return
+  Object.keys(settings.timenames).forEach((timename) => {
+    if (!settings.timenames[timename]) return
     const time = times[timename]
     browser.alarms.create(timename, {
-      when: date.getTime() + (time * 60 * 60 * 1000)
+      when: date.getTime() + time * 60 * 60 * 1000
     })
   })
 }
@@ -58,13 +58,13 @@ async function onAlarm(alarm: Alarms.Alarm) {
   // Alarams that are set in the past are automatically triggered here
   // So set a threshold of a minute, any alarms older than that wont
   // be notified.
-  if ((currentDate.getTime() - alarm.scheduledTime) > 60*1000) {
+  if (currentDate.getTime() - alarm.scheduledTime > 60 * 1000) {
     console.log('Prayer Time was in past!', alarm.name)
   } else {
     console.log('Prayer Time is now!', alarm.name)
     runNotification(alarm.name)
   }
-  
+
   // Check if there are any more remaining alarms, if not that implies that
   // all the alarams for today have been completed. Let's setup the alarms
   // for tomorrow.

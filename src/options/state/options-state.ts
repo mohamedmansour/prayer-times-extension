@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 import { browser } from 'webextension-polyfill-ts'
-import { getSetting, setSetting, Setting, Settings } from '../../shared/settings'
+import { getSetting, setSetting, Setting, Settings } from '../../shared'
 
 type PageType = 'fre' | 'settings'
 

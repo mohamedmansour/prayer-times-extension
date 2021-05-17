@@ -1,5 +1,5 @@
 import { browser } from 'webextension-polyfill-ts'
-import { getSetting, Setting } from '../shared/settings'
+import { getSetting, Setting } from '../shared'
 
 /**
  * Checks if the version has changed or initially installed.

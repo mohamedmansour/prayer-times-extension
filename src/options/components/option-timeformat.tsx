@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import * as React from 'react'
-import { PrayerTimeFormat } from '../../shared/pray-time'
-import { Setting } from '../../shared/settings'
+import { PrayerTimeFormat, Setting } from '../../shared'
 import { useOptionsState } from '../state'
 
 export const OptionTimeFormat = observer(() => {

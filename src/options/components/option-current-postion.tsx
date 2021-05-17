@@ -4,7 +4,7 @@ import * as React from 'react'
 import { useEffect } from 'react'
 import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet'
 import { browser } from 'webextension-polyfill-ts'
-import { Setting } from '../../shared/settings'
+import { Setting } from '../../shared'
 import { useOptionsState } from '../state'
 import useStyles from './option-current-position.styles'
 

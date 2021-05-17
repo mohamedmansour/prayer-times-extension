@@ -1,8 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 import { browser } from 'webextension-polyfill-ts'
-import { PrayerTimeFormat, PrayTimesProvider } from '../../shared/pray-time'
-import { localizedPrayerTimeMessages } from '../../shared/pray-time-messages'
-import { getSetting, Setting, Settings } from '../../shared/settings'
+import { getSetting, localizedPrayerTimeMessages, PrayerTimeFormat, PrayTimesProvider, Setting, Settings } from '../../shared'
 
 type PageType = 'popup'
 
