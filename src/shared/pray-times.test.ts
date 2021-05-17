@@ -1,4 +1,4 @@
-import { PrayTimesProvider, PrayerTimeFormat, LocationCoordinate, CalculationName }  from './pray_time'
+import { PrayTimesProvider, PrayerTimeFormat, LocationCoordinate, CalculationName }  from './pray-time'
 
 const coord: LocationCoordinate = { latitude: 33.921340, longitude: -118.326580 }
 const date = new Date(1617302701 * 1000)

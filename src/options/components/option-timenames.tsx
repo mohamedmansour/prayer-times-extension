@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import React, { useRef } from 'react'
 import { browser } from 'webextension-polyfill-ts'
-import { localizedPrayerTimeMessages } from '../../shared/pray_time_messages'
+import { localizedPrayerTimeMessages } from '../../shared/pray-time-messages'
 import { useOptionsState } from '../state'
 import useStyles from './option-timenames.styles'
 

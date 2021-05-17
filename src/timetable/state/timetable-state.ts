@@ -1,10 +1,10 @@
 import { makeAutoObservable } from 'mobx'
 import { browser } from 'webextension-polyfill-ts'
-import { getHijriDate } from '../../shared/islamic_date'
+import { getHijriDate } from '../../shared/islamic-date'
 import {
   PrayerTimes,
   PrayTimesProvider
-} from '../../shared/pray_time'
+} from '../../shared/pray-time'
 import { getSetting, Setting, Settings } from '../../shared/settings'
 
 type PageType = 'timetable'

@@ -1,5 +1,5 @@
 import { Alarms, browser } from 'webextension-polyfill-ts'
-import { PrayerTimeFormat, PrayTimesProvider } from '../shared/pray_time'
+import { PrayerTimeFormat, PrayTimesProvider } from '../shared/pray-time'
 import { getSetting, Setting, Settings } from '../shared/settings'
 
 export async function init() {

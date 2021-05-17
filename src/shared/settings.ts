@@ -1,5 +1,5 @@
 import { browser } from 'webextension-polyfill-ts'
-import { CalculationName, LocationCoordinate, PrayerTimeFormat } from './pray_time'
+import { CalculationName, LocationCoordinate, PrayerTimeFormat } from './pray-time'
 
 export enum Setting {
   timeformat = 'timeformat',
