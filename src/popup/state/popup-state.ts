@@ -10,15 +10,20 @@ export interface PrayerTimeRendered {
   name: string
   time: string
   delta: number
-  isNext?: string
+}
+
+export interface NextPrayerTimeRendered {
+  name: string
+  relativeTime: string
 }
 
 export class PopupState {
   page: PageType = 'popup'
   prayerTimes: PrayerTimeRendered[] = []
+  nextPrayerTime: NextPrayerTimeRendered
   currentGregorianDate = new Date()
   settings: Settings
-  prayersCompletedToday: boolean
+  prayersCompletedToday = false
 
   constructor() {
     makeAutoObservable(this, {})
@@ -72,24 +77,26 @@ export class PopupState {
     const currentDate = new Date()
     const prayerTimes = this.fetchPrayerTimesForDay(currentDate)
     let userTimes = prayerTimes.userTimes
-
-    if (!prayerTimes.foundNextPrayer) {
+    let nextTime = prayerTimes.nextPrayer
+    if (!prayerTimes.nextPrayer) {
       currentDate.setDate(currentDate.getDate() + 1)
       const nextDayPrayerTimes = this.fetchPrayerTimesForDay(currentDate)
       userTimes = nextDayPrayerTimes.userTimes
+      nextTime = nextDayPrayerTimes.nextPrayer
       // this.prayersCompletedToday = true // This needs more testing to add the badge when auto redirecting to second day
     }
 
     if (userTimes) {
       runInAction(() => {
         this.prayerTimes = userTimes
+        this.nextPrayerTime = nextTime
       })
     }
   }
 
   private fetchPrayerTimesForDay(
     date: Date
-  ): { userTimes: PrayerTimeRendered[]; foundNextPrayer: boolean } {
+  ): { userTimes: PrayerTimeRendered[]; nextPrayer: NextPrayerTimeRendered } {
     const prayTimesProvider = new PrayTimesProvider(this.settings.calculation)
     prayTimesProvider.tune(this.settings.offsets)
     const times = prayTimesProvider.getTimes(date, this.settings.currentPosition, {
@@ -103,7 +110,7 @@ export class PopupState {
     const dayDiff = date.getDay() - new Date().getDay()
     const currentMinutes = 60 * date.getHours() + date.getMinutes()
 
-    let foundNextPrayer = false
+    let nextPrayer: NextPrayerTimeRendered = undefined
 
     Object.keys(localizedPrayerTimeMessages).forEach((key) => {
       if (!this.settings.timenames[key]) return
@@ -121,15 +128,15 @@ export class PopupState {
       // Prayer time in minutes from day beginning.
       const delta = prayerTimeMinutes - currentMinutes
 
-      if (!foundNextPrayer && delta >= 0) {
-        foundNextPrayer = true
-        userTimes.push({ delta, name, time, isNext: this.getNextPrayerTime(delta) })
+      if (!nextPrayer && delta >= 0) {
+        nextPrayer = { name, relativeTime: this.getNextPrayerTime(delta) }
+        userTimes.push({ delta, name, time })
       } else {
         userTimes.push({ delta, name, time })
       }
     })
 
-    return { userTimes, foundNextPrayer }
+    return { userTimes, nextPrayer }
   }
 
   private getNextPrayerTime(delta: number) {

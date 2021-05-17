@@ -51,22 +51,26 @@
     "message": "pm",
     "description": "Time suffix for after midday."
   },
-  "monthlyView": {
-    "message": "Monthly View",
-    "description": "Appears in the popup, for the label to navigate to timetable."
-  },
-  "gregorianDay": {
+
+  "timetableGregorianDay": {
     "message": "Day",
     "description": "The label 'Day' for the gregorian month. Usually numbered from 1-31"
   },
-  "hijriDay": {
+  "timetablHijriDay": {
     "message": "Hijri",
     "description": "The label 'Hijri' for the month. The islamic day in the form of Ramadan 24"
   },
-  "prayersCompletedToday": {
-    "message": "Showing prayer times for tomorrow",
-    "description": "The label that describes that the prayers today have already completed so showing for tomorrow."
+
+  "popupMonthlyView": {
+    "message": "Monthly View",
+    "description": "Appears in the popup, for the label to navigate to timetable."
   },
+  "popupUpcomingPrayerTime": {
+    "message": "Upcoming",
+    "description": "The label that shows what is coming next, upcoming"
+  },
+
+
   "optionsTimenameTitle": {
     "message": "Visible Times",
     "description": "The option title to modify the visible timenames"

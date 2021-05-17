@@ -8,8 +8,8 @@ import { DayRow } from './day-row'
 import useStyles from './month-view.styles'
 
 export const localizationTimetable = {
-  gregorianDay: browser.i18n.getMessage('gregorianDay'),
-  hijriDay: browser.i18n.getMessage('hijriDay')
+  gregorianDay: browser.i18n.getMessage('timetableGregorianDay'),
+  hijriDay: browser.i18n.getMessage('timetableHijriDay')
 }
 
 export const MonthView = observer(() => {

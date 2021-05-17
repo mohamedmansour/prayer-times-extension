@@ -11,7 +11,7 @@ export default createUseStyles({
   },
   date: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: 900,
     marginBottom: 20
   },
   controls: {
