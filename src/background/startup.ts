@@ -28,3 +28,5 @@ export async function init() {
 function onInstall() {
   browser.runtime.openOptionsPage()
 }
+
+init()

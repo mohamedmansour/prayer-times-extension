@@ -1,9 +1,7 @@
-import * as alarms from './alarms'
-import * as startup from './startup'
 
 try {
-  startup.init()
-  alarms.init()
+  require('./alarms')
+  require('./startup')
 } catch (e) {
   console.error(e)
 }

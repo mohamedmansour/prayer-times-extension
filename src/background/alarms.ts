@@ -87,3 +87,5 @@ function runNotification(alarmName: string) {
 async function onNotificationClicked(notificationId: string) {
   console.log('onNotificationClicked', notificationId)
 }
+
+init()
