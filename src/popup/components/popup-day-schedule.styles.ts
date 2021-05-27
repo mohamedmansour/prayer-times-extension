@@ -66,6 +66,7 @@ export default createUseStyles({
   },
   dateItem: {
     flex: 1,
+    whiteSpace: 'nowrap',
     '&:last-child': {
       textAlign: 'right'
     }
